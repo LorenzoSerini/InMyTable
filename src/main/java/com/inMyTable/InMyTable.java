@@ -1,3 +1,5 @@
+package com.inMyTable;
+
 import com.inMyTable.view.View;
 import com.inMyTable.view.spring.SpringView;
 
