@@ -1,6 +1,6 @@
-package com.inMyTable.view.spring;
+package it.unicam.cs.gp.inmytable.view.spring;
 
-import com.inMyTable.view.View;
+import it.unicam.cs.gp.inmytable.view.View;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
