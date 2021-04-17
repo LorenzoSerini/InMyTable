@@ -1,10 +1,10 @@
 package it.unicam.cs.gp.inmytable.notification;
 
-public interface Notfication {
+public interface Notification {
 
-	void attach();
+	void attach(Observer observer);
 
-	void detach();
+	void detach(Observer observer);
 
 	void notifyObservers();
 
