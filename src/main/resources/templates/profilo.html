@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 800px;">
 
 <head>
     <meta charset="utf-8">
@@ -39,31 +39,63 @@
     <link rel="stylesheet" href="assets/css/Top--Right--Left-Navigation-by-Jigar-Mistry.css">
 </head>
 
-<body>
-    <nav class="navbar navbar-light navbar-expand-md fixed-top d-block navigation-clean-search" style="background: var(--bs-white);">
-        <div class="container-fluid"><img class="img-fluid" src="assets/img/inmytable-logo.png" style="width: 175px;">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link active" href="home.html" style="font-family: Lora, serif;color: var(--bs-dark);margin-top: 0px;font-weight: bold;">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="bacheca.html" style="font-family: Lora, serif;color: var(--bs-gray-dark);margin-top: 0px;font-weight: bold;">Trova un pasto</a></li>
-                <li class="nav-item"><a class="nav-link" href="aiuto.html" style="font-family: Lora, serif;color: var(--bs-dark);margin-top: 0px;font-weight: bold;">Aiuto</a></li>
-            </ul>
-            <div class="collapse navbar-collapse" id="navcol-1"></div><a class="btn btn-light action-button" role="button" data-bss-hover-animate="pulse" href="index.html" style="margin-left: -7px;margin-bottom: 0px;background: #ee6226;font-family: Lora, serif;width: 100px;">Indietro</a>
+<body class="text-start flex-shrink-1" style="border-right-color: rgba(33,37,41,0);background: var(--bs-white);height: 1160px;min-height: 0px;margin-top: 100px;">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top d-block navigation-clean-search" style="background: var(--bs-white);height: 130;">
+        <div class="container-fluid"><img class="img-fluid flex-shrink-1 pulse animated" src="assets/img/inmytable-logo.png" style="width: 170px;">
+            <div class="collapse navbar-collapse text-start" id="navcol-1" style="width: 35.828px;height: 45px;">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="home.html" style="font-family: Lora, serif;color: var(--bs-dark);margin-top: 0px;font-weight: bold;">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bacheca.html" style="font-family: Lora, serif;color: var(--bs-gray-dark);margin-top: 0px;font-weight: bold;">Trova un pasto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aiuto.html" style="font-family: Lora, serif;color: var(--bs-dark);margin-top: 0px;font-weight: bold;">Aiuto</a></li>
+                </ul>
+            </div>
+            <div class="dropdown" style="margin-top: -1px;"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="margin-right: 6px;margin-left: 0px;font-size: 15px;color: var(--bs-dark);letter-spacing: 1px;font-family: Lora, serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal;">IL MIO ACCOUNT</a>
+                <div class="dropdown-menu"><a class="dropdown-item" href="bacheca.html" style="font-size: 14px;font-family: Lora, serif;">Bacheca</a><a class="dropdown-item" href="prenotazioni.html" style="font-size: 14px;font-family: Lora, serif;">Le mie prenotazioni</a><a class="dropdown-item" href="annunci.html" style="font-size: 14px;font-family: Lora, serif;">I miei annunci</a><a class="dropdown-item" href="messaggi.html" style="font-size: 14px;font-family: Lora, serif;">Messaggi</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="richesta-pasto.html" style="font-size: 14px;font-family: Lora, serif;">Richiedi pasto</a><a class="dropdown-item" href="preferiti.html" style="font-size: 14px;font-family: Lora, serif;">Preferiti</a><a class="dropdown-item" href="recensioni.html" style="font-size: 14px;font-family: Lora, serif;">Recensioni</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="profilo.html" style="font-size: 14px;font-family: Lora, serif;">Il mio profilo</a><a class="dropdown-item" href="index.html" style="font-size: 14px;font-family: Lora, serif;">Esci</a>
+                </div>
+            </div><a class="btn btn-primary text-center" role="button" data-bss-hover-animate="pulse" style="background: url(&quot;assets/img/cucina.png&quot;) center / cover, #ee6226;border-radius: 24px;width: 116PX;margin-right: 10px;border-color: rgba(0,0,0,0);font-family: Lora, serif;font-size: 11px;height: 26px;margin-top: 3px;" href="cucina.html"></a>
         </div>
     </nav>
-    <section class="register-photo" style="margin-top: 60px;background: url(&quot;assets/img/social-cooking-eating-2.jpg&quot;) top / cover;">
-        <div class="form-container">
-            <form class="text-center border rounded" method="post" style="padding-right: 60px;padding-top: 40px;width: 900px;max-width: none;"><img class="swing animated" src="assets/img/inmytable-icon-1.png" style="width: 268px;margin-right: 0px;margin-left: 0px;margin-bottom: 20px;">
-                <h2 class="text-center" style="font-family: Lora, serif;"><strong>Creazione</strong>&nbsp;nuovo account</h2>
-                <div class="mb-3" style="font-family: Lora, serif;"><input class="form-control" type="email" name="username" placeholder="Nome utente" style="margin-bottom: 16px;font-family: Lora, serif;"><input class="form-control" type="email" name="nome" placeholder="Nome" style="margin-bottom: 16px;"><input class="form-control" type="email" name="cognome" placeholder="Cognome" style="margin-bottom: 16px;"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-                <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password" style="font-family: Lora, serif;"></div>
-                <div class="mb-3"><input class="form-control" type="password" name="password-repeat" placeholder="Password (ripeti)" style="font-family: Lora, serif;"></div><a class="already" href="#" style="font-size: 19px;margin-top: 15px;font-family: Lora, serif;">Foto del documento d'identità o patente di guida</a>
-                <div class="mb-3"></div><input class="form-control" type="file" accept="image/*" name="file-documento" style="font-family: Lora, serif;">
-                <div class="form-check" style="margin-bottom: 0px;margin-top: 24px;"><label class="form-check-label" style="font-size: 14px;font-family: Lora, serif;"><input class="form-check-input" type="checkbox">Accetto i termini e le condizioni del servizio.</label></div>
-                <div class="mb-3"><button class="btn btn-primary d-block w-100" data-bss-hover-animate="pulse" type="submit" style="color: var(--bs-light);background: #ee6226;margin-top: 30px;font-family: Lora, serif;font-size: 18px;">Registrati</button></div><a data-bss-hover-animate="pulse" class="already" href="login.html" style="font-size: 17px;margin-bottom: 20px;margin-top: 0px;font-family: Lora, serif;">Hai già un'account ?</a>
-            </form>
-        </div>
-    </section>
-    <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" data-aos="zoom-in" style="height: 343px;background: var(--bs-white);color: #ffffff;">
+    <div class="col-md-4 align-self-center mx-auto pulse animated relative" style="background: var(--bs-light);height: 380px;margin-top: 10px;font-family: Lora, serif;">
+        <div class="avatar" style="margin-top: 0px;margin-bottom: 58px;">
+            <h1 style="border-color: var(--bs-dark);border-top-color: rgb(255,;border-right-color: 255,;border-bottom-color: 255);border-left-color: 255,;color: var(--bs-dark);margin-top: 0px;text-align: center;">Foto Profilo</h1>
+            <div class="d-xl-flex flex-shrink-1 justify-content-xl-center align-items-xl-center avatar-bg center" style="margin-top: 37px;margin-bottom: 20px;"></div>
+        </div><input type="file" class="form-control" name="avatar-file" style="margin-bottom: 0px;margin-right: 0px;margin-left: 0px;">
+    </div>
+    <div class="container pulse animated" style="background: var(--bs-light);height: 747px;margin-top: 50px;border-color: rgb(255,255,255);color: rgba(0,0,0,0);" id="profile">
+        <form>
+            <div class="row text-center profile-row" style="margin-right: 10px;margin-left: 10px;font-family: Lora, serif;">
+                <div class="col-md-8 text-start" style="width: 1276px;margin-top: 10px;">
+                    <h1 style="border-color: var(--bs-dark);border-top-color: rgb(255,;border-right-color: 255,;border-bottom-color: 255);border-left-color: 255,;color: var(--bs-dark);margin-top: 30px;">Profilo</h1>
+                    <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Nome utente</label><input class="form-control" type="text" name="firstname"></div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Nome</label><input class="form-control" type="text" name="firstname"></div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Cognome</label><input class="form-control" type="text" name="lastname"></div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Email </label><input class="form-control" type="email"></div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><label class="form-label" style="border-color: var(--bs-gray-dark);color: var(--bs-dark);">Password </label><input class="form-control" type="password"></div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Conferma Password</label><input class="form-control" type="password"></div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12 content-right"><button class="btn btn-primary form-btn" data-bss-hover-animate="pulse" type="submit" style="background: #ee6226;border-color: rgba(0,0,0,0);height: 45px;width: 110px;">SALVA</button></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" data-aos="zoom-in" style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;">
         <footer style="border-color: rgb(240, 249, 255);border-top-color: rgb(240,;border-right-color: 249,;border-bottom-color: 255);border-left-color: 249,;color: var(--bs-white);height: 214.328px;">
             <div class="container">
                 <div class="row g-0 row-cols-2 justify-content-center align-items-center">
@@ -82,8 +114,8 @@
                             <li style="height: 32px;text-align: center;"><a href="#" style="font-size: 19px;color: var(--bs-dark);font-family: Lora, serif;">Come funziona</a></li>
                             <li></li>
                             <li></li>
-                            <li style="font-size: 19px;height: 32px;text-align: center;"><a href="aiuto.html" style="color: var(--bs-dark);font-family: Lora, serif;">FAQ</a></li>
-                            <li style="font-size: 19px;height: 31px;text-align: center;"><a href="#" style="color: var(--bs-dark);font-family: Lora, serif;">Blog</a></li>
+                            <li style="font-size: 19px;height: 32px;text-align: center;font-family: Lora, serif;"><a href="aiuto.html" style="color: var(--bs-dark);font-family: Lora, serif;">FAQ</a></li>
+                            <li style="font-size: 19px;height: 31px;text-align: center;font-family: Lora, serif;"><a href="#" style="color: var(--bs-dark);">Blog</a></li>
                         </ul>
                     </div>
                     <div class="col-6 col-sm-4 col-md-3 d-inline item" style="font-family: Lato, sans-serif;">
