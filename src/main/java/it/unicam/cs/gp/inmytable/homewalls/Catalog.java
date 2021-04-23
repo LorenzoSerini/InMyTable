@@ -1,9 +1,6 @@
 package it.unicam.cs.gp.inmytable.homewalls;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class Catalog<E> implements Collection<E> {
@@ -13,9 +10,7 @@ public class Catalog<E> implements Collection<E> {
 	/**
 	 * Builds a new empty Catalog
 	 */
-	public Catalog(){
-		catalog = new HashSet<>();
-	}
+	public Catalog(){ catalog = new HashSet<>(); }
 	/**
 	 * Returns the number of elements in this collection.  If this collection
 	 * contains more than {@code Integer.MAX_VALUE} elements, returns

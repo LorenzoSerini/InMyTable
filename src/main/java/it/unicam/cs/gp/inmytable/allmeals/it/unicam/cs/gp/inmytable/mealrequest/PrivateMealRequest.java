@@ -1,20 +1,23 @@
 package it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest;
 
+import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
+import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
 import it.unicam.cs.gp.inmytable.notification.*;
 import it.unicam.cs.gp.inmytable.user.*;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class PrivateMealRequest extends MealRequest implements Notification {
 
 	private User homeOwner;
 	private List<Observer> observers;
-	private NotificationStates state;
+	private NotificationStates notificationState;
 
-	public PrivateMealRequest(User host, Date date, Date expiringDate,String place, User homeOwner) {
-		super(host,date, expiringDate, place);
+	public PrivateMealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, User homeOwner) {
+		super(host, mealType, consumationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber);
 		setHomeOwner(homeOwner);
 	}
 
@@ -40,21 +43,21 @@ public class PrivateMealRequest extends MealRequest implements Notification {
 
 	@Override
 	public void accept() {
-		if (state != NotificationStates.PENDING) throw new IllegalArgumentException("The Request is not pending");
+		if (notificationState != NotificationStates.PENDING) throw new IllegalArgumentException("The Request is not pending");
 		super.setState(MealStates.FULL);
-		this.state = NotificationStates.ACCEPTED;
+		this.notificationState = NotificationStates.ACCEPTED;
 
 	}
 
 	@Override
 	public void refuse() {
-		if (state != NotificationStates.PENDING) throw new IllegalArgumentException("The Request is not pending");
-		this.state = NotificationStates.REFUSED;
-
+		if (notificationState != NotificationStates.PENDING) throw new IllegalArgumentException("The Request is not pending");
+		super.setState(MealStates.EXPIRED);
+		this.notificationState = NotificationStates.REFUSED;
 	}
 
 	@Override
-	public NotificationStates getState() {
-		return state;
+	public NotificationStates getNotificationState() {
+		return notificationState;
 	}
 }

@@ -1,9 +1,8 @@
 package it.unicam.cs.gp.inmytable.user;
 
 import it.unicam.cs.gp.inmytable.notification.NotificationManager;
-import it.unicam.cs.gp.inmytable.notification.Observer;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class User {
@@ -14,7 +13,7 @@ public class User {
     private String firstName;
     private String lastName;
     private int password;
-    private Date birth;
+    private LocalDate birth;
     private NotificationManager notificationManager;
 
     /**
@@ -29,10 +28,10 @@ public class User {
      * @param birth           user birth day
      */
     public User(String username, String email, String telephoneNumber, String firstName, String lastName, String password,
-                Date birth) {
+                LocalDate birth) {
         if (username == null || email == null || telephoneNumber == null || firstName == null || lastName == null ||
                 password == null || birth == null) throw new NullPointerException("One of the parameter is null!");
-        if (new Date().before(birth)) throw new IllegalArgumentException("You cannot travel in time!!");
+        if (LocalDate.now().isBefore(birth)) throw new IllegalArgumentException("You cannot travel in time!!");
         this.username = username;
         this.email = email;
         this.telephoneNumber = telephoneNumber;
@@ -71,7 +70,7 @@ public class User {
         return password;
     }
 
-    public Date getBirth() {
+    public LocalDate getBirth() {
         return birth;
     }
 

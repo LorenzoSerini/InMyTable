@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 800px;">
+<html lang="en" style="height: 800px;" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -68,29 +68,37 @@
             <div class="row text-center profile-row" style="margin-right: 10px;margin-left: 10px;font-family: Lora, serif;">
                 <div class="col-md-8 text-start" style="width: 1276px;margin-top: 10px;">
                     <h1 style="border-color: var(--bs-dark);border-top-color: rgb(255,;border-right-color: 255,;border-bottom-color: 255);border-left-color: 255,;color: var(--bs-dark);margin-top: 30px;">Profilo</h1>
-                    <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Nome utente</label><input class="form-control" type="text" name="firstname"></div>
+
+
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" style="color: var(--bs-dark);">Nome utente</label>
+                        <p class="form-control" th:text="${user.username}">
+                    </div>
+
+
                     <hr>
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Nome</label><input class="form-control" type="text" name="firstname"></div>
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Nome</label>
+                                <p class="form-control" th:text="${user.firstName}">
+                            </div>
                         </div>
+
+
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Cognome</label><input class="form-control" type="text" name="lastname"></div>
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Cognome</label>
+                                <p class="form-control" th:text="${user.lastName}" >
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Email </label><input class="form-control" type="email"></div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group mb-3"><label class="form-label" style="border-color: var(--bs-gray-dark);color: var(--bs-dark);">Password </label><input class="form-control" type="password"></div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Conferma Password</label><input class="form-control" type="password"></div>
-                        </div>
+
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" style="color: var(--bs-dark);">Email </label>
+                        <p class="form-control" th:text="${user.email}">
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-12 content-right"><button class="btn btn-primary form-btn" data-bss-hover-animate="pulse" type="submit" style="background: #ee6226;border-color: rgba(0,0,0,0);height: 45px;width: 110px;">SALVA</button></div>
-                    </div>
+
                 </div>
             </div>
         </form>

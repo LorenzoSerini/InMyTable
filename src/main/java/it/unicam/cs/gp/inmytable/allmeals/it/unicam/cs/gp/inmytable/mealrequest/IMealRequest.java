@@ -1,21 +1,49 @@
 package it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest;
 
+import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
 import it.unicam.cs.gp.inmytable.user.*;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public interface IMealRequest {
 
-	public User getHost();
+	User getHost();
 
-	public void setHost(User host);
+	String getMealType();
 
-	public User getHomeOwner();
+	void setHost(User host);
 
-	public void setDate(Date date);
+	User getHomeOwner();
 
-	public void setExpiringDate(Date expiringDate);
+	void setDate(LocalDate date);
 
-	public void setHomeOwner(User homeOwner);
+	LocalDate getDate();
+
+	void setTime(LocalTime time);
+
+	LocalTime getTime();
+
+	void setExpiringDate(LocalDate expiryDate);
+
+	LocalDate getExpiryDate();
+
+	void setExpiryTime(LocalTime expiryTime);
+
+	LocalTime getExpiryTime();
+
+	void setDescription(String description);
+
+	String getDescription();
+
+	String getAllergy();
+
+	int getMealsNumber();
+
+	MealStates getState();
+
+	void setHomeOwner(User homeOwner);
+
+
 
 }

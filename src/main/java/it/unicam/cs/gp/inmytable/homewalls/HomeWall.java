@@ -1,6 +1,5 @@
 package it.unicam.cs.gp.inmytable.homewalls;
 
-import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.PublicMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 import it.unicam.cs.gp.inmytable.user.User;
@@ -27,6 +26,14 @@ public class HomeWall {
 		if (instance == null )
 			instance = new HomeWall();
 		return instance;
+	}
+
+	/**
+	 * Add meal
+	 * @param meal
+	 */
+	public void addMeal(Meal meal){
+		mealCatalog.add(meal);
 	}
 
 	/**

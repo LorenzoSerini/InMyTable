@@ -2,22 +2,32 @@ package it.unicam.cs.gp.inmytable.allmeals.meals;
 
 import it.unicam.cs.gp.inmytable.user.User;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 public class Meal {
 
-	private Date date;
+	private LocalDate date;
+	private LocalTime time;
 	private int maxNumberUsers;
-	private Date expiryDate;
+	private int placesAvailable;
+	private LocalDate expiryDate;
+	private LocalTime expiryTime;
 	private String mealType;
 	private boolean freeSubscription;
 	private String place;
 	private MealStates state;
 	private ConsumationType consumationType;
 	private String description;
+	private String ingredients;
 	private PaymentType payment;
+	private String price;
 	private User homeOwner;
 	private Set<User> userList;
+
+
+	private String address; //TODO: DA AGGIUNGERE?
 
 
 
@@ -26,7 +36,9 @@ public class Meal {
 	 * @param homeOwner who share the meal
 	 * @param maxNumberUsers max number of available meals
 	 * @param date date of the meal
+	 * @param time time of the meal
 	 * @param expiryDate expiring date of the meal
+	 * @param expiryTime expiring time of the meal
 	 * @param mealType type of meal
 	 * @param freeSubscription	if the subscription of the meal is free or if is chosen by the homeOwner
 	 * @param place	where the meal is
@@ -35,21 +47,28 @@ public class Meal {
 	 * @param payment	how payment is accepted
 	 * @throws Exception if one of the parameters is null
 	 */
-	public Meal(User homeOwner, int maxNumberUsers, Date date, Date expiryDate, String mealType, boolean freeSubscription, String place,
-				ConsumationType consumationType, String description, PaymentType payment) throws Exception{
+	public Meal(User homeOwner, int maxNumberUsers, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String mealType, boolean freeSubscription, String place,
+				ConsumationType consumationType, String description, String ingredients, PaymentType payment, String price) throws Exception{
 		if (homeOwner==null|| date ==null ||expiryDate ==null ||mealType==null ||place == null ||
 				consumationType ==null|| description ==null || payment ==null) throw new NullPointerException("You must insert all!");
-		if (new Date().after(date)) throw new IllegalArgumentException("You cannot travel in time");
-		if (date.before(expiryDate)) throw new IllegalArgumentException("ExpirationTime should be after meal date");
+		if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )) throw new IllegalArgumentException("You cannot travel in time");
+		if (date.isBefore(expiryDate) ||(LocalDate.now().isEqual(expiryDate) && time.isBefore(expiryTime))) throw new IllegalArgumentException("ExpirationTime should be after meal date");
+		if(payment.compareTo(PaymentType.FREE)==0){
+			this.price="0";
+		}else this.price=price;
 		this.homeOwner = homeOwner;
 		this.maxNumberUsers = maxNumberUsers;
+		this.placesAvailable = maxNumberUsers;
 		this.date = date;
+		this.time = time;
 		this.expiryDate = expiryDate;
+		this.expiryTime = expiryTime;
 		this.mealType = mealType;
 		this.freeSubscription = freeSubscription;
 		this.place = place;
 		this.consumationType = consumationType;
 		this.description = description;
+		this.ingredients = ingredients;
 		this.payment = payment;
 		this.state = MealStates.PENDING;
 		this.userList = new HashSet<User>();
@@ -78,6 +97,7 @@ public class Meal {
 	 */
 	public void addUser(User user){
 		this.userList.add(user);
+		this.placesAvailable--;
 		if(userList.size()==maxNumberUsers) setState(MealStates.FULL);
 	}
 
@@ -85,8 +105,16 @@ public class Meal {
 	 * Return the date of the meal
 	 * @return	the date of the meal
 	 */
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
+	}
+
+	/**
+	 * Return the time of the meal
+	 * @return	the time of the meal
+	 */
+	public LocalTime getTime(){
+		return time;
 	}
 
 	/**
@@ -98,11 +126,27 @@ public class Meal {
 	}
 
 	/**
+	 * return the places available for this meal
+	 * @return
+	 */
+	public int getPlacesAvailable() {
+		return placesAvailable;
+	}
+
+	/**
 	 * Return the expiring date of the meal
 	 * @return	Return the expiring date of the meal
 	 */
-	public Date getExpiryDate() {
+	public LocalDate getExpiryDate() {
 		return expiryDate;
+	}
+
+	/**
+	 * Return the expiring time of the meal
+	 * @return	Return the expiring time of the meal
+	 */
+	public LocalTime getExpiryTime(){
+		return expiryTime;
 	}
 
 	/**
@@ -149,8 +193,23 @@ public class Meal {
 	 *
 	 * @return
 	 */
+	public String getIngredients(){return this.ingredients;}
+
+	/**
+	 *Return the meal payment type
+	 * @return payment tipe
+	 */
 	public PaymentType getPayment() {
 		return payment;
+	}
+
+	/**
+	 *Return the meal price.
+	 * if is a free meal return 0
+	 * @return payment tipe
+	 */
+	public String getPrice() {
+		return price;
 	}
 
 	/**

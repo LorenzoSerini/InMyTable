@@ -12,6 +12,6 @@ public interface Notification {
 
 	void refuse();
 
-	NotificationStates getState();
+	NotificationStates getNotificationState();
 
 }

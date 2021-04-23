@@ -76,7 +76,7 @@ public class Subscription implements Notification {
     }
 
     @Override
-    public NotificationStates getState() {
+    public NotificationStates getNotificationState() {
         return null;
     }
 
