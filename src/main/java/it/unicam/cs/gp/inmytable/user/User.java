@@ -13,6 +13,10 @@ public class User {
     private String firstName;
     private String lastName;
     private int password;
+    private String fiscalCode;
+    private String id;
+    private String address;
+    private boolean availableToRequests;
     private LocalDate birth;
     private NotificationManager notificationManager;
 
@@ -28,7 +32,7 @@ public class User {
      * @param birth           user birth day
      */
     public User(String username, String email, String telephoneNumber, String firstName, String lastName, String password,
-                LocalDate birth) {
+                LocalDate birth, String fiscalCode, String id, String address, boolean availableToRequests) {
         if (username == null || email == null || telephoneNumber == null || firstName == null || lastName == null ||
                 password == null || birth == null) throw new NullPointerException("One of the parameter is null!");
         if (LocalDate.now().isBefore(birth)) throw new IllegalArgumentException("You cannot travel in time!!");
@@ -39,6 +43,10 @@ public class User {
         this.lastName = lastName;
         this.password = password.hashCode();
         this.birth = birth;
+        this.fiscalCode = fiscalCode;
+        this.id = id;
+        this.address=address;
+        this.availableToRequests=availableToRequests;
         this.notificationManager = new NotificationManager(this);
     }
 
@@ -73,6 +81,14 @@ public class User {
     public LocalDate getBirth() {
         return birth;
     }
+
+    public String getFiscalCode(){return fiscalCode;}
+
+    public String getId(){return id;}
+
+    public String getAddress(){return address;}
+
+    public boolean getAvailableToRequests(){return availableToRequests;}
 
     @Override
     public boolean equals(Object o) {

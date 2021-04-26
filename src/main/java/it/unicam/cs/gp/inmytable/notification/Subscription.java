@@ -8,7 +8,6 @@ import java.util.Set;
 
 public class Subscription implements Notification {
 
-
     private User host;
     private Meal meal;
     private NotificationStates state;

@@ -4,6 +4,8 @@ import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 import it.unicam.cs.gp.inmytable.user.User;
 
+import java.time.LocalDate;
+
 public class HomeWall {
 
 	private static Catalog<Meal> mealCatalog;
@@ -28,6 +30,7 @@ public class HomeWall {
 		return instance;
 	}
 
+
 	/**
 	 * Add meal
 	 * @param meal
@@ -47,9 +50,7 @@ public class HomeWall {
 		return mealCatalog;
 	}
 
-	/*
-	* Non so se è meglio fare il catalogo di MealRequest generiche
-	* */
+
 	public Catalog<PublicMealRequest> getMealRequestCatalog(){
 		if (mealRequestCatalog == null){
 			mealRequestCatalog = new Catalog<PublicMealRequest>();
@@ -67,4 +68,5 @@ public class HomeWall {
 		}
 		return userCatalog;
 	}
+
 }

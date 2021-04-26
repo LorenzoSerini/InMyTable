@@ -28,4 +28,12 @@ public class HomeWallService {
                 .filter(p->p.getState().equals(MealStates.PENDING))
                 .collect(Collectors.toList());
     }
+
+    public Meal getAMeal(int hashCode){
+        for(Meal meal:getPendingMealCatalog()){
+            if(hashCode==meal.hashCode()) return meal;
+        }
+        return null;
+    }
+
 }
