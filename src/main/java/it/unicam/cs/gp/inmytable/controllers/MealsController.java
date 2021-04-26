@@ -26,4 +26,6 @@ public class MealsController {
     public void mealRequest(String description, String mealType, ConsumationType consumationType, PaymentType payment, String date, String time, String expiryDate, String expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {
         mealManager.createMealRequest(defaultUser, mealType, consumationType, payment, description, LocalDate.parse(date), LocalTime.parse(time), LocalDate.parse(expiryDate), LocalTime.parse(expiryTime), price, place, allergy, mealsNumber);
     }
+
+
 }

@@ -1,5 +1,7 @@
 package it.unicam.cs.gp.inmytable.notification;
 
+import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.MealRequest;
+import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
 import it.unicam.cs.gp.inmytable.user.User;
 
 public class SubscriptionManager {
@@ -35,5 +37,10 @@ public class SubscriptionManager {
         if (!subscription.getMeal().getHomeOwner().equals(user)) throw new IllegalArgumentException("You cannot accept this subscription");
         subscription.detach(user.getNotificationManager());
         subscription.refuse();
+    }
+
+    public void cookMealRequest(MealRequest mealRequest) throws Exception{
+        if (mealRequest.getState()!= MealStates.PENDING) throw new IllegalArgumentException("You cannot cook for this request!");
+        mealRequest.accept();
     }
 }

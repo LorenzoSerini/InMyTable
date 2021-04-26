@@ -15,6 +15,7 @@ public class User {
     private int password;
     private LocalDate birth;
     private NotificationManager notificationManager;
+    private FeedbackBox feedbackBox;
 
     /**
      * Build a new user
@@ -27,19 +28,19 @@ public class User {
      * @param password        user's password
      * @param birth           user birth day
      */
-    public User(String username, String email, String telephoneNumber, String firstName, String lastName, String password,
+    public User(String username, String email, String telephoneNumber, String firstName, String lastName, int password,
                 LocalDate birth) {
-        if (username == null || email == null || telephoneNumber == null || firstName == null || lastName == null ||
-                password == null || birth == null) throw new NullPointerException("One of the parameter is null!");
+        if (username == null || email == null || telephoneNumber == null || firstName == null || lastName == null || birth == null) throw new NullPointerException("One of the parameter is null!");
         if (LocalDate.now().isBefore(birth)) throw new IllegalArgumentException("You cannot travel in time!!");
         this.username = username;
         this.email = email;
         this.telephoneNumber = telephoneNumber;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password.hashCode();
+        this.password = password;
         this.birth = birth;
         this.notificationManager = new NotificationManager(this);
+        this.feedbackBox = new FeedbackBox();
     }
 
     public NotificationManager getNotificationManager() {
@@ -85,5 +86,9 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(username);
+    }
+
+    public FeedbackBox getFeedbackBox() {
+        return feedbackBox;
     }
 }

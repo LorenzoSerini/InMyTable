@@ -80,6 +80,11 @@ public class Subscription implements Notification {
         return null;
     }
 
+    @Override
+    public void setNotificationState(NotificationStates state) {
+        this.state = state;
+    }
+
     public User getHost() {
         return host;
     }

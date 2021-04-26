@@ -3,14 +3,14 @@ package it.unicam.cs.gp.inmytable.homewalls;
 import java.util.*;
 import java.util.function.Predicate;
 
-public class Catalog<E> implements Collection<E> {
+public class Catalog<E> implements List<E> {
 
-	protected  Collection<E> catalog;
+	protected  List<E> catalog;
 
 	/**
 	 * Builds a new empty Catalog
 	 */
-	public Catalog(){ catalog = new HashSet<>(); }
+	public Catalog(){ catalog = new ArrayList<E>(); }
 	/**
 	 * Returns the number of elements in this collection.  If this collection
 	 * contains more than {@code Integer.MAX_VALUE} elements, returns
@@ -179,6 +179,7 @@ public class Catalog<E> implements Collection<E> {
 	 */
 	@Override
 	public boolean add(E e) {
+		if(catalog.contains(e)) return false;
 		return catalog.add(e);
 	}
 
@@ -256,7 +257,10 @@ public class Catalog<E> implements Collection<E> {
 	 */
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		return catalog.addAll(c);
+		for (E e: c) {
+			catalog.add(e);
+		}
+		return true;
 	}
 
 	/**
@@ -324,6 +328,47 @@ public class Catalog<E> implements Collection<E> {
 	@Override
 	public void clear() {
 		catalog.clear();
+	}
+	@Override
+	public boolean addAll(int index, Collection<? extends E> c) {
+		return catalog.addAll(c);
+	}
+	@Override
+	public E get(int index) {
+		return catalog.get(index);
+	}
+	@Override
+	public E set(int index, E element) {
+		return catalog.set(index,element);
+	}
+	@Override
+	public void add(int index, E element) {
+		catalog.add(index,element);
+
+	}
+	@Override
+	public E remove(int index) {
+		return catalog.remove(index);
+	}
+	@Override
+	public int indexOf(Object o) {
+		return catalog.indexOf(o);
+	}
+	@Override
+	public int lastIndexOf(Object o) {
+		return catalog.lastIndexOf(o);
+	}
+	@Override
+	public ListIterator<E> listIterator() {
+		return catalog.listIterator();
+	}
+	@Override
+	public ListIterator<E> listIterator(int index) {
+		return catalog.listIterator(index);
+	}
+	@Override
+	public List<E> subList(int fromIndex, int toIndex) {
+		return catalog.subList(fromIndex,toIndex);
 	}
 
 	/**
