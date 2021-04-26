@@ -14,4 +14,6 @@ public interface Notification {
 
 	NotificationStates getNotificationState();
 
+	void setNotificationState(NotificationStates state);
+
 }

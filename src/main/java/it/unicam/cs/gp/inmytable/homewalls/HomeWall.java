@@ -2,9 +2,11 @@ package it.unicam.cs.gp.inmytable.homewalls;
 
 import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.PublicMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
+import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
 import it.unicam.cs.gp.inmytable.user.User;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class HomeWall {
 
@@ -30,7 +32,6 @@ public class HomeWall {
 		return instance;
 	}
 
-
 	/**
 	 * Add meal
 	 * @param meal
@@ -47,14 +48,25 @@ public class HomeWall {
 		if (mealCatalog == null){
 			mealCatalog = new Catalog<Meal>();
 		}
+		else
+			mealCatalog.search(p->p.getExpiryDate().isAfter(LocalDate.now()) || (
+				p.getExpiryDate().isEqual(LocalDate.now()) &&
+						p.getExpiryTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.EXPIRED));
 		return mealCatalog;
 	}
 
-
+	/**
+	 * Return all meals request
+	 * @return mealRequest catalog
+	 */
 	public Catalog<PublicMealRequest> getMealRequestCatalog(){
 		if (mealRequestCatalog == null){
 			mealRequestCatalog = new Catalog<PublicMealRequest>();
 		}
+		else
+			mealRequestCatalog.search(p->p.getExpiryDate().isAfter(LocalDate.now()) || (
+				p.getExpiryDate().isEqual(LocalDate.now()) &&
+						p.getExpiryTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.EXPIRED));
 		return mealRequestCatalog;
 	}
 
@@ -68,5 +80,4 @@ public class HomeWall {
 		}
 		return userCatalog;
 	}
-
 }

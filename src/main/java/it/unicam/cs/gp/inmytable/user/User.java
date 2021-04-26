@@ -19,6 +19,7 @@ public class User {
     private boolean availableToRequests;
     private LocalDate birth;
     private NotificationManager notificationManager;
+    private FeedbackBox feedbackBox;
 
     /**
      * Build a new user
@@ -41,13 +42,14 @@ public class User {
         this.telephoneNumber = telephoneNumber;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password.hashCode();
+        this.password = password;
         this.birth = birth;
         this.fiscalCode = fiscalCode;
         this.id = id;
         this.address=address;
         this.availableToRequests=availableToRequests;
         this.notificationManager = new NotificationManager(this);
+        this.feedbackBox = new FeedbackBox();
     }
 
     public NotificationManager getNotificationManager() {
@@ -101,5 +103,9 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(username);
+    }
+
+    public FeedbackBox getFeedbackBox() {
+        return feedbackBox;
     }
 }

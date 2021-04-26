@@ -130,7 +130,7 @@ public class Meal {
 	 * @return
 	 */
 	public int getPlacesAvailable() {
-		return placesAvailable;
+		return maxNumberUsers-userList.size();
 	}
 
 	/**
@@ -229,6 +229,16 @@ public class Meal {
 	}
 
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Meal)) return false;
+		Meal meal = (Meal) o;
+		return maxNumberUsers == meal.maxNumberUsers && date.equals(meal.date) && time.equals(meal.time) && expiryDate.equals(meal.expiryDate) && expiryTime.equals(meal.expiryTime) && mealType.equals(meal.mealType) && place.equals(meal.place) && description.equals(meal.description) && homeOwner.equals(meal.homeOwner) && address.equals(meal.address);
+	}
 
-
+	@Override
+	public int hashCode() {
+		return Objects.hash(date, time, maxNumberUsers, expiryDate, expiryTime, mealType, place, description, homeOwner, address);
+	}
 }

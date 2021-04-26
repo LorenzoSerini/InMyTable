@@ -3,10 +3,13 @@ package it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest
 import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
+import it.unicam.cs.gp.inmytable.notification.NotificationStates;
+import it.unicam.cs.gp.inmytable.notification.Observer;
 import it.unicam.cs.gp.inmytable.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public class PublicMealRequest extends MealRequest {
 
@@ -14,10 +17,14 @@ public class PublicMealRequest extends MealRequest {
         super(host, mealType, consumationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber);
     }
 
-    public void confirmRequest(User homeOwner) {
+    public void confirmRequest(User homeOwner) throws Exception {
         this.setHomeOwner(homeOwner);
-        this.setState(MealStates.FULL);
+        accept();
     }
 
+    @Override
+    public void refuse() {
+
+    }
 }
 
