@@ -32,10 +32,10 @@ public class User {
      * @param password        user's password
      * @param birth           user birth day
      */
-    public User(String username, String email, String telephoneNumber, String firstName, String lastName, String password,
+    public User(String username, String email, String telephoneNumber, String firstName, String lastName, int password,
                 LocalDate birth, String fiscalCode, String id, String address, boolean availableToRequests) {
         if (username == null || email == null || telephoneNumber == null || firstName == null || lastName == null ||
-                password == null || birth == null) throw new NullPointerException("One of the parameter is null!");
+                password == 0 || birth == null) throw new NullPointerException("One of the parameter is null!");
         if (LocalDate.now().isBefore(birth)) throw new IllegalArgumentException("You cannot travel in time!!");
         this.username = username;
         this.email = email;
