@@ -24,9 +24,9 @@ public class GuestController {
      * @throws Exception if the username not exists or the password is wrong
      */
     public User logIn(String username, String password) throws Exception{
-        User user = UsersUtilities.getInstance().getUser(username);
+        User user = utility.getUser(username);
         if (user==null) throw new NullPointerException("The username not exist!");
-        if (UsersUtilities.getInstance().checkPassword(user,password)) {
+        if (utility.checkPassword(user,password)) {
             return user;}
         else
             throw new IllegalArgumentException("Wrong Password!");

@@ -6,6 +6,13 @@ public class Feedback {
     private User to;
     private User from;
 
+    public Feedback(User from, User to, int rating , String comment ){
+        this.from = from;
+        this.to = to;
+        this.rating = rating;
+        this.comment=comment;
+    }
+
     public int getRating() {
         return rating;
     }
