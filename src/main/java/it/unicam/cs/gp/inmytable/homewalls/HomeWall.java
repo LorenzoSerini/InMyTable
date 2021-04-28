@@ -12,7 +12,6 @@ public class HomeWall {
 
 	private static Catalog<Meal> mealCatalog;
 	private static Catalog<PublicMealRequest> mealRequestCatalog;
-	private static Catalog<User> userCatalog;
 	private static HomeWall instance;
 
 	/**
@@ -70,14 +69,4 @@ public class HomeWall {
 		return mealRequestCatalog;
 	}
 
-	/**
-	 * Catalog of all users
-	 * @return	catalog of users
-	 */
-	public Catalog<User> getUserCatalog(){
-		if (userCatalog == null){
-			userCatalog = new Catalog<User>();
-		}
-		return userCatalog;
-	}
 }

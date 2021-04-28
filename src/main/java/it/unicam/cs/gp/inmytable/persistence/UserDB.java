@@ -5,26 +5,24 @@ import it.unicam.cs.gp.inmytable.user.User;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
-public class DBUser extends DBConnection implements IDBUser{
+public class UserDB extends DBConnection implements UserPersistence{
     private String sql;
-    private static List<User> users;
 
 
-    public DBUser() throws SQLException {
+    public UserDB() throws SQLException {
         super();
-        users = new ArrayList<>();
     }
 
-    public DBUser(String connectionString, String username, String password) throws Exception{
+    public UserDB(String connectionString, String username, String password) throws SQLException{
         super(connectionString,username,password);
-        users = new ArrayList<>();
     }
 
     @Override
-    public void registerUser(User user) throws Exception {
+    public void registerUser(User user) throws SQLException {
         this.sql = "insert into user(Username, FirstName, LastName, Email, Password, FiscalCode, Id, Birth, Telephone, Address, Available) values (?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
         prepStat.setString(1, user.getUsername());
@@ -39,18 +37,21 @@ public class DBUser extends DBConnection implements IDBUser{
         prepStat.setString(10, user.getAddress());
         prepStat.setBoolean(11, user.getAvailableToRequests());
         prepStat.executeUpdate();
-        users.add(user);
     }
 
+
     @Override
-    public List<User> getUsersList() throws Exception {
-        if(users.isEmpty()) {
+    public Map<String, User> getUsersMap() throws SQLException {
+        Map<String, User> usersMap = new HashMap<>();
             String sql = "Select * from user";
             setData(sql);
             while (getData().next()) {
-               // users.add(new User(getData().getString("Username"), getData().getString() );
+                User user = new User(getData().getString("Username"), getData().getString("Email"), getData().getString("Telephone"),
+                        getData().getString("FirstName"), getData().getString("LastName"), getData().getInt("Password"),
+                        LocalDate.parse(getData().getString("Birth")), getData().getString("FiscalCode"), getData().getString("Id"),
+                        getData().getString("Address"), getData().getBoolean("Available"));
+                usersMap.put(user.getUsername(), user);
             }
-        }
-        return users;
+        return usersMap;
     }
 }

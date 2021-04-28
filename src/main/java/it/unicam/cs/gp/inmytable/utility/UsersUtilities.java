@@ -23,48 +23,59 @@ public class UsersUtilities {
          ids = new HashSet<>();
      }
 
+
+    private UsersUtilities(Map<String, User> usernamesMap){
+         this();
+        usernames=usernamesMap;
+        for(String key:usernames.keySet()){
+            emails.add(usernames.get(key).getEmail());
+            fiscalCodes.add(usernames.get(key).getFiscalCode());
+            ids.add(usernames.get(key).getId());
+        }
+    }
+
+
      public static UsersUtilities getInstance(){
          if( usersUtilities == null)
              usersUtilities = new UsersUtilities();
          return usersUtilities;
      }
 
+    public static UsersUtilities getInstance(Map<String, User> usernamesMap){
+        if( usersUtilities == null)
+            usersUtilities = new UsersUtilities(usernamesMap);
+        return usersUtilities;
+    }
+
      public boolean checkUsername(String username){
          return !usernames.containsKey(username);
      }
 
+     //TODO: SI POSSONO METTERE EMAIL UGUALI?
      public boolean checkEmail(String email){
-         if (emailValidator(email) && !emails.contains(email)) return true;
-         return false;
-
+         return emailValidator(email) && !emails.contains(email);
      }
 
      public boolean checkFiscalCode(String fiscalCode){
-         if(fiscalCodeValidator(fiscalCode) && !fiscalCodes.contains(fiscalCode)) return true;
-         return false;
+         return fiscalCodeValidator(fiscalCode) && !fiscalCodes.contains(fiscalCode);
      }
 
      public boolean checkId(String id){
-         if (!ids.contains(id)) return true;
-         return false;
+         return !ids.contains(id);
      }
+
      private boolean fiscalCodeValidator(String fiscalCode){
          String regex = "[a-zA-Z]{6}\\d\\d[a-zA-Z]\\d\\d[a-zA-Z]\\d\\d\\d[a-zA-Z]";
          Pattern pattern = Pattern.compile(regex);
          Matcher matcher = pattern.matcher(fiscalCode);
-         if(matcher.matches()) {
-             return true;
-         }
-         return false;
+         return matcher.matches();
      }
+
     private boolean emailValidator(String email) {
         String regex = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
-        if(matcher.matches()) {
-            return true;
-        }
-        return false;
+        return matcher.matches();
     }
 
     public boolean checkPassword(User user, String password){

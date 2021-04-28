@@ -1,19 +1,22 @@
 package it.unicam.cs.gp.inmytable.controllers;
 
+import it.unicam.cs.gp.inmytable.persistence.UserDB;
+import it.unicam.cs.gp.inmytable.persistence.UserPersistence;
 import it.unicam.cs.gp.inmytable.user.User;
 import it.unicam.cs.gp.inmytable.utility.UsersUtilities;
-
 import java.time.LocalDate;
 
 public class GuestController {
-
     private UsersUtilities utility;
+    private UserPersistence userPersistence;
 
+    public GuestController(UserPersistence userPersistence) throws Exception {
+        this.userPersistence=userPersistence;
+        this.utility = UsersUtilities.getInstance(userPersistence.getUsersMap());
+    }
 
-
-    public GuestController(){
-        this.utility = UsersUtilities.getInstance();
-
+    public GuestController() throws Exception {
+        this(new UserDB());
     }
 
     /**
@@ -27,7 +30,8 @@ public class GuestController {
         User user = utility.getUser(username);
         if (user==null) throw new NullPointerException("The username not exist!");
         if (utility.checkPassword(user,password)) {
-            return user;}
+            return user;
+        }
         else
             throw new IllegalArgumentException("Wrong Password!");
     }
@@ -47,16 +51,16 @@ public class GuestController {
      * @throws Exception if one of the parameter is null, or one of email,username,fiscalCode,id already exist or it is wrong
      */
     public User signIn(String username, String email, String telephoneNumber, String firstName, String lastName, String password,
-                       LocalDate birth, String id, String fiscalCode) throws Exception {
+                       LocalDate birth, String id, String fiscalCode, String address, boolean availableToRequests) throws Exception {
         if (username == null || email == null || telephoneNumber == null || firstName == null || lastName == null ||
                 password == null || birth == null) throw new NullPointerException("One of the parameter is null!");
         if (!utility.checkUsername(username)) throw new IllegalArgumentException("Username already exists!");
         if (!utility.checkEmail(email)) throw new IllegalArgumentException("Email already exists or is wrong!");
         if (!utility.checkId(id)) throw new IllegalArgumentException("Id already exists or is wrong!");
         if (!utility.checkFiscalCode(fiscalCode)) throw new IllegalArgumentException("FiscalCode already exists or is wrong!");
-        User user = new User(username, email, telephoneNumber, firstName, lastName, password.hashCode(), birth);
+        User user = new User(username, email, telephoneNumber, firstName, lastName, password.hashCode(), birth, id, fiscalCode, address, availableToRequests);
         utility.insertUser(user);
-
+        userPersistence.registerUser(user);
         return user;
     }
 }

@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class CookController {
     private MealsController mealsController;
 
-    @Autowired
+     @Autowired()
     CookService cookService;
 
     @GetMapping("/cucina")
@@ -24,10 +26,15 @@ public class CookController {
 
     @PostMapping("/cucina")
     public void postCook(Model model,
+                         HttpSession session,
                          @RequestParam("description") String description, @RequestParam("mealType") String mealType, @RequestParam("ingredients") String ingredients,
                          @RequestParam("address") String address, @RequestParam("homeHownerEmail") String email, @RequestParam("homeHownerNumber") String hhownerNumber,
                          @RequestParam("consummationType") String consummationType, @RequestParam("paymentType") String paymentType, @RequestParam("pym") String pym,
                          @RequestParam("startTime") String startTime, @RequestParam("closedTime") String finishTime, @RequestParam("maxNumUsers") int maxNumUsers, @RequestParam("freeSubscription") String freeSubscription) {
+
+
+        //cookService.setLogUser((User) session.getAttribute("logUser"));
+        cookService.setLogUser((BaseController.getLogUser(session)));
 
         try {
             cookService.postAMeal(description, mealType,ingredients,address,email,hhownerNumber,consummationType,paymentType,pym,startTime,finishTime,maxNumUsers, Boolean.parseBoolean(freeSubscription));

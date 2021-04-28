@@ -3,8 +3,7 @@ package it.unicam.cs.gp.inmytable.persistence;
 
 import java.sql.*;
 
-public class DBConnection {
-    private static DBConnection instance;
+public abstract class DBConnection {
     private static final String LOCAL_CONNECTION_STRING = "jdbc:mysql://127.0.0.1:3306/inmytable";
     private static final String LOCAL_USERNAME = "root";
     private static final String LOCAL_PASSWORD =  "root";
@@ -13,11 +12,11 @@ public class DBConnection {
     private static ResultSet data;
 
     public DBConnection() throws SQLException {
-        if(connection==null) this.defaultConnection();
+        if(connection==null||connection.isClosed()) this.defaultConnection();
     }
 
     public DBConnection(String connectionString, String username, String password) throws SQLException {
-        if(connection==null) this.connection(connectionString,username,password);
+        if(connection==null||connection.isClosed()) this.connection(connectionString,username,password);
     }
 
     private void connection(String connectionString, String username, String password) throws SQLException {
