@@ -2,6 +2,9 @@ package it.unicam.cs.gp.inmytable.notification;
 
 import it.unicam.cs.gp.inmytable.user.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -10,7 +13,7 @@ import java.util.Set;
 public class NotificationManager implements Observer {
 
 	private User user;
-	private Set<Notification> notificationSet;
+	private List<Notification> notificationSet;
 
 	/**
 	 * Build a new NotificationManager for the user
@@ -18,14 +21,14 @@ public class NotificationManager implements Observer {
 	 */
 	public NotificationManager(User user){
 		this.user = user;
+		this.notificationSet = new ArrayList<>();
 	}
 
 	/**
 	 * Questo metodo aggiorna la view
 	 */
 	public void update() {
-		// TODO - implement NotificationManager.update
-		throw new UnsupportedOperationException();
+
 	}
 
 	/**
@@ -36,4 +39,7 @@ public class NotificationManager implements Observer {
 		this.notificationSet.add(notification);
 	}
 
+	public List<Notification> getNotificationSet(){
+		return notificationSet;
+	}
 }

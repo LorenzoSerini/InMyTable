@@ -4,6 +4,7 @@ import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
 import it.unicam.cs.gp.inmytable.user.User;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Subscription implements Notification {
@@ -25,9 +26,13 @@ public class Subscription implements Notification {
         if (meal.getState() != MealStates.PENDING) throw new IllegalArgumentException("You cannot join to this meal!");
         this.host = host;
         this.meal = meal;
-        if (meal.isFreeSubscription()) this.state = NotificationStates.ACCEPTED;
+        if (meal.isFreeSubscription()) {
+            this.state = NotificationStates.ACCEPTED;
+
+        }
         else
             this.state = NotificationStates.PENDING;
+        observerSet = new HashSet<>();
         attach(meal.getHomeOwner().getNotificationManager());
         notifyObservers();
         attach(host.getNotificationManager());
@@ -76,7 +81,7 @@ public class Subscription implements Notification {
 
     @Override
     public NotificationStates getNotificationState() {
-        return null;
+        return state;
     }
 
     @Override
@@ -90,5 +95,14 @@ public class Subscription implements Notification {
 
     public Meal getMeal() {
         return meal;
+    }
+
+    @Override
+    public String toString() {
+        return "Subscription{" +
+                "host=" + host +
+                ", meal=" + meal +
+                ", state=" + state +
+                '}';
     }
 }

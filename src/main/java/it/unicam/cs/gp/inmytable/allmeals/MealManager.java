@@ -18,6 +18,17 @@ import java.util.List;
 
 
 public class MealManager {
+	private static MealManager mealManager;
+
+	private MealManager(){
+
+	}
+	public static MealManager getInstance(){
+		if (mealManager ==null)
+			mealManager = new MealManager();
+		return mealManager;
+
+	}
 
 	/**
 	 * Build a new Meal

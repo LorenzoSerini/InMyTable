@@ -6,14 +6,17 @@ import it.unicam.cs.gp.inmytable.user.User;
 
 public class SubscriptionManager {
 
-    private User user;
+    private static SubscriptionManager subscriptionManager;
 
-    /**
-     * Build a new SubscriptionManager for the user
-     * @param user  who wants to menage Subscriptions
-     */
-    public SubscriptionManager(User user){
-        this.user = user;
+
+    private SubscriptionManager(){
+
+    }
+
+    public static SubscriptionManager getInstance(){
+        if (subscriptionManager==null)
+            subscriptionManager = new SubscriptionManager();
+        return subscriptionManager;
     }
 
     /**
@@ -21,7 +24,7 @@ public class SubscriptionManager {
      * @param subscription  subscription to accept
      * @throws Exception    if the user is not the homeOwner in the meal
      */
-    public void acceptSubscription(Subscription subscription) throws Exception{
+    public void acceptSubscription(User user, Subscription subscription) throws Exception{
         if (!subscription.getMeal().getHomeOwner().equals(user)) throw new IllegalArgumentException("You cannot accept this subscription");
         subscription.detach(user.getNotificationManager());
         subscription.accept();
@@ -33,14 +36,15 @@ public class SubscriptionManager {
      * @param subscription  subscription to refuse
      * @throws Exception    if the user is not the homeOwner in the meal
      */
-    public void refuseSubscription(Subscription subscription) throws Exception{
+    public void refuseSubscription(User user, Subscription subscription) throws Exception{
         if (!subscription.getMeal().getHomeOwner().equals(user)) throw new IllegalArgumentException("You cannot accept this subscription");
         subscription.detach(user.getNotificationManager());
         subscription.refuse();
     }
 
-    public void cookMealRequest(MealRequest mealRequest) throws Exception{
-        if (mealRequest.getState()!= MealStates.PENDING) throw new IllegalArgumentException("You cannot cook for this request!");
+    public void cookMealRequest(User user, MealRequest mealRequest) throws Exception{
+        if (mealRequest.getState()!= MealStates.PENDING || mealRequest.getHomeOwner()!=null) throw new IllegalArgumentException("You cannot cook for this request!");
         mealRequest.accept();
+        mealRequest.setHomeOwner(user);
     }
 }
