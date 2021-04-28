@@ -11,12 +11,12 @@ import java.time.LocalTime;
 public class MealsController {
     //_______________________________________________________________________________________________________________________________________________________
     //TODO NB: Al metodo MealManager.createMeal dovrà essere passato automaticamente l'homeowner (sarà l'utente al momento loggato) preso dal costruttore della classe !!
-    User defaultUser = new User("Johnny76", "john@example.com", "000 000000", "John", "Doe", "example", LocalDate.parse("1950-01-01"));
+    User defaultUser = new User("Johnny76", "john@example.com", "000 000000", "John", "Doe", "example".hashCode(), LocalDate.parse("1950-01-01"));
     //_______________________________________________________________________________________________________________________________________________________
     private MealManager mealManager;
 
     public MealsController(){
-        mealManager = new MealManager();
+        mealManager = MealManager.getInstance();
     }
 
     public void cook(String date, String time, String expiryDate, String expiryTime, int maxNumUsers, String mealType, boolean freeSubscription, String place, ConsumationType consumationType, String description, String ingredients, PaymentType paymentType, String price) throws Exception {

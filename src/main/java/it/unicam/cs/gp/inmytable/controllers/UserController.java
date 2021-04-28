@@ -1,10 +1,24 @@
 package it.unicam.cs.gp.inmytable.controllers;
 
+import it.unicam.cs.gp.inmytable.allmeals.MealManager;
+import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.MealRequest;
+import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
+import it.unicam.cs.gp.inmytable.homewalls.HomeWall;
+import it.unicam.cs.gp.inmytable.notification.Notification;
+import it.unicam.cs.gp.inmytable.notification.NotificationStates;
+import it.unicam.cs.gp.inmytable.notification.Subscription;
+import it.unicam.cs.gp.inmytable.notification.SubscriptionManager;
 import it.unicam.cs.gp.inmytable.user.Feedback;
 import it.unicam.cs.gp.inmytable.user.User;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public class UserController {
     private User user;
+    private SubscriptionManager subscriptionManager;
 
     /**
      * Build an UserController for the user
@@ -12,6 +26,7 @@ public class UserController {
      */
     public UserController(User user){
         this.user = user;
+        this.subscriptionManager = SubscriptionManager.getInstance();
     }
 
     /**
@@ -25,4 +40,59 @@ public class UserController {
         if (user.equals(to)) throw new IllegalArgumentException("You cannot leave a comment to yourself!");
         to.getFeedbackBox().addFeedback(new Feedback(this.user, to,rating,comment));
     }
+
+    public void joinToMeal(Meal meal) throws Exception{
+        Subscription subscription = MealManager.getInstance().joinToMeal(user, meal);
+        if (subscription.getNotificationState()== NotificationStates.ACCEPTED)
+            meal.addUser(user);
+        meal.getHomeOwner().getNotificationManager().addNotification(subscription);
+    }
+
+    public List<Notification> showNotification(){
+        return user.getNotificationManager().getNotificationSet();
+    }
+
+    public void acceptSubscription(Subscription subscription) throws Exception{
+        subscriptionManager.acceptSubscription(user, subscription);
+        //user.getNotificationManager().getNotificationSet().remove(subscription);
+        subscription.getHost().getNotificationManager().addNotification(subscription);
+    }
+
+    public void refuseSubscription(Subscription subscription) throws Exception{
+        subscriptionManager.refuseSubscription(user, subscription);
+        //user.getNotificationManager().getNotificationSet().remove(subscription);
+        subscription.getHost().getNotificationManager().addNotification(subscription);
+    }
+
+    public void cookMealRequest(MealRequest mealRequest) throws Exception{
+        if (user.equals(mealRequest.getHost())) throw new IllegalArgumentException("You are the Host!");
+        subscriptionManager.cookMealRequest(user, mealRequest);
+        mealRequest.getHost().getNotificationManager().addNotification(mealRequest);
+    }
+
+    /**
+     * Returns the list of all meals the user has attended or published
+     * @return list of meals
+     */
+    public List<Meal> mealsHistory(){
+        return MealManager.getInstance().mealsHistory(user);
+    }
+
+    /**
+     * returns the list of all meals request the user has attended or published
+     * @return list of mealRequest
+     */
+    public List<MealRequest> mealRequestHistory(){
+        return MealManager.getInstance().mealRequestHistory(user);
+    }
+
+    /**
+     * Return the list of pending notification
+     * @return list of pending Notification
+     */
+    public List<Notification> showPendingNotification(){
+        return showNotification().stream().filter(p-> p.getNotificationState()==NotificationStates.PENDING).collect(Collectors.toList());
+    }
+
 }
+
