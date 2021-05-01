@@ -17,7 +17,7 @@ import java.util.Set;
 /**
  * MealRequest from an host to one homeOwner or more.
  */
-public abstract class MealRequest implements IMealRequest, Notification {
+public abstract class MealRequest implements IMealRequest, Notification<User> {
 
     private LocalDate date;
     private LocalTime time;
@@ -34,7 +34,7 @@ public abstract class MealRequest implements IMealRequest, Notification {
     private MealStates state;
     private ConsumationType consumationType;
     private PaymentType paymentType;
-    private Set<Observer> observers;
+    private Set<Observer<User>> observers;
     private NotificationStates notificationState;
 
     /**
@@ -67,7 +67,7 @@ public abstract class MealRequest implements IMealRequest, Notification {
         this.mealsNumber = mealsNumber;
         this.state = MealStates.PENDING;
         this.notificationState = NotificationStates.PENDING;
-        this.observers = new HashSet<Observer>();
+        this.observers = new HashSet<Observer<User>>();
         observers.add(host.getNotificationManager());
     }
 
@@ -192,10 +192,12 @@ public abstract class MealRequest implements IMealRequest, Notification {
     }
 
     @Override
-    public void accept() {
+    public void accept(Observer<User> observer) {
         if (state != MealStates.PENDING) throw new IllegalArgumentException("The MealRequest is not Pending");
         if (notificationState != NotificationStates.PENDING)
             throw new IllegalArgumentException("The Request is not pending");
+        if (this.getHomeOwner()!=null) throw new IllegalArgumentException("You cannot cook for this request!");
+        setHomeOwner(observer.getObserver());
         setState(MealStates.FULL);
         this.notificationState = NotificationStates.ACCEPTED;
         notifyObservers();
@@ -203,7 +205,7 @@ public abstract class MealRequest implements IMealRequest, Notification {
     }
 
     @Override
-    abstract public void refuse();
+    abstract public void refuse(Observer<User> observer);
 
     @Override
     public NotificationStates getNotificationState() {

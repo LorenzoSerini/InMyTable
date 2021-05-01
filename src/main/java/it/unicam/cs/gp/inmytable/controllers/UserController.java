@@ -94,5 +94,21 @@ public class UserController {
         return showNotification().stream().filter(p-> p.getNotificationState()==NotificationStates.PENDING).collect(Collectors.toList());
     }
 
+    /**
+     * Method for accept a notification
+     * @param notification to accept
+     */
+    public void acceptNotification(Notification notification) throws Exception{
+        subscriptionManager.acceptNotification(user, notification);
+    }
+
+    /**
+     * Method for refuse a notification
+     * @param notification to refuse
+     * @throws Exception if user doesn't respect notification's rules
+     */
+    public void refuseNotification(Notification notification) throws Exception{
+        subscriptionManager.refuseNotification(user, notification);
+    }
 }
 

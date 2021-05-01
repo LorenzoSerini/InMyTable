@@ -7,13 +7,13 @@ import it.unicam.cs.gp.inmytable.user.User;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Subscription implements Notification {
+public class Subscription implements Notification<User> {
 
 
     private User host;
     private Meal meal;
     private NotificationStates state;
-    private Set<Observer> observerSet;
+    private Set<Observer<User>> observerSet;
 
 
     /**
@@ -63,20 +63,27 @@ public class Subscription implements Notification {
     }
 
     @Override
-    public void accept() {
+    public void accept(Observer<User> observer) {
+        if (!getMeal().getHomeOwner().equals(observer.getObserver())) throw new IllegalArgumentException("You cannot accept this subscription");
         if (this.state != NotificationStates.PENDING)
             throw new IllegalArgumentException("You cannot accept this subscription!");
         if (meal.getState() != MealStates.PENDING)
             throw new IllegalArgumentException("You cannot accept this subscription!");
         this.state = NotificationStates.ACCEPTED;
+        detach(observer);
+        getMeal().addUser(getHost());
+        getHost().getNotificationManager().addNotification(this);
         notifyObservers();
     }
 
     @Override
-    public void refuse() {
+    public void refuse(Observer observer) {
         if (this.state != NotificationStates.PENDING)
             throw new IllegalArgumentException("You cannot refuse this subscription!");
+        if (!getMeal().getHomeOwner().equals(observer.getObserver())) throw new IllegalArgumentException("You cannot accept this subscription");
+        this.detach(observer);
         this.state = NotificationStates.REFUSED;
+        getHost().getNotificationManager().addNotification(this);
         notifyObservers();
     }
 

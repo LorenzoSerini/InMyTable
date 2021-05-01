@@ -42,4 +42,9 @@ public class NotificationManager implements Observer {
 	public List<Notification> getNotificationSet(){
 		return notificationSet;
 	}
+
+	@Override
+	public User getObserver() {
+		return user;
+	}
 }
