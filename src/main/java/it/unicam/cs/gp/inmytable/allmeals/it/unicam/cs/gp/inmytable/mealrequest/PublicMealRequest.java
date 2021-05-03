@@ -19,11 +19,11 @@ public class PublicMealRequest extends MealRequest {
 
     public void confirmRequest(User homeOwner) throws Exception {
         this.setHomeOwner(homeOwner);
-        accept();
+        accept(homeOwner.getNotificationManager());
     }
 
     @Override
-    public void refuse() {
+    public void refuse(Observer<User> observer) {
 
     }
 }

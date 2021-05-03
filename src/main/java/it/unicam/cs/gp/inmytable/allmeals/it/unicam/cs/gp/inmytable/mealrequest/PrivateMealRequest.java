@@ -20,7 +20,7 @@ public class PrivateMealRequest extends MealRequest{
 
 
 	@Override
-	public void refuse() {
+	public void refuse(Observer<User> observer) {
 		if (super.getNotificationState()!= NotificationStates.PENDING) throw new IllegalArgumentException("The Request is not pending");
 		super.setState(MealStates.EXPIRED);
 		super.setNotificationState(NotificationStates.REFUSED);
