@@ -3,9 +3,7 @@ package it.unicam.cs.gp.inmytable.notification;
 import it.unicam.cs.gp.inmytable.user.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Class who manage the notification of one user

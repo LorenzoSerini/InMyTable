@@ -1,22 +1,23 @@
 package it.unicam.cs.gp.inmytable.controllers;
 
-import it.unicam.cs.gp.inmytable.persistence.UserDB;
-import it.unicam.cs.gp.inmytable.persistence.UserPersistence;
+
+import it.unicam.cs.gp.inmytable.persistence.AuthenticationDB;
+import it.unicam.cs.gp.inmytable.persistence.AuthenticationPersistence;
 import it.unicam.cs.gp.inmytable.user.User;
 import it.unicam.cs.gp.inmytable.utility.UsersUtilities;
 import java.time.LocalDate;
 
 public class GuestController {
     private UsersUtilities utility;
-    private UserPersistence userPersistence;
+    private AuthenticationPersistence userPersistence;
 
-    public GuestController(UserPersistence userPersistence) throws Exception {
+    public GuestController(AuthenticationPersistence userPersistence) throws Exception {
         this.userPersistence=userPersistence;
         this.utility = UsersUtilities.getInstance(userPersistence.getUsersMap());
     }
 
     public GuestController() throws Exception {
-        this(new UserDB());
+        this(new AuthenticationDB());
     }
 
     /**
@@ -58,6 +59,7 @@ public class GuestController {
         if (!utility.checkEmail(email)) throw new IllegalArgumentException("Email already exists or is wrong!");
         if (!utility.checkId(id)) throw new IllegalArgumentException("Id already exists or is wrong!");
         if (!utility.checkFiscalCode(fiscalCode)) throw new IllegalArgumentException("FiscalCode already exists or is wrong!");
+        if (!utility.checkBirth(birth)) throw new IllegalArgumentException("You are too young!");
         User user = new User(username, email, telephoneNumber, firstName, lastName, password.hashCode(), birth, id, fiscalCode, address, availableToRequests);
         utility.insertUser(user);
         userPersistence.registerUser(user);

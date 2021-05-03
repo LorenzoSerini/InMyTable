@@ -14,21 +14,19 @@ public class CookService {
     private MealsController mealsController;
 
 
-    public CookService(){//User logUser
-       // User logUser = new User("Johnny76", "john@example.com", "000 000000", "John", "Doe", "example".hashCode(), LocalDate.parse("1950-01-01"), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", true);
-      //  mealsController=new MealsController(logUser);
+    public CookService(){
     }
 
-    public void setLogUser(User logUser){
+    public void setLogUser(User logUser) throws Exception {
         mealsController=new MealsController(logUser);
     }
 
-    public void postAMeal(String description, String mealType, String ingredients, String homeHownerAddress, String homeHownerEmail, String homeHownerNumber, String consumationType, String paymentType,  String price, String date, String expireDate, int maxNumUsers, boolean freeSubscription) throws Exception {
+    public void postAMeal(String description, String mealType, String ingredients, String homeownerAddress, String homeownerEmail, String homeownerNumber, String consumationType, String paymentType,  String price, String date, String expireDate, int maxNumUsers, boolean freeSubscription) throws Exception {
         String startD = date.substring(0, 10);
         String startT = date.substring(11,16);
         String expireD = expireDate.substring(0, 10);
         String expireT = expireDate.substring(11,16);
-        mealsController.cook(startD, startT,expireD, expireT, maxNumUsers, mealType, freeSubscription, homeHownerAddress, ConsumationType.valueOf(consumationType.toUpperCase()), description, ingredients, PaymentType.valueOf(paymentType.toUpperCase()), price);
+        mealsController.cook(startD, startT,expireD, expireT, maxNumUsers, mealType, freeSubscription, homeownerAddress, ConsumationType.valueOf(consumationType.toUpperCase()), description, ingredients, PaymentType.valueOf(paymentType.toUpperCase()), price);
     }
 
 }

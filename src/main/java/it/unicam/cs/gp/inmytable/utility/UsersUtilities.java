@@ -2,6 +2,7 @@ package it.unicam.cs.gp.inmytable.utility;
 
 import it.unicam.cs.gp.inmytable.user.User;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class UsersUtilities {
 
     private UsersUtilities(Map<String, User> usernamesMap){
          this();
-        usernames=usernamesMap;
+        usernames.putAll(usernamesMap);
         for(String key:usernames.keySet()){
             emails.add(usernames.get(key).getEmail());
             fiscalCodes.add(usernames.get(key).getFiscalCode());
@@ -59,6 +60,11 @@ public class UsersUtilities {
      public boolean checkFiscalCode(String fiscalCode){
          return fiscalCodeValidator(fiscalCode) && !fiscalCodes.contains(fiscalCode);
      }
+
+    public boolean checkBirth(LocalDate birth){
+         if(birth.until(LocalDate.now()).getYears()>=18) return true;
+         return false;
+    }
 
      public boolean checkId(String id){
          return !ids.contains(id);

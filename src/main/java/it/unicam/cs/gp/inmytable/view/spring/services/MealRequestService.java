@@ -13,9 +13,9 @@ import java.time.LocalDate;
 public class MealRequestService {
     private MealsController mealsController;
 
-    public MealRequestService(){//User logUser
-        User user = new User("Johnny76", "john@example.com", "000 000000", "John", "Doe", "example".hashCode(), LocalDate.parse("1950-01-01"), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", true);
-        mealsController=new MealsController(user);
+
+    public void setMealsController(User logUser) throws Exception {
+        mealsController=new MealsController(logUser);
     }
 
     public void postAPublicMealRequest(String description, String mealType, String consummationType, String payment, String date, String expiryDate, String price, String place, String allergy, int mealsNumber) throws Exception {

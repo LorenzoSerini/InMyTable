@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="col-12">
                             <p class="product-description" style="font-family: Lora, serif;font-size: 16px;">Ingredienti principali:<br th:text="${meal.ingredients}"></p>
-                            <div class="row">     <!--th:href="@{/cliente/puntoVendita(id=${pv.id})}-->
+                            <div class="row">
                                 <div class="col-6"><a class="btn btn-primary" th:href="@{iscriviti-pasto(meal=${meal.hashCode})}" role="button" data-bss-hover-animate="pulse" style="background: #fe9e02;border-radius: 24px;width: 163.4219px;margin-right: 0px;border-color: rgba(0,0,0,0);font-family: Lora, serif;">Più informazioni</a></div>
                                 <div class="col-6">
                                     <p class="product-price">Corrispettivo:<br th:text="${meal.price}"></p>

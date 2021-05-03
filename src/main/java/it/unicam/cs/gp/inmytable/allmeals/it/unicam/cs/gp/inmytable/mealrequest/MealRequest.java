@@ -209,6 +209,7 @@ public abstract class MealRequest implements IMealRequest, Notification {
     public NotificationStates getNotificationState() {
         return notificationState;
     }
+
     @Override
     public void setNotificationState(NotificationStates state){
         this.notificationState = state;

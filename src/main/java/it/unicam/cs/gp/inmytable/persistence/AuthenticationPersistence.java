@@ -5,7 +5,7 @@ import it.unicam.cs.gp.inmytable.user.User;
 import java.util.List;
 import java.util.Map;
 
-public interface UserPersistence {
+public interface AuthenticationPersistence {
 
     /**
      * Register a new user

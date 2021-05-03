@@ -8,6 +8,8 @@ import it.unicam.cs.gp.inmytable.notification.Notification;
 import it.unicam.cs.gp.inmytable.notification.NotificationStates;
 import it.unicam.cs.gp.inmytable.notification.Subscription;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionManager;
+import it.unicam.cs.gp.inmytable.persistence.MealPersistence;
+import it.unicam.cs.gp.inmytable.persistence.UserDB;
 import it.unicam.cs.gp.inmytable.user.Feedback;
 import it.unicam.cs.gp.inmytable.user.User;
 
@@ -19,14 +21,20 @@ import java.util.stream.Collectors;
 public class UserController {
     private User user;
     private SubscriptionManager subscriptionManager;
+    private MealPersistence mealPersistence;
 
     /**
      * Build an UserController for the user
-     * @param user  user
+     * @param logUser logUser
      */
-    public UserController(User user){
-        this.user = user;
+    public UserController(User logUser, MealPersistence mealPersistence){
+        this.user = logUser;
         this.subscriptionManager = SubscriptionManager.getInstance();
+        this.mealPersistence=mealPersistence;
+    }
+
+    public UserController(User logUser) throws Exception {
+        this(logUser, new UserDB());
     }
 
     /**
@@ -42,10 +50,12 @@ public class UserController {
     }
 
     public void joinToMeal(Meal meal) throws Exception{
+        if(this.user==meal.getHomeOwner()) throw new IllegalArgumentException("A host cannot sign up for his meal");
+        if(meal.getUserList().contains(user)) throw new IllegalArgumentException("You can't sign up for the same meal twice");
         Subscription subscription = MealManager.getInstance().joinToMeal(user, meal);
-        if (subscription.getNotificationState()== NotificationStates.ACCEPTED)
-            meal.addUser(user);
+        if (subscription.getNotificationState()== NotificationStates.ACCEPTED){meal.addUser(user);}
         meal.getHomeOwner().getNotificationManager().addNotification(subscription);
+        mealPersistence.registerUserToMeal(user, meal, subscription);
     }
 
     public List<Notification> showNotification(){

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class AutenticationController {
+public class AuthenticationController {
 
     @Autowired
     GuestService guestService;
@@ -33,6 +33,21 @@ public class AutenticationController {
             e.printStackTrace();
         }
             return new ModelAndView("/login");
+    }
+
+
+    @PostMapping("/register")
+    public ModelAndView registration( HttpSession session,
+                                      @RequestParam("username") String username, @RequestParam("email") String email,@RequestParam("telephone") String telephoneNumber,@RequestParam("firstName") String firstName,
+                                      @RequestParam("lastName") String lastName,@RequestParam("password") String password,@RequestParam("birth") String birth,@RequestParam("id") String id,
+                                      @RequestParam("fiscalCode") String fiscalCode,@RequestParam("address") String address,@RequestParam("available") boolean availableToRequests){
+        try {
+            BaseController.setLogUser(guestService.registration(username, email, telephoneNumber, firstName, lastName, password, birth, id, fiscalCode, address, availableToRequests), session);
+            return new ModelAndView("redirect:/bacheca");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ModelAndView("/register");
     }
 
 

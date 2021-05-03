@@ -18,7 +18,8 @@ public class HomeWall {
 	 * Singleton constructor
 	 */
 	private HomeWall(){
-
+		mealCatalog = new Catalog<Meal>();
+		mealRequestCatalog = new Catalog<PublicMealRequest>();
 	}
 
 	/**
@@ -48,11 +49,12 @@ public class HomeWall {
 			mealCatalog = new Catalog<Meal>();
 		}
 		else
-			mealCatalog.search(p->p.getExpiryDate().isAfter(LocalDate.now()) || (
+			mealCatalog.search(p->p.getExpiryDate().isBefore(LocalDate.now()) || (
 				p.getExpiryDate().isEqual(LocalDate.now()) &&
 						p.getExpiryTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.EXPIRED));
 		return mealCatalog;
 	}
+
 
 	/**
 	 * Return all meals request

@@ -4,6 +4,9 @@ package it.unicam.cs.gp.inmytable.persistence;
 import java.sql.*;
 
 public abstract class DBConnection {
+    private static final String CONNECTION_STRING = "jdbc:mysql://sql4.freesqldatabase.com:3306/sql4409749";
+    private static final String USERNAME = "sql4409749";
+    private static final String PASSWORD =  "Ta6C6ZdGjq";
     private static final String LOCAL_CONNECTION_STRING = "jdbc:mysql://127.0.0.1:3306/inmytable";
     private static final String LOCAL_USERNAME = "root";
     private static final String LOCAL_PASSWORD =  "root";
@@ -25,7 +28,7 @@ public abstract class DBConnection {
     }
 
     private void defaultConnection() throws SQLException {
-        this.connection(LOCAL_CONNECTION_STRING, LOCAL_USERNAME, LOCAL_PASSWORD);
+        this.connection(CONNECTION_STRING, USERNAME, PASSWORD);
     }
 
     public Connection getConnection(){

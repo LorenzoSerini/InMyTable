@@ -93,7 +93,6 @@ public class MealManager {
 		if (host.equals(meal.getHomeOwner())) throw new IllegalArgumentException("You cannot join to this meal!");
 		if (meal.getState()!= MealStates.PENDING) throw new IllegalArgumentException("You cannot join to this meal!");
 		return new Subscription(host, meal);
-
 	}
 
 	/**

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
@@ -25,24 +26,21 @@ public class CookController {
 
 
     @PostMapping("/cucina")
-    public void postCook(Model model,
-                         HttpSession session,
-                         @RequestParam("description") String description, @RequestParam("mealType") String mealType, @RequestParam("ingredients") String ingredients,
-                         @RequestParam("address") String address, @RequestParam("homeHownerEmail") String email, @RequestParam("homeHownerNumber") String hhownerNumber,
-                         @RequestParam("consummationType") String consummationType, @RequestParam("paymentType") String paymentType, @RequestParam("pym") String pym,
-                         @RequestParam("startTime") String startTime, @RequestParam("closedTime") String finishTime, @RequestParam("maxNumUsers") int maxNumUsers, @RequestParam("freeSubscription") String freeSubscription) {
-
-
-        //cookService.setLogUser((User) session.getAttribute("logUser"));
-        cookService.setLogUser((BaseController.getLogUser(session)));
+    public ModelAndView postCook(Model model,
+                                 HttpSession session,
+                                 @RequestParam("description") String description, @RequestParam("mealType") String mealType, @RequestParam("ingredients") String ingredients,
+                                 @RequestParam("address") String address, @RequestParam("homeHownerEmail") String email, @RequestParam("homeHownerNumber") String hhownerNumber,
+                                 @RequestParam("consummationType") String consummationType, @RequestParam("paymentType") String paymentType, @RequestParam("pym") String pym,
+                                 @RequestParam("startTime") String startTime, @RequestParam("closedTime") String finishTime, @RequestParam("maxNumUsers") int maxNumUsers, @RequestParam("freeSubscription") String freeSubscription) {
 
         try {
+            cookService.setLogUser((BaseController.getLogUser(session)));
             cookService.postAMeal(description, mealType,ingredients,address,email,hhownerNumber,consummationType,paymentType,pym,startTime,finishTime,maxNumUsers, Boolean.parseBoolean(freeSubscription));
+            return new ModelAndView("redirect:/bacheca");
         } catch (Exception e) {
             e.printStackTrace();
+            return new ModelAndView("redirect:/bacheca");
         }
-        // System.out.println(mealType+"\n"+ingredients+"\n"+description+"\n"+address+"\n"+email+"\n"+hhownerNumber+"\n"+consummationType+"\n"+paymentType+"\n"+pym+"\n"+startTime+"\n"+finishTime);
     }
-
 
 }

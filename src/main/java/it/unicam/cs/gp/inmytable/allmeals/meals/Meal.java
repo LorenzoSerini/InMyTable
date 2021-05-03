@@ -51,7 +51,7 @@ public class Meal {
 				ConsumationType consumationType, String description, String ingredients, PaymentType payment, String price) throws Exception{
 		if (homeOwner==null|| date ==null ||expiryDate ==null ||mealType==null ||place == null ||
 				consumationType ==null|| description ==null || payment ==null) throw new NullPointerException("You must insert all!");
-		if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )) throw new IllegalArgumentException("You cannot travel in time");
+		//if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )) throw new IllegalArgumentException("You cannot travel in time");
 		if (date.isBefore(expiryDate) ||(LocalDate.now().isEqual(expiryDate) && time.isBefore(expiryTime))) throw new IllegalArgumentException("ExpirationTime should be after meal date");
 		if(payment.compareTo(PaymentType.FREE)==0){
 			this.price="0";
@@ -70,7 +70,9 @@ public class Meal {
 		this.description = description;
 		this.ingredients = ingredients;
 		this.payment = payment;
-		this.state = MealStates.PENDING;
+		if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )) {
+			this.state= MealStates.EXPIRED;
+		} else this.state = MealStates.PENDING;
 		this.userList = new HashSet<User>();
 
 	}
@@ -97,7 +99,7 @@ public class Meal {
 	 */
 	public void addUser(User user){
 		this.userList.add(user);
-		this.placesAvailable--;
+		this.placesAvailable = getPlacesAvailable();
 		if(userList.size()==maxNumberUsers) setState(MealStates.FULL);
 	}
 

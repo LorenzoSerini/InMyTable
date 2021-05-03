@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class MealSubscriptionController {
@@ -16,12 +20,33 @@ public class MealSubscriptionController {
     @Autowired
     MealSubscriptionService mealSubscriptionService;
 
+    private Meal meal;
+
 
     @GetMapping("/iscriviti-pasto")
-    public String getMealSubscription(Model model, @RequestParam("meal") int hashCode){
-        Meal meal = homeWallService.getAMeal(hashCode);
+    public String getMealSubscription(Model model, HttpSession session, @RequestParam("meal") int hashCode){
+        try {
+            homeWallService.setLogUser(BaseController.getLogUser(session));
+            mealSubscriptionService.setLogUser(BaseController.getLogUser(session));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.meal = homeWallService.getAMeal(hashCode);
         model.addAttribute("meal", meal);
+        model.addAttribute("signUp", mealSubscriptionService.canISignUp(BaseController.getLogUser(session), meal));
+        model.addAttribute("logUser", BaseController.getLogUser(session));
         model.addAttribute("subscription",mealSubscriptionService.getFreeSubscription(meal));
         model.addAttribute("consummation",mealSubscriptionService.getConsummationType(meal));
-        return "/iscriviti-pasto";}
+        return "/iscriviti-pasto";
+    }
+
+    @PostMapping("/iscriviti-pasto")
+    public ModelAndView joinToMeal(HttpSession session){
+        try {
+            mealSubscriptionService.joinToMeal(meal);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ModelAndView("redirect:/bacheca");
+    }
 }

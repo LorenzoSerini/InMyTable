@@ -19,8 +19,8 @@ public class SubscriptionManagerTest {
 
     @Test
     void subscriptionTest() throws Exception{
-       User user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now());
-       User user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now());
+       User user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", true);
+       User user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", true);
 
        Meal meal = new Meal(user1,3,LocalDate.parse("2021-04-29"), LocalTime.now(),LocalDate.parse("2021-04-29"),LocalTime.now(),"",false,"", ConsumationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
 
@@ -35,7 +35,6 @@ public class SubscriptionManagerTest {
        System.out.println(userController1.showNotification().get(0).toString());
        assertTrue(s.getNotificationState().equals(NotificationStates.ACCEPTED));
        assertThrows(IllegalArgumentException.class,()->userController1.refuseSubscription(s));
-
 
    }
 }
