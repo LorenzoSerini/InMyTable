@@ -15,8 +15,9 @@ public class FeedbackBox {
     public double getAvg(){
         return average;
     }
+
     private double getRating(){
-        int count = 0;
+        double count = 0;
         for (Feedback feedback: feedbacks) {
             count += feedback.getRating();
         }

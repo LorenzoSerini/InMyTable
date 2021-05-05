@@ -13,7 +13,7 @@ public class GuestController {
 
     public GuestController(AuthenticationPersistence userPersistence) throws Exception {
         this.userPersistence=userPersistence;
-        this.utility = UsersUtilities.getInstance(userPersistence.getUsersMap());
+        this.utility = UsersUtilities.getInstance(userPersistence.getUsers());
     }
 
     public GuestController() throws Exception {

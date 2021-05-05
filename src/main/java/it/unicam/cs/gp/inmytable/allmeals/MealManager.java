@@ -61,7 +61,7 @@ public class MealManager {
 	 * @return MealRequest
 	 * @throws Exception if one of the parameters is null
 	 */
-	public MealRequest createMealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {
+	public PublicMealRequest createMealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {
 			PublicMealRequest mealRequest = new PublicMealRequest(host,mealType, consumationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber);
 			HomeWall.getInstance().getMealRequestCatalog().add(mealRequest);
 			return mealRequest;
@@ -77,7 +77,7 @@ public class MealManager {
 	 * @return MealRequest
 	 * @throws Exception if one of the parameters is null
 	 */
-	public MealRequest createMealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, User homeOwner) throws Exception {
+	public PrivateMealRequest createMealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, User homeOwner) throws Exception {
 		return new PrivateMealRequest(host, mealType, consumationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber, homeOwner);
 	}
 
@@ -101,9 +101,7 @@ public class MealManager {
 	 * @return list of meals
 	 */
 	public List<Meal> mealsHistory(User user){
-		List<Meal> list = new ArrayList<>();
-		list.addAll(HomeWall.getInstance().getMealCatalog().search(p->p.getHomeOwner().equals(user) || p.getUserList().contains(user)));
-		return list;
+		return new ArrayList<>(HomeWall.getInstance().getMealCatalog().search(p -> p.getHomeOwner().equals(user) || p.getUserList().contains(user)));
 	}
 
 	/**
@@ -112,9 +110,7 @@ public class MealManager {
 	 * @return list of mealRequest
 	 */
 	public List<MealRequest> mealRequestHistory(User user){
-		List<MealRequest> list = new ArrayList<>();
-		list.addAll(HomeWall.getInstance().getMealRequestCatalog().search(p->p.getHomeOwner().equals(user) || p.getHost().equals(user)));
-		return list;
+		return new ArrayList<>(HomeWall.getInstance().getMealRequestCatalog().search(p -> p.getHomeOwner().equals(user) || p.getHost().equals(user)));
 	}
 
 }

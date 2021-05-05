@@ -179,7 +179,7 @@ public class Meal {
 	 *
 	 * @return
 	 */
-	public ConsumationType getConsumationType() {
+	public ConsumationType getConsummationType() {
 		return consumationType;
 	}
 

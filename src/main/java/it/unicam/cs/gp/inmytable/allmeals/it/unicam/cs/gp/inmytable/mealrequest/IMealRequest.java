@@ -1,6 +1,8 @@
 package it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest;
 
+import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
+import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
 import it.unicam.cs.gp.inmytable.user.*;
 
 import java.time.LocalDate;
@@ -40,7 +42,17 @@ public interface IMealRequest {
 
 	int getMealsNumber();
 
+	String getPlace();
+
+	String getPrice();
+
+	ConsumationType getConsummationType();
+
+	PaymentType getPaymentType();
+
 	MealStates getState();
+
+	//String getType();
 
 	void setHomeOwner(User homeOwner);
 

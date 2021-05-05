@@ -8,14 +8,13 @@ import it.unicam.cs.gp.inmytable.notification.Notification;
 import it.unicam.cs.gp.inmytable.notification.NotificationStates;
 import it.unicam.cs.gp.inmytable.notification.Subscription;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionManager;
+import it.unicam.cs.gp.inmytable.persistence.MealDB;
 import it.unicam.cs.gp.inmytable.persistence.MealPersistence;
-import it.unicam.cs.gp.inmytable.persistence.UserDB;
 import it.unicam.cs.gp.inmytable.user.Feedback;
 import it.unicam.cs.gp.inmytable.user.User;
+import it.unicam.cs.gp.inmytable.utility.UsersUtilities;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserController {
@@ -34,7 +33,7 @@ public class UserController {
     }
 
     public UserController(User logUser) throws Exception {
-        this(logUser, new UserDB());
+        this(logUser, new MealDB());
     }
 
     /**
@@ -119,6 +118,22 @@ public class UserController {
      */
     public void refuseNotification(Notification notification) throws Exception{
         subscriptionManager.refuseNotification(user, notification);
+    }
+
+    public Map<String, User> getUsers(){
+        return UsersUtilities.getInstance().getUsers();
+    }
+
+    public User getUser(String username){return UsersUtilities.getInstance().getUser(username);}
+
+    public Map<String, User> getAvailableToRequestUsers(){
+        Map<String, User> availableUsers = new HashMap<>();
+        for(String key:UsersUtilities.getInstance().getUsers().keySet()){
+            if(UsersUtilities.getInstance().getUser(key).getAvailableToRequests()){
+                availableUsers.put(key, UsersUtilities.getInstance().getUser(key));
+            }
+        }
+        return availableUsers;
     }
 }
 

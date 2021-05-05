@@ -18,6 +18,11 @@ public class PrivateMealRequest extends MealRequest{
 		setHomeOwner(homeOwner);
 	}
 
+	/*@Override
+	public String getType(){
+		return "private";
+	}*/
+
 
 	@Override
 	public void refuse(Observer<User> observer) {

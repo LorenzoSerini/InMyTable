@@ -8,7 +8,7 @@ import it.unicam.cs.gp.inmytable.user.User;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface MealPersistence {
+public interface MealPersistence extends Persistence{
     /**
      * Register a Meal
      * @param meal  The meal

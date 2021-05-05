@@ -14,7 +14,7 @@ public class MealRequestService {
     private MealsController mealsController;
 
 
-    public void setMealsController(User logUser) throws Exception {
+    public void setLogUser(User logUser) throws Exception {
         mealsController=new MealsController(logUser);
     }
 

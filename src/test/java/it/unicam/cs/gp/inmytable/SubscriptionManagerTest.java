@@ -20,8 +20,8 @@ public class SubscriptionManagerTest {
 
     @Test
     void subscriptionAcceptTest() throws Exception{
-       User user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now());
-       User user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now());
+       User user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", true);
+       User user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", true);
 
        Meal meal = new Meal(user1,3,LocalDate.parse("2021-04-29"), LocalTime.now(),LocalDate.parse("2021-04-29"),LocalTime.now(),"",false,"", ConsumationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
 
@@ -42,8 +42,8 @@ public class SubscriptionManagerTest {
     }
    @Test
    public void subscriptionRefuseTest() throws Exception{
-      User user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now());
-      User user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now());
+      User user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", true);
+      User user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", true);
       Meal meal = new Meal(user1,3,LocalDate.parse("2021-04-29"), LocalTime.now(),LocalDate.parse("2021-04-29"),LocalTime.now(),"",false,"", ConsumationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
       UserController userController = new UserController(user);
       UserController userController1 = new UserController(user1);
@@ -60,8 +60,8 @@ public class SubscriptionManagerTest {
 
    @Test
     public void acceptNotification() throws Exception{
-       User user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now());
-       User user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now());
+       User user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", true);
+       User user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", true);
        Meal meal = new Meal(user1,3,LocalDate.parse("2021-05-29"), LocalTime.now(),LocalDate.parse("2021-04-29"),LocalTime.now(),"",false,"", ConsumationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
        UserController userController = new UserController(user);
        UserController userController1 = new UserController(user1);
@@ -77,8 +77,8 @@ public class SubscriptionManagerTest {
 
    @Test
    public void refuseNotification() throws Exception{
-      User user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now());
-      User user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now());
+      User user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", true);
+      User user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", true);
       Meal meal = new Meal(user1,3,LocalDate.parse("2021-05-29"), LocalTime.now(),LocalDate.parse("2021-04-29"),LocalTime.now(),"",false,"", ConsumationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
       UserController userController = new UserController(user);
       UserController userController1 = new UserController(user1);

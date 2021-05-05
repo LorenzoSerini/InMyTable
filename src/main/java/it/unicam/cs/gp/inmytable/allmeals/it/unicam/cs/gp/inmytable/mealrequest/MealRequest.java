@@ -32,7 +32,7 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
     private User host;
     private User homeOwner;
     private MealStates state;
-    private ConsumationType consumationType;
+    private ConsumationType consummationType;
     private PaymentType paymentType;
     private Set<Observer<User>> observers;
     private NotificationStates notificationState;
@@ -46,8 +46,6 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
      * @param place      where host wants to eat
      */
     public MealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) {
-        if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time)))
-            throw new IllegalArgumentException("You cannot travel in time");
         if (date.isBefore(expiryDate) || (LocalDate.now().isEqual(expiryDate) && time.isBefore(expiryTime)))
             throw new IllegalArgumentException("ExpirationTime should be after meal date");
         if (payment.compareTo(PaymentType.FREE) == 0) {
@@ -55,7 +53,7 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
         } else this.price = price;
         this.host = host;
         this.mealType = mealType;
-        this.consumationType = consumationType;
+        this.consummationType = consumationType;
         this.paymentType = payment;
         this.description = description;
         this.date = date;
@@ -65,7 +63,9 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
         this.place = place;
         this.allergy = allergy;
         this.mealsNumber = mealsNumber;
-        this.state = MealStates.PENDING;
+        if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )) {
+            this.state= MealStates.EXPIRED;
+        } else this.state = MealStates.PENDING;
         this.notificationState = NotificationStates.PENDING;
         this.observers = new HashSet<Observer<User>>();
         observers.add(host.getNotificationManager());
@@ -90,7 +90,6 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
     @Override
     public void setHost(User host) {
         this.host = host;
-
     }
 
     @Override
@@ -158,6 +157,15 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
         return mealsNumber;
     }
 
+    @Override
+    public String getPlace() {
+        return place;
+    }
+
+    @Override
+    public ConsumationType getConsummationType() {
+        return consummationType;
+    }
 
     public void setState(MealStates state) {
         this.state = state;
@@ -168,8 +176,14 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
         return state;
     }
 
+    @Override
     public String getPrice() {
         return price;
+    }
+
+    @Override
+    public PaymentType getPaymentType() {
+        return paymentType;
     }
 
     @Override

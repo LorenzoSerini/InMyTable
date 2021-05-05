@@ -22,6 +22,11 @@ public class PublicMealRequest extends MealRequest {
         accept(homeOwner.getNotificationManager());
     }
 
+   /* @Override
+    public String getType(){
+        return "public";
+    }*/
+
     @Override
     public void refuse(Observer<User> observer) {
 

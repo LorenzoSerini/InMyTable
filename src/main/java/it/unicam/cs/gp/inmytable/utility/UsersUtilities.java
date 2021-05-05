@@ -95,5 +95,9 @@ public class UsersUtilities {
     public void insertUser(User user){
          usernames.put(user.getUsername(), user);
     }
+
+    public Map<String, User> getUsers(){
+        return new HashMap<>(usernames);
+    }
 }
 

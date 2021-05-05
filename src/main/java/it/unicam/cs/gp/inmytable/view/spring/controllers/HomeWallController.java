@@ -15,7 +15,7 @@ public class HomeWallController {
     @Autowired
     HomeWallService homeWallService;
 
-    //TODO: IN FASE DI MODIFICA
+
     @GetMapping("/bacheca")
     public String getHomewall(Model model, HttpSession session) {
         if (BaseController.isLoggedIn(session)) {

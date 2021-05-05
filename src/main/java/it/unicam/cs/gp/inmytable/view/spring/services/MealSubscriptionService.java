@@ -19,7 +19,7 @@ public class MealSubscriptionService {
     }
 
     public String getConsummationType(Meal meal){
-        switch (meal.getConsumationType()){
+        switch (meal.getConsummationType()){
             case AT_HOME: return "In casa di colui che lo ha pubblicato";
             case TAKEAWAY: return "Takeaway";
             case BOTH: return "Sia in casa di colui che ha pubblicato l'annuncio che Takeaway";

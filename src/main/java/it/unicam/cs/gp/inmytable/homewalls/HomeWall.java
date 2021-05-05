@@ -65,7 +65,7 @@ public class HomeWall {
 			mealRequestCatalog = new Catalog<PublicMealRequest>();
 		}
 		else
-			mealRequestCatalog.search(p->p.getExpiryDate().isAfter(LocalDate.now()) || (
+			mealRequestCatalog.search(p->p.getExpiryDate().isBefore(LocalDate.now()) || (
 				p.getExpiryDate().isEqual(LocalDate.now()) &&
 						p.getExpiryTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.EXPIRED));
 		return mealRequestCatalog;
