@@ -25,19 +25,24 @@ public class MealSubscriptionController {
 
     @GetMapping("/iscriviti-pasto")
     public String getMealSubscription(Model model, HttpSession session, @RequestParam("meal") int hashCode){
-        try {
-            homeWallService.setLogUser(BaseController.getLogUser(session));
-            mealSubscriptionService.setLogUser(BaseController.getLogUser(session));
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (BaseController.isLoggedIn(session)) {
+            try {
+                homeWallService.setLogUser(BaseController.getLogUser(session));
+                mealSubscriptionService.setLogUser(BaseController.getLogUser(session));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            this.meal = homeWallService.getAMeal(hashCode);
+            if (meal != null) {
+                model.addAttribute("meal", meal);
+                model.addAttribute("signUp", mealSubscriptionService.canISignUp(BaseController.getLogUser(session), meal));
+                model.addAttribute("logUser", BaseController.getLogUser(session));
+                model.addAttribute("subscription", mealSubscriptionService.getFreeSubscription(meal));
+                model.addAttribute("consummation", mealSubscriptionService.getConsummationType(meal));
+                return "/iscriviti-pasto";
+            } else return "redirect:/bacheca";
         }
-        this.meal = homeWallService.getAMeal(hashCode);
-        model.addAttribute("meal", meal);
-        model.addAttribute("signUp", mealSubscriptionService.canISignUp(BaseController.getLogUser(session), meal));
-        model.addAttribute("logUser", BaseController.getLogUser(session));
-        model.addAttribute("subscription",mealSubscriptionService.getFreeSubscription(meal));
-        model.addAttribute("consummation",mealSubscriptionService.getConsummationType(meal));
-        return "/iscriviti-pasto";
+        return "/login";
     }
 
     @PostMapping("/iscriviti-pasto")
@@ -47,6 +52,7 @@ public class MealSubscriptionController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        meal=null;
         return new ModelAndView("redirect:/bacheca");
     }
 }

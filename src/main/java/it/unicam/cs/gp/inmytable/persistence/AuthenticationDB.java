@@ -20,7 +20,7 @@ public class AuthenticationDB extends DBPersistence implements AuthenticationPer
 
     @Override
     public void registerUser(User user) throws SQLException {
-        this.sql = "insert into User(Username, FirstName, LastName, Email, Password, FiscalCode, Id, Birth, Telephone, Address, Available) values (?,?,?,?,?,?,?,?,?,?,?)";
+        this.sql = "insert into User(Username, FirstName, LastName, Email, Password, FiscalCode, Id, Birth, Telephone, City, Address, Available) values (?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
         prepStat.setString(1, user.getUsername());
         prepStat.setString(2, user.getFirstName());
@@ -31,8 +31,9 @@ public class AuthenticationDB extends DBPersistence implements AuthenticationPer
         prepStat.setString(7, user.getId());
         prepStat.setString(8, String.valueOf(user.getBirth()));
         prepStat.setString(9, user.getTelephoneNumber());
-        prepStat.setString(10, user.getAddress());
-        prepStat.setBoolean(11, user.getAvailableToRequests());
+        prepStat.setString(10, user.getCity());
+        prepStat.setString(11, user.getAddress());
+        prepStat.setBoolean(12, user.getAvailableToRequests());
         prepStat.executeUpdate();
         getUsers().put(user.getUsername(), user);
     }

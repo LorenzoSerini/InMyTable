@@ -1,20 +1,14 @@
 package it.unicam.cs.gp.inmytable.allmeals;
 
-import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.MealRequest;
-import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.PrivateMealRequest;
-import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.PublicMealRequest;
+import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
 import it.unicam.cs.gp.inmytable.homewalls.HomeWall;
-import it.unicam.cs.gp.inmytable.notification.Subscription;
 import it.unicam.cs.gp.inmytable.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MealManager {
@@ -61,8 +55,8 @@ public class MealManager {
 	 * @return MealRequest
 	 * @throws Exception if one of the parameters is null
 	 */
-	public PublicMealRequest createMealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {
-			PublicMealRequest mealRequest = new PublicMealRequest(host,mealType, consumationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber);
+	public MealRequest createPublicMealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {
+			MealRequest mealRequest = new MealRequest(host,mealType, consumationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber);
 			HomeWall.getInstance().getMealRequestCatalog().add(mealRequest);
 			return mealRequest;
 	}
@@ -77,40 +71,8 @@ public class MealManager {
 	 * @return MealRequest
 	 * @throws Exception if one of the parameters is null
 	 */
-	public PrivateMealRequest createMealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, User homeOwner) throws Exception {
-		return new PrivateMealRequest(host, mealType, consumationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber, homeOwner);
-	}
-
-
-	/**
-	 * Create a new Subscription for the user to the meal
-	 * @param host	who wants to join to the meal
-	 * @param meal	meal to join
-	 * @return a new subscription
-	 * @exception IllegalArgumentException if the host is the homeOwner of the meal
-	 */
-	public Subscription joinToMeal(User host, Meal meal) throws Exception{
-		if (host.equals(meal.getHomeOwner())) throw new IllegalArgumentException("You cannot join to this meal!");
-		if (meal.getState()!= MealStates.PENDING) throw new IllegalArgumentException("You cannot join to this meal!");
-		return new Subscription(host, meal);
-	}
-
-	/**
-	 * Returns the list of all meals the user has attended or published
-	 * @param user who wants to see his historical
-	 * @return list of meals
-	 */
-	public List<Meal> mealsHistory(User user){
-		return new ArrayList<>(HomeWall.getInstance().getMealCatalog().search(p -> p.getHomeOwner().equals(user) || p.getUserList().contains(user)));
-	}
-
-	/**
-	 * returns the list of all meals request the user has attended or published
-	 * @param user	who wants to see his historical
-	 * @return list of mealRequest
-	 */
-	public List<MealRequest> mealRequestHistory(User user){
-		return new ArrayList<>(HomeWall.getInstance().getMealRequestCatalog().search(p -> p.getHomeOwner().equals(user) || p.getHost().equals(user)));
+	public MealRequest createPrivateMealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, User homeOwner) throws Exception {
+		return new MealRequest(host, mealType, consumationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber, homeOwner);
 	}
 
 }

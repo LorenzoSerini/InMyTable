@@ -1,23 +1,20 @@
-package it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest;
+package it.unicam.cs.gp.inmytable.allmeals.mealrequest;
 
 import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
-import it.unicam.cs.gp.inmytable.notification.Notification;
-import it.unicam.cs.gp.inmytable.notification.NotificationStates;
-import it.unicam.cs.gp.inmytable.notification.Observer;
 import it.unicam.cs.gp.inmytable.user.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.Objects;
+
 
 /**
  * MealRequest from an host to one homeOwner or more.
  */
-public abstract class MealRequest implements IMealRequest, Notification<User> {
+public class MealRequest implements IMealRequest {
 
     private LocalDate date;
     private LocalTime time;
@@ -29,13 +26,12 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
     private String allergy;
     private String mealType;
     private String description;
-    private User host;
-    private User homeOwner;
+    private IUser host;
+    private IUser homeOwner;
     private MealStates state;
     private ConsumationType consummationType;
     private PaymentType paymentType;
-    private Set<Observer<User>> observers;
-    private NotificationStates notificationState;
+    private MealRequestType type;
 
     /**
      * MealRequest constructor
@@ -45,7 +41,7 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
      * @param expiryDate meal's expiring date
      * @param place      where host wants to eat
      */
-    public MealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) {
+    public MealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) {
         if (date.isBefore(expiryDate) || (LocalDate.now().isEqual(expiryDate) && time.isBefore(expiryTime)))
             throw new IllegalArgumentException("ExpirationTime should be after meal date");
         if (payment.compareTo(PaymentType.FREE) == 0) {
@@ -65,15 +61,22 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
         this.mealsNumber = mealsNumber;
         if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )) {
             this.state= MealStates.EXPIRED;
-        } else this.state = MealStates.PENDING;
-        this.notificationState = NotificationStates.PENDING;
-        this.observers = new HashSet<Observer<User>>();
-        observers.add(host.getNotificationManager());
+        } else if (LocalDate.now().isAfter(expiryDate) || (LocalDate.now().isEqual(expiryDate) && LocalTime.now().isAfter(expiryTime))) {
+            this.state = MealStates.FULL;
+        } else {
+            this.state = MealStates.PENDING;
+        }
+        this.type=MealRequestType.PUBLIC;
     }
 
+    public MealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, User homeOwner) {
+        this(host,mealType,consumationType,payment,description,date,time,expiryDate,expiryTime,price,place,allergy,mealsNumber);
+        this.homeOwner=homeOwner;
+        this.type = MealRequestType.PRIVATE;
+    }
 
     @Override
-    public User getHost() {
+    public IUser getHost() {
         return host;
     }
 
@@ -83,12 +86,12 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
     }
 
     @Override
-    public User getHomeOwner() {
+    public IUser getHomeOwner() {
         return homeOwner;
     }
 
     @Override
-    public void setHost(User host) {
+    public void setHost(IUser host) {
         this.host = host;
     }
 
@@ -113,7 +116,7 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
     }
 
     @Override
-    public void setExpiringDate(LocalDate expiringDate) {
+    public void setExpiryDate(LocalDate expiringDate) {
         this.expiryDate = expiringDate;
     }
 
@@ -133,7 +136,7 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
     }
 
     @Override
-    public void setHomeOwner(User homeOwner) {
+    public void setHomeOwner(IUser homeOwner) {
         this.homeOwner = homeOwner;
     }
 
@@ -167,6 +170,10 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
         return consummationType;
     }
 
+    @Override
+    public MealRequestType getType(){return this.type;}
+
+    @Override
     public void setState(MealStates state) {
         this.state = state;
     }
@@ -187,48 +194,15 @@ public abstract class MealRequest implements IMealRequest, Notification<User> {
     }
 
     @Override
-    public void attach(Observer observer) {
-        this.observers.add(observer);
-
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Meal)) return false;
+        MealRequest mealRequest = (MealRequest) o;
+        return mealsNumber == mealRequest.mealsNumber && date.equals(mealRequest.date) && time.equals(mealRequest.time) && expiryDate.equals(mealRequest.expiryDate) && expiryTime.equals(mealRequest.expiryTime) && mealType.equals(mealRequest.mealType) && place.equals(mealRequest.place) && description.equals(mealRequest.description) && homeOwner.equals(mealRequest.homeOwner);
     }
 
     @Override
-    public void detach(Observer observer) {
-        this.observers.remove(observer);
+    public int hashCode() {
+        return Objects.hash(allergy, type, mealsNumber, mealType, place, description, price);
     }
-
-    @Override
-    public void notifyObservers() {
-        for (Observer o : observers) {
-            o.update();
-        }
-
-    }
-
-    @Override
-    public void accept(Observer<User> observer) {
-        if (state != MealStates.PENDING) throw new IllegalArgumentException("The MealRequest is not Pending");
-        if (notificationState != NotificationStates.PENDING)
-            throw new IllegalArgumentException("The Request is not pending");
-        if (this.getHomeOwner()!=null) throw new IllegalArgumentException("You cannot cook for this request!");
-        setHomeOwner(observer.getObserver());
-        setState(MealStates.FULL);
-        this.notificationState = NotificationStates.ACCEPTED;
-        notifyObservers();
-
-    }
-
-    @Override
-    abstract public void refuse(Observer<User> observer);
-
-    @Override
-    public NotificationStates getNotificationState() {
-        return notificationState;
-    }
-
-    @Override
-    public void setNotificationState(NotificationStates state){
-        this.notificationState = state;
-    }
-
 }

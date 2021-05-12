@@ -16,7 +16,7 @@ public class PrivateMealRequestService {
         this.me = logUser;
     }
 
-    public User getUser(String username){
+    public User getUser(String username) throws Exception {
         return userController.getUser(username);
     }
 

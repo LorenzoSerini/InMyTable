@@ -1,6 +1,5 @@
 package it.unicam.cs.gp.inmytable.view.spring.services;
 
-import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.PrivateMealRequest;
 import it.unicam.cs.gp.inmytable.controllers.UserController;
 import it.unicam.cs.gp.inmytable.user.User;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class UserSearchService {
         this.userController = new UserController(logUser);
     }
 
-    public List<User> getAvailableToRequestUsers(){
+    public List<User> getAvailableToRequestUsers() throws Exception {
         List<User> availableUsers = new ArrayList<>();
         for(String key:this.userController.getAvailableToRequestUsers().keySet()){
             availableUsers.add(userController.getAvailableToRequestUsers().get(key));

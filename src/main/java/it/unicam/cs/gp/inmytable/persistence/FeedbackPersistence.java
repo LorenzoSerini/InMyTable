@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface FeedbackPersistence extends Persistence{
 
-    void registerFeedback(Feedback feedback) throws SQLException;
+    void registerFeedback(Feedback feedback) throws Exception;
 
-    List<Feedback> getFeedbacks() throws SQLException;
+    List<Feedback> getFeedbacks() throws Exception;
 
     List<Feedback> getFeedbacksFrom(User user);
 

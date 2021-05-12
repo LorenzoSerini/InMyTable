@@ -1,9 +1,10 @@
 package it.unicam.cs.gp.inmytable.homewalls;
 
-import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.PublicMealRequest;
+import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
+import it.unicam.cs.gp.inmytable.allmeals.meals.Food;
+import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
-import it.unicam.cs.gp.inmytable.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -11,7 +12,7 @@ import java.time.LocalTime;
 public class HomeWall {
 
 	private static Catalog<Meal> mealCatalog;
-	private static Catalog<PublicMealRequest> mealRequestCatalog;
+	private static Catalog<MealRequest> mealRequestCatalog;
 	private static HomeWall instance;
 
 	/**
@@ -19,7 +20,7 @@ public class HomeWall {
 	 */
 	private HomeWall(){
 		mealCatalog = new Catalog<Meal>();
-		mealRequestCatalog = new Catalog<PublicMealRequest>();
+		mealRequestCatalog = new Catalog<MealRequest>();
 	}
 
 	/**
@@ -47,12 +48,18 @@ public class HomeWall {
 	public Catalog<Meal> getMealCatalog(){
 		if (mealCatalog == null){
 			mealCatalog = new Catalog<Meal>();
-		}
-		else
-			mealCatalog.search(p->p.getExpiryDate().isBefore(LocalDate.now()) || (
+		} else updateCatalog(mealCatalog);
+
+		/*	mealCatalog.search(p->p.getExpiryDate().isBefore(LocalDate.now()) || (
 				p.getExpiryDate().isEqual(LocalDate.now()) &&
-						p.getExpiryTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.EXPIRED));
-		return mealCatalog;
+						p.getExpiryTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.FULL));
+
+
+		mealCatalog.search(p->p.getDate().isBefore(LocalDate.now()) || (
+				p.getDate().isEqual(LocalDate.now()) &&
+						p.getTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.EXPIRED));*/
+
+			return mealCatalog;
 	}
 
 
@@ -60,15 +67,27 @@ public class HomeWall {
 	 * Return all meals request
 	 * @return mealRequest catalog
 	 */
-	public Catalog<PublicMealRequest> getMealRequestCatalog(){
+	public Catalog<MealRequest> getMealRequestCatalog(){
 		if (mealRequestCatalog == null){
-			mealRequestCatalog = new Catalog<PublicMealRequest>();
-		}
-		else
-			mealRequestCatalog.search(p->p.getExpiryDate().isBefore(LocalDate.now()) || (
+			mealRequestCatalog = new Catalog<MealRequest>();
+		}else updateCatalog(mealRequestCatalog);
+
+			/*mealRequestCatalog.search(p->p.getExpiryDate().isBefore(LocalDate.now()) || (
 				p.getExpiryDate().isEqual(LocalDate.now()) &&
-						p.getExpiryTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.EXPIRED));
+						p.getExpiryTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.EXPIRED));*/
+
 		return mealRequestCatalog;
+	}
+
+
+	private void updateCatalog(Catalog<? extends Food> catalog){
+		catalog.search(p->p.getExpiryDate().isBefore(LocalDate.now()) || (
+				p.getExpiryDate().isEqual(LocalDate.now()) &&
+						p.getExpiryTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.FULL));
+
+		catalog.search(p->p.getDate().isBefore(LocalDate.now()) || (
+				p.getDate().isEqual(LocalDate.now()) &&
+						p.getTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.EXPIRED));
 	}
 
 }

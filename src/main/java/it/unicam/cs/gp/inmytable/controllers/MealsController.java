@@ -1,39 +1,38 @@
 package it.unicam.cs.gp.inmytable.controllers;
 
 import it.unicam.cs.gp.inmytable.allmeals.MealManager;
-import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.PublicMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
 import it.unicam.cs.gp.inmytable.homewalls.HomeWall;
+import it.unicam.cs.gp.inmytable.notification.ISubscription;
+import it.unicam.cs.gp.inmytable.notification.SubscriptionManager;
 import it.unicam.cs.gp.inmytable.persistence.MealDB;
 import it.unicam.cs.gp.inmytable.persistence.MealPersistence;
-import it.unicam.cs.gp.inmytable.persistence.MealRequestDB;
-import it.unicam.cs.gp.inmytable.persistence.MealRequestPersistence;
+import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.stream.Collectors;
 
 public class MealsController {
     private User logUser;
     private MealManager mealManager;
     private MealPersistence mealPersistence;
-    private MealRequestPersistence mealRequestPersistence;
+   private SubscriptionManager subscriptionManager;
 
-    public MealsController(User logUser, MealPersistence mealPersistence, MealRequestPersistence mealRequestPersistence) throws Exception {
+
+    public MealsController(User logUser, MealPersistence mealPersistence) throws Exception{//, MealRequestPersistence mealRequestPersistence) throws Exception {
         mealManager = MealManager.getInstance();
         this.logUser = logUser;
         this.mealPersistence=mealPersistence;
-        this.mealRequestPersistence=mealRequestPersistence;
+        subscriptionManager = new SubscriptionManager();
         if(HomeWall.getInstance().getMealCatalog().isEmpty()) HomeWall.getInstance().getMealCatalog().addAll(mealPersistence.getMealsList());
-        if(HomeWall.getInstance().getMealRequestCatalog().isEmpty()) HomeWall.getInstance().getMealRequestCatalog().addAll(mealRequestPersistence.getPublicMealsRequestMap());
     }
 
     public MealsController(User logUser) throws Exception {
-        this(logUser, new MealDB(), new MealRequestDB());
+        this(logUser, new MealDB());
     }
 
     public void cook(String date, String time, String expiryDate, String expiryTime, int maxNumUsers, String mealType, boolean freeSubscription, String place, ConsumationType consumationType, String description, String ingredients, PaymentType paymentType, String price) throws Exception {
@@ -43,12 +42,21 @@ public class MealsController {
                 );
     }
 
-    public void mealRequest(String description, String mealType, ConsumationType consumationType, PaymentType payment, String date, String time, String expiryDate, String expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {
-        if (LocalDate.now().isAfter(LocalDate.parse(date)) || (LocalDate.now().isEqual(LocalDate.parse(date)) && LocalTime.now().isAfter(LocalTime.parse(time))))
-            throw new IllegalArgumentException("You cannot travel in time");
-        PublicMealRequest publicMealRequest = mealManager.createMealRequest(logUser, mealType, consumationType, payment, description, LocalDate.parse(date), LocalTime.parse(time),
-                LocalDate.parse(expiryDate), LocalTime.parse(expiryTime), price, place, allergy, mealsNumber );
-        mealRequestPersistence.registerMealRequest(publicMealRequest, publicMealRequest.getNotificationState());
+    public void joinToMeal(Meal meal) throws Exception {
+        if(this.logUser.equals(meal.getHomeOwner())) throw new IllegalArgumentException("A host cannot sign up for his meal");
+        if(meal.getUserList().contains(logUser)) throw new IllegalArgumentException("You can't sign up for the same meal twice");
+        if (meal.isFreeSubscription()) {
+            subscriptionManager.joinToMealNotification(this.logUser, meal.getHomeOwner(), meal, ("L'utente " + this.logUser.getUsername() + " si è iscritto al pasto che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString()));
+        } else{
+            subscriptionManager.joinToMealNotification(this.logUser, meal.getHomeOwner(), meal, ("L'utente " + this.logUser.getUsername() + " si vorrebbe iscrivere al pasto che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString()));
+        }
+        mealPersistence.registerUserToMeal(logUser,meal,meal.getHomeOwner().getMealNotifications().get(meal.getHomeOwner().getMealNotifications().size()-1));
+    }
+
+
+    public void acceptMealSubscription(ISubscription<IUser,IMeal> subscription){
+        subscriptionManager.acceptMealNotification(this.logUser, subscription.getUser(), subscription, "L'utente " + this.logUser.getUsername() + " ha accettato la tua richiesta di iscrizione per il pasto che si terrà il "
+                + subscription.getFood().getDate().toString() + " alle " + subscription.getFood().getTime().toString());
     }
 
 

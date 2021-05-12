@@ -76,7 +76,7 @@
         <div class="row">
             <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
                 <div class="intro">
-                    <p class="text-center" style="font-size: 40px;color: #000000;">Iscriviti al Pasto</p>
+                    <p class="text-center" style="font-size: 40px;color: #000000;">Accetta la Richiesta di Pasto</p>
                     <p class="text-center"> </p>
                     <div class="row product-list dev" style="margin-top: 63px;margin-bottom: 50px;">
                         <div class="col-auto col-sm-6 col-md-4 product-item animation-element slide-top-left">
@@ -86,29 +86,29 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-7">
-                                        <h2><a href="#" style="font-family: Lora, serif;font-size: 21px;" th:text="${meal.description}"></a></h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Lora, serif;">Pasti Disponibili: <br th:text="${meal.placesAvailable}"></a>
+                                        <h2><a href="#" style="font-family: Lora, serif;font-size: 21px;" th:text="${mealRequest.description}"></a></h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Lora, serif;">Porzioni Richieste: <br th:text="${mealRequest.mealsNumber}"></a>
                                     </div>
                                     <div class="col-5">
-                                        <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Data e orario inizio:<br th:text="${meal.date}+' '+${meal.time}"></a>
-                                        <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Data e orario chiusura iscrizioni:<br th:text="${meal.expiryDate}+' '+${meal.expiryTime}"><br></a>
+                                        <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Data e orario inizio:<br th:text="${mealRequest.date}+' '+${mealRequest.time}"></a>
+                                        <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Data e orario chiusura iscrizioni:<br th:text="${mealRequest.expiryDate}+' '+${mealRequest.expiryTime}"><br></a>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-7">
-                                        <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a class="small-text" href="#" style="font-size: 15px;">Pubblicato dall'utente <br th:text="${meal.homeOwner.username}"></a></div>
-                                        <p class="product-description" style="font-family: Lora, serif;font-size: 16px;">Ingredienti principali:<br th:text="${meal.ingredients}"></p>
-                                        <p class="product-price" style="font-size: 20px;text-align: left;">Corrispettivo:<br th:text="${meal.price}"></p>
+                                        <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a class="small-text" href="#" style="font-size: 15px;">Pubblicato dall'utente <br th:text="${mealRequest.host.username}"></a></div>
+                                        <p class="product-description" style="font-family: Lora, serif;font-size: 16px;">Allergie (o richeste particolari):<br th:text="${mealRequest.allergy}"></p>
+                                        <p class="product-price" style="font-size: 20px;text-align: left;">Corrispettivo:<br th:text="${mealRequest.price}"></p>
 
-                                        <th:block th:if="${signUp == true}">
-                                            <form action="/iscriviti-pasto" method="post">
-                                                <button type="submit" class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: #fe9e02;border-radius: 24px;width: 163.4219px;margin-right: 0px;border-color: rgba(0,0,0,0);font-family: Lora, serif;text-align: center;">Iscriviti al pasto</button>
+                                        <th:block th:if="${accept == true}">
+                                            <form action="/accetta-richiesta-pasto-pubblico" method="post">
+                                                <button type="submit" class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: #73bc43;border-radius: 24px;width: 163.4219px;margin-right: 0px;border-color: rgba(0,0,0,0);font-family: Lora, serif;text-align: center;">Accetta la richiesta</button>
                                             </form>
                                         </th:block>
 
                                     </div>
                                     <div class="col-5">
-                                        <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Tipo Iscrizione: <br th:text="${subscription}"></a>
-                                        <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Dove avverrà il pasto:<br th:text="${consummation}"></a>
+                                        <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Dove: <br th:text="${mealRequest.place}"></a>
+                                        <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Preferenza del luogo del pasto:<br th:text="${consummation}"></a>
                                     </div>
                                 </div>
                             </div>

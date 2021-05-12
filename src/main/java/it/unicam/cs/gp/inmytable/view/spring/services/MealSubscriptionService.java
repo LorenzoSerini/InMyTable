@@ -1,16 +1,18 @@
 package it.unicam.cs.gp.inmytable.view.spring.services;
 
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
+import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
+import it.unicam.cs.gp.inmytable.controllers.MealsController;
 import it.unicam.cs.gp.inmytable.controllers.UserController;
 import it.unicam.cs.gp.inmytable.user.User;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MealSubscriptionService {
-    private UserController userController;
+    private MealsController mealsController;
 
     public void setLogUser(User logUser) throws Exception {
-        this.userController = new UserController(logUser);
+        this.mealsController = new MealsController(logUser);
     }
 
     public String getFreeSubscription(Meal meal){
@@ -32,7 +34,7 @@ public class MealSubscriptionService {
     }
 
     public void joinToMeal(Meal meal) throws Exception {
-        this.userController.joinToMeal(meal);
+        this.mealsController.joinToMeal(meal);
     }
 
 }

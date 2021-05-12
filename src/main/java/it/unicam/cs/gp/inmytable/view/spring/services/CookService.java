@@ -21,12 +21,12 @@ public class CookService {
         mealsController=new MealsController(logUser);
     }
 
-    public void postAMeal(String description, String mealType, String ingredients, String homeownerAddress, String homeownerEmail, String homeownerNumber, String consumationType, String paymentType,  String price, String date, String expireDate, int maxNumUsers, boolean freeSubscription) throws Exception {
+    public void postAMeal(String description, String mealType, String ingredients, String homeOwnerAddress, String consumationType, String paymentType,  String price, String date, String expireDate, int maxNumUsers, boolean freeSubscription) throws Exception {
         String startD = date.substring(0, 10);
         String startT = date.substring(11,16);
         String expireD = expireDate.substring(0, 10);
         String expireT = expireDate.substring(11,16);
-        mealsController.cook(startD, startT,expireD, expireT, maxNumUsers, mealType, freeSubscription, homeownerAddress, ConsumationType.valueOf(consumationType.toUpperCase()), description, ingredients, PaymentType.valueOf(paymentType.toUpperCase()), price);
+        mealsController.cook(startD, startT,expireD, expireT, maxNumUsers, mealType, freeSubscription, homeOwnerAddress, ConsumationType.valueOf(consumationType.toUpperCase()), description, ingredients, PaymentType.valueOf(paymentType.toUpperCase()), price);
     }
 
 }

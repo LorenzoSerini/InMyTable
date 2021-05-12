@@ -60,7 +60,7 @@
         </div>
         <div class="dropdown" style="margin-top: -1px;"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="margin-right: 6px;margin-left: 0px;font-size: 15px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal;">IL MIO ACCOUNT</a>
             <div class="dropdown-menu"><a class="dropdown-item" href="bacheca" style="font-size: 14px;font-family: Alata, sans-serif;">Bacheca</a><a class="dropdown-item" href="prenotazioni" style="font-size: 14px;font-family: Alata, sans-serif;">Le mie prenotazioni</a><a class="dropdown-item" href="annunci" style="font-size: 14px;font-family: Alata, sans-serif;">I miei annunci</a>
-                <div class="dropdown-divider"></div><a class="dropdown-item" href="richedi-un-pasto" style="font-size: 14px;font-family: Alata, sans-serif;">Pasti disponibili</a><a class="dropdown-item" href="richiesta-pasto-pubblico" style="font-size: 14px;font-family: Alata, sans-serif;">Richieste pasti</a><a class="dropdown-item" href="richedi-un-pasto" style="font-size: 14px;font-family: Alata, sans-serif;">Voglio mangiare</a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="richedi-un-pasto" style="font-size: 14px;font-family: Alata, sans-serif;">Pasti disponibili</a><a class="dropdown-item" href="richiesta-pasto-pubblico" style="font-size: 14px;font-family: Alata, sans-serif;">Voglio mangiare</a>
                 <a class="dropdown-item" href="ricerca-utenti" style="font-size: 14px;font-family: Alata, sans-serif;">Cerca Utenti</a>
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="recensioni" style="font-size: 14px;font-family: Alata, sans-serif;">Recensioni</a><a class="dropdown-item" href="ricerca-utenti" style="font-size: 14px;font-family: Alata, sans-serif;">Storico</a>
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="messaggi" style="font-size: 14px;font-family: Alata, sans-serif;">Messaggi</a><a class="dropdown-item" href="notifiche" style="font-size: 14px;font-family: Alata, sans-serif;">Notifiche</a>
@@ -120,7 +120,7 @@
     </div>
 
 
-    <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 20px;color: rgb(255,255,255);margin-top: -25px; background: #73bc43;"><br><strong>Richieste pasti disponibili</strong><br> <a href="bacheca" style="font-size: 20px;font-family: Alata, sans-serif;">Ricerca Approfondita</a>
+    <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 20px;color: rgb(255,255,255);margin-top: -25px; background: #73bc43;"><br><strong>Richieste pasti disponibili</strong><br> <a href="ricerca-pasti-pubblici" style="font-size: 20px;font-family: Alata, sans-serif;">Ricerca Approfondita</a>
         <br></h2>
 
     <div class="container">
@@ -136,19 +136,21 @@
                         <div class="col-7">
                             <h2 style="font-family: Lora, serif;font-size: 21px;width: 199px;"><a href="#" style="font-family: Lora, serif;font-size: 21px;" th:text="${mealRequest.description}"></a></h2>
 
-                            <a class="text-start small-text" href="#" style="font-size: 17px;font-family: Lora, serif;">Porzioni richiesti:<br th:text="${mealRequest.mealsNumber}"></a>
+                            <a class="text-start small-text" href="#" style="font-size: 17px;font-family: Lora, serif;">Porzioni richiesti:<br th:text="${mealRequest.mealsNumber}"></a><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;">Dove:<br th:text="${mealRequest.place}"></a>
                         </div>
 
                         <div class="col-5"><a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;" >Quando:<br th:text="${mealRequest.date}+' '+${mealRequest.time}"></a>
-                            <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Chiusura iscrizioni:&nbsp;<br th:text="${mealRequest.expiryDate}+' '+${mealRequest.expiryTime}"></a></div>
+                            <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Chiusura iscrizioni:&nbsp;<br th:text="${mealRequest.expiryDate}+' '+${mealRequest.expiryTime}"></a>
+
+                    </div>
                     </div>
 
-                    <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a class="small-text" href="#" style="font-size: 15px;">Pubblicato dall'utente<br th:text="${mealRequest.host.username}"></a></div>
+                    <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a class="small-text" href="#" style="font-size: 15px;">Pubblicato da<br th:text="${mealRequest.host.username}"></a></div>
                     <div class="row">
                         <div class="col-12">
                             <p class="product-description" style="font-family: Lora, serif;font-size: 16px;">Allergie (o richieste particolari):<br th:text="${mealRequest.allergy}"></p>
                             <div class="row">
-                                <div class="col-6"><a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: #fe9e02;border-radius: 24px;width: 163.4219px;margin-right: 0px;border-color: rgba(0,0,0,0);font-family: Lora, serif;">Più informazioni</a></div>
+                                <div class="col-6"><a class="btn btn-primary" th:href="@{accetta-richiesta-pasto-pubblico(mealRequest=${mealRequest.hashCode})}" role="button" data-bss-hover-animate="pulse" style="background: #fe9e02;border-radius: 24px;width: 163.4219px;margin-right: 0px;border-color: rgba(0,0,0,0);font-family: Lora, serif; background: #73bc43;">Più informazioni</a></div>
                                 <div class="col-6">
                                     <p class="product-price">Corrispettivo:<br th:text="${mealRequest.price}"></p>
                                 </div>
@@ -159,6 +161,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 
@@ -197,6 +201,7 @@
                     </div>
                 </div>
             </div>
+
             <h1 style="border-color: rgb(0,0,0);color: rgb(0,0,0);text-align: center;font-size: 17px;font-family: Alata, sans-serif;"><br>© 2018 - 2020 Copyright INMYTABLE - Tutti i diritti riservati<br><br></h1>
         </footer>
     </div>

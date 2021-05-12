@@ -37,7 +37,7 @@ public abstract class DBPersistence extends DBConnection implements Persistence{
                 User user = new User(getData().getString("Username"), getData().getString("Email"), getData().getString("Telephone"),
                         getData().getString("FirstName"), getData().getString("LastName"), getData().getInt("Password"),
                         LocalDate.parse(getData().getString("Birth")), getData().getString("FiscalCode"), getData().getString("Id"),
-                        getData().getString("Address"), getData().getBoolean("Available"));
+                        getData().getString("City"), getData().getString("Address"), getData().getBoolean("Available"));
                 usersMap.put(user.getUsername(), user);
             }
         }

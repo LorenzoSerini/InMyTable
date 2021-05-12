@@ -1,68 +1,76 @@
 package it.unicam.cs.gp.inmytable.notification;
 
-import it.unicam.cs.gp.inmytable.allmeals.it.unicam.cs.gp.inmytable.mealrequest.MealRequest;
+import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
+import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequestType;
+import it.unicam.cs.gp.inmytable.allmeals.meals.Food;
+import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
-import it.unicam.cs.gp.inmytable.user.User;
+import it.unicam.cs.gp.inmytable.user.IUser;
 
-public class SubscriptionManager {
-
-    private static SubscriptionManager subscriptionManager;
+public class SubscriptionManager{
 
 
-    private SubscriptionManager(){
-
+    public <T extends IUser, M extends IMeal> void joinToMealNotification(T from, T to, M meal, String msg){
+        if(meal.getState().equals(MealStates.PENDING)) {
+            MealSubscription<IUser, IMeal> mealSubscription = new MealSubscription<>(from, meal);
+            if(meal.isFreeSubscription()) mealSubscription.accept();
+            SubscriptionNotification<IUser, IMeal> notification = new SubscriptionNotification<>(from, meal.getHomeOwner(), mealSubscription, msg);
+            //meal.getHomeOwner().getMealNotifications().add(notification);
+            to.getMealNotifications().add(notification);
+        }else throw new IllegalArgumentException("You cannot sign up for his meal");
     }
 
-    public static SubscriptionManager getInstance(){
-        if (subscriptionManager==null)
-            subscriptionManager = new SubscriptionManager();
-        return subscriptionManager;
+
+    public <T extends IUser> void acceptMealNotification(T from, T to, ISubscription<IUser,IMeal> subscription, String msg){
+        if(subscription.getFood().isFreeSubscription() && subscription.getFood().getPlacesAvailable()!=0){
+            subscription.accept();
+            SubscriptionNotification<IUser, IMeal> notification = new SubscriptionNotification<>(from, to, subscription, msg);
+            to.getMealNotifications().add(notification);
+        }
     }
 
-    /**
-     * Method for accept one subscription
-     * @param subscription  subscription to accept
-     * @throws Exception    if the user is not the homeOwner in the meal
-     */
-    public void acceptSubscription(User user, Subscription subscription) throws Exception{
-        subscription.detach(user.getNotificationManager());
-        subscription.accept(user.getNotificationManager());
-        subscription.getMeal().addUser(subscription.getHost());
 
+
+    public <T extends IUser, M extends IMealRequest> void acceptPublicRequestNotification(T from, T to, M mealRequest, String msg){
+        if(mealRequest.getState().equals(MealStates.PENDING)){
+            mealRequest.setState(MealStates.FULL);
+            MealRequestSubscription<IUser, IMealRequest> mealRequestSubscription = new MealRequestSubscription<>(from, mealRequest);
+            mealRequestSubscription.accept();
+            SubscriptionNotification<IUser, IMealRequest> notification = new SubscriptionNotification<>(from, to, mealRequestSubscription, msg);//"L'utente " + this.user.getUsername() + " ha accettato la tua richiesta di pasto pubblico che si terrà il " + mealRequest.getDate().toString() + " alle " + mealRequest.getTime().toString());
+            mealRequest.getHost().getMealRequestNotifications().add(notification);
+        }
     }
 
-    /**
-     * Method for refuse one subscription
-     * @param subscription  subscription to refuse
-     * @throws Exception    if the user is not the homeOwner in the meal
-     */
-    public void refuseSubscription(User user, Subscription subscription) throws Exception{
-        if (!subscription.getMeal().getHomeOwner().equals(user)) throw new IllegalArgumentException("You cannot accept this subscription");
-        subscription.detach(user.getNotificationManager());
-        subscription.refuse(user.getNotificationManager());
+
+    public <T extends IUser, M extends IMealRequest> void sendPrivateRequestNotification(T from, T to, M mealRequest, String msg){
+        if(mealRequest.getType().equals(MealRequestType.PRIVATE)){
+            MealRequestSubscription<IUser, IMealRequest> mealRequestSubscription = new MealRequestSubscription<>(from, mealRequest);
+            SubscriptionNotification<IUser, IMealRequest> notification = new SubscriptionNotification<>(from, to, mealRequestSubscription, msg);//"L'utente " + this.user.getUsername() + " ha accettato la tua richiesta di pasto pubblico che si terrà il " + mealRequest.getDate().toString() + " alle " + mealRequest.getTime().toString());
+            //mealRequest.getHost().getMealRequestNotifications().add(notification);
+            to.getMealRequestNotifications().add(notification);
+        }
     }
 
-    public void cookMealRequest(User user, MealRequest mealRequest) throws Exception{
-        if (mealRequest.getState()!= MealStates.PENDING || mealRequest.getHomeOwner()!=null) throw new IllegalArgumentException("You cannot cook for this request!");
-        mealRequest.accept(user.getNotificationManager());
-        mealRequest.setHomeOwner(user);
+
+    public <T extends IUser> void acceptPrivateRequestNotification(T from, T to, ISubscription<IUser,IMealRequest> subscription, String msg){
+        if(subscription.getState().equals(SubscriptionStates.PENDING)){
+            subscription.accept();
+            subscription.getFood().setState(MealStates.FULL);
+            SubscriptionNotification<IUser, IMealRequest> notification = new SubscriptionNotification<>(from, to, subscription, msg);
+            to.getMealRequestNotifications().add(notification);
+        }
     }
 
-    /**
-     * Method for accepting a notification
-     * @param user user who wants accept a notification
-     * @param notification to accept
-     */
-    public void acceptNotification(User user, Notification notification) throws Exception{
-        notification.accept(user.getNotificationManager());
+
+
+    public <T extends IUser> void refusePrivateRequestNotification(T from, T to, ISubscription<IUser,IMealRequest> subscription, String msg){
+        if(subscription.getFood().getType().equals(MealRequestType.PRIVATE) && subscription.getState().equals(SubscriptionStates.PENDING)) {
+            subscription.refuse();
+            subscription.getFood().setState(MealStates.FULL);
+            SubscriptionNotification<IUser, IMealRequest> notification = new SubscriptionNotification<>(from, to, subscription, msg);
+            to.getMealRequestNotifications().add(notification);
+        }
     }
 
-    /**
-     * Method for refuse a notification
-     * @param user  user who wants refuse a notification
-     * @param notification  to refuse
-     */
-    public void refuseNotification(User user, Notification notification)throws Exception{
-        notification.refuse(user.getNotificationManager());
-    }
+
 }

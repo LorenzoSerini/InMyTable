@@ -19,10 +19,10 @@ public class UserSearchController {
         if (BaseController.isLoggedIn(session)) {
             try {
                 userSearchService.setLogUser((BaseController.getLogUser(session)));
+                model.addAttribute("availableToRequestUsers", userSearchService.getAvailableToRequestUsers());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            model.addAttribute("availableToRequestUsers", userSearchService.getAvailableToRequestUsers());
             return "/ricerca-utenti";
         }
         return "/login";

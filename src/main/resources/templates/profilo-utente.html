@@ -90,6 +90,9 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;">Cognome:</label></div><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${requestTo.lastName}"></label>
                         </div>
+                        <div class="col-sm-12 col-md-6"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;margin-bottom: 20px;">Città:</label>
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${requestTo.city}"></label></div>
+                        </div>
                         <div class="col-sm-12 col-md-6"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;margin-bottom: 20px;">Indirizzo:</label>
                             <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${requestTo.address}"></label></div>
                         </div>
@@ -106,7 +109,11 @@
                     <hr>
                 </div>
             </div>
-        </form><button class="btn btn-primary form-btn" data-bss-hover-animate="pulse" type="submit" style="background: #73bc43;border-color: rgba(0,0,0,0);height: 45px;width: 110px;color: rgb(255, 255, 255);font-family: Alata, sans-serif;padding-top: 7px;margin-left: 15px;margin-right: 5px;">Cucina per me</button><button class="btn btn-primary form-btn" data-bss-hover-animate="pulse" type="submit" style="background: #ee6226;border-color: rgba(0,0,0,0);height: 45px;width: 154px;color: rgb(255, 255, 255);font-family: Alata, sans-serif;margin-top: 0px;padding-top: 7px;margin-right: 20px;">Vedi Recensioni</button>
+        </form>
+        <th:block th:if="${itIsMe == false}">
+        <button class="btn btn-primary form-btn" data-bss-hover-animate="pulse" type="submit" style="background: #73bc43;border-color: rgba(0,0,0,0);height: 55px;width: 110px;color: rgb(255, 255, 255);font-family: Alata, sans-serif;padding-top: 7px;margin-left: 15px;margin-right: 5px;">Richiedi Pasto</button>
+        <button class="btn btn-primary form-btn" data-bss-hover-animate="pulse" type="submit" style="background: #ee6226;border-color: rgba(0,0,0,0);height: 55px;width: 154px;color: rgb(255, 255, 255);font-family: Alata, sans-serif;margin-top: 0px;padding-top: 7px;margin-right: 20px;">Vedi Recensioni</button>
+        </th:block>
     </div>
     <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" data-aos="zoom-in" style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;">
         <footer data-aos="fade" style="border-color: rgb(240, 249, 255);border-top-color: rgb(240,;border-right-color: 249,;border-bottom-color: 255);border-left-color: 249,;color: var(--bs-white);height: 214.328px;">

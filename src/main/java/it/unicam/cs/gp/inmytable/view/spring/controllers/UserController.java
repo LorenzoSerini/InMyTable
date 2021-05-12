@@ -18,7 +18,8 @@ public class UserController {
         if (BaseController.isLoggedIn(session)) {
             model.addAttribute("user", BaseController.getLogUser(session));
             return "/profilo";
-        } else{ return "/login";}
+        }
+        return "/login";
     }
 
 

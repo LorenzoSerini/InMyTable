@@ -68,153 +68,38 @@
             </div><a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: url(&quot;assets/img/cucina.png&quot;) center / cover, #ffffff;border-radius: 0px;width: 116px;margin-right: 10px;border-color: rgba(0,0,0,0);font-family: Lora, serif;font-size: 11px;height: 26px;margin-top: 3px;" href="cucina.html"></a>
         </div>
     </nav>
-    <div style="height: 120px;width: 1400px;"></div>
-    <div style="height: 273px;margin-top: 156px;">
-        <div id="searchdiv" class="searchdiv">
-            <div class="container shadow-sm border search-container" id="search-container" style="margin-bottom: 30px;">
-                <div id="findyourhome" class="findyourhome"></div>
-                <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 20px;color: #fe9e02;font-size: 40px;">Ricerca Utenti</h2>
-            </div>
-        </div>
-        <div class="container" style="margin-bottom: 35px;">
-            <div class="row">
-                <div class="col-md-6 d-xxl-flex justify-content-xxl-end"><input class="form-control-lg d-xxl-flex justify-content-xxl-end text-input" type="text" style="margin-top: 0px;height: 35px;color: #2b2b2b;width: 300px;text-align: center;" placeholder="Nome Utente"></div>
-                <div class="col-md-6 d-xxl-flex justify-content-xxl-start"><input class="form-control-lg d-xxl-flex justify-content-xxl-start text-input" type="text" style="margin-top: 0px;height: 35px;color: #2b2b2b;width: 300px;text-align: center;" placeholder="Dove"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center" style="margin-top: 12px;margin-bottom: 12px;"><button class="btn btn-primary border rounded-pill" data-bss-hover-animate="pulse" type="submit" style="background: #fe9e02;padding-top: 4px;width: 118px;font-family: Alata, sans-serif;padding-bottom: 8px;font-size: 22px;height: 50px;margin-bottom: 0px;">Cerca</button></div>
-            </div>
-        </div>
+    <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 20px;color: rgb(255,255,255);margin-top: 77px;background: #73bc43;"><br>Richieste pasti disponibili<br><br></h2>
+    <div class="container">
+        <div class="row product-list dev" style="margin-top: 63px;margin-bottom: 50px;">
+            <div class="col-sm-6 col-md-4 product-item animation-element slide-top-left" th:each="mealRequest:${publicMealsRequestCatalog}">
+                <div class="product-container">
 
-        <div class="container">
-            <div class="card" id="TableSorterCard">
-                <div class="row d-xxl-flex justify-content-xxl-center align-items-xxl-center" style="margin-right: -20px;margin-left: -20px;">
-                    <div class="col-12" style="margin-bottom: 0px;width: 1330px;height: 178px;margin-top: 10px;" >
-                        <div>
-                            <table class="table table tablesorter" id="ipi-table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th style="width: 80px;background: #fe9e02;">Nome Utente</th>
-                                        <th class="sorter-false" style="width: 140px;background: #fe9e02;">Dove</th>
-                                        <th class="sorter-false" style="width: 100px;background: #fe9e02;"></th>
-                                    </tr>
-                                </thead>
-
-
-                                <tbody>
-                                    <tr th:each="user:${availableToRequestUsers}">
-                                        <td th:text="${user.username}"></td>
-                                        <td style="padding-right: 0px;font-size: 15px;" th:text="${user.city}+' - '+${user.address}"></td>
-                                        <td class="d-xxl-flex justify-content-xxl-end">
-                                            <div id="search-btn-1" class="searchlink" style="background: #fe9e02;width: 100px;margin-right: 0px;margin-left: 0px;"><a th:href="@{profilo-utente(user=${user.username})}" style="color: rgb(255,255,255);margin-left: 10px;">Vedi Profilo</a></div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-
-
-
-                            </table>
+                    <div class="row">
+                        <div class="col-7">
+                            <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;" th:text="${mealRequest.description}"></h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;">Porzioni richiesti: <br th:text="${mealRequest.mealsNumber}"></a><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;">Dove: Napoli</a>
                         </div>
-                    </div>
-                </div>
-                <div class="modal fade" role="dialog" tabindex="-1" id="tablehelpModal" aria-labeledby="tablehelpModal" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4>Table Filtering Options</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th style="width:1%">Priority</th>
-                                                <th style="width:9%">Operator</th>
-                                                <th style="width:30%">Description</th>
-                                                <th style="width:60%">Examples</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td><code>|</code>&nbsp;or&nbsp;&nbsp;<code>OR</code><br></td>
-                                                <td>Logical "or" (Vertical bar). Filter the column for content that matches text from either side of the bar.<br></td>
-                                                <td><code>&lt;20 | &gt;40</code>&nbsp;(matches a column cell with either "&lt;20" or "&gt;40")<br></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td><code>&amp;&amp;</code>&nbsp;or <code>AND</code><br></td>
-                                                <td>Logical "and". Filter the column for content that matches text from either side of the operator.<br></td>
-                                                <td><code>&gt;20 &amp;&amp; &gt;40</code>&nbsp;(matches a column cell that contains both "&gt;20" and "&lt;40")<br></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td><code>/\d/</code><br></td>
-                                                <td>Add any regex to the query to use in the query ("mig" flags can be included&nbsp;<code>/\w/mig</code>)<br></td>
-                                                <td><code>/b[aeiou]g/i</code>&nbsp;(finds "bag", "beg", "BIG", "Bug", etc);<code>&gt;/r$/</code>&nbsp;(matches text that ends with an "r")<br></td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td><code>&lt; &lt;= &gt;= &gt;</code><br></td>
-                                                <td>Find alphabetical or numerical values less than or greater than or equal to the filtered query .<br></td>
-                                                <td><code>&lt;=10</code>&nbsp;(find values greater than or equal to 10)<br></td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td><code>!</code>&nbsp;or&nbsp;<code>!=</code><br></td>
-                                                <td>Not operator, or not exactly match. Filter the column with content that&nbsp;<strong>do not</strong>&nbsp;match the query. Include an equal (<code>=</code>), single (<code>'</code>) or double quote (<code>"</code>) to exactly&nbsp;<em>not</em>&nbsp;match a filter.<br><br><br></td>
-                                                <td><code>!e</code>&nbsp;(find text that doesn't contain an "e");<code>!"ELISA"</code>&nbsp;(find content that does not exactly match "ELISA")<br></td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td><code>"</code>&nbsp;or&nbsp;<code>=</code><br></td>
-                                                <td>To exactly match the search query, add a quote, apostrophe or equal sign to the beginning and/or end of the query<br></td>
-                                                <td><code>abc"</code>&nbsp;or&nbsp;<code>abc=</code>&nbsp;(exactly match "abc")<br></td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td><code>-</code>&nbsp;or <code>to</code><br></td>
-                                                <td>Find a range of values. Make sure there is a space before and after the dash (or the word "to").<br></td>
-                                                <td><code>10 - 30</code>&nbsp;or&nbsp;<code>10 to 30</code>&nbsp;(match values between 10 and 30)<br></td>
-                                            </tr>
-                                            <tr>
-                                                <td>8</td>
-                                                <td><code>?</code><br></td>
-                                                <td>Wildcard for a single, non-space character.<br></td>
-                                                <td><code>S?c</code>&nbsp;(finds "Sec" and "Soc", but not "Seec")<br></td>
-                                            </tr>
-                                            <tr>
-                                                <td>8</td>
-                                                <td><code>*</code><br></td>
-                                                <td>Wildcard for zero or more non-space characters.<br></td>
-                                                <td><code>B*k</code>&nbsp;(matches "Black" and "Book")<br></td>
-                                            </tr>
-                                            <tr>
-                                                <td>9</td>
-                                                <td><code>~</code><br></td>
-                                                <td>Perform a fuzzy search (matches sequential characters) by adding a tilde to the beginning of the query<br></td>
-                                                <td><code>~bee</code>&nbsp;(matches "Bruce Lee" and "Brenda Dexter"), or&nbsp;<code>~piano</code>&nbsp;(matches "Philip Aaron Wong")<br></td>
-                                            </tr>
-                                            <tr>
-                                                <td>10</td>
-                                                <td>text<br></td>
-                                                <td>Any text entered in the filter will&nbsp;<strong>match</strong>&nbsp;text found within the column<br></td>
-                                                <td><code>abc</code>&nbsp;(finds "abc", "abcd", "abcde", etc);<code>SEC</code>&nbsp;(finds "SEC" and "Analytical SEC")<br></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        <div class="col-5"><a class="text-start small-text" href="#" style="font-size: 14px;font-family: Alata, sans-serif;">Data e orario inizio:<br th:text="${mealRequest.date}+' '+${mealRequest.time}"></a><a class="text-start small-text" href="#" style="font-size: 14px;font-family: Alata, sans-serif;">Data e orario fine:&nbsp;<br th:text="${mealRequest.expiryDate}+' '+${mealRequest.expiryTime}"><br></a></div>
+                    </div><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 9px;font-family: Alata, sans-serif;">Richesta dall'utente <br th:text="${mealRequest.host.username}"></a>
+                    <div class="product-rating"></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="product-description" style="font-family: Alata, sans-serif;font-size: 16px;">Allergie (o richieste particolari):<br th:text="${mealRequest.allergy}"></p>
+                            <div class="row">
+                                <div class="col-6"><a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: #73bc43;border-radius: 24px;width: 163.4219px;margin-right: 0px;border-color: rgba(0,0,0,0);font-family: Alata, sans-serif;" href="prepara-pasto.html">Più informazioni</a></div>
+                                <div class="col-6">
+                                    <p class="product-price">Corrispettivo:<br th:text="${mealRequest.price}"></p>
                                 </div>
                             </div>
-                            <div class="modal-footer"><button class="btn btn-danger" type="button" data-bs-dismiss="modal">Close</button></div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-    <div style="height: 260px;margin-top: 266px;"></div>
-    <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" data-aos="zoom-in" style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;margin-top: 0px;">
-        <div id="searchdiv" class="searchdiv"></div>
+    <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 20px;color: var(--bs-gray-dark);font-weight: bold;">Richiedi direttamente TU un pasto !</h2>
+    <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 20px;color: #000000;font-weight: normal;font-size: 20px;">Vuoi un pasto pronto per il tuo pranzo o la tua cena, richiedilo subito !<br><a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: #73bc43;border-radius: 24px;width: 235.4219px;margin-right: 0px;border-color: rgba(0,0,0,0);font-family: Alata, sans-serif;font-size: 26px;margin-top: 40px;" href="richedi-un-pasto.html">Richiedi pasto<br></a><br></h2>
+    <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" data-aos="zoom-in" style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;">
         <footer data-aos="fade" style="border-color: rgb(240, 249, 255);border-top-color: rgb(240,;border-right-color: 249,;border-bottom-color: 255);border-left-color: 249,;color: var(--bs-white);height: 214.328px;">
             <div class="container">
                 <div class="row g-0 row-cols-2 justify-content-center align-items-center">

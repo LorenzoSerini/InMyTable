@@ -1,11 +1,11 @@
 package it.unicam.cs.gp.inmytable.persistence;
 
 import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
-import it.unicam.cs.gp.inmytable.notification.Notification;
-import it.unicam.cs.gp.inmytable.notification.NotificationStates;
-import it.unicam.cs.gp.inmytable.notification.Subscription;
+import it.unicam.cs.gp.inmytable.notification.INotification;
+import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
 import it.unicam.cs.gp.inmytable.user.User;
 
 import java.sql.PreparedStatement;
@@ -20,6 +20,8 @@ import java.util.Map;
 public class MealDB extends DBPersistence implements MealPersistence {
     private String sql;
     private Map<Integer, Meal> mealsMap;
+
+    private static final String SUBSCRIPTION_NOTIFICATION = "SubscriptionNotification";
 
     public MealDB() throws Exception {
         super();
@@ -49,21 +51,23 @@ public class MealDB extends DBPersistence implements MealPersistence {
         prepStat.setString(10, meal.getDescription());
         prepStat.setString(11, meal.getIngredients());
         prepStat.setInt(12, meal.getMaxNumberUsers());
-        prepStat.setString(13, meal.getPayment().toString());
+        prepStat.setString(13, meal.getPaymentType().toString());
         prepStat.setString(14, meal.getPrice());
         prepStat.setString(15, meal.getState().toString());
         prepStat.setBoolean(16, meal.isFreeSubscription());
         prepStat.executeUpdate();
+        mealsMap.put(meal.hashCode(), meal);
     }
 
     @Override
-    public void registerUserToMeal(User host, Meal meal, Subscription subscription) throws SQLException {
+    public void registerUserToMeal(User host, Meal meal, SubscriptionNotification<?,?> notification) throws SQLException {
         this.sql = "insert into User_Meal(Userusername, Mealid, SubscriptionState) values (?,?,?)";
         PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
         prepStat.setString(1, host.getUsername());
         prepStat.setInt(2, meal.hashCode());
-        prepStat.setString(3, subscription.getNotificationState().toString());
+        prepStat.setString(3, notification.getSubscription().getState().toString());
         prepStat.executeUpdate();
+        registerNotification(notification);
     }
 
     @Override
@@ -76,20 +80,6 @@ public class MealDB extends DBPersistence implements MealPersistence {
         return mealList;
     }
 
-    @Override
-    public List<Notification> getNotificationsList() throws Exception {
-        List<Notification> notificationsList = new ArrayList<>();
-        String sql = "Select * from User_Meal";
-        setData(sql);
-        while (getData().next()) {
-           User user = getUsers().get(getData().getString("Userusername"));
-           Meal meal = getMeal(getData().getInt("Mealid"));
-           Subscription sub = new Subscription(user,meal);
-           sub.setNotificationState(NotificationStates.valueOf(getData().getString("SubscriptionState")));
-           notificationsList.add(sub);
-        }
-        return notificationsList;
-    }
 
 
     private void fillMealMap() throws Exception {
@@ -107,6 +97,21 @@ public class MealDB extends DBPersistence implements MealPersistence {
                 updateMeal(meal);
             }
         }
+    }
+
+
+    private void registerNotification(SubscriptionNotification<?,?> notification) throws SQLException {
+        this.sql = "insert into Notification(Id, Date, Time, FromUser, ToUser, Type, FoodId, Message) values (?,?,?,?,?,?,?,?)";
+        PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
+        prepStat.setInt(1, notification.hashCode());
+        prepStat.setString(2, notification.getDate().toString());
+        prepStat.setString(3, notification.getTime().toString());
+        prepStat.setString(4, notification.from().getUsername());
+        prepStat.setString(5, notification.to().getUsername());
+        prepStat.setString(6, SUBSCRIPTION_NOTIFICATION);
+        prepStat.setInt(7, notification.getSubscription().getFood().hashCode());
+        prepStat.setString(8, notification.getMsg());
+        prepStat.executeUpdate();
     }
 
 

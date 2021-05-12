@@ -19,14 +19,18 @@ public class PrivateMealRequestController {
 
     @GetMapping("/profilo-utente")
     public String getUserProfile(Model model, HttpSession session, @RequestParam("user") String username){
-        try {
-            privateMealRequestService.setLogUser(BaseController.getLogUser(session));
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (BaseController.isLoggedIn(session)) {
+            try {
+                privateMealRequestService.setLogUser(BaseController.getLogUser(session));
+                this.requestTo = privateMealRequestService.getUser(username);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            model.addAttribute("requestTo", requestTo);
+            model.addAttribute("itIsMe", privateMealRequestService.itIsMe(requestTo));
+            return "/profilo-utente";
         }
-        this.requestTo = privateMealRequestService.getUser(username);
-        model.addAttribute("requestTo", requestTo);
-        model.addAttribute("itIsMe", privateMealRequestService.itIsMe(requestTo));
-        return "/profilo-utente";
+        return "/login";
     }
 }
