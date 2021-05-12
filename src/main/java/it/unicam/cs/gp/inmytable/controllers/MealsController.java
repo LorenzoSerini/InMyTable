@@ -23,7 +23,7 @@ public class MealsController {
    private SubscriptionManager subscriptionManager;
 
 
-    public MealsController(User logUser, MealPersistence mealPersistence) throws Exception{//, MealRequestPersistence mealRequestPersistence) throws Exception {
+    public MealsController(User logUser, MealPersistence mealPersistence) throws Exception{
         mealManager = MealManager.getInstance();
         this.logUser = logUser;
         this.mealPersistence=mealPersistence;

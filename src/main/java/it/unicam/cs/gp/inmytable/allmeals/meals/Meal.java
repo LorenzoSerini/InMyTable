@@ -277,7 +277,7 @@ public class Meal implements IMeal{
 		if (this == o) return true;
 		if (!(o instanceof Meal)) return false;
 		Meal meal = (Meal) o;
-		return maxNumberUsers == meal.maxNumberUsers && date.equals(meal.date) && time.equals(meal.time) && expiryDate.equals(meal.expiryDate) && expiryTime.equals(meal.expiryTime) && mealType.equals(meal.mealType) && place.equals(meal.place) && description.equals(meal.description) && homeOwner.equals(meal.homeOwner);
+		return maxNumberUsers == meal.maxNumberUsers && payment.equals(meal.payment) && freeSubscription==meal.freeSubscription && mealType.equals(meal.mealType) && place.equals(meal.place) && description.equals(meal.description) && price.equals(meal.price) && ingredients.equals(meal.ingredients);
 	}
 
 	@Override

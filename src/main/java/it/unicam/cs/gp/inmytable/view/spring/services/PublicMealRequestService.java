@@ -1,11 +1,14 @@
 package it.unicam.cs.gp.inmytable.view.spring.services;
 
+import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
 import it.unicam.cs.gp.inmytable.controllers.MealRequestsController;
 import it.unicam.cs.gp.inmytable.controllers.MealsController;
+import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
+import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 import org.springframework.stereotype.Service;
 
@@ -46,4 +49,6 @@ public class PublicMealRequestService {
         }
         return null;
     }
+
+
 }

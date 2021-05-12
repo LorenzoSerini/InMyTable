@@ -1,9 +1,15 @@
 package it.unicam.cs.gp.inmytable.view.spring.services;
 
+import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
+import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
+import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
 import it.unicam.cs.gp.inmytable.controllers.MealsController;
 import it.unicam.cs.gp.inmytable.controllers.UserController;
+import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
+import it.unicam.cs.gp.inmytable.notification.SubscriptionStates;
+import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 import org.springframework.stereotype.Service;
 
@@ -29,12 +35,23 @@ public class MealSubscriptionService {
         return null;
     }
 
+
     public boolean canISignUp(User logUser, Meal meal){
-        return !meal.getHomeOwner().equals(logUser) && !meal.getUserList().contains(logUser);
+        return !meal.getHomeOwner().equals(logUser) && !meal.getUserList().contains(logUser) && !isMyRequestPending(logUser,meal);
     }
 
     public void joinToMeal(Meal meal) throws Exception {
         this.mealsController.joinToMeal(meal);
+    }
+
+    private boolean isMyRequestPending(User logUser, Meal meal){
+        for(SubscriptionNotification<IUser, IMeal> m:logUser.getMealNotifications()){
+            System.out.println("MM"+m.getSubscription().getFood().getDescription());
+            System.out.println(meal.getDescription());
+            System.out.println("MM"+m.getSubscription().getFood().getState().toString());
+            if(m.getSubscription().getFood().equals(meal)&&m.getSubscription().getState().equals(SubscriptionStates.PENDING)) return true;
+        }
+        return false;
     }
 
 }

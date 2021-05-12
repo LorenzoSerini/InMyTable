@@ -198,7 +198,7 @@ public class MealRequest implements IMealRequest {
         if (this == o) return true;
         if (!(o instanceof Meal)) return false;
         MealRequest mealRequest = (MealRequest) o;
-        return mealsNumber == mealRequest.mealsNumber && date.equals(mealRequest.date) && time.equals(mealRequest.time) && expiryDate.equals(mealRequest.expiryDate) && expiryTime.equals(mealRequest.expiryTime) && mealType.equals(mealRequest.mealType) && place.equals(mealRequest.place) && description.equals(mealRequest.description) && homeOwner.equals(mealRequest.homeOwner);
+        return allergy.equals(mealRequest.allergy) && type.equals(mealRequest.type) && mealsNumber == mealRequest.mealsNumber && mealType.equals(mealRequest.mealType) && place.equals(mealRequest.place) && description.equals(mealRequest.description) && price.equals(mealRequest.price);
     }
 
     @Override

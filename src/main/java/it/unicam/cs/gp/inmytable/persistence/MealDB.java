@@ -26,13 +26,13 @@ public class MealDB extends DBPersistence implements MealPersistence {
     public MealDB() throws Exception {
         super();
         mealsMap = new HashMap<>();
-        fillMealMap();
+        //fillMealMap();
     }
 
     public MealDB(String connectionString, String username, String password) throws Exception {
         super(connectionString,username,password);
         mealsMap = new HashMap<>();
-        fillMealMap();
+       // fillMealMap();
     }
 
     @Override
@@ -74,7 +74,7 @@ public class MealDB extends DBPersistence implements MealPersistence {
     public List<Meal> getMealsList() throws Exception {
         fillMealMap();
         List<Meal> mealList = new ArrayList<>();
-        for(int key:mealsMap.keySet()){
+        for(int key:this.mealsMap.keySet()){
             mealList.add(mealsMap.get(key));
         }
         return mealList;
@@ -92,10 +92,13 @@ public class MealDB extends DBPersistence implements MealPersistence {
                         LocalDate.parse(getData().getString("ExpiringDate")), LocalTime.parse(getData().getString("ExpiringTime")), getData().getString("MealType"), getData().getBoolean("FreeSubscription"),
                         getData().getString("Place"), ConsumationType.valueOf(getData().getString("ConsumationType")), getData().getString("Description"), getData().getString("Ingredients"), PaymentType.valueOf(getData().getString("Payment")),
                         getData().getString("Price"));
-                addUsersInMeal(meal);
+                //addUsersInMeal(meal);
                 mealsMap.put(meal.hashCode(), meal);
-                updateMeal(meal);
+               updateMeal(meal);
             }
+        }
+        for (int k: mealsMap.keySet()){
+            addUsersInMeal(mealsMap.get(k));
         }
     }
 
