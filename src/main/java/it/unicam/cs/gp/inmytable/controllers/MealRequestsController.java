@@ -33,7 +33,7 @@ public class MealRequestsController {
         mealManager = MealManager.getInstance();
         this.mealRequestPersistence=mealRequestPersistence;
         subscriptionManager = new SubscriptionManager();
-        if(HomeWall.getInstance().getMealRequestCatalog().isEmpty()) HomeWall.getInstance().getMealRequestCatalog().addAll(mealRequestPersistence.getPublicMealsRequestMap());
+        if(HomeWall.getInstance().getMealRequestCatalog().isEmpty())HomeWall.getInstance().getMealRequestCatalog().addAll(mealRequestPersistence.getPublicMealsRequestMap());
     }
 
     public MealRequestsController(User logUser) throws Exception {
@@ -61,8 +61,9 @@ public class MealRequestsController {
 
     public void acceptPublicMealRequest(MealRequest mealRequest) throws Exception {
         if(mealRequest.getType().equals(MealRequestType.PUBLIC)) {
+            mealRequest.setHomeOwner(this.logUser);
             subscriptionManager.acceptPublicRequestNotification(this.logUser, mealRequest.getHost(), mealRequest, "L'utente " + this.logUser.getUsername() + " ha accettato la tua richiesta di pasto pubblico che si terrà il " + mealRequest.getDate().toString() + " alle " + mealRequest.getTime().toString());
-            mealRequestPersistence.registerHomeOwnerToMealRequest(this.logUser, mealRequest, mealRequest.getHost().getMealRequestNotifications().get(mealRequest.getHost().getMealRequestNotifications().size()-1));
+            mealRequestPersistence.registerHomeOwnerToMealRequest(this.logUser, mealRequest, mealRequest.getHost().getMealRequestNotifications().get(mealRequest.getHost().getMealRequestNotifications().size() - 1));
         }else throw new IllegalArgumentException("This is a private meal request");
     }
 

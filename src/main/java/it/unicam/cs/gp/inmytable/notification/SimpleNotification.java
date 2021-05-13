@@ -4,6 +4,7 @@ import it.unicam.cs.gp.inmytable.user.IUser;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.UUID;
 
 public class SimpleNotification<T extends IUser> implements INotification<T>{
     private String message;
@@ -11,6 +12,8 @@ public class SimpleNotification<T extends IUser> implements INotification<T>{
     private T to;
     private LocalDate date;
     private LocalTime time;
+    private String id;
+
 
     public SimpleNotification(T from, T to, String message){
         this.from=from;
@@ -18,6 +21,7 @@ public class SimpleNotification<T extends IUser> implements INotification<T>{
         this.date=LocalDate.now();
         this.time=LocalTime.now();
         this.message=message;
+        this.id = UUID.randomUUID().toString();
     }
 
     @Override
@@ -45,5 +49,11 @@ public class SimpleNotification<T extends IUser> implements INotification<T>{
     public String getMsg() {
         return this.message;
     }
+
+    @Override
+    public void setId(String id){this.id=id;}
+
+    @Override
+    public String getId(){return this.id;}
 
 }

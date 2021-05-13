@@ -37,18 +37,15 @@ public class MealSubscriptionService {
 
 
     public boolean canISignUp(User logUser, Meal meal){
-        return !meal.getHomeOwner().equals(logUser) && !meal.getUserList().contains(logUser) && !isMyRequestPending(logUser,meal);
+        return !meal.getHomeOwner().equals(logUser) && !meal.getUserList().contains(logUser) && !isMyRequestPending(meal);
     }
 
     public void joinToMeal(Meal meal) throws Exception {
         this.mealsController.joinToMeal(meal);
     }
 
-    private boolean isMyRequestPending(User logUser, Meal meal){
-        for(SubscriptionNotification<IUser, IMeal> m:logUser.getMealNotifications()){
-            System.out.println("MM"+m.getSubscription().getFood().getDescription());
-            System.out.println(meal.getDescription());
-            System.out.println("MM"+m.getSubscription().getFood().getState().toString());
+    private boolean isMyRequestPending(Meal meal){
+        for(SubscriptionNotification<IUser, IMeal> m:meal.getHomeOwner().getMealNotifications()){
             if(m.getSubscription().getFood().equals(meal)&&m.getSubscription().getState().equals(SubscriptionStates.PENDING)) return true;
         }
         return false;

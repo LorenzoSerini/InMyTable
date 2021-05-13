@@ -9,6 +9,7 @@ import it.unicam.cs.gp.inmytable.user.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
+import java.util.UUID;
 
 
 /**
@@ -32,6 +33,7 @@ public class MealRequest implements IMealRequest {
     private ConsumationType consummationType;
     private PaymentType paymentType;
     private MealRequestType type;
+    private String id;
 
     /**
      * MealRequest constructor
@@ -61,12 +63,11 @@ public class MealRequest implements IMealRequest {
         this.mealsNumber = mealsNumber;
         if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )) {
             this.state= MealStates.EXPIRED;
-        } else if (LocalDate.now().isAfter(expiryDate) || (LocalDate.now().isEqual(expiryDate) && LocalTime.now().isAfter(expiryTime))) {
-            this.state = MealStates.FULL;
-        } else {
-            this.state = MealStates.PENDING;
-        }
+        } else if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )){
+            this.state=MealStates.FULL;
+        } else this.state = MealStates.PENDING;
         this.type=MealRequestType.PUBLIC;
+        this.id = UUID.randomUUID().toString();
     }
 
     public MealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, User homeOwner) {
@@ -83,6 +84,16 @@ public class MealRequest implements IMealRequest {
     @Override
     public String getMealType() {
         return this.mealType;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id=id;
+    }
+
+    @Override
+    public String getId() {
+        return this.id;
     }
 
     @Override

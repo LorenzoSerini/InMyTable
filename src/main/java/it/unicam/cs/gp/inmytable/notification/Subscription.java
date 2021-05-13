@@ -27,6 +27,8 @@ public abstract class Subscription<T extends IUser, F extends Food> implements I
         return this.state;
     }
 
+    @Override
     public void setState(SubscriptionStates state){this.state=state;}
+
 
 }

@@ -25,6 +25,7 @@ public class Meal implements IMeal{
 	private String price;
 	private IUser homeOwner;
 	private Set<IUser> userList;
+	private String id;
 
 
 
@@ -48,7 +49,6 @@ public class Meal implements IMeal{
 				ConsumationType consumationType, String description, String ingredients, PaymentType payment, String price) throws Exception{
 		if (homeOwner==null|| date ==null ||expiryDate ==null ||mealType==null ||place == null ||
 				consumationType ==null|| description ==null || payment ==null) throw new NullPointerException("You must insert all!");
-		//if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )) throw new IllegalArgumentException("You cannot travel in time");
 		if (date.isBefore(expiryDate) ||(LocalDate.now().isEqual(expiryDate) && time.isBefore(expiryTime))) throw new IllegalArgumentException("ExpirationTime should be after meal date");
 		if(payment.compareTo(PaymentType.FREE)==0){
 			this.price="0";
@@ -72,7 +72,7 @@ public class Meal implements IMeal{
 			this.state=MealStates.FULL;
 		} else this.state = MealStates.PENDING;
 		this.userList = new HashSet<IUser>();
-
+		this.id = UUID.randomUUID().toString();
 	}
 
 	/**
@@ -184,6 +184,17 @@ public class Meal implements IMeal{
 	@Override
 	public String getMealType() {
 		return mealType;
+	}
+
+
+	@Override
+	public void setId(String id) {
+		this.id=id;
+	}
+
+	@Override
+	public String getId() {
+		return this.id;
 	}
 
 	/**

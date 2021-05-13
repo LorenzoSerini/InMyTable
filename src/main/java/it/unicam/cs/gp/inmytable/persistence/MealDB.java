@@ -19,27 +19,31 @@ import java.util.Map;
 
 public class MealDB extends DBPersistence implements MealPersistence {
     private String sql;
-    private Map<Integer, Meal> mealsMap;
+    private static Map<String, Meal> mealsMap;
 
-    private static final String SUBSCRIPTION_NOTIFICATION = "SubscriptionNotification";
+    private static final String MEAL_SUBSCRIPTION_NOTIFICATION = "MealSubscriptionNotification";
 
     public MealDB() throws Exception {
         super();
-        mealsMap = new HashMap<>();
-        //fillMealMap();
+        if(mealsMap==null) {
+            mealsMap = new HashMap<>();
+            fillMealMap();
+        }
     }
 
     public MealDB(String connectionString, String username, String password) throws Exception {
         super(connectionString,username,password);
-        mealsMap = new HashMap<>();
-       // fillMealMap();
+        if(mealsMap==null) {
+            mealsMap = new HashMap<>();
+            fillMealMap();
+        }
     }
 
     @Override
     public void registerMeal(Meal meal) throws SQLException {
         this.sql = "insert into Meal(Id, HomeOwner, Date, Time, ExpiringDate, ExpiringTime, MealType, Place, ConsumationType, Description, Ingredients, MaxNumberUsers, Payment, Price, MealState, FreeSubscription) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
-        prepStat.setInt(1, meal.hashCode());
+        prepStat.setString(1, meal.getId());
         prepStat.setString(2, meal.getHomeOwner().getUsername());
         prepStat.setString(3, meal.getDate().toString());
         prepStat.setString(4, meal.getTime().toString());
@@ -56,7 +60,7 @@ public class MealDB extends DBPersistence implements MealPersistence {
         prepStat.setString(15, meal.getState().toString());
         prepStat.setBoolean(16, meal.isFreeSubscription());
         prepStat.executeUpdate();
-        mealsMap.put(meal.hashCode(), meal);
+        mealsMap.put(meal.getId(), meal);
     }
 
     @Override
@@ -64,17 +68,16 @@ public class MealDB extends DBPersistence implements MealPersistence {
         this.sql = "insert into User_Meal(Userusername, Mealid, SubscriptionState) values (?,?,?)";
         PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
         prepStat.setString(1, host.getUsername());
-        prepStat.setInt(2, meal.hashCode());
+        prepStat.setString(2, meal.getId());
         prepStat.setString(3, notification.getSubscription().getState().toString());
         prepStat.executeUpdate();
         registerNotification(notification);
     }
 
     @Override
-    public List<Meal> getMealsList() throws Exception {
-        fillMealMap();
+    public List<Meal> getMealsList(){
         List<Meal> mealList = new ArrayList<>();
-        for(int key:this.mealsMap.keySet()){
+        for(String key:mealsMap.keySet()){
             mealList.add(mealsMap.get(key));
         }
         return mealList;
@@ -86,18 +89,18 @@ public class MealDB extends DBPersistence implements MealPersistence {
         String sql = "Select * from Meal";
         setData(sql);
         while (getData().next()) {
-            if(!mealsMap.containsKey(Integer.parseInt(getData().getString("Id")))) {
+            if(!mealsMap.containsKey(getData().getString("Id"))) {
                 User homeOwner = getUsers().get(getData().getString("HomeOwner"));
                 Meal meal = new Meal(homeOwner, getData().getInt("MaxNumberUsers"), LocalDate.parse(getData().getString("Date")), LocalTime.parse(getData().getString("Time")),
                         LocalDate.parse(getData().getString("ExpiringDate")), LocalTime.parse(getData().getString("ExpiringTime")), getData().getString("MealType"), getData().getBoolean("FreeSubscription"),
                         getData().getString("Place"), ConsumationType.valueOf(getData().getString("ConsumationType")), getData().getString("Description"), getData().getString("Ingredients"), PaymentType.valueOf(getData().getString("Payment")),
                         getData().getString("Price"));
-                //addUsersInMeal(meal);
-                mealsMap.put(meal.hashCode(), meal);
+                meal.setId(getData().getString("Id"));
+                mealsMap.put(meal.getId(), meal);
                updateMeal(meal);
             }
         }
-        for (int k: mealsMap.keySet()){
+        for (String k: mealsMap.keySet()){
             addUsersInMeal(mealsMap.get(k));
         }
     }
@@ -106,28 +109,28 @@ public class MealDB extends DBPersistence implements MealPersistence {
     private void registerNotification(SubscriptionNotification<?,?> notification) throws SQLException {
         this.sql = "insert into Notification(Id, Date, Time, FromUser, ToUser, Type, FoodId, Message) values (?,?,?,?,?,?,?,?)";
         PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
-        prepStat.setInt(1, notification.hashCode());
+        prepStat.setString(1, notification.getId());
         prepStat.setString(2, notification.getDate().toString());
         prepStat.setString(3, notification.getTime().toString());
         prepStat.setString(4, notification.from().getUsername());
         prepStat.setString(5, notification.to().getUsername());
-        prepStat.setString(6, SUBSCRIPTION_NOTIFICATION);
-        prepStat.setInt(7, notification.getSubscription().getFood().hashCode());
+        prepStat.setString(6, MEAL_SUBSCRIPTION_NOTIFICATION);
+        prepStat.setString(7, notification.getSubscription().getFood().getId());
         prepStat.setString(8, notification.getMsg());
         prepStat.executeUpdate();
     }
 
 
-    private Meal getMeal(int hashCode) throws Exception {
-        if(!this.mealsMap.containsKey(hashCode)) {
+    private Meal getMeal(String id) throws Exception {
+        if(!mealsMap.containsKey(id)) {
             fillMealMap();
         }
-        return mealsMap.get(hashCode);
+        return mealsMap.get(id);
     }
 
 
     private void addUsersInMeal(Meal meal) throws SQLException {
-        String sql = "Select * from User_Meal where Mealid= '"+meal.hashCode()+"'";
+        String sql = "Select * from User_Meal where Mealid= '"+meal.getId()+"'";
         setData(sql);
         while (getData().next()) {
            User user = getUsers().get(getData().getString("Userusername"));
@@ -136,7 +139,7 @@ public class MealDB extends DBPersistence implements MealPersistence {
     }
 
     private void updateMeal(Meal meal) throws SQLException {
-            sql = "update Meal set MealState=? where Id='"+meal.hashCode()+"'";
+            sql = "update Meal set MealState=? where Id='"+meal.getId()+"'";
             PreparedStatement prepStat = getConnection().prepareStatement(sql);
             prepStat.setString(1, meal.getState().toString());
             prepStat.executeUpdate();

@@ -13,5 +13,9 @@ public interface ISubscription<T extends IUser, F extends Food>{
 
     F getFood();
 
+    void setState(SubscriptionStates state);
+
    SubscriptionStates getState();
+
+
 }

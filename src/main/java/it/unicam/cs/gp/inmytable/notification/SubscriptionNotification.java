@@ -7,6 +7,7 @@ import it.unicam.cs.gp.inmytable.user.User;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class SubscriptionNotification<T extends IUser, F extends Food> implements INotification<T>{
     private String message;
@@ -15,6 +16,7 @@ public class SubscriptionNotification<T extends IUser, F extends Food> implement
     private LocalDate date;
     private LocalTime time;
     private ISubscription<T,F> subscription;
+    private String id;
 
     public SubscriptionNotification(T from, T to, ISubscription<T,F> subscription, String message){
         this.from=from;
@@ -23,6 +25,7 @@ public class SubscriptionNotification<T extends IUser, F extends Food> implement
         this.time=LocalTime.now();
         this.subscription=subscription;
         this.message=message;
+        this.id = UUID.randomUUID().toString();
     }
 
     @Override
@@ -51,7 +54,13 @@ public class SubscriptionNotification<T extends IUser, F extends Food> implement
         return this.message;
     }
 
-   // @Override
+
+    @Override
+    public void setId(String id){this.id=id;}
+
+    @Override
+    public String getId(){return this.id;}
+
     public ISubscription<T, F> getSubscription() {
         return subscription;
     }

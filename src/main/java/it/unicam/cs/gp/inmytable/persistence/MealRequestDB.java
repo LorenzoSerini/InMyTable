@@ -3,6 +3,7 @@ package it.unicam.cs.gp.inmytable.persistence;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequestType;
 import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
 import it.unicam.cs.gp.inmytable.user.User;
@@ -20,31 +21,32 @@ import java.util.Map;
 
 public class MealRequestDB extends DBPersistence implements MealRequestPersistence{
     private String sql;
-    private Map<Integer, MealRequest> mealsRequestMap;
-    private Map<Integer, MealRequest> publicMealsRequestMap;
-    private Map<Integer, MealRequest> privateMealsRequestMap;
+    private static Map<String, MealRequest> mealsRequestMap;
+
 
     private static final String PRIVATE = "PRIVATE";
     private static final String PUBLIC = "PUBLIC";
 
 
-    private static final String SUBSCRIPTION_NOTIFICATION = "SubscriptionNotification";
+    private static final String MEAL_REQUEST_SUBSCRIPTION_NOTIFICATION = "MealRequestSubscriptionNotification";
 
 
     public MealRequestDB() throws Exception {
         super();
-        mealsRequestMap = new HashMap<>();
-        publicMealsRequestMap = new HashMap<>();
-        privateMealsRequestMap = new HashMap<>();
-        fillMealRequestMap();
+        if(mealsRequestMap==null){
+            mealsRequestMap = new HashMap<>();
+            fillMealRequestMap();
+        }
+
     }
 
     public MealRequestDB(String connectionString, String username, String password) throws Exception {
         super(connectionString,username,password);
-        mealsRequestMap = new HashMap<>();
-        publicMealsRequestMap = new HashMap<>();
-        privateMealsRequestMap = new HashMap<>();
-        fillMealRequestMap();
+        if(mealsRequestMap==null){
+            mealsRequestMap = new HashMap<>();
+            fillMealRequestMap();
+        }
+
     }
 
 
@@ -53,7 +55,7 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
     public void registerMealRequest(MealRequest mealRequest) throws SQLException {
         this.sql = "insert into MealRequest(Id, Host, HomeOwner, Type, Date, Time, ExpiryDate, ExpiryTime, Place, Price, MealsNumber, Allergy, MealType, Description, MealState, ConsummationType, PaymentType) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
-        prepStat.setInt(1, mealRequest.hashCode());
+        prepStat.setString(1, mealRequest.getId());
         prepStat.setString(2, mealRequest.getHost().getUsername());
         if(mealRequest.getHomeOwner()!=null){
             prepStat.setString(3, mealRequest.getHomeOwner().getUsername());
@@ -73,24 +75,14 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
         prepStat.setString(16, mealRequest.getConsummationType().toString());
         prepStat.setString(17, mealRequest.getPaymentType().toString());
         prepStat.executeUpdate();
-        saveInMealRequestMaps(mealRequest);
-    }
-
-    private void saveInMealRequestMaps(MealRequest mealRequest){
-        mealsRequestMap.put(mealRequest.hashCode(), mealRequest);
-        if(mealRequest.getType().equals(MealRequestType.PUBLIC)){
-            publicMealsRequestMap.put(mealRequest.hashCode(), mealRequest);
-        }else if (mealRequest.getType().equals(MealRequestType.PRIVATE)){
-            privateMealsRequestMap.put(mealRequest.hashCode(), mealRequest);
-        }
+        mealsRequestMap.put(mealRequest.getId(), mealRequest);
     }
 
 
     @Override
-    public List<MealRequest> getMealsRequestMap() throws Exception {
-        fillMealRequestMap();
+    public List<MealRequest> getMealsRequestMap(){
         List<MealRequest> mealRequestList = new ArrayList<>();
-        for(int key:this.mealsRequestMap.keySet()){
+        for(String key:mealsRequestMap.keySet()){
             mealRequestList.add(mealsRequestMap.get(key));
         }
         return mealRequestList;
@@ -98,21 +90,23 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
 
 
     @Override
-    public List<MealRequest> getPublicMealsRequestMap() throws Exception {
-        fillMealRequestMap();
+    public List<MealRequest> getPublicMealsRequestMap(){
         List<MealRequest> publicMealList = new ArrayList<>();
-        for(int key:this.publicMealsRequestMap.keySet()){
-            publicMealList.add(publicMealsRequestMap.get(key));
+        for(String key:mealsRequestMap.keySet()){
+            if(mealsRequestMap.get(key).getType().equals(MealRequestType.PUBLIC)){
+                publicMealList.add(mealsRequestMap.get(key));
+            }
         }
         return publicMealList;
     }
 
     @Override
-    public List<MealRequest> getPrivateMealsRequestMap() throws Exception {
-        fillMealRequestMap();
+    public List<MealRequest> getPrivateMealsRequestMap(){
         List<MealRequest> privateMealList = new ArrayList<>();
-        for(int key:this.publicMealsRequestMap.keySet()){
-            privateMealList.add(privateMealsRequestMap.get(key));
+        for(String key:mealsRequestMap.keySet()){
+            if(mealsRequestMap.get(key).getType().equals(MealRequestType.PRIVATE)){
+                privateMealList.add(mealsRequestMap.get(key));
+            }
         }
         return privateMealList;
     }
@@ -120,22 +114,13 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
 
     @Override
     public void registerHomeOwnerToMealRequest(User homeOwner, MealRequest mealRequest,  SubscriptionNotification<?,?> notification) throws SQLException {
-       /* SE NON FACCIO L'UPDATE IMMETTENDO L'HOMEOWNER NELLA TABELLA MealRequest RIESCO A MANTENERE UNA DIFFERENZA
-       TRA RICHIESTA PASTO PUBBLICHE (L'HOMEOWNER NON C'E' MA STARà SOLO NELLA TABELLA USER_MEALREQUEST E RICHIESTE
-       DI PASTO PRIVATE DOVE L'HOMEOWNER STARA' IN TUTTE E DUE LE TABELLE!!
-       sql = "update MealRequest set HomeOwner=? where Id='"+mealRequest.hashCode()+"'";
-        PreparedStatement prepStat = getConnection().prepareStatement(sql);
-        prepStat.setString(1, homeOwner.getUsername());
-        prepStat.setString(2, subscription.getNotificationState().toString());
-        prepStat.executeUpdate();
-         registerNotification(notification);
-        */
         sql = "insert into User_MealRequest(UserUsername, MealRequestId, SubscriptionState) values (?,?,?)";
         PreparedStatement prepStat = getConnection().prepareStatement(sql);
         prepStat.setString(1, homeOwner.getUsername());
-        prepStat.setInt(2, mealRequest.hashCode());
+        prepStat.setString(2, mealRequest.getId());
         prepStat.setString(3, notification.getSubscription().getState().toString());
         prepStat.executeUpdate();
+        updateMealRequest(mealRequest);
         registerNotification(notification);
     }
 
@@ -144,34 +129,39 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
         String sql = "Select * from MealRequest";
         setData(sql);
         while (getData().next()) {
-            if(!publicMealsRequestMap.containsKey(getData().getInt("Id")) && !privateMealsRequestMap.containsKey(getData().getInt("Id"))) {
+            if(!mealsRequestMap.containsKey(getData().getString("Id"))){
                 User host = getUsers().get(getData().getString("Host"));
                 User homeOwner = getUsers().get(getData().getString("HomeOwner"));
-                switch (getData().getString("Type")){
-                    case PUBLIC:
-                        MealRequest pubMealRequest = new MealRequest(host, getData().getString("MealType"), ConsumationType.valueOf(getData().getString("ConsummationType")),
-                                PaymentType.valueOf(getData().getString("PaymentType")), getData().getString("Description"), LocalDate.parse(getData().getString("Date")),
-                                LocalTime.parse(getData().getString("Time")), LocalDate.parse(getData().getString("ExpiryDate")), LocalTime.parse(getData().getString("ExpiryTime")),
-                                getData().getString("Price"), getData().getString("Place"), getData().getString("Allergy"), getData().getInt("MealsNumber"));
-                        if(homeOwner!=null)pubMealRequest.setHomeOwner(homeOwner);
-                        saveInMealRequestMaps(pubMealRequest);
-                        updateMealRequest(pubMealRequest);
-                        case PRIVATE:
-                           MealRequest priMealRequest = new MealRequest(host, getData().getString("MealType"), ConsumationType.valueOf(getData().getString("ConsummationType")),
-                                PaymentType.valueOf(getData().getString("PaymentType")), getData().getString("Description"), LocalDate.parse(getData().getString("Date")),
-                                LocalTime.parse(getData().getString("Time")), LocalDate.parse(getData().getString("ExpiryDate")), LocalTime.parse(getData().getString("ExpiryTime")),
-                                getData().getString("Price"), getData().getString("Place"), getData().getString("Allergy"), getData().getInt("MealsNumber"), homeOwner);
-                            saveInMealRequestMaps(priMealRequest);
-                            updateMealRequest(priMealRequest);
+                if(getData().getString("Type").equals(PUBLIC)) {
+                    MealRequest pubMealRequest = new MealRequest(host, getData().getString("MealType"), ConsumationType.valueOf(getData().getString("ConsummationType")),
+                            PaymentType.valueOf(getData().getString("PaymentType")), getData().getString("Description"), LocalDate.parse(getData().getString("Date")),
+                            LocalTime.parse(getData().getString("Time")), LocalDate.parse(getData().getString("ExpiryDate")), LocalTime.parse(getData().getString("ExpiryTime")),
+                            getData().getString("Price"), getData().getString("Place"), getData().getString("Allergy"), getData().getInt("MealsNumber"));
+                    pubMealRequest.setId(getData().getString("Id"));
+                    pubMealRequest.setState(MealStates.valueOf(getData().getString("MealState")));
+                    if (homeOwner != null) pubMealRequest.setHomeOwner(homeOwner);
+                    mealsRequestMap.put(pubMealRequest.getId(), pubMealRequest);
+                    updateMealRequest(pubMealRequest);
+                    System.out.println(pubMealRequest.getType().toString());
+                    System.out.println(getMealsRequestMap().get(0).getType().toString());
+                }else if(getData().getString("Type").equals(PRIVATE)){
+                    MealRequest priMealRequest = new MealRequest(host, getData().getString("MealType"), ConsumationType.valueOf(getData().getString("ConsummationType")),
+                            PaymentType.valueOf(getData().getString("PaymentType")), getData().getString("Description"), LocalDate.parse(getData().getString("Date")),
+                            LocalTime.parse(getData().getString("Time")), LocalDate.parse(getData().getString("ExpiryDate")), LocalTime.parse(getData().getString("ExpiryTime")),
+                            getData().getString("Price"), getData().getString("Place"), getData().getString("Allergy"), getData().getInt("MealsNumber"), homeOwner);
+                    priMealRequest.setId(getData().getString("Id"));
+                    priMealRequest.setState(MealStates.valueOf(getData().getString("MealState")));
+                    mealsRequestMap.put(priMealRequest.getId(),priMealRequest);
+                    updateMealRequest(priMealRequest);
+                }
                 }
             }
         }
-    }
 
 
 
     private void updateMealRequest(MealRequest mealRequest) throws SQLException {
-        sql = "update MealRequest set MealState=? where Id='"+mealRequest.hashCode()+"'";
+        sql = "update MealRequest set MealState=? where Id='"+mealRequest.getId()+"'";
         PreparedStatement prepStat = getConnection().prepareStatement(sql);
         prepStat.setString(1, mealRequest.getState().toString());
         prepStat.executeUpdate();
@@ -181,13 +171,13 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
     private void registerNotification(SubscriptionNotification<?,?> notification) throws SQLException {
         this.sql = "insert into Notification(Id, Date, Time, FromUser, ToUser, Type, FoodId, Message) values (?,?,?,?,?,?,?,?)";
         PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
-        prepStat.setInt(1, notification.hashCode());
+        prepStat.setString(1, notification.getId());
         prepStat.setString(2, notification.getDate().toString());
         prepStat.setString(3, notification.getTime().toString());
         prepStat.setString(4, notification.from().getUsername());
         prepStat.setString(5, notification.to().getUsername());
-        prepStat.setString(6, SUBSCRIPTION_NOTIFICATION);
-        prepStat.setInt(7, notification.getSubscription().getFood().hashCode());
+        prepStat.setString(6, MEAL_REQUEST_SUBSCRIPTION_NOTIFICATION);
+        prepStat.setString(7, notification.getSubscription().getFood().getId());
         prepStat.setString(8, notification.getMsg());
         prepStat.executeUpdate();
     }

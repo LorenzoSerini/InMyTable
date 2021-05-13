@@ -58,12 +58,12 @@ public class SubscriptionManager{
      * @param <M> IMealRequest
      */
     public <T extends IUser, M extends IMealRequest> void acceptPublicRequestNotification(T from, T to, M mealRequest, String msg){
-        if(mealRequest.getState().equals(MealStates.PENDING)){
+        if(mealRequest.getState()==MealStates.PENDING){
             mealRequest.setState(MealStates.FULL);
             MealRequestSubscription<IUser, IMealRequest> mealRequestSubscription = new MealRequestSubscription<>(from, mealRequest);
             mealRequestSubscription.accept();
             SubscriptionNotification<IUser, IMealRequest> notification = new SubscriptionNotification<>(from, to, mealRequestSubscription, msg);//"L'utente " + this.user.getUsername() + " ha accettato la tua richiesta di pasto pubblico che si terrà il " + mealRequest.getDate().toString() + " alle " + mealRequest.getTime().toString());
-            mealRequest.getHost().getMealRequestNotifications().add(notification);
+            to.getMealRequestNotifications().add(notification);
         }
     }
 

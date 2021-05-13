@@ -41,6 +41,8 @@ public interface Food {
 
     String getMealType();
 
+    void setId(String id);
 
+    String getId();
 
 }
