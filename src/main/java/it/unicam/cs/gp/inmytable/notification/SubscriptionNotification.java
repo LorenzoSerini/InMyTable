@@ -6,6 +6,7 @@ import it.unicam.cs.gp.inmytable.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ public class SubscriptionNotification<T extends IUser, F extends Food> implement
         this.from=from;
         this.to=to;
         this.date=LocalDate.now();
-        this.time=LocalTime.now();
+        this.time=truncatesTime(LocalTime.now());
         this.subscription=subscription;
         this.message=message;
         this.id = UUID.randomUUID().toString();
@@ -60,6 +61,11 @@ public class SubscriptionNotification<T extends IUser, F extends Food> implement
 
     @Override
     public String getId(){return this.id;}
+
+    private LocalTime truncatesTime(LocalTime time){
+        String tTime = time.toString().substring(0,8);
+        return LocalTime.parse(tTime);
+    }
 
     public ISubscription<T, F> getSubscription() {
         return subscription;

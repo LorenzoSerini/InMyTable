@@ -9,7 +9,6 @@ public class InMyTable {
 		View view = new SpringView();
 		view.start();
 
-
 	}
 	}
 

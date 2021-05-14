@@ -17,7 +17,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//TODO: QUANDO UNA RICHIESTA DI PASTO SUPERA LA DATA DI SCADENZA NON VIENE AGGIORNATO SUBITO NEL DB, DA MODIFICARE LA REQUESTPERSISTENCE!!
+//TODO: QUANDO UNA REQUEST SUPERA LA DATA DI SCADENZA NON VIENE IMMEDIANTAMENTE AGGIORNATA!
+/*
+ANDREBBE MESSA UNA CLASSE UPDATE SCADENZA CHE VIENE RICHIAMATA DAI METODI GET MAP
+ CHE ITERA SU TUTTA LA MAPPA E SE TROVA UNA REQUEST SCADUTA
+LA AGGIORNA NEL DB
+ */
 
 public class MealRequestDB extends DBPersistence implements MealRequestPersistence{
     private String sql;
@@ -114,12 +119,11 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
 
     @Override
     public void registerHomeOwnerToMealRequest(User homeOwner, MealRequest mealRequest,  SubscriptionNotification<?,?> notification) throws SQLException {
-        sql = "insert into User_MealRequest(UserUsername, MealRequestId, SubscriptionState) values (?,?,?)";
+        sql = "update MealRequest set HomeOwner=? where Id='"+mealRequest.getId()+"'";
         PreparedStatement prepStat = getConnection().prepareStatement(sql);
-        prepStat.setString(1, homeOwner.getUsername());
-        prepStat.setString(2, mealRequest.getId());
-        prepStat.setString(3, notification.getSubscription().getState().toString());
+        prepStat.setString(1, mealRequest.getHomeOwner().getUsername());
         prepStat.executeUpdate();
+        registerMealRequestSubscription(homeOwner, mealRequest, notification);
         updateMealRequest(mealRequest);
         registerNotification(notification);
     }
@@ -142,8 +146,6 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
                     if (homeOwner != null) pubMealRequest.setHomeOwner(homeOwner);
                     mealsRequestMap.put(pubMealRequest.getId(), pubMealRequest);
                     updateMealRequest(pubMealRequest);
-                    System.out.println(pubMealRequest.getType().toString());
-                    System.out.println(getMealsRequestMap().get(0).getType().toString());
                 }else if(getData().getString("Type").equals(PRIVATE)){
                     MealRequest priMealRequest = new MealRequest(host, getData().getString("MealType"), ConsumationType.valueOf(getData().getString("ConsummationType")),
                             PaymentType.valueOf(getData().getString("PaymentType")), getData().getString("Description"), LocalDate.parse(getData().getString("Date")),
@@ -159,6 +161,15 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
         }
 
 
+    private void registerMealRequestSubscription(User homeOwner, MealRequest mealRequest,  SubscriptionNotification<?,?> notification) throws SQLException {
+        sql = "insert into User_MealRequest(UserUsername, MealRequestId, SubscriptionState) values (?,?,?)";
+        PreparedStatement prepStat = getConnection().prepareStatement(sql);
+        prepStat.setString(1, homeOwner.getUsername());
+        prepStat.setString(2, mealRequest.getId());
+        prepStat.setString(3, notification.getSubscription().getState().toString());
+        prepStat.executeUpdate();
+
+    }
 
     private void updateMealRequest(MealRequest mealRequest) throws SQLException {
         sql = "update MealRequest set MealState=? where Id='"+mealRequest.getId()+"'";

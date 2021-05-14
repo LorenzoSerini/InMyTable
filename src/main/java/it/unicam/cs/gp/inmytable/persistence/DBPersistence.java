@@ -14,14 +14,18 @@ public abstract class DBPersistence extends DBConnection implements Persistence{
 
     public DBPersistence() throws Exception {
         super();
-        usersMap = new HashMap<>();
-        fillUsersMap();
+        if(usersMap==null) {
+            usersMap = new HashMap<>();
+            fillUsersMap();
+        }
     }
 
     public DBPersistence(String connectionString, String username, String password) throws Exception {
         super(connectionString,username,password);
-        usersMap = new HashMap<>();
-        fillUsersMap();
+        if(usersMap==null) {
+            usersMap = new HashMap<>();
+            fillUsersMap();
+        }
     }
 
     @Override

@@ -19,7 +19,7 @@ public class SimpleNotification<T extends IUser> implements INotification<T>{
         this.from=from;
         this.to=to;
         this.date=LocalDate.now();
-        this.time=LocalTime.now();
+        this.time=truncatesTime(LocalTime.now());
         this.message=message;
         this.id = UUID.randomUUID().toString();
     }
@@ -55,5 +55,10 @@ public class SimpleNotification<T extends IUser> implements INotification<T>{
 
     @Override
     public String getId(){return this.id;}
+
+    private LocalTime truncatesTime(LocalTime time){
+        String tTime = time.toString().substring(0,8);
+        return LocalTime.parse(tTime);
+    }
 
 }

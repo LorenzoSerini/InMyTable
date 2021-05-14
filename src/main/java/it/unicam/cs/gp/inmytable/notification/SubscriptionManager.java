@@ -2,7 +2,6 @@ package it.unicam.cs.gp.inmytable.notification;
 
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequestType;
-import it.unicam.cs.gp.inmytable.allmeals.meals.Food;
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
 import it.unicam.cs.gp.inmytable.user.IUser;
@@ -39,13 +38,21 @@ public class SubscriptionManager{
      * @param <T> IUser
      */
     public <T extends IUser> void acceptMealNotification(T from, T to, ISubscription<IUser,IMeal> subscription, String msg){
-        if(subscription.getFood().isFreeSubscription() && subscription.getFood().getPlacesAvailable()!=0){
+        if(!subscription.getFood().isFreeSubscription() && subscription.getFood().getPlacesAvailable()!=0){
             subscription.accept();
             SubscriptionNotification<IUser, IMeal> notification = new SubscriptionNotification<>(from, to, subscription, msg);
             to.getMealNotifications().add(notification);
         }
     }
 
+
+    public <T extends IUser> void refuseMealNotification(T from, T to, ISubscription<IUser,IMeal> subscription, String msg){
+        if(!subscription.getFood().isFreeSubscription() && subscription.getFood().getPlacesAvailable()!=0){
+            subscription.refuse();
+            SubscriptionNotification<IUser, IMeal> notification = new SubscriptionNotification<>(from, to, subscription, msg);
+            to.getMealNotifications().add(notification);
+        }
+    }
 
     /**
      * is used to accept a public meal request and create a new notification that notifies
@@ -66,6 +73,8 @@ public class SubscriptionManager{
             to.getMealRequestNotifications().add(notification);
         }
     }
+
+
 
     /**
      * is used to send a private meal request and create a new notification with inside a subscription

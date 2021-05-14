@@ -60,4 +60,10 @@ public class MealsController {
     }
 
 
+    public void refuseMealSubscription(ISubscription<IUser,IMeal> subscription){
+        subscriptionManager.refuseMealNotification(this.logUser, subscription.getUser(), subscription, "L'utente " + this.logUser.getUsername() + " ha rifiutato la tua richiesta di iscrizione per il pasto che si terrà il "
+                + subscription.getFood().getDate().toString() + " alle " + subscription.getFood().getTime().toString());
+    }
+
+
 }
