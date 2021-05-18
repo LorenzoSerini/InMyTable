@@ -1,9 +1,9 @@
 package it.unicam.cs.gp.inmytable.persistence;
 
-import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
+import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.notification.INotification;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
 import it.unicam.cs.gp.inmytable.user.User;

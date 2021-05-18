@@ -1,5 +1,8 @@
 package it.unicam.cs.gp.inmytable.allmeals.meals;
 
+import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.MealStates;
+import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 
@@ -283,7 +286,7 @@ public class Meal implements IMeal{
 	}
 
 
-	@Override
+	/*@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (!(o instanceof Meal)) return false;
@@ -294,5 +297,67 @@ public class Meal implements IMeal{
 	@Override
 	public int hashCode() {
 		return Objects.hash(maxNumberUsers, payment, freeSubscription, mealType, place, description, price, ingredients);
+	}*/
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((consumationType == null) ? 0 : consumationType.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + (freeSubscription ? 1231 : 1237);
+		result = prime * result + ((ingredients == null) ? 0 : ingredients.hashCode());
+		result = prime * result + maxNumberUsers;
+		result = prime * result + ((mealType == null) ? 0 : mealType.hashCode());
+		result = prime * result + ((payment == null) ? 0 : payment.hashCode());
+		result = prime * result + ((place == null) ? 0 : place.hashCode());
+		result = prime * result + ((price == null) ? 0 : price.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Meal other = (Meal) obj;
+		if (consumationType != other.consumationType)
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (freeSubscription != other.freeSubscription)
+			return false;
+		if (ingredients == null) {
+			if (other.ingredients != null)
+				return false;
+		} else if (!ingredients.equals(other.ingredients))
+			return false;
+		if (maxNumberUsers != other.maxNumberUsers)
+			return false;
+		if (mealType == null) {
+			if (other.mealType != null)
+				return false;
+		} else if (!mealType.equals(other.mealType))
+			return false;
+		if (payment != other.payment)
+			return false;
+		if (place == null) {
+			if (other.place != null)
+				return false;
+		} else if (!place.equals(other.place))
+			return false;
+		if (price == null) {
+			if (other.price != null)
+				return false;
+		} else if (!price.equals(other.price))
+			return false;
+		return true;
+	}
+
 }

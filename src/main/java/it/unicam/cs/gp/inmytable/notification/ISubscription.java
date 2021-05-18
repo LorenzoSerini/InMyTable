@@ -1,6 +1,6 @@
 package it.unicam.cs.gp.inmytable.notification;
 
-import it.unicam.cs.gp.inmytable.allmeals.meals.Food;
+import it.unicam.cs.gp.inmytable.allmeals.Food;
 import it.unicam.cs.gp.inmytable.user.IUser;
 
 public interface ISubscription<T extends IUser, F extends Food>{

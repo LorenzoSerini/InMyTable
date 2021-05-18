@@ -1,10 +1,11 @@
 package it.unicam.cs.gp.inmytable.allmeals;
 
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
-import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
+import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.homewalls.HomeWall;
+import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 
 import java.time.LocalDate;
@@ -38,7 +39,7 @@ public class MealManager {
 	 * @param payment	how payment is accepted
 	 * @throws Exception if one of the parameters is null
 	 */
-	public Meal createMeal(User homeOwner, int maxNumberUsers, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String mealType, boolean freeSubscription, String place,
+	public Meal createMeal(IUser homeOwner, int maxNumberUsers, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String mealType, boolean freeSubscription, String place,
 						   ConsumationType consumationType, String description, String ingredients, PaymentType payment, String price) throws Exception{
 		Meal meal = new Meal(homeOwner, maxNumberUsers, date, time, expiryDate,expiryTime, mealType, freeSubscription, place,
 				consumationType, description, ingredients, payment, price);
@@ -55,7 +56,7 @@ public class MealManager {
 	 * @return MealRequest
 	 * @throws Exception if one of the parameters is null
 	 */
-	public MealRequest createPublicMealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {
+	public MealRequest createPublicMealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {
 			MealRequest mealRequest = new MealRequest(host,mealType, consumationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber);
 			HomeWall.getInstance().getMealRequestCatalog().add(mealRequest);
 			return mealRequest;
@@ -71,7 +72,7 @@ public class MealManager {
 	 * @return MealRequest
 	 * @throws Exception if one of the parameters is null
 	 */
-	public MealRequest createPrivateMealRequest(User host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, User homeOwner) throws Exception {
+	public MealRequest createPrivateMealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, IUser homeOwner) throws Exception {
 		return new MealRequest(host, mealType, consumationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber, homeOwner);
 	}
 
