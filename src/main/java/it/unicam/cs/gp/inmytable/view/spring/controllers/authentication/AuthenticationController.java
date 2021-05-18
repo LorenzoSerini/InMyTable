@@ -1,5 +1,6 @@
-package it.unicam.cs.gp.inmytable.view.spring.controllers;
+package it.unicam.cs.gp.inmytable.view.spring.controllers.authentication;
 
+import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,5 +1,6 @@
 package it.unicam.cs.gp.inmytable.persistence;
 
+import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Food;
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.notification.INotification;
@@ -13,5 +14,9 @@ public interface NotificationPersistence {
 
     List<SubscriptionNotification<IUser, Food>> getSubscriptionNotifications();
 
-    List<SimpleNotification<IUser>> getSimpleNotifications();
+    List<SubscriptionNotification<IUser, IMealRequest>> getMealRequestNotifications(IUser user);
+
+    List<SubscriptionNotification<IUser, IMeal>> getMealNotifications(IUser user);
+
+    List<SimpleNotification<IUser>> getSimpleNotifications(IUser user);
 }

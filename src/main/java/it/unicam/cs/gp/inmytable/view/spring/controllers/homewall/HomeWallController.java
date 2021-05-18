@@ -1,6 +1,7 @@
-package it.unicam.cs.gp.inmytable.view.spring.controllers;
+package it.unicam.cs.gp.inmytable.view.spring.controllers.homewall;
 
 import it.unicam.cs.gp.inmytable.homewalls.HomeWall;
+import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.HomeWallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

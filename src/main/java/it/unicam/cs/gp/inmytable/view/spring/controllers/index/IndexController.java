@@ -1,4 +1,4 @@
-package it.unicam.cs.gp.inmytable.view.spring.controllers;
+package it.unicam.cs.gp.inmytable.view.spring.controllers.index;
 
 
 import org.springframework.stereotype.Controller;

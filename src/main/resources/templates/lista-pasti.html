@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<html lang="it">
 
 <head>
     <meta charset="utf-8">
@@ -71,31 +71,111 @@
 </head>
 
 <body>
-    <div style="height: 120px;"></div>
-    <section class="testimonials-clean" style="background: #fe9e02;border-radius: 28px;height: 279px;">
-        <div class="container">
-            <div class="intro"></div>
-            <div class="row people">
-                <div class="col-md-6 col-lg-4 item" style="width: 1330px;">
-                    <div class="box" style="border-radius: 30px;">
-                        <p class="description" th:text="${message}"></p>
-                    </div>
-                    <div class="author">
-                        <h5 class="name" style="border-color: rgb(255,255,255);border-top-color: rgb(49,;border-right-color: 52,;border-bottom-color: 55);border-left-color: 52,;color: rgb(255,255,255);font-size: 34px;" th:text="${'Utente: '+notification.from.username}"></h5>
-                        <p class="title" style="color: rgb(255,255,255);font-size: 18px;" th:text="${'Di '+notification.from.city}"></p>
+    <div style="height: 109px;"></div>
+    <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 20px;color: #fe9e02;font-size: 37px;">I tuoi pasti cucinati</h2>
+    <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 40px;color: #73bc43;font-size: 28px;margin-top: 40px;">Lista completa</h2>
+    <div></div>
+    <div class="container">
+        <div class="row">
+            <div class="col" style="margin-bottom: 20px;">
+                <div class="card shadow">
+                    <div class="card-header py-2"></div>
+                    <div class="card-body">
+                        <div class="table-responsive table mb-0 pt-3 pe-2">
+                            <table class="table table-striped table-sm my-0 mydatatable">
+                                <thead>
+                                    <tr>
+                                        <th style="font-family: Alata, sans-serif;width: 200px;text-align: center;">Nome pasto</th>
+                                        <th style="font-family: Alata, sans-serif;width: 118px;text-align: center;">Data pasto</th>
+                                        <th style="font-family: Alata, sans-serif;width: 140px;text-align: center;">Pasti cucinati</th>
+                                        <th style="font-family: Alata, sans-serif;width: 100px;text-align: center;">Partecipanti</th>
+                                        <th style="font-family: Alata, sans-serif;width: 171px;text-align: center;">Media recensioni</th>
+                                        <th style="font-family: Alata, sans-serif;text-align: right;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">Pizza fatta in casa</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">21/02/2021</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">4</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;width: 130px;">4</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">4,0/5&nbsp; &nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star fa-star-o"></i></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: right;width: 130px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="dettagli-pasto" style="background: #fe9e02;padding-top: 0px;width: 168px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 19px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;">Vedi dettagli</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">Lasagna</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">24/02/2021<br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">3</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">3</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">3,5/5&nbsp; &nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star fa-star-half-o"></i><i class="fa fa-star fa-star-o"></i><br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: right;width: 130px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="dettagli-pasto" style="background: #fe9e02;padding-top: 0px;width: 168px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 19px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;">Vedi dettagli<br></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">Pasta al pesto</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">27/02/2021<br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">6</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">6</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">4,0/5&nbsp; &nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star fa-star-o"></i><br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: right;width: 130px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="dettagli-pasto" style="background: #fe9e02;padding-top: 0px;width: 168px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 19px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;">Vedi dettagli<br></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">Pasta al pesto</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">27/02/2021<br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">6</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">6</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">4,0/5&nbsp; &nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star fa-star-o"></i><br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: right;width: 130px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="dettagli-pasto" style="background: #fe9e02;padding-top: 0px;width: 168px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 19px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;">Vedi dettagli<br></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">Pasta al pesto</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">27/02/2021<br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">6</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">6</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">4,0/5&nbsp; &nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star fa-star-o"></i><br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: right;width: 130px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="dettagli-pasto" style="background: #fe9e02;padding-top: 0px;width: 168px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 19px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;">Vedi dettagli<br></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">Pasta al pesto</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">27/02/2021<br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">6</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">6</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">4,0/5&nbsp; &nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star fa-star-o"></i><br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: right;width: 130px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="dettagli-pasto" style="background: #fe9e02;padding-top: 0px;width: 168px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 19px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;">Vedi dettagli<br></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">Pasta al pesto</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">27/02/2021<br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">6</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">6</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">4,0/5&nbsp; &nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star fa-star-o"></i><br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: right;width: 130px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="dettagli-pasto" style="background: #fe9e02;padding-top: 0px;width: 168px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 19px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;">Vedi dettagli<br></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">Pasta al pesto</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">27/02/2021<br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">6</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">6</td>
+                                        <td style="font-family: Alata, sans-serif;text-align: center;">4,0/5&nbsp; &nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star fa-star-o"></i><br></td>
+                                        <td style="font-family: Alata, sans-serif;text-align: right;width: 130px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="dettagli-pasto" style="background: #fe9e02;padding-top: 0px;width: 168px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 19px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;">Vedi dettagli<br></a></td>
+                                    </tr>
+                                    <tr></tr>
+                                    <tr></tr>
+                                    <tr></tr>
+                                    <tr></tr>
+                                    <tr></tr>
+                                    <tr></tr>
+                                    <tr></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <div class="col-md-12" style="text-align: center;height: 80px;">
-        <th:block th:if="${buttons == true}">
-        <button class="btn btn-primary text-capitalize border rounded-pill" data-bss-hover-animate="pulse" type="submit" style="background: #73bc43;padding-top: 8px;width: 200px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;font-size: 20px;margin-top: 34px;">Accetta</button>
-        <button class="btn btn-primary text-capitalize border rounded-pill" data-bss-hover-animate="pulse" type="submit" style="background: #ee6226;padding-top: 8px;width: 200px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;font-size: 20px;margin-top: 34px;">Rifiuta</button>
-        </th:block>
-
-        <a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="notifiche" style="background: #fe9e02;padding-top: 8px;width: 200px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;font-size: 20px;margin-top: 34px;">Torna indietro</a></div>
-    <div style="height: 120px;"></div>
+    </div>
+    <div style="height: 80px;">
+        <div class="col-md-12 text-center"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="storico" style="background: #fe9e02;padding-top: 8px;width: 230px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 0px;text-align: center;margin-right: 0px;margin-top: 20px;padding-right: 10px;padding-left: 10px;font-size: 20px;">Torna indietro</a></div>
+    </div>
     <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;">
         <footer style="border-color: rgb(240, 249, 255);border-top-color: rgb(240,;border-right-color: 249,;border-bottom-color: 255);border-left-color: 249,;color: var(--bs-white);height: 214.328px;">
             <div class="container">
@@ -147,7 +227,7 @@
                     <div class="dropdown-divider"></div><a class="dropdown-item" href="lascia-recensione" style="font-size: 14px;font-family: Alata, sans-serif;">Lascia una recensione</a><a class="dropdown-item" href="messaggi" style="font-size: 14px;font-family: Alata, sans-serif;">Messaggi</a><a class="dropdown-item" href="notifiche" style="font-size: 14px;font-family: Alata, sans-serif;">Notifiche</a>
                     <div class="dropdown-divider"></div><a class="dropdown-item" href="profilo-utente" style="font-size: 14px;font-family: Alata, sans-serif;">Il mio profilo</a><a class="dropdown-item" href="index" style="font-size: 14px;font-family: Alata, sans-serif;">Esci</a>
                 </div>
-            </div><a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: url(&quot;assets/img/cucina.png&quot;) center / cover, #ffffff;border-radius: 0px;width: 116px;margin-right: 10px;border-color: rgba(0,0,0,0);font-family: Lora, serif;font-size: 10px;height: 26px;margin-top: 22px;" href="cucina"></a>
+            </div><a class="btn btn-primary text-uppercase border rounded-pill" role="button" data-bss-hover-animate="pulse" href="richiedi-un-pasto" style="background: #73bc43;padding: 3px 12px;padding-top: 3px;width: 110px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;height: 28px;margin-top: 20px;font-size: 12px;">Richedi pasto</a><a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: url(&quot;assets/img/cucina.png&quot;) center / cover, #ffffff;border-radius: 0px;width: 116px;margin-right: 10px;border-color: rgba(0,0,0,0);font-family: Lora, serif;font-size: 10px;height: 26px;margin-top: 22px;" href="cucina"></a>
         </div>
     </nav>
     <script src="assets/js/jquery.min.js"></script>

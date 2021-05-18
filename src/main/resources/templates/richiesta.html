@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<html lang="it">
 
 <head>
     <meta charset="utf-8">
@@ -71,32 +71,100 @@
 </head>
 
 <body>
-    <div style="height: 120px;"></div>
-    <section class="testimonials-clean" style="background: #fe9e02;border-radius: 28px;height: 279px;">
-        <div class="container">
-            <div class="intro"></div>
-            <div class="row people">
-                <div class="col-md-6 col-lg-4 item" style="width: 1330px;">
-                    <div class="box" style="border-radius: 30px;">
-                        <p class="description" th:text="${message}"></p>
+    <nav class="navbar navbar-light navbar-expand-md fixed-top d-block navigation-clean-search" style="background: var(--bs-white);height: 130;font-family: Alata, sans-serif;">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse text-start" id="navcol-1" style="width: 35.828px;height: 45px;">
+                <ul class="navbar-nav">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                </ul><a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: url(&quot;assets/img/inmytable-logo.png&quot;) center / cover space, #ffffff;font-size: 24px;width: 150px;height: 41px;border-radius: -1px;border: 0px none rgba(0,0,0,0);margin-top: 20px;" href="bacheca"></a>
+            </div>
+            <div class="dropdown" style="margin-top: -1px;"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="margin-right: 6px;margin-left: 0px;font-size: 16px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal;">IL MIO ACCOUNT</a>
+                <div class="dropdown-menu"><a class="dropdown-item" href="bacheca" style="font-size: 14px;font-family: Alata, sans-serif;">Bacheca</a><a class="dropdown-item" href="prenotazioni" style="font-size: 14px;font-family: Alata, sans-serif;">Le mie prenotazioni</a><a class="dropdown-item" href="annunci" style="font-size: 14px;font-family: Alata, sans-serif;">I miei annunci</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="bacheca" style="font-size: 14px;font-family: Alata, sans-serif;">Pasti disponibili</a><a class="dropdown-item" href="richieste-pasti" style="font-size: 14px;font-family: Alata, sans-serif;">Richieste pasti</a><a class="dropdown-item" href="richiedi-un-pasto" style="font-size: 14px;font-family: Alata, sans-serif;">Voglio mangiare</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="storico" style="font-size: 14px;font-family: Alata, sans-serif;">Storico</a><a class="dropdown-item" href="le-mie-recensioni" style="font-size: 14px;font-family: Alata, sans-serif;">Recensioni</a><a class="dropdown-item" href="ricerca-utenti" style="font-size: 14px;font-family: Alata, sans-serif;">Cerca Utenti</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="lascia-recensione" style="font-size: 14px;font-family: Alata, sans-serif;">Lascia una recensione</a><a class="dropdown-item" href="messaggi" style="font-size: 14px;font-family: Alata, sans-serif;">Messaggi</a><a class="dropdown-item" href="notifiche" style="font-size: 14px;font-family: Alata, sans-serif;">Notifiche</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="profilo-utente" style="font-size: 14px;font-family: Alata, sans-serif;">Il mio profilo</a><a class="dropdown-item" href="index" style="font-size: 14px;font-family: Alata, sans-serif;">Esci</a>
+                </div>
+            </div><a class="btn btn-primary text-uppercase border rounded-pill" role="button" data-bss-hover-animate="pulse" href="richiedi-un-pasto" style="background: #73bc43;padding: 3px 12px;padding-top: 3px;width: 110px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;height: 28px;margin-top: 20px;font-size: 12px;">Richedi pasto</a><a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: url(&quot;assets/img/cucina.png&quot;) center / cover, #ffffff;border-radius: 0px;width: 116px;margin-right: 10px;border-color: rgba(0,0,0,0);font-family: Lora, serif;font-size: 10px;height: 26px;margin-top: 22px;" href="cucina"></a>
+        </div>
+    </nav>
+    <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 0px;color: #fe9e02;margin-top: 77px;background: rgba(0,0,0,0);">Richiesta pasto del utente<br></h2>
+    <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 0px;color: #73bc43;margin-top: 20px;background: rgba(0,0,0,0);font-size: 24px;">Franco<br></h2>
+    <div class="container" style="border-radius: 0px;">
+        <div class="row product-list dev" style="margin-top: 63px;margin-bottom: 50px;">
+            <div class="col-sm-6 col-md-4 product-item animation-element slide-top-left" style="width: 1140px;padding-bottom: 0px;">
+                <div class="product-container" style="border-radius: 15px;">
+                    <div class="row">
+                        <div class="col-6 offset-0">
+                            <h2 class="display-5" style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Titolo pasto richiesto</h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;">Pasta al pesto<br></a>
+                            <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Utente</h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;">Franco<br></a>
+                            <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Numero porzioni</h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;">3</a>
+                        </div>
+                        <div class="col-6">
+                            <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 190px;height: 26px;text-align: left;">Data e orario</h2><a class="text-start small-text" href="#" style="font-size: 14px;font-family: Alata, sans-serif;margin-top: 15px;">Data e orario richiesta:<br>10/04/2021 15:00</a><a class="text-start small-text" href="#" style="font-size: 14px;font-family: Alata, sans-serif;margin-top: 15px;">Data e orario ritiro:&nbsp;<br>10/04/2021 18:00<br></a>
+                            <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 190px;height: 26px;text-align: left;">Tipo consumazione</h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;">Take Away</a>
+                        </div>
                     </div>
-                    <div class="author">
-                        <h5 class="name" style="border-color: rgb(255,255,255);border-top-color: rgb(49,;border-right-color: 52,;border-bottom-color: 55);border-left-color: 52,;color: rgb(255,255,255);font-size: 34px;" th:text="${'Utente: '+notification.from.username}"></h5>
-                        <p class="title" style="color: rgb(255,255,255);font-size: 18px;" th:text="${'Di '+notification.from.city}"></p>
-                    </div>
+                    <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Messaggio</h2><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 5px;font-family: Alata, sans-serif;">Ciao vorrei sapere se mi puoi preparare 3 porzioni di pasta al pesto magari...<br></a>
+                    <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Allergie</h2><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 5px;font-family: Alata, sans-serif;">Non ho nessun tipo di allergia.<br></a>
+                    <div class="product-rating"></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Tipo cucina</h2><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 9px;font-family: Alata, sans-serif;">Tradizonale</a>
+                                </div>
+                                <div class="col">
+                                    <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Pagamento scelto</h2><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 9px;font-family: Alata, sans-serif;">Pasto in vendita</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Luogo consegna</h2><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 9px;font-family: Alata, sans-serif;">Roma zona centro</a>
+                                </div>
+                                <div class="col">
+                                    <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Prezzo</h2><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 9px;font-family: Alata, sans-serif;">4,00 €</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class="container">
+	<div class="row" style="margin-top:5px;">
+		<div class="col-md-6" style="padding-top: 20px; border-radius: 10px; border-radius: 0.2;">
+    	<div class="well well-sm">
+            <div class="text-right">
+                <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box" style="background-color: #73bc43; border-color: transparent; border-radius: 20px;">Lascia una recensione</a>
+            </div>
+        
+            <div class="row" id="post-review-box" style="display:none;">
+                <div class="col-md-12">
+                    <form accept-charset="UTF-8" action="" method="post">
+                        <input id="ratings-hidden" name="rating" type="hidden"> 
+                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Scrivi la tua recensione qui..." rows="5"></textarea>
+                        <div style="color:gray; padding:8px">Dai un voto al tuo pasto</div>
+                        <input type="number" class="form-control" min="1" max="5" required style="width: 65px;font-size: 15px; padding:10px" />
+                        <div class="text-right">
+                            <a class="btn btn-success btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;border-radius: 20px;
+                            background-color: #ee6226; border-color: transparent; margin-left:100px; margin-top: -48px;">
+                            <span class="glyphicon glyphicon-remove"></span>Cancella</a>
+                            <button class="btn btn-success btn-md" type="submit" style="border-color: transparent;background-color: #73bc43;border-radius: 20px; margin-top: -48px;">Salva</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+		</div>
+	</div>
+</div>
                 </div>
             </div>
         </div>
-    </section>
-    <div class="col-md-12" style="text-align: center;height: 80px;">
-        <th:block th:if="${buttons == true}">
-        <button class="btn btn-primary text-capitalize border rounded-pill" data-bss-hover-animate="pulse" type="submit" style="background: #73bc43;padding-top: 8px;width: 200px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;font-size: 20px;margin-top: 34px;">Accetta</button>
-        <button class="btn btn-primary text-capitalize border rounded-pill" data-bss-hover-animate="pulse" type="submit" style="background: #ee6226;padding-top: 8px;width: 200px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;font-size: 20px;margin-top: 34px;">Rifiuta</button>
-        </th:block>
-
-        <a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="notifiche" style="background: #fe9e02;padding-top: 8px;width: 200px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;font-size: 20px;margin-top: 34px;">Torna indietro</a></div>
-    <div style="height: 120px;"></div>
-    <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;">
+    </div>
+    <div class="col-md-12 text-center" style="margin-top: -30px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="storico" style="background: #fe9e02;padding-top: 8px;width: 210px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 0px;text-align: center;margin-right: 0px;margin-top: 20px;padding-right: 10px;padding-left: 10px;font-size: 20px;">Torna indietro</a></div>
+    <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 20px;padding-bottom: 40px;margin-top: 0px;">
         <footer style="border-color: rgb(240, 249, 255);border-top-color: rgb(240,;border-right-color: 249,;border-bottom-color: 255);border-left-color: 249,;color: var(--bs-white);height: 214.328px;">
             <div class="container">
                 <div class="row row-cols-2 justify-content-center align-items-center">
@@ -131,25 +199,6 @@
             <h1 style="border-color: rgb(0,0,0);color: rgb(0,0,0);text-align: center;font-size: 17px;font-family: Alata, sans-serif;margin-top: 5px;margin-bottom: 20px;padding-top: 0px;padding-bottom: 0px;"><br>© 2018 - 2020 Copyright INMYTABLE - Tutti i diritti riservati<br><br></h1>
         </footer>
     </div>
-    <nav class="navbar navbar-light navbar-expand-md fixed-top d-block navigation-clean-search" style="background: var(--bs-white);height: 130;font-family: Alata, sans-serif;">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse text-start" id="navcol-1" style="width: 35.828px;height: 45px;">
-                <ul class="navbar-nav">
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                </ul><a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: url(&quot;assets/img/inmytable-logo.png&quot;) center / cover space, #ffffff;font-size: 24px;width: 150px;height: 41px;border-radius: -1px;border: 0px none rgba(0,0,0,0);margin-top: 20px;" href="bacheca"></a>
-            </div>
-            <div class="dropdown" style="margin-top: -1px;"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="margin-right: 6px;margin-left: 0px;font-size: 16px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal;">IL MIO ACCOUNT</a>
-                <div class="dropdown-menu"><a class="dropdown-item" href="bacheca" style="font-size: 14px;font-family: Alata, sans-serif;">Bacheca</a><a class="dropdown-item" href="prenotazioni" style="font-size: 14px;font-family: Alata, sans-serif;">Le mie prenotazioni</a><a class="dropdown-item" href="annunci" style="font-size: 14px;font-family: Alata, sans-serif;">I miei annunci</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="bacheca" style="font-size: 14px;font-family: Alata, sans-serif;">Pasti disponibili</a><a class="dropdown-item" href="richieste-pasti" style="font-size: 14px;font-family: Alata, sans-serif;">Richieste pasti</a><a class="dropdown-item" href="richiedi-un-pasto" style="font-size: 14px;font-family: Alata, sans-serif;">Voglio mangiare</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="storico" style="font-size: 14px;font-family: Alata, sans-serif;">Storico</a><a class="dropdown-item" href="le-mie-recensioni" style="font-size: 14px;font-family: Alata, sans-serif;">Recensioni</a><a class="dropdown-item" href="ricerca-utenti" style="font-size: 14px;font-family: Alata, sans-serif;">Cerca Utenti</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="lascia-recensione" style="font-size: 14px;font-family: Alata, sans-serif;">Lascia una recensione</a><a class="dropdown-item" href="messaggi" style="font-size: 14px;font-family: Alata, sans-serif;">Messaggi</a><a class="dropdown-item" href="notifiche" style="font-size: 14px;font-family: Alata, sans-serif;">Notifiche</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="profilo-utente" style="font-size: 14px;font-family: Alata, sans-serif;">Il mio profilo</a><a class="dropdown-item" href="index" style="font-size: 14px;font-family: Alata, sans-serif;">Esci</a>
-                </div>
-            </div><a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: url(&quot;assets/img/cucina.png&quot;) center / cover, #ffffff;border-radius: 0px;width: 116px;margin-right: 10px;border-color: rgba(0,0,0,0);font-family: Lora, serif;font-size: 10px;height: 26px;margin-top: 22px;" href="cucina"></a>
-        </div>
-    </nav>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>

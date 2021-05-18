@@ -26,20 +26,20 @@ public interface MealRequestPersistence extends Persistence {
 
 
 
-    List<MealRequest> getMealsRequestMap() throws Exception;
+    List<MealRequest> getMealsRequestList() throws Exception;
 
     /**
      * Get public meals request
      * @return public meals request
      */
-    List<MealRequest> getPublicMealsRequestMap() throws Exception;
+    List<MealRequest> getPublicMealsRequestList() throws Exception;
 
 
     /**
      * Get private meals request
      * @return private meals request
      */
-    List<MealRequest> getPrivateMealsRequestMap() throws Exception;
+    List<MealRequest> getPrivateMealsRequestList() throws Exception;
 
 
 

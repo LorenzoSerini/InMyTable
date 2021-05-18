@@ -50,19 +50,19 @@ public class NotificationService {
 
     public SubscriptionNotification<IUser, IMeal> getMealSubscriptionNotifications(String id){
         for(SubscriptionNotification<IUser,IMeal> m:this.me.getMealNotifications()){
-            if(m.getSubscription().getFood().getId().equals(id)) return m;
+            if(m.getId().equals(id)) return m;
         }
         return null;
     }
 
     public SubscriptionNotification<IUser, IMealRequest> getMealRequestSubscriptionNotifications(String id){
         for(SubscriptionNotification<IUser,IMealRequest> m:this.me.getMealRequestNotifications()){
-            if(m.getSubscription().getFood().getId().equals(id)) return m;
+            if(m.getId().equals(id)) return m;
         }
         return null;
     }
 
-    public SimpleNotification<IUser> getSimpleNotifications(String id){
+    public SimpleNotification<IUser> getSimpleNotification(String id){
         for(SimpleNotification<IUser> m:this.me.getSimpleNotifications()){
             if(m.getId().equals(id)) return m;
         }
@@ -71,7 +71,16 @@ public class NotificationService {
 
     public boolean isMealNotificationsWithPendingSubscription(String id){
         for(SubscriptionNotification<IUser,IMeal> m:this.me.getMealNotifications()){
-            if(m.getSubscription().getFood().getId().equals(id) && !m.getSubscription().getState().equals(SubscriptionStates.PENDING)){
+            if(m.getId().equals(id) && m.getSubscription().getState().equals(SubscriptionStates.PENDING)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isMealNotificationsWithNoPendingSubscription(String id){
+        for(SubscriptionNotification<IUser,IMeal> m:this.me.getMealNotifications()){
+            if(m.getId().equals(id) && !m.getSubscription().getState().equals(SubscriptionStates.PENDING)){
                 return true;
             }
         }
@@ -80,7 +89,16 @@ public class NotificationService {
 
     public boolean isMealRequestNotificationsWithPendingSubscription(String id){
         for(SubscriptionNotification<IUser,IMealRequest> m:this.me.getMealRequestNotifications()){
-            if(m.getSubscription().getFood().getId().equals(id) && !m.getSubscription().getState().equals(SubscriptionStates.PENDING)){
+            if(m.getId().equals(id) && m.getSubscription().getState().equals(SubscriptionStates.PENDING)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isMealRequestNotificationsWithNoPendingSubscription(String id){
+        for(SubscriptionNotification<IUser,IMealRequest> m:this.me.getMealRequestNotifications()){
+            if(m.getId().equals(id) && !m.getSubscription().getState().equals(SubscriptionStates.PENDING)){
                 return true;
             }
         }

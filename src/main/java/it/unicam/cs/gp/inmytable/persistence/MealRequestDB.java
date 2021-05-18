@@ -26,31 +26,29 @@ LA AGGIORNA NEL DB
 
 public class MealRequestDB extends DBPersistence implements MealRequestPersistence{
     private String sql;
-    private static Map<String, MealRequest> mealsRequestMap;
+   // private static Map<String, MealRequest> mealsRequestMap;
 
+   // private static final String MEAL_REQUEST_SUBSCRIPTION_NOTIFICATION = "MealRequestSubscriptionNotification";
+   // private static final String PRIVATE = "PRIVATE";
+   // private static final String PUBLIC = "PUBLIC";
 
-    private static final String PRIVATE = "PRIVATE";
-    private static final String PUBLIC = "PUBLIC";
-
-
-    private static final String MEAL_REQUEST_SUBSCRIPTION_NOTIFICATION = "MealRequestSubscriptionNotification";
 
 
     public MealRequestDB() throws Exception {
         super();
-        if(mealsRequestMap==null){
+       /* if(mealsRequestMap==null){
             mealsRequestMap = new HashMap<>();
             fillMealRequestMap();
-        }
+        }*/
 
     }
 
     public MealRequestDB(String connectionString, String username, String password) throws Exception {
         super(connectionString,username,password);
-        if(mealsRequestMap==null){
+      /*  if(mealsRequestMap==null){
             mealsRequestMap = new HashMap<>();
             fillMealRequestMap();
-        }
+        }*/
 
     }
 
@@ -80,37 +78,37 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
         prepStat.setString(16, mealRequest.getConsummationType().toString());
         prepStat.setString(17, mealRequest.getPaymentType().toString());
         prepStat.executeUpdate();
-        mealsRequestMap.put(mealRequest.getId(), mealRequest);
+        getMealsRequestMap().put(mealRequest.getId(), mealRequest);
     }
 
 
     @Override
-    public List<MealRequest> getMealsRequestMap(){
+    public List<MealRequest> getMealsRequestList(){
         List<MealRequest> mealRequestList = new ArrayList<>();
-        for(String key:mealsRequestMap.keySet()){
-            mealRequestList.add(mealsRequestMap.get(key));
+        for(String key:getMealsRequestMap().keySet()){
+            mealRequestList.add(getMealsRequestMap().get(key));
         }
         return mealRequestList;
     }
 
 
     @Override
-    public List<MealRequest> getPublicMealsRequestMap(){
+    public List<MealRequest> getPublicMealsRequestList(){
         List<MealRequest> publicMealList = new ArrayList<>();
-        for(String key:mealsRequestMap.keySet()){
-            if(mealsRequestMap.get(key).getType().equals(MealRequestType.PUBLIC)){
-                publicMealList.add(mealsRequestMap.get(key));
+        for(String key:getMealsRequestMap().keySet()){
+            if(getMealsRequestMap().get(key).getType().equals(MealRequestType.PUBLIC)){
+                publicMealList.add(getMealsRequestMap().get(key));
             }
         }
         return publicMealList;
     }
 
     @Override
-    public List<MealRequest> getPrivateMealsRequestMap(){
+    public List<MealRequest> getPrivateMealsRequestList(){
         List<MealRequest> privateMealList = new ArrayList<>();
-        for(String key:mealsRequestMap.keySet()){
-            if(mealsRequestMap.get(key).getType().equals(MealRequestType.PRIVATE)){
-                privateMealList.add(mealsRequestMap.get(key));
+        for(String key:getMealsRequestMap().keySet()){
+            if(getMealsRequestMap().get(key).getType().equals(MealRequestType.PRIVATE)){
+                privateMealList.add(getMealsRequestMap().get(key));
             }
         }
         return privateMealList;
@@ -129,7 +127,7 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
     }
 
 
-    private void fillMealRequestMap() throws Exception {
+    /*private void fillMealRequestMap() throws Exception {
         String sql = "Select * from MealRequest";
         setData(sql);
         while (getData().next()) {
@@ -158,7 +156,7 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
                 }
                 }
             }
-        }
+        }*/
 
 
     private void registerMealRequestSubscription(User homeOwner, MealRequest mealRequest,  SubscriptionNotification<?,?> notification) throws SQLException {

@@ -20,35 +20,50 @@ public class SubscriptionNotification<T extends IUser, F extends Food> implement
     private String id;
 
     public SubscriptionNotification(T from, T to, ISubscription<T,F> subscription, String message){
+       // this(from,to,message);
+        this.date=LocalDate.now();
         this.from=from;
         this.to=to;
-        this.date=LocalDate.now();
         this.time=truncatesTime(LocalTime.now());
-        this.subscription=subscription;
         this.message=message;
         this.id = UUID.randomUUID().toString();
+        this.subscription=subscription;
     }
+
+   /* public SubscriptionNotification(T from, T to, String message){
+        this.date=LocalDate.now();
+        this.time=truncatesTime(LocalTime.now());
+        this.message=message;
+        this.id = UUID.randomUUID().toString();
+    }*/
 
     @Override
     public T from(){
         return from;
     }
 
+    public void setFrom(T from){this.from=from;}
+
     @Override
     public T to(){
         return to;
     }
+
+    public void setTo(T to){this.to=to;}
 
     @Override
     public LocalDate getDate(){
         return this.date;
     }
 
+    public void setDate(LocalDate date){this.date=date;}
+
     @Override
     public LocalTime getTime(){
         return this.time;
     }
 
+    public void setTime(LocalTime time){this.time=time;}
 
     @Override
     public String getMsg() {
@@ -66,6 +81,8 @@ public class SubscriptionNotification<T extends IUser, F extends Food> implement
         String tTime = time.toString().substring(0,8);
         return LocalTime.parse(tTime);
     }
+
+    public void setSubscription(ISubscription<T,F> subscription){this.subscription=subscription;}
 
     public ISubscription<T, F> getSubscription() {
         return subscription;

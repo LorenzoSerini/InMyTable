@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-7">
-                                        <h2><a href="#" style="font-family: Lora, serif;font-size: 21px;" th:text="${meal.description}"></a></h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Lora, serif;">Pasti Disponibili: <br th:text="${meal.placesAvailable}"></a>
+                                        <h2><a href="#" style="font-family: Lora, serif;font-size: 21px;" th:text="${meal.description}"></a></h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Lora, serif;" th:text="${'Posti Disponibili: '+meal.placesAvailable}"></a>
                                     </div>
                                     <div class="col-5">
                                         <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Data e orario inizio:<br th:text="${meal.date}+' '+${meal.time}"></a>
@@ -97,7 +97,7 @@
                                     <div class="col-7">
                                         <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a class="small-text" href="#" style="font-size: 15px;">Pubblicato dall'utente <br th:text="${meal.homeOwner.username}"></a></div>
                                         <p class="product-description" style="font-family: Lora, serif;font-size: 16px;">Ingredienti principali:<br th:text="${meal.ingredients}"></p>
-                                        <p class="product-price" style="font-size: 20px;text-align: left;">Corrispettivo:<br th:text="${meal.price}"></p>
+                                        <p class="product-price" style="font-size: 20px;text-align: left;" th:text="${'Corrispettivo: '+meal.price}"></p>
 
                                         <th:block th:if="${signUp == true}">
                                             <form action="/iscriviti-pasto" method="post">

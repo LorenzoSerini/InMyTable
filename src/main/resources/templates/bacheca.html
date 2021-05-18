@@ -62,7 +62,7 @@
             <div class="dropdown-menu"><a class="dropdown-item" href="bacheca" style="font-size: 14px;font-family: Alata, sans-serif;">Bacheca</a><a class="dropdown-item" href="prenotazioni" style="font-size: 14px;font-family: Alata, sans-serif;">Le mie prenotazioni</a><a class="dropdown-item" href="annunci" style="font-size: 14px;font-family: Alata, sans-serif;">I miei annunci</a>
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="richedi-un-pasto" style="font-size: 14px;font-family: Alata, sans-serif;">Pasti disponibili</a><a class="dropdown-item" href="richiesta-pasto-pubblico" style="font-size: 14px;font-family: Alata, sans-serif;">Voglio mangiare</a>
                 <a class="dropdown-item" href="ricerca-utenti" style="font-size: 14px;font-family: Alata, sans-serif;">Cerca Utenti</a>
-                <div class="dropdown-divider"></div><a class="dropdown-item" href="recensioni" style="font-size: 14px;font-family: Alata, sans-serif;">Recensioni</a><a class="dropdown-item" href="ricerca-utenti" style="font-size: 14px;font-family: Alata, sans-serif;">Storico</a>
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="recensioni" style="font-size: 14px;font-family: Alata, sans-serif;">Recensioni</a><a class="dropdown-item" href="storico" style="font-size: 14px;font-family: Alata, sans-serif;">Storico</a>
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="messaggi" style="font-size: 14px;font-family: Alata, sans-serif;">Messaggi</a><a class="dropdown-item" href="notifiche" style="font-size: 14px;font-family: Alata, sans-serif;">Notifiche</a>
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="profilo" style="font-size: 14px;font-family: Alata, sans-serif;">Il mio profilo</a><a class="dropdown-item" href="index" style="font-size: 14px;font-family: Alata, sans-serif;">Esci</a>
             </div>
@@ -95,7 +95,7 @@
                 <div class="row">
 
                     <div class="col-7">
-                        <h2><a href="#" style="font-family: Lora, serif;font-size: 21px;" th:text="${meal.description}"></a></h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Lora, serif;">Posti disponibili:<br th:text="${meal.placesAvailable}"></a>
+                        <h2><a href="#" style="font-family: Lora, serif;font-size: 21px;" th:text="${meal.description}"></a></h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Lora, serif;" th:text="'Posti disponibili: '+${meal.placesAvailable}"></a>
                     </div>
 
                     <div class="col-5"><a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Quando:<br th:text="${meal.date}+' '+${meal.time}"></a> <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Chiusura iscrizioni:&nbsp;<br th:text="${meal.expiryDate}+' '+${meal.expiryTime}"></a></div>

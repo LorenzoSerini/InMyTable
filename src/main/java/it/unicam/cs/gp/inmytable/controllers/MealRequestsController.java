@@ -11,9 +11,7 @@ import it.unicam.cs.gp.inmytable.notification.ISubscription;
 import it.unicam.cs.gp.inmytable.notification.MealRequestSubscription;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionManager;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
-import it.unicam.cs.gp.inmytable.persistence.MealDB;
-import it.unicam.cs.gp.inmytable.persistence.MealRequestDB;
-import it.unicam.cs.gp.inmytable.persistence.MealRequestPersistence;
+import it.unicam.cs.gp.inmytable.persistence.*;
 import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 
@@ -28,16 +26,18 @@ public class MealRequestsController {
 
 
 
-    public MealRequestsController(User logUser, MealRequestPersistence mealRequestPersistence) throws Exception {
+    public MealRequestsController(User logUser, MealRequestPersistence mealRequestPersistence, NotificationPersistence notificationPersistence) throws Exception {
        this.logUser=logUser;
         mealManager = MealManager.getInstance();
         this.mealRequestPersistence=mealRequestPersistence;
         subscriptionManager = new SubscriptionManager();
-        if(HomeWall.getInstance().getMealRequestCatalog().isEmpty())HomeWall.getInstance().getMealRequestCatalog().addAll(mealRequestPersistence.getPublicMealsRequestMap());
+        if(HomeWall.getInstance().getMealRequestCatalog().isEmpty()) HomeWall.getInstance().getMealRequestCatalog().addAll(mealRequestPersistence.getPublicMealsRequestList());
+        if(logUser.getMealNotifications().isEmpty()) logUser.getMealNotifications().addAll(notificationPersistence.getMealNotifications(logUser));
+        if(logUser.getMealRequestNotifications().isEmpty()) logUser.getMealRequestNotifications().addAll(notificationPersistence.getMealRequestNotifications(logUser));
     }
 
     public MealRequestsController(User logUser) throws Exception {
-        this(logUser, new MealRequestDB());
+        this(logUser, new MealRequestDB(), new NotificationDB());
     }
 
     public void postPublicMealRequest(String description, String mealType, ConsumationType consumationType, PaymentType payment, String date, String time, String expiryDate, String expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {

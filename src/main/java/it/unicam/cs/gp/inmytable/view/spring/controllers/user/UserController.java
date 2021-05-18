@@ -1,7 +1,8 @@
-package it.unicam.cs.gp.inmytable.view.spring.controllers;
+package it.unicam.cs.gp.inmytable.view.spring.controllers.user;
 
 import com.google.common.hash.HashCode;
 import it.unicam.cs.gp.inmytable.user.User;
+import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

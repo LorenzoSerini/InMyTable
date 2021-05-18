@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-7">
-                                        <h2><a href="#" style="font-family: Lora, serif;font-size: 21px;" th:text="${mealRequest.description}"></a></h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Lora, serif;">Porzioni Richieste: <br th:text="${mealRequest.mealsNumber}"></a>
+                                        <h2><a href="#" style="font-family: Lora, serif;font-size: 21px;" th:text="${mealRequest.description}"></a></h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Lora, serif;" th:text="${'Porzioni Richieste: '+mealRequest.mealsNumber}"></a>
                                     </div>
                                     <div class="col-5">
                                         <a class="text-start small-text" href="#" style="font-size: 15px;font-family: Lora, serif;">Data e orario inizio:<br th:text="${mealRequest.date}+' '+${mealRequest.time}"></a>
@@ -97,7 +97,7 @@
                                     <div class="col-7">
                                         <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a class="small-text" href="#" style="font-size: 15px;">Pubblicato dall'utente <br th:text="${mealRequest.host.username}"></a></div>
                                         <p class="product-description" style="font-family: Lora, serif;font-size: 16px;">Allergie (o richeste particolari):<br th:text="${mealRequest.allergy}"></p>
-                                        <p class="product-price" style="font-size: 20px;text-align: left;">Corrispettivo:<br th:text="${mealRequest.price}"></p>
+                                        <p class="product-price" style="font-size: 20px;text-align: left;" th:text="${'Corrispettivo: '+mealRequest.price}"></p>
 
                                         <th:block th:if="${accept == true}">
                                             <form action="/accetta-richiesta-pasto-pubblico" method="post">

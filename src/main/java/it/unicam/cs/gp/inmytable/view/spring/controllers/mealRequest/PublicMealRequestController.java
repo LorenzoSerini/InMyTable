@@ -1,6 +1,7 @@
-package it.unicam.cs.gp.inmytable.view.spring.controllers;
+package it.unicam.cs.gp.inmytable.view.spring.controllers.mealRequest;
 
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
+import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.HomeWallService;
 import it.unicam.cs.gp.inmytable.view.spring.services.PublicMealRequestService;
 import org.springframework.beans.factory.annotation.Autowired;

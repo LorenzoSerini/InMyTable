@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface MealPersistence extends Persistence{
+
+
     /**
      * Register a Meal
      * @param meal  The meal
