@@ -1,6 +1,6 @@
 package it.unicam.cs.gp.inmytable.notification;
 
-import it.unicam.cs.gp.inmytable.allmeals.meals.Food;
+import it.unicam.cs.gp.inmytable.allmeals.*;
 import it.unicam.cs.gp.inmytable.user.IUser;
 
 import java.time.LocalDate;

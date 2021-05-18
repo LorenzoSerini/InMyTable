@@ -1,9 +1,7 @@
 package it.unicam.cs.gp.inmytable.allmeals.mealrequest;
 
-import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
-import it.unicam.cs.gp.inmytable.allmeals.meals.Food;
-import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
-import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
+import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.Food;
 import it.unicam.cs.gp.inmytable.user.*;
 
 import java.time.LocalDate;

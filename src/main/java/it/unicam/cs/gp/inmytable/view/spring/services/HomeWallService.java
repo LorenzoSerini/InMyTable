@@ -2,7 +2,7 @@ package it.unicam.cs.gp.inmytable.view.spring.services;
 
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
+import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 import it.unicam.cs.gp.inmytable.controllers.MealRequestsController;
 import it.unicam.cs.gp.inmytable.controllers.MealsController;
 import it.unicam.cs.gp.inmytable.homewalls.HomeWall;

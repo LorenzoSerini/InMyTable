@@ -1,9 +1,11 @@
 package it.unicam.cs.gp.inmytable.allmeals.mealrequest;
 
-import it.unicam.cs.gp.inmytable.allmeals.meals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.MealStates;
+import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
+
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
-import it.unicam.cs.gp.inmytable.allmeals.meals.PaymentType;
+
 import it.unicam.cs.gp.inmytable.user.*;
 
 import java.time.LocalDate;
@@ -46,6 +48,10 @@ public class MealRequest implements IMealRequest {
     public MealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) {
         if (date.isBefore(expiryDate) || (LocalDate.now().isEqual(expiryDate) && time.isBefore(expiryTime)))
             throw new IllegalArgumentException("ExpirationTime should be after meal date");
+       /* if (date.isAfter(expiryDate) ||LocalDate.now().isAfter(date) ||
+                (date.equals(expiryDate) && expiryTime.isAfter(time)) ||
+                (date.equals(LocalDate.now()) && (LocalTime.now().isAfter(time) || LocalTime.now().isAfter(expiryTime))))
+            throw new IllegalArgumentException("ExpirationTime should be before meal date");*/
         if (payment.compareTo(PaymentType.FREE) == 0) {
             this.price = "0";
         } else this.price = price;
@@ -70,7 +76,7 @@ public class MealRequest implements IMealRequest {
         this.id = UUID.randomUUID().toString();
     }
 
-    public MealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, User homeOwner) {
+    public MealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, IUser homeOwner) {
         this(host,mealType,consumationType,payment,description,date,time,expiryDate,expiryTime,price,place,allergy,mealsNumber);
         this.homeOwner=homeOwner;
         this.type = MealRequestType.PRIVATE;

@@ -1,10 +1,10 @@
 package it.unicam.cs.gp.inmytable.homewalls;
 
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
-import it.unicam.cs.gp.inmytable.allmeals.meals.Food;
+import it.unicam.cs.gp.inmytable.allmeals.Food;
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
+import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

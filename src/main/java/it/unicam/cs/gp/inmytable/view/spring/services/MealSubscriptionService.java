@@ -4,7 +4,7 @@ import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.allmeals.meals.MealStates;
+import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 import it.unicam.cs.gp.inmytable.controllers.MealsController;
 import it.unicam.cs.gp.inmytable.controllers.UserController;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
