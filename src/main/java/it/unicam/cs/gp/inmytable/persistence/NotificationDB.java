@@ -1,11 +1,10 @@
 package it.unicam.cs.gp.inmytable.persistence;
 
+import it.unicam.cs.gp.inmytable.allmeals.Food;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
-import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
-import it.unicam.cs.gp.inmytable.allmeals.meals.*;
+import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.notification.*;
 import it.unicam.cs.gp.inmytable.user.IUser;
-import it.unicam.cs.gp.inmytable.user.User;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -17,7 +16,7 @@ import java.util.Map;
 
 public class NotificationDB extends DBPersistence implements NotificationPersistence{
     private String sql;
-    private static Map<String,SubscriptionNotification<IUser, IMeal>> mealSubscriptionNotificationsMap;
+    private static Map<String, SubscriptionNotification<IUser, IMeal>> mealSubscriptionNotificationsMap;
     private static Map<String, SubscriptionNotification<IUser, IMealRequest>> mealsRequestSubscriptionNotificationsMap;
     private static Map<String, SimpleNotification<IUser>> simpleNotificationsMap;
 
@@ -35,6 +34,7 @@ public class NotificationDB extends DBPersistence implements NotificationPersist
            simpleNotificationsMap = new HashMap<>();
            fillMealSubscriptionNotificationMap();
            fillMealRequestSubscriptionNotificationMap();
+           fillAllUsersNotificationsLists();
         }
     }
 
@@ -46,6 +46,7 @@ public class NotificationDB extends DBPersistence implements NotificationPersist
             simpleNotificationsMap = new HashMap<>();
             fillMealSubscriptionNotificationMap();
             fillMealRequestSubscriptionNotificationMap();
+            fillAllUsersNotificationsLists();
         }
     }
 
@@ -135,6 +136,15 @@ public class NotificationDB extends DBPersistence implements NotificationPersist
         setData(sql);
         while (getData().next()) {
             notification.getSubscription().setState(SubscriptionStates.valueOf(getData().getString("SubscriptionState")));
+        }
+    }
+
+
+    private void fillAllUsersNotificationsLists(){
+        for(String key:getUsers().keySet()){
+             getUsers().get(key).getMealNotifications().addAll(getMealNotifications(getUsers().get(key)));
+             getUsers().get(key).getMealRequestNotifications().addAll(getMealRequestNotifications(getUsers().get(key)));
+         //   if(getUsers().get(key).getSimpleNotifications().isEmpty()) getUsers().get(key).getSimpleNotifications().addAll(getSimpleNotifications(getUsers().get(key)));
         }
     }
 

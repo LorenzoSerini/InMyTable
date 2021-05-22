@@ -1,5 +1,8 @@
 package it.unicam.cs.gp.inmytable.persistence;
 
+import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.MealStates;
+import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.*;
 import it.unicam.cs.gp.inmytable.user.IUser;
@@ -135,7 +138,7 @@ public abstract class DBPersistence extends DBConnection implements Persistence{
 
 
     private void addUsersInMeal(Meal meal) throws SQLException {
-        String sql = "Select * from User_Meal where Mealid= '"+meal.getId()+"'";
+        String sql = "Select * from User_Meal where Mealid= '"+meal.getId()+"' and SubscriptionState <> 'PENDING' and SubscriptionState <> 'REFUSED' ";
         setData(sql);
         while (getData().next()) {
             User user = getUsers().get(getData().getString("Userusername"));

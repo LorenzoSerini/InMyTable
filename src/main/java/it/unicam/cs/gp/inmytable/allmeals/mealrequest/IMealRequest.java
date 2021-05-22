@@ -17,7 +17,6 @@ public interface IMealRequest extends Food {
 
 	int getMealsNumber();
 
-	ConsumationType getConsummationType();
 
 	MealRequestType getType();
 

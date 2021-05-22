@@ -14,7 +14,7 @@ public abstract class DBConnection {
     private static final String AZURE_PASSWORD =  "InMyTable2021";
     private static final String LOCAL_CONNECTION_STRING = "jdbc:mysql://127.0.0.1:3306/inmytable";
     private static final String LOCAL_USERNAME = "root";
-    private static final String LOCAL_PASSWORD =  "pass123";
+    private static final String LOCAL_PASSWORD =  "root";
     private static Connection connection;
     private static Statement command;
     private static ResultSet data;

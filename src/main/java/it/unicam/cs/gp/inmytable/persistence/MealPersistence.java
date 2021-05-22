@@ -31,4 +31,7 @@ public interface MealPersistence extends Persistence{
     List<Meal> getMealsList() throws Exception;
 
 
+    void acceptOrRefuseMealSubscription(IMeal meal, SubscriptionNotification<?,?> notification) throws Exception;
+
+
 }

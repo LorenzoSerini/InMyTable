@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!--<label class="form-label" style="margin-top: 5px;font-family: Alata, sans-serif;font-size: 16px;font-weight: bold;">Inserisce nome utente (Chi vuoi che ti prepari il pasto)</label><input class="form-control" type="text" autocomplete="off" style="background: rgb(255,255,255);margin-bottom: 0px;margin-top: 5px;font-family: Alata, sans-serif;" name="pull-username-req">-->
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -69,8 +69,13 @@
             </div>
 
 
-            <form class="border rounded pulse animated" action="/richiesta-pasto-pubblico" method="post" style="margin-bottom: 0px;margin-top: 4px;">
-                <div class="form-group mb-3"><label class="form-label" style="line-height: 25px;font-size: 22px;font-weight: bold;font-family: Lora, serif;">Cosa vorresti mangiare?</label><input class="form-control" name="description" type="text" autocomplete="off" required="" style="margin-bottom: 0px;"></div>
+            <form class="border rounded pulse animated" action="/richiesta-pasto-privato" method="post" style="margin-bottom: 0px;margin-top: 4px;">
+			
+			<div align=center>
+                <label  class="form-label"  style="text-align:center; line-height: 35px;font-size: 30px;font-weight: bold;font-family: Lora, serif;background: #fe9e02;">IL CUOCO</label><label class="form-control" th:text="${requestTo.username}" style="font-size: 20px; background: rgb(255,255,255);margin-bottom: 0px;margin-top: 5px;font-family: Alata, sans-serif; text-align:center" ></label><br>
+			</div>
+			
+                <div class="form-group mb-3"><label class="form-label" style="line-height: 25px;font-size: 20px;font-weight: bold;font-family: Lora, serif;">Cosa vorresti mangiare?</label><input class="form-control" name="description" type="text" autocomplete="off" required="" style="margin-bottom: 0px;"></div>
                 <div class="form-group mb-3" style="font-family: Lora, serif;"><label class="form-label" style="margin-top: 15px;font-size: 17px;">Tipo di cucina</label><select class="form-select" name="mealType">
                         <optgroup label="Tipi di cucina">
                             <option value="cucina-altro" selected="">Altro</option>
@@ -137,7 +142,7 @@
 
                 <div class="form-group mb-3">
                     <hr style="margin-top: 20px;margin-bottom: 20px;">
-                    <button type="submit" class="btn btn-primary w-100" role="button" data-bss-hover-animate="pulse" style="background: #73bc43;margin-top: 12px;border-color: rgba(0,0,0,0);font-family: Lora, serif;"><i class="fas fa-file"></i>&nbsp; Pubblica Annuncio</button>
+                    <button type="submit" class="btn btn-primary w-100" role="button" data-bss-hover-animate="pulse" style="background: #73bc43;margin-top: 12px;border-color: rgba(0,0,0,0);font-family: Lora, serif;"><i class="fas fa-file"></i>&nbsp; Invia Richiesta</button>
                     <button type="reset" class="btn btn-danger w-100" role="button" data-bss-hover-animate="pulse" style="margin-top: 15px;background: #ee6226;border-color: rgba(0,0,0,0);font-family: Lora, serif;"><i class="fas fa-arrow-left"></i>&nbsp; Cancella</button>
                 </div>
             </form>

@@ -1,13 +1,12 @@
 package it.unicam.cs.gp.inmytable.view.spring.services;
 
+import it.unicam.cs.gp.inmytable.allmeals.Food;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.controllers.MealRequestsController;
 import it.unicam.cs.gp.inmytable.controllers.MealsController;
-import it.unicam.cs.gp.inmytable.notification.INotification;
-import it.unicam.cs.gp.inmytable.notification.SimpleNotification;
-import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
-import it.unicam.cs.gp.inmytable.notification.SubscriptionStates;
+import it.unicam.cs.gp.inmytable.controllers.UserController;
+import it.unicam.cs.gp.inmytable.notification.*;
 import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 import org.springframework.stereotype.Service;
@@ -109,6 +108,22 @@ public class NotificationService {
             if(m.getId().equals(id)) return true;
         }
         return false;
+    }
+
+    public void acceptMealSubscriptionNotification(SubscriptionNotification<IUser, IMeal> notification) throws Exception {
+        mealsController.acceptMealSubscription(notification.getSubscription());
+    }
+
+    public void refuseMealSubscriptionNotification(SubscriptionNotification<IUser, IMeal> notification) throws Exception {
+        mealsController.refuseMealSubscription(notification.getSubscription());
+    }
+
+    public void acceptPrivateMealRequestSubscriptionNotification(SubscriptionNotification<IUser, IMealRequest> notification) throws Exception {
+        mealRequestsController.acceptPrivateMealRequest(notification.getSubscription());
+    }
+
+    public void refusePrivateMealRequestSubscriptionNotification(SubscriptionNotification<IUser, IMealRequest> notification) throws Exception {
+        mealRequestsController.refusePrivateMealRequest(notification.getSubscription());
     }
 
 }

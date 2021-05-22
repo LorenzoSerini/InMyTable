@@ -33,20 +33,6 @@ class FoodTest {
         Meal meal1 = new Meal(user1,3,LocalDate.parse("2021-04-29"), LocalTime.parse("18:00:00"),LocalDate.parse("2021-04-29"),LocalTime.parse("18:00:00"),"",false,"", ConsumationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
         assertTrue(meal1.getState() == MealStates.EXPIRED);
 
-
-        /*
-        //check date cannot be before now
-        assertThrows(IllegalArgumentException.class, ()->new Meal(user1,3, LocalDate.parse("2021-04-29"), LocalTime.now(),LocalDate.parse("2021-05-29"),LocalTime.now(),"",false,"", ConsumationType.AT_HOME,"","", PaymentType.EXCHANGE,"0"));
-        //check expiry date cannot be before meal date
-        assertThrows(IllegalArgumentException.class, ()->new Meal(user1,3,LocalDate.parse("2021-05-29"), LocalTime.now(),LocalDate.parse("2021-04-29"),LocalTime.now(),"",false,"", ConsumationType.AT_HOME,"","", PaymentType.EXCHANGE,"0"));
-        //check expiry time cannot be after meal time
-        assertThrows(IllegalArgumentException.class, ()->new Meal(user1,3,LocalDate.parse("2021-05-15"), LocalTime.parse("15:40:00"),LocalDate.parse("2021-05-15"),LocalTime.now(),"",false,"", ConsumationType.AT_HOME,"","", PaymentType.EXCHANGE,"0"));
-        //check meal time cannot be before now
-        assertThrows(IllegalArgumentException.class, ()->new Meal(user1,3,LocalDate.parse("2021-05-15"), LocalTime.parse("15:40:00"),LocalDate.parse("2021-05-15"),LocalTime.now(),"",false,"", ConsumationType.AT_HOME,"","", PaymentType.EXCHANGE,"0"));
-        //check build a right meal
-        Meal meal = new Meal(user1,3,LocalDate.parse("2021-05-29"), LocalTime.parse("18:00:00"),LocalDate.parse("2021-05-29"),LocalTime.parse("18:00:00"),"",false,"", ConsumationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
-*/
-
     }
 
     @Test

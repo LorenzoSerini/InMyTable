@@ -35,17 +35,19 @@ public class FeedbackDB extends DBPersistence implements FeedbackPersistence{
         String sql = "Select * from FeedBack";
         setData(sql);
         while (getData().next()) {
-            User from = getUsers().get(getData().getString("From"));
-            User to = getUsers().get(getData().getString("To"));
+            User from = getUsers().get(getData().getString("FromUser"));
+            User to = getUsers().get(getData().getString("ToUser"));
             Feedback feedback = new Feedback(from, to, getData().getInt("Rating"), getData().getString("Comment"));
             feedback.setId(getData().getString("Id"));
             feedbackList.add(feedback);
+            from.getFeedbackBox().addFeedback(feedback);
+            to.getFeedbackBox().addFeedback(feedback);
         }
     }
 
     @Override
     public void registerFeedback(Feedback feedback) throws SQLException {
-        this.sql = "insert into FeedBack(Id, From, To, Rating, Comment) values (?,?,?,?,?)";
+        this.sql = "insert into FeedBack(Id, FromUser, ToUser, Rating, Comment) values (?,?,?,?,?)";
         PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
         prepStat.setString(1, feedback.getId());
         prepStat.setString(2, feedback.getFrom().getUsername());

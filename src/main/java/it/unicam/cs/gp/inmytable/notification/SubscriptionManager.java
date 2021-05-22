@@ -42,7 +42,7 @@ public class SubscriptionManager{
     public <T extends IUser> void acceptMealNotification(T from, T to, ISubscription<IUser,IMeal> subscription, String msg){
         if (from.equals(to) || subscription.getUser().equals(from)) throw new IllegalArgumentException("You cannot accept!");
         if (subscription.getState() != SubscriptionStates.PENDING) throw new IllegalArgumentException("You cannot accept this!");
-        if(!subscription.getFood().isFreeSubscription() && subscription.getFood().getPlacesAvailable()!=0){
+        if(!subscription.getFood().isFreeSubscription() && subscription.getFood().getPlacesAvailable()>0){
             subscription.accept();
             SubscriptionNotification<IUser, IMeal> notification = new SubscriptionNotification<>(from, to, subscription, msg);
             to.getMealNotifications().add(notification);
@@ -76,8 +76,8 @@ public class SubscriptionManager{
             mealRequest.setState(MealStates.FULL);
             MealRequestSubscription<IUser, IMealRequest> mealRequestSubscription = new MealRequestSubscription<>(from, mealRequest);
             mealRequestSubscription.accept();
-            SubscriptionNotification<IUser, IMealRequest> notification = new SubscriptionNotification<>(from, to, mealRequestSubscription, msg);//"L'utente " + this.user.getUsername() + " ha accettato la tua richiesta di pasto pubblico che si terrà il " + mealRequest.getDate().toString() + " alle " + mealRequest.getTime().toString());
-            to.getMealRequestNotifications().add(notification);
+            SubscriptionNotification<IUser, IMealRequest> notificationTo = new SubscriptionNotification<>(from, to, mealRequestSubscription, msg);//"L'utente " + this.user.getUsername() + " ha accettato la tua richiesta di pasto pubblico che si terrà il " + mealRequest.getDate().toString() + " alle " + mealRequest.getTime().toString());
+            to.getMealRequestNotifications().add(notificationTo);
         }
     }
 

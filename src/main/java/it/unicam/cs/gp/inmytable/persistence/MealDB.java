@@ -77,6 +77,17 @@ public class MealDB extends DBPersistence implements MealPersistence {
         registerNotification(notification);
     }
 
+
+    @Override
+    public void acceptOrRefuseMealSubscription(IMeal meal, SubscriptionNotification<?,?> notification) throws SQLException {
+        sql = "update User_Meal set SubscriptionState=? where MealId='"+notification.getSubscription().getFood().getId()+"'";
+        PreparedStatement prepStat = getConnection().prepareStatement(sql);
+        prepStat.setString(1, notification.getSubscription().getState().toString());
+        prepStat.executeUpdate();
+        updateMeal(meal);
+        registerNotification(notification);
+    }
+
     @Override
     public List<Meal> getMealsList(){
         List<Meal> mealList = new ArrayList<>();
@@ -140,13 +151,13 @@ public class MealDB extends DBPersistence implements MealPersistence {
            meal.addUser(user);
         }
     }
-
-    private void updateMeal(Meal meal) throws SQLException {
+*/
+    private void updateMeal(IMeal meal) throws SQLException {
             sql = "update Meal set MealState=? where Id='"+meal.getId()+"'";
             PreparedStatement prepStat = getConnection().prepareStatement(sql);
             prepStat.setString(1, meal.getState().toString());
             prepStat.executeUpdate();
-    }*/
+    }
 
 
 }

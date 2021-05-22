@@ -28,4 +28,8 @@ public class FeedbackBox {
         feedbacks.add(feedback);
         average = getRating();
     }
+
+    public List<Feedback> getFeedbacks(){
+        return new ArrayList<>(this.feedbacks);
+    }
 }

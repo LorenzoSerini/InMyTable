@@ -19,8 +19,6 @@ public interface IMeal extends Food {
 
    boolean isFreeSubscription();
 
-   ConsumationType getConsummationType();
-
    String getIngredients();
 
    Set<IUser> getUserList();

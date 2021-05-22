@@ -45,4 +45,6 @@ public interface Food {
 
     String getId();
 
+    ConsumationType getConsummationType();
+
 }

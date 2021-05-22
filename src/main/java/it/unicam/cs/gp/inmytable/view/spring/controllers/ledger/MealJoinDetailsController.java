@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
 
-public class MealJoinDetails {
+public class MealJoinDetailsController {
 
     @GetMapping("/pasto-patecipato")
     public String getAllNotifications(Model model, HttpSession session){

@@ -1,5 +1,6 @@
 package it.unicam.cs.gp.inmytable.view.spring.services;
 
+import it.unicam.cs.gp.inmytable.allmeals.Food;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
@@ -21,16 +22,25 @@ public class MealSubscriptionService {
         this.mealsController = new MealsController(logUser);
     }
 
-    public String getFreeSubscription(Meal meal){
+    public String getFreeSubscription(IMeal meal){
         if(meal.isFreeSubscription()) return "Libera";
         else return "Su accettazione del padrone di casa";
     }
 
-    public String getConsummationType(Meal meal){
+    public String getConsummationType(Food meal){
         switch (meal.getConsummationType()){
             case AT_HOME: return "In casa di colui che lo ha pubblicato";
             case TAKEAWAY: return "Takeaway";
             case BOTH: return "Sia in casa di colui che ha pubblicato l'annuncio che Takeaway";
+        }
+        return null;
+    }
+
+    public String getPayment(Food meal){
+        switch (meal.getPaymentType()){
+            case CASH: return "In Denaro";
+            case EXCHANGE: return "Baratto";
+            case FREE: return "Gratis";
         }
         return null;
     }

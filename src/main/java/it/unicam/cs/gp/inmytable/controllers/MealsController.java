@@ -17,6 +17,10 @@ import it.unicam.cs.gp.inmytable.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class MealsController {
     private User logUser;
@@ -31,10 +35,6 @@ public class MealsController {
         this.mealPersistence=mealPersistence;
         subscriptionManager = new SubscriptionManager();
         if(HomeWall.getInstance().getMealCatalog().isEmpty()) HomeWall.getInstance().getMealCatalog().addAll(mealPersistence.getMealsList());
-        if(logUser.getMealNotifications().isEmpty()) logUser.getMealNotifications().addAll(notificationPersistence.getMealNotifications(logUser));
-     //   System.out.println(logUser.getMealNotifications().size());
-       // System.out.println(logUser.getMealNotifications().get(0).from().getUsername());
-       // System.out.println(logUser.getMealNotifications().get(1).from().getUsername());
     }
 
     public MealsController(User logUser) throws Exception {
@@ -52,23 +52,66 @@ public class MealsController {
         if(this.logUser.equals(meal.getHomeOwner())) throw new IllegalArgumentException("A host cannot sign up for his meal");
         if(meal.getUserList().contains(logUser)) throw new IllegalArgumentException("You can't sign up for the same meal twice");
         if (meal.isFreeSubscription()) {
-            subscriptionManager.joinToMealNotification(this.logUser, meal.getHomeOwner(), meal, "Si è iscritto al pasto "+meal.getDescription()+" che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString());//("L'utente " + this.logUser.getUsername() + " si è iscritto al pasto che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString()));
+            subscriptionManager.joinToMealNotification(this.logUser, meal.getHomeOwner(), meal, "si è iscritto al pasto "+meal.getDescription()+" che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString());//("L'utente " + this.logUser.getUsername() + " si è iscritto al pasto che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString()));
         } else{
-            subscriptionManager.joinToMealNotification(this.logUser, meal.getHomeOwner(), meal, "Si vorrebbe iscrivere al pasto "+meal.getDescription()+" che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString());//("L'utente " + this.logUser.getUsername() + " si vorrebbe iscrivere al pasto che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString()));
+            subscriptionManager.joinToMealNotification(this.logUser, meal.getHomeOwner(), meal, "si vorrebbe iscrivere al pasto "+meal.getDescription()+" che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString());//("L'utente " + this.logUser.getUsername() + " si vorrebbe iscrivere al pasto che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString()));
         }
         mealPersistence.registerUserToMeal(logUser,meal,meal.getHomeOwner().getMealNotifications().get(meal.getHomeOwner().getMealNotifications().size()-1));
     }
 
 
-    public void acceptMealSubscription(ISubscription<IUser,IMeal> subscription){
-        subscriptionManager.acceptMealNotification(this.logUser, subscription.getUser(), subscription, "L'utente " + this.logUser.getUsername() + " ha accettato la tua richiesta di iscrizione per il pasto che si terrà il "
+    public void acceptMealSubscription(ISubscription<IUser,IMeal> subscription) throws Exception {
+        subscriptionManager.acceptMealNotification(this.logUser, subscription.getUser(), subscription, "ha accettato la tua richiesta di iscrizione per il pasto "+subscription.getFood().getDescription()+" che si terrà il "
                 + subscription.getFood().getDate().toString() + " alle " + subscription.getFood().getTime().toString());
+        mealPersistence.acceptOrRefuseMealSubscription(subscription.getFood(),  subscription.getUser().getMealNotifications().get(subscription.getUser().getMealNotifications().size()-1));
     }
 
 
-    public void refuseMealSubscription(ISubscription<IUser,IMeal> subscription){
-        subscriptionManager.refuseMealNotification(this.logUser, subscription.getUser(), subscription, "L'utente " + this.logUser.getUsername() + " ha rifiutato la tua richiesta di iscrizione per il pasto che si terrà il "
+    public void refuseMealSubscription(ISubscription<IUser,IMeal> subscription) throws Exception {
+        subscriptionManager.refuseMealNotification(this.logUser, subscription.getUser(), subscription, "ha rifiutato la tua richiesta di iscrizione per il pasto "+subscription.getFood().getDescription()+" che si terrà il "
                 + subscription.getFood().getDate().toString() + " alle " + subscription.getFood().getTime().toString());
+        mealPersistence.acceptOrRefuseMealSubscription(subscription.getFood(), subscription.getUser().getMealNotifications().get(subscription.getUser().getMealNotifications().size()-1));
+    }
+
+
+   /* public List<Meal> showPublishedMeals() throws Exception {
+        List<Meal> meals = new ArrayList<>();
+        for(Meal meal:mealPersistence.getMealsList()){
+            if(meal.getHomeOwner().equals(this.logUser)) meals.add(meal);
+        }
+        return meals;
+    }
+
+    public List<Meal> showAttendedMeals() throws Exception {
+        List<Meal> meals = new ArrayList<>();
+        for(Meal meal:mealPersistence.getMealsList()){
+            for(IUser u:meal.getUserList()){
+                if(u.equals(this.logUser)) meals.add(meal);
+            }
+        }
+        return meals;
+    }*/
+
+
+    public IMeal getMeal(String id){
+        return mealPersistence.getMealsMap().get(id);
+    }
+
+
+    public List<Meal> showPublishedMeals() throws Exception {
+        return mealPersistence.getMealsList().stream().filter(p -> p.getHomeOwner().equals(this.logUser)).collect(Collectors.toList());
+    }
+
+    public List<Meal> showPublishedMeals(Predicate<Meal> predicate) throws Exception {
+        return mealPersistence.getMealsList().stream().filter(p -> p.getHomeOwner().equals(this.logUser)).filter(predicate).collect(Collectors.toList());
+    }
+
+    public List<Meal> showAttendedMeals() throws Exception {
+        return mealPersistence.getMealsList().stream().filter(p->p.getUserList().contains(this.logUser)).collect(Collectors.toList());
+    }
+
+    public List<Meal> showAttendedMeals(Predicate<Meal>predicate) throws Exception {
+        return mealPersistence.getMealsList().stream().filter(p->p.getUserList().contains(this.logUser)).filter(predicate).collect(Collectors.toList());
     }
 
 

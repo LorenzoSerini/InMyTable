@@ -1,5 +1,7 @@
 package it.unicam.cs.gp.inmytable.controllers;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionManager;
+import it.unicam.cs.gp.inmytable.persistence.FeedbackDB;
+import it.unicam.cs.gp.inmytable.persistence.FeedbackPersistence;
 import it.unicam.cs.gp.inmytable.persistence.MealDB;
 import it.unicam.cs.gp.inmytable.persistence.MealPersistence;
 import it.unicam.cs.gp.inmytable.user.Feedback;
@@ -10,20 +12,22 @@ import java.util.*;
 public class UserController {
     private User user;
     private MealPersistence mealPersistence;
+    private FeedbackPersistence feedbackPersistence;
     private SubscriptionManager subscriptionManager;
 
     /**
      * Build an UserController for the user
      * @param logUser logUser
      */
-    public UserController(User logUser, MealPersistence mealPersistence){
+    public UserController(User logUser, MealPersistence mealPersistence, FeedbackPersistence feedbackPersistence){
         this.user = logUser;
         this.mealPersistence=mealPersistence;
+        this.feedbackPersistence=feedbackPersistence;
         subscriptionManager = new SubscriptionManager();
     }
 
     public UserController(User logUser) throws Exception {
-        this(logUser, new MealDB());
+        this(logUser, new MealDB(), new FeedbackDB());
     }
 
     /**
@@ -32,10 +36,13 @@ public class UserController {
      * @param rating    rating of the feedback
      * @param comment   comment of the feedback
      */
-    public void leaveFeedback(User to, int rating, String comment){
+    public void leaveFeedback(User to, int rating, String comment) throws Exception {
         if (to ==null || comment == null) throw new NullPointerException("One parameter is null");
         if (user.equals(to)) throw new IllegalArgumentException("You cannot leave a comment to yourself!");
-        to.getFeedbackBox().addFeedback(new Feedback(this.user, to,rating,comment));
+        Feedback feedback = new Feedback(this.user, to,rating,comment);
+        this.user.getFeedbackBox().addFeedback(feedback);
+        to.getFeedbackBox().addFeedback(feedback);
+        feedbackPersistence.registerFeedback(feedback);
     }
 
 

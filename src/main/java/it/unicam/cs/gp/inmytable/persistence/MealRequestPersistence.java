@@ -1,7 +1,9 @@
 package it.unicam.cs.gp.inmytable.persistence;
 
+import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
+import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 
 import java.sql.SQLException;
@@ -11,18 +13,22 @@ public interface MealRequestPersistence extends Persistence {
 
 
     /**
-     * Register a Private Meal Request
+     * Register a Public Meal Request
      * @param mealRequest private meal request
      * @throws SQLException
      */
-    void registerMealRequest(MealRequest mealRequest) throws Exception;
+    void registerPublicMealRequest(MealRequest mealRequest) throws Exception;
+
+
+
+    void registerPrivateMealRequest(MealRequest mealRequest, SubscriptionNotification<?,?> notification) throws Exception;
 
     /**
      * Register a homeOwner to a meal
      * @param homeOwner The homeOwner
      * @param mealRequest The meal
      */
-    void registerHomeOwnerToMealRequest(User homeOwner, MealRequest mealRequest, SubscriptionNotification<?,?> notification) throws Exception;
+    void registerHomeOwnerToMealRequest(IUser homeOwner, IMealRequest mealRequest, SubscriptionNotification<?,?> notification) throws Exception;
 
 
 

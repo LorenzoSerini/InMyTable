@@ -61,4 +61,5 @@ public class GuestController {
         userPersistence.registerUser(user);
         return user;
     }
+
 }
