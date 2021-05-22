@@ -17,6 +17,7 @@ public class AuthenticationController {
     @Autowired
     GuestService guestService;
 
+    //
     @GetMapping("/login")
     public ModelAndView getLogin() { return new ModelAndView("/login");}
 
