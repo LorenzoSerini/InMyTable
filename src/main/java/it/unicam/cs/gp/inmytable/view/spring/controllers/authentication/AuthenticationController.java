@@ -18,7 +18,7 @@ public class AuthenticationController {
     GuestService guestService;
 
     @GetMapping("/login")
-    public String getLogin() { return "/login";}
+    public ModelAndView getLogin() { return new ModelAndView("/login");}
 
     @GetMapping("/register")
     public String getRegister() {return "/register";}
