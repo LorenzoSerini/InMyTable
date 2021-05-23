@@ -31,9 +31,9 @@ public class PrivateMealRequestController {
 
             model.addAttribute("requestTo", requestTo);
             model.addAttribute("itIsMe", privateMealRequestService.itIsMe(requestTo));
-            return "/profilo-utente";
+            return "profilo-utente";
         }
-        return "/login";
+        return "login";
     }
 
 
@@ -43,14 +43,14 @@ public class PrivateMealRequestController {
             try {
                 privateMealRequestService.setLogUser(BaseController.getLogUser(session));
                 model.addAttribute("requestTo", requestTo);
-                return "/richiesta-pasto-privato";
+                return "richiesta-pasto-privato";
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            return "/profilo-utente";
+            return "profilo-utente";
         }
-        return "/login";
+        return "login";
     }
 
 
@@ -66,13 +66,13 @@ public class PrivateMealRequestController {
                 privateMealRequestService.setLogUser((BaseController.getLogUser(session)));
                 privateMealRequestService.postAPrivateMealRequest(requestTo,description, mealType, consummationType, paymentType, startTime, finishTime, pym, address, allergy, mealsNumber);
                 requestTo=null;
-                return "redirect:/bacheca";
+                return "redirect:bacheca";
             } catch (Exception e) {
                 e.printStackTrace();
-                return "/richiesta-pasto-pubblico";
+                return "richiesta-pasto-pubblico";
             }
         }
-        return "/richiesta-pasto-pubblico";
+        return "richiesta-pasto-pubblico";
     }
 
 }

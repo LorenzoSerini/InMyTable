@@ -27,9 +27,9 @@ public class HomeWallController {
             }
             model.addAttribute("pendingMealCatalog", homeWallService.getPendingMealCatalog());
             model.addAttribute("publicMealsRequestCatalog", homeWallService.getPendingMealRequestCatalog());
-            return "/bacheca";
+            return "bacheca";
         }
-        return "/login";
+        return "login";
     }
 
 

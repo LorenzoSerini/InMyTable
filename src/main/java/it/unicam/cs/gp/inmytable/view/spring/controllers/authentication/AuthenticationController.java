@@ -21,11 +21,10 @@ public class AuthenticationController {
     @GetMapping("/login")
     public String getLogin() {
         return "login";
-
-    }//return "/login";}
+    }
 
     @GetMapping("/register")
-    public String getRegister() {return "/register";}
+    public String getRegister() {return "register";}
 
     @PostMapping("/login")
     public ModelAndView doLogin( HttpSession session,
@@ -33,11 +32,11 @@ public class AuthenticationController {
                                  @RequestParam("password") String password){
         try {
             BaseController.setLogUser(guestService.login(username, password), session);
-            return new ModelAndView("redirect:/bacheca");
+            return new ModelAndView("redirect:bacheca");
         } catch (Exception e) {
             e.printStackTrace();
         }
-            return new ModelAndView("/login");
+            return new ModelAndView("login");
     }
 
 
@@ -48,11 +47,11 @@ public class AuthenticationController {
                                       @RequestParam("fiscalCode") String fiscalCode,@RequestParam("city") String city,@RequestParam("address") String address,@RequestParam("available") boolean availableToRequests){
         try {
             BaseController.setLogUser(guestService.registration(username, email, telephoneNumber, firstName, lastName, password, birth, id, fiscalCode, city, address, availableToRequests), session);
-            return new ModelAndView("redirect:/bacheca");
+            return new ModelAndView("redirect:bacheca");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ModelAndView("/register");
+        return new ModelAndView("register");
     }
 
 
@@ -60,11 +59,11 @@ public class AuthenticationController {
     public ModelAndView doLogout(HttpSession session){
         try {
             BaseController.logout(session);
-            return new ModelAndView("redirect:/index");
+            return new ModelAndView("redirect:index");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ModelAndView("/bacheca");
+        return new ModelAndView("bacheca");
     }
 
 

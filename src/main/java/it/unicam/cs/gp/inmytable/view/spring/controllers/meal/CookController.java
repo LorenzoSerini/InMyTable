@@ -23,9 +23,9 @@ public class CookController {
     @GetMapping("/cucina")
     public String getCook(HttpSession session) {
         if (BaseController.isLoggedIn(session)) {
-            return "/cucina";
+            return "cucina";
         }
-        return "/login";
+        return "login";
     }
 
 
@@ -39,10 +39,10 @@ public class CookController {
         try {
             cookService.setLogUser((BaseController.getLogUser(session)));
             cookService.postAMeal(description, mealType,ingredients,address, consummationType,paymentType,pym,startTime,finishTime,maxNumUsers, Boolean.parseBoolean(freeSubscription));
-            return new ModelAndView("redirect:/bacheca");
+            return new ModelAndView("redirect:bacheca");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ModelAndView("redirect:/bacheca");
+            return new ModelAndView("redirect:bacheca");
         }
     }
 

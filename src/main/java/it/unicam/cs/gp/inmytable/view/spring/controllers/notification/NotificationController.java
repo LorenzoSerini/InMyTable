@@ -38,13 +38,13 @@ public class NotificationController {
             try {
                 notificationService.setLogUser(BaseController.getLogUser(session));
                 model.addAttribute("allNotifications", notificationService.getAllNotifications());
-                return "/notifiche";
+                return "notifiche";
             } catch (Exception e) {
                 e.printStackTrace();
-                return "/bacheca";
+                return "bacheca";
             }
         }
-        return "/login";
+        return "login";
     }
 
 
@@ -61,7 +61,6 @@ public class NotificationController {
                     model.addAttribute("notification", simpleNotification);
                     model.addAttribute("message","L'utente "+simpleNotification.from().getUsername()+" "+simpleNotification.getMsg());
                 }else if(notificationService.isMealNotificationsWithPendingSubscription(id)){
-                    //SubscriptionNotification<IUser, IMeal> subscriptionNotification = notificationService.getMealSubscriptionNotifications(id);
                     this.mealSubscriptionNotification = notificationService.getMealSubscriptionNotifications(id);
                     model.addAttribute("buttons", true);
                     model.addAttribute("notification", mealSubscriptionNotification);
@@ -82,52 +81,15 @@ public class NotificationController {
                     model.addAttribute("notification", subscriptionNotification);
                     model.addAttribute("message","L'utente "+subscriptionNotification.from().getUsername()+" "+subscriptionNotification.getMsg());
                 }
-                return "/notifica";
+                return "notifica";
             } catch (Exception e) {
                 e.printStackTrace();
-                return "/notifiche";
+                return "notifiche";
             }
         }
-        return "/login";
+        return "login";
     }
 
-
-   /* @PostMapping("/notificaMeal")
-    public String setAMealNotification(Model model, HttpSession session, @RequestParam("notification") SubscriptionNotification<IUser, IMeal> subscriptionNotification,
-                                              @RequestParam("accepted") boolean accepted){
-        if(BaseController.isLoggedIn(session)){
-            try {
-                notificationService.setLogUser(BaseController.getLogUser(session));
-                if(accepted){
-                    notificationService.acceptMealSubscriptionNotification(subscriptionNotification);
-                } else notificationService.refuseMealSubscriptionNotification(subscriptionNotification);
-                return "/notifiche";
-            } catch (Exception e) {
-                e.printStackTrace();
-                return "/notifiche";
-            }
-        }
-        return "/login";
-    }
-
-
-    @PostMapping("/notificaMealRequest")
-    public String setAMealRequestNotification(Model model, HttpSession session, @RequestParam("notification") SubscriptionNotification<IUser, IMealRequest> subscriptionNotification,
-                                   @RequestParam("accepted") boolean accepted){
-        if(BaseController.isLoggedIn(session)){
-            try {
-                notificationService.setLogUser(BaseController.getLogUser(session));
-                if(accepted){
-                    notificationService.acceptPrivateMealRequestSubscriptionNotification(subscriptionNotification);
-                } else notificationService.refusePrivateMealRequestSubscriptionNotification(subscriptionNotification);
-                return "/notifiche";
-            } catch (Exception e) {
-                e.printStackTrace();
-                return "/notifiche";
-            }
-        }
-        return "/login";
-    }*/
 
 
     @PostMapping("/notifica")
@@ -148,13 +110,13 @@ public class NotificationController {
                     notificationService.refusePrivateMealRequestSubscriptionNotification(mealRequestSubscriptionNotification);
                     this.mealRequestSubscriptionNotification=null;
                 }
-                return "redirect:/notifiche";
+                return "redirect:notifiche";
             } catch (Exception e) {
                 e.printStackTrace();
-                return "redirect:/notifiche";
+                return "redirect:notifiche";
             }
         }
-        return "/login";
+        return "login";
     }
 
 

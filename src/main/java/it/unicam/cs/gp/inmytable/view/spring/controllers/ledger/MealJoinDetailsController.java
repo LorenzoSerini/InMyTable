@@ -12,8 +12,8 @@ public class MealJoinDetailsController {
     public String getAllNotifications(Model model, HttpSession session){
         if(BaseController.isLoggedIn(session)){
 
-            return "/pasto-partecipato";
+            return "pasto-partecipato";
         }
-        return "/login";
+        return "login";
     }
 }

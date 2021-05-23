@@ -12,8 +12,8 @@ public class ProfileController {
     @GetMapping("/profile")
     public String getProfile(HttpSession session){
         if (BaseController.isLoggedIn(session)) {
-            return "/profile";
+            return "profile";
         }
-        return "/login";
+        return "login";
     }
 }

@@ -40,8 +40,8 @@ public class MealSubscriptionController {
                 model.addAttribute("logUser", BaseController.getLogUser(session));
                 model.addAttribute("subscription", mealSubscriptionService.getFreeSubscription(meal));
                 model.addAttribute("consummation", mealSubscriptionService.getConsummationType(meal));
-                return "/iscriviti-pasto";
-            } else return "redirect:/bacheca";
+                return "iscriviti-pasto";
+            } else return "redirect:bacheca";
         }
         return "/login";
     }
@@ -54,6 +54,6 @@ public class MealSubscriptionController {
             e.printStackTrace();
         }
         meal=null;
-        return new ModelAndView("redirect:/bacheca");
+        return new ModelAndView("redirect:bacheca");
     }
 }

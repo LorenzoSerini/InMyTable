@@ -34,12 +34,12 @@ public class FeedbackController {
                feedbackService.setLogUser(BaseController.getLogUser(session));
                 User to = feedbackService.getUser(username);
                 feedbackService.postFeedback(to,rating,comment);
-                return "redirect:/storico";
+                return "redirect:storico";
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return "redirect:/bacheca";
+            return "redirect:bacheca";
         }
-        return "/login";
+        return "login";
     }
 }

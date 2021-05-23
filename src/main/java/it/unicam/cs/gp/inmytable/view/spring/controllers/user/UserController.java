@@ -18,9 +18,9 @@ public class UserController {
     public String getProfile(Model model, HttpSession session) {
         if (BaseController.isLoggedIn(session)) {
             model.addAttribute("user", BaseController.getLogUser(session));
-            return "/profilo";
+            return "profilo";
         }
-        return "/login";
+        return "login";
     }
 
 

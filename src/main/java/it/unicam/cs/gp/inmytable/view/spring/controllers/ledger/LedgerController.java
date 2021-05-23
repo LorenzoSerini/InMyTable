@@ -23,39 +23,39 @@ public class LedgerController {
                 model.addAttribute("publishedMealRequests", ledgerService.showPublishedMealRequests());
                 model.addAttribute("notClosedMeals", ledgerService.showNotClosedAttendedMeals());
                 model.addAttribute("closedMeals", ledgerService.showClosedAttendedMeals());
-                return "/storico";
+                return "storico";
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return "redirect:/bacheca";
+            return "redirect:bacheca";
         }
-        return "/login";
+        return "login";
     }
 
     @GetMapping("/lista-pasti")
     public String getMealsList(Model model, HttpSession session){
         if(BaseController.isLoggedIn(session)){
 
-            return "/lista-pasti";
+            return "lista-pasti";
         }
-        return "/login";
+        return "login";
     }
 
     @GetMapping("/lista-richieste")
     public String getMealRequestsList(Model model, HttpSession session){
         if(BaseController.isLoggedIn(session)){
 
-            return "/lista-richieste";
+            return "lista-richieste";
         }
-        return "/login";
+        return "login";
     }
 
     @GetMapping("/lista-pasti-partecipati")
     public String getMealsJoinList(Model model, HttpSession session){
         if(BaseController.isLoggedIn(session)){
 
-            return "/lista-pasti-partecipati";
+            return "lista-pasti-partecipati";
         }
-        return "/login";
+        return "login";
     }
 }

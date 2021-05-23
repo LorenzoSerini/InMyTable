@@ -26,9 +26,9 @@ public class PublicMealRequestController {
     @GetMapping("/richiesta-pasto-pubblico")
     public String getPublicMealRequest(HttpSession session) {
         if (BaseController.isLoggedIn(session)) {
-            return "/richiesta-pasto-pubblico";
+            return "richiesta-pasto-pubblico";
         }
-        return "/login";
+        return "login";
     }
 
     @PostMapping("/richiesta-pasto-pubblico")
@@ -41,10 +41,10 @@ public class PublicMealRequestController {
         try {
             mealRequestService.setLogUser((BaseController.getLogUser(session)));
             mealRequestService.postAPublicMealRequest(description, mealType, consummationType, paymentType, startTime, finishTime, pym, address, allergy, mealsNumber);
-            return "redirect:/bacheca";
+            return "redirect:bacheca";
         } catch (Exception e) {
             e.printStackTrace();
-            return "/richiesta-pasto-pubblico";
+            return "richiesta-pasto-pubblico";
         }
     }
 
@@ -58,9 +58,9 @@ public class PublicMealRequestController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return "/ricerca-pasti-pubblici";
+            return "ricerca-pasti-pubblici";
         }
-        return "/login";
+        return "login";
     }
 
 
@@ -79,11 +79,11 @@ public class PublicMealRequestController {
                 model.addAttribute("accept", mealRequestService.canIAccept(BaseController.getLogUser(session), mealRequest));
                 model.addAttribute("consummation", mealRequestService.getConsummationType(mealRequest));
 
-                return "/accetta-richiesta-pasto-pubblico";
+                return "accetta-richiesta-pasto-pubblico";
 
-            }else return "redirect:/bacheca";
+            }else return "redirect:bacheca";
         }
-        return "/login";
+        return "login";
     }
 
 
@@ -95,7 +95,7 @@ public class PublicMealRequestController {
             e.printStackTrace();
         }
         mealRequest=null;
-        return new ModelAndView("redirect:/bacheca");
+        return new ModelAndView("redirect:bacheca");
     }
 
 

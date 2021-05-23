@@ -24,9 +24,9 @@ public class UserSearchController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return "/ricerca-utenti";
+            return "ricerca-utenti";
         }
-        return "/login";
+        return "login";
     }
 
 }

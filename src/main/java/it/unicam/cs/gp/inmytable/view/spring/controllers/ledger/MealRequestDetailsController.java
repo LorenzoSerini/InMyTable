@@ -35,12 +35,12 @@ public class MealRequestDetailsController {
                 model.addAttribute("consummation", mealSubscriptionService.getConsummationType(mealRequest));
                 model.addAttribute("payment", mealSubscriptionService.getPayment(mealRequest));
 
-                return "/richiesta";
+                return "richiesta";
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return "redirect:/bacheca";
+            return "redirect:bacheca";
         }
-        return "/login";
+        return "login";
     }
 }
