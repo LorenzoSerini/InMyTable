@@ -210,7 +210,7 @@ public class MealRequest implements IMealRequest {
         return paymentType;
     }
 
-    @Override
+   /* @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Meal)) return false;
@@ -221,5 +221,5 @@ public class MealRequest implements IMealRequest {
     @Override
     public int hashCode() {
         return Objects.hash(allergy, type, mealsNumber, mealType, place, description, price);
-    }
+    }*/
 }

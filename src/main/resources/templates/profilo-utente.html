@@ -97,13 +97,13 @@
                             <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${requestTo.address}"></label></div>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;margin-bottom: 0px;">Pasti preparati:</label></div><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;">200 Pasti</label>
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;margin-bottom: 0px;">Pasti preparati:</label></div><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${publishedMeals}"></label>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;">Email :</label></div><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${requestTo.email}"></label>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;">Media recensioni:</label></div><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;">Millemila</label>
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;">Media recensioni:</label></div><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${toUserAverage}+' su 5'"></label>
                         </div>
                     </div>
                     <hr>
@@ -112,7 +112,7 @@
         </form>
         <th:block th:if="${itIsMe == false}">
         <a class="btn btn-primary form-btn" data-bss-hover-animate="pulse" href="richiesta-pasto-privato"  style="background: #73bc43;border-color: rgba(0,0,0,0);height: 40px;width: 150px;color: rgb(255, 255, 255);font-family: Alata, sans-serif;padding-top: 7px;margin-left: 15px;margin-right: 5px;">Richiedi Pasto</a>
-        <a class="btn btn-primary form-btn" data-bss-hover-animate="pulse" style="background: #ee6226;border-color: rgba(0,0,0,0);height: 40px;width: 154px;color: rgb(255, 255, 255);font-family: Alata, sans-serif;margin-top: 0px;padding-top: 7px;margin-right: 20px;">Vedi Recensioni</a>
+        <a class="btn btn-primary form-btn" data-bss-hover-animate="pulse" th:href="@{recensioni-utente(user=${requestTo.username})}" style="background: #ee6226;border-color: rgba(0,0,0,0);height: 40px;width: 154px;color: rgb(255, 255, 255);font-family: Alata, sans-serif;margin-top: 0px;padding-top: 7px;margin-right: 20px;">Vedi Recensioni</a>
         </th:block>
     </div>
     <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" data-aos="zoom-in" style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;">

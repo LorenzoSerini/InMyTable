@@ -39,16 +39,30 @@ public class HomeWallService {
                 .collect(Collectors.toList());
     }
 
-    public Meal getAMeal(int hashCode){
+   /* public Meal getAMeal(int hashCode){
         for(Meal meal:getPendingMealCatalog()){
             if(hashCode==meal.hashCode()) return meal;
         }
         return null;
+    }*/
+
+    public Meal getAMeal(String id){
+        for(Meal meal:getPendingMealCatalog()){
+            if(meal.getId().equals(id)) return meal;
+        }
+        return null;
     }
 
-    public MealRequest getAMealRequest(int hashCode){
+   /* public MealRequest getAMealRequest(int hashCode){
         for(MealRequest mealRequest:getPendingMealRequestCatalog()){
             if(hashCode==mealRequest.hashCode()) return mealRequest;
+        }
+        return null;
+    }*/
+
+    public MealRequest getAMealRequest(String id){
+        for(MealRequest mealRequest:getPendingMealRequestCatalog()){
+            if(mealRequest.getId().equals(id)) return mealRequest;
         }
         return null;
     }

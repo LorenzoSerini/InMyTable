@@ -1,7 +1,10 @@
 package it.unicam.cs.gp.inmytable.view.spring.controllers.mealRequest;
 
+import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 import it.unicam.cs.gp.inmytable.user.User;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
+import it.unicam.cs.gp.inmytable.view.spring.services.FeedbackService;
+import it.unicam.cs.gp.inmytable.view.spring.services.LedgerService;
 import it.unicam.cs.gp.inmytable.view.spring.services.PrivateMealRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,19 +22,29 @@ public class PrivateMealRequestController {
     @Autowired
     PrivateMealRequestService privateMealRequestService;
 
+    @Autowired
+    LedgerService ledgerService;
+
+    @Autowired
+    FeedbackService feedbackService;
+
     @GetMapping("/profilo-utente")
     public String getUserProfile(Model model, HttpSession session, @RequestParam("user") String username){
         if (BaseController.isLoggedIn(session)) {
             try {
                 privateMealRequestService.setLogUser(BaseController.getLogUser(session));
+                feedbackService.setLogUser(BaseController.getLogUser(session));
                 this.requestTo = privateMealRequestService.getUser(username);
+                ledgerService.setLogUser(requestTo);
+                model.addAttribute("publishedMeals", ledgerService.showPublishedMeals(p->p.getState().equals(MealStates.EXPIRED)).size());
+                model.addAttribute("requestTo", requestTo);
+                model.addAttribute("itIsMe", privateMealRequestService.itIsMe(requestTo));
+                model.addAttribute("toUserAverage", feedbackService.getToFeedbacksAverage(requestTo));
+                return "profilo-utente";
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            model.addAttribute("requestTo", requestTo);
-            model.addAttribute("itIsMe", privateMealRequestService.itIsMe(requestTo));
-            return "profilo-utente";
+            return "redirect:bacheca";
         }
         return "login";
     }

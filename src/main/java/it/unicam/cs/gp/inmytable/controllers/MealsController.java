@@ -99,11 +99,11 @@ public class MealsController {
 
 
     public List<Meal> showPublishedMeals() throws Exception {
-        return mealPersistence.getMealsList().stream().filter(p -> p.getHomeOwner().equals(this.logUser)).collect(Collectors.toList());
+        return mealPersistence.getMealsList().stream().filter(p->p.getHomeOwner()!=null).filter(p -> p.getHomeOwner().equals(this.logUser)).collect(Collectors.toList());
     }
 
     public List<Meal> showPublishedMeals(Predicate<Meal> predicate) throws Exception {
-        return mealPersistence.getMealsList().stream().filter(p -> p.getHomeOwner().equals(this.logUser)).filter(predicate).collect(Collectors.toList());
+        return mealPersistence.getMealsList().stream().filter(p->p.getHomeOwner()!=null).filter(p -> p.getHomeOwner().equals(this.logUser)).filter(predicate).collect(Collectors.toList());
     }
 
     public List<Meal> showAttendedMeals() throws Exception {

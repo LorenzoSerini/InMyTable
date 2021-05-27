@@ -5,28 +5,22 @@ import java.util.List;
 
 public class FeedbackBox {
     private List<Feedback> feedbacks;
-    private double average;
 
     public FeedbackBox(){
         feedbacks = new ArrayList<>();
-        average = 0;
     }
 
-    public double getAvg(){
-        return average;
-    }
 
-    private double getRating(){
-        double count = 0;
+    public double getAverage(){
+        double average = 0;
         for (Feedback feedback: feedbacks) {
-            count += feedback.getRating();
+            average += feedback.getRating();
         }
-        return count/feedbacks.size();
+        return average/feedbacks.size();
     }
 
     public void addFeedback(Feedback feedback){
         feedbacks.add(feedback);
-        average = getRating();
     }
 
     public List<Feedback> getFeedbacks(){

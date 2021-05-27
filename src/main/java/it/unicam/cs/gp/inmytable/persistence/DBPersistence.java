@@ -85,21 +85,26 @@ public abstract class DBPersistence extends DBConnection implements Persistence{
     private void fillMealMap() throws Exception {
         String sql = "Select * from Meal";
         setData(sql);
+        Meal meal = null;
         while (getData().next()) {
             if(! getMealsMap().containsKey(getData().getString("Id"))) {
                 User homeOwner = getUsers().get(getData().getString("HomeOwner"));
-                Meal meal = new Meal(homeOwner, getData().getInt("MaxNumberUsers"), LocalDate.parse(getData().getString("Date")), LocalTime.parse(getData().getString("Time")),
+                 meal = new Meal(homeOwner, getData().getInt("MaxNumberUsers"), LocalDate.parse(getData().getString("Date")), LocalTime.parse(getData().getString("Time")),
                         LocalDate.parse(getData().getString("ExpiringDate")), LocalTime.parse(getData().getString("ExpiringTime")), getData().getString("MealType"), getData().getBoolean("FreeSubscription"),
                         getData().getString("Place"), ConsumationType.valueOf(getData().getString("ConsumationType")), getData().getString("Description"), getData().getString("Ingredients"), PaymentType.valueOf(getData().getString("Payment")),
                         getData().getString("Price"));
                 meal.setId(getData().getString("Id"));
                 getMealsMap().put(meal.getId(), meal);
-                updateMeal(meal);
+               // updateMeal(meal);
             }
         }
         for (String k:  getMealsMap().keySet()){
-            addUsersInMeal(getMealsMap().get(k));
+            if(mealsMap.get(k).getState().equals(MealStates.EXPIRED)){
+                addUsersInMeal(getMealsMap().get(k));
+                mealsMap.get(k).setState(MealStates.EXPIRED);
+            } else addUsersInMeal(getMealsMap().get(k));
         }
+        if(meal!=null) updateMeal(meal);
     }
 
 
@@ -116,7 +121,7 @@ public abstract class DBPersistence extends DBConnection implements Persistence{
                             LocalTime.parse(getData().getString("Time")), LocalDate.parse(getData().getString("ExpiryDate")), LocalTime.parse(getData().getString("ExpiryTime")),
                             getData().getString("Price"), getData().getString("Place"), getData().getString("Allergy"), getData().getInt("MealsNumber"));
                     pubMealRequest.setId(getData().getString("Id"));
-                    pubMealRequest.setState(MealStates.valueOf(getData().getString("MealState")));
+                    if(pubMealRequest.getState().equals(MealStates.PENDING)) pubMealRequest.setState(MealStates.valueOf(getData().getString("MealState")));
                     if (homeOwner != null) pubMealRequest.setHomeOwner(homeOwner);
                     mealsRequestMap.put(pubMealRequest.getId(), pubMealRequest);
                     updateMealRequest(pubMealRequest);
@@ -126,7 +131,7 @@ public abstract class DBPersistence extends DBConnection implements Persistence{
                             LocalTime.parse(getData().getString("Time")), LocalDate.parse(getData().getString("ExpiryDate")), LocalTime.parse(getData().getString("ExpiryTime")),
                             getData().getString("Price"), getData().getString("Place"), getData().getString("Allergy"), getData().getInt("MealsNumber"), homeOwner);
                     priMealRequest.setId(getData().getString("Id"));
-                    priMealRequest.setState(MealStates.valueOf(getData().getString("MealState")));
+                    if(priMealRequest.getState().equals(MealStates.PENDING)) priMealRequest.setState(MealStates.valueOf(getData().getString("MealState")));
                     mealsRequestMap.put(priMealRequest.getId(),priMealRequest);
                     updateMealRequest(priMealRequest);
                 }

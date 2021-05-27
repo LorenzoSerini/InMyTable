@@ -1,4 +1,5 @@
 package it.unicam.cs.gp.inmytable.controllers;
+import it.unicam.cs.gp.inmytable.allmeals.Food;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionManager;
 import it.unicam.cs.gp.inmytable.persistence.FeedbackDB;
 import it.unicam.cs.gp.inmytable.persistence.FeedbackPersistence;
@@ -36,10 +37,10 @@ public class UserController {
      * @param rating    rating of the feedback
      * @param comment   comment of the feedback
      */
-    public void leaveFeedback(User to, int rating, String comment) throws Exception {
+    public void leaveFeedback(User to, int rating, String comment, Food food) throws Exception {
         if (to ==null || comment == null) throw new NullPointerException("One parameter is null");
         if (user.equals(to)) throw new IllegalArgumentException("You cannot leave a comment to yourself!");
-        Feedback feedback = new Feedback(this.user, to,rating,comment);
+        Feedback feedback = new Feedback(this.user, to,rating,comment, food);
         this.user.getFeedbackBox().addFeedback(feedback);
         to.getFeedbackBox().addFeedback(feedback);
         feedbackPersistence.registerFeedback(feedback);

@@ -1,0 +1,53 @@
+ 
+  .notification-box{
+    padding: 10px 0px; 
+  }
+  .bg-gray{
+    background-color: #eee;
+  }
+  @media (max-width: 640px) {
+     
+      .nav{
+        display: block;
+      }
+      .nav .nav-item,.nav .nav-item a{
+        padding-right: 60px;
+      }
+      .message{
+        font-size: 13px;
+      }
+  }
+      /*marker pasti disponibili*/
+      .marker-dis {
+        background-image: url("/assets/img/mapbox-icon-dis.png");
+        background-size: cover;
+        width: 25px;
+        height: 30px;
+        cursor: pointer;
+    }
+    /*marker pasti richesti (non sono riuscito a trovare un modo per farli vedere entrambi allo stesso tempo riga 544)*/
+    .marker-ric {
+        background-image: url("/assets/img/mapbox-icon-ric.png");
+        background-size: cover;
+        width: 25px;
+        height: 30px;
+        cursor: pointer;
+    }
+    .mapboxgl-popup {
+        max-width: 200px;
+    }
+
+    .mapboxgl-popup-content {
+        text-align: center;
+        font-family: Alata, sans-serif;
+    }
+    .btn-go {
+        width: 130px;
+        height: 30px;
+        color: white;
+        border-radius: 20px;
+        border-color: transparent;
+        background-color: #fe9e02;
+        font-size: 15px;
+
+    }

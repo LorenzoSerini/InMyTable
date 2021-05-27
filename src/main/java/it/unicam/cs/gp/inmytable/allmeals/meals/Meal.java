@@ -299,7 +299,7 @@ public class Meal implements IMeal{
 		return Objects.hash(maxNumberUsers, payment, freeSubscription, mealType, place, description, price, ingredients);
 	}*/
 
-	@Override
+/*	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -358,6 +358,6 @@ public class Meal implements IMeal{
 		} else if (!price.equals(other.price))
 			return false;
 		return true;
-	}
+	}*/
 
 }

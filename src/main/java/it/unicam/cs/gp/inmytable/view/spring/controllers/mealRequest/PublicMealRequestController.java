@@ -49,7 +49,7 @@ public class PublicMealRequestController {
     }
 
 
-    @GetMapping("/ricerca-pasti-pubblici")
+    @GetMapping("/ricerca-richieste-pasti-pubbliche")
     public String getPublicMeals(Model model, HttpSession session) {
         if(BaseController.isLoggedIn(session)) {
             try {
@@ -58,14 +58,14 @@ public class PublicMealRequestController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return "ricerca-pasti-pubblici";
+            return "ricerca-richieste-pasti-pubbliche";
         }
         return "login";
     }
 
 
     @GetMapping("/accetta-richiesta-pasto-pubblico")
-    public String acceptPublicMealRequest(Model model, HttpSession session, @RequestParam("mealRequest") int hashCode) {
+    public String acceptPublicMealRequest(Model model, HttpSession session, @RequestParam("mealRequest") String id) {
         if(BaseController.isLoggedIn(session)) {
             try {
                 homeWallService.setLogUser(BaseController.getLogUser(session));
@@ -73,7 +73,7 @@ public class PublicMealRequestController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            this.mealRequest = homeWallService.getAMealRequest(hashCode);
+            this.mealRequest = homeWallService.getAMealRequest(id);
             if(mealRequest!=null){
                 model.addAttribute("mealRequest", mealRequest);
                 model.addAttribute("accept", mealRequestService.canIAccept(BaseController.getLogUser(session), mealRequest));

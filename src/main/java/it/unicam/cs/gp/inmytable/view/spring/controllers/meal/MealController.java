@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class MealSubscriptionController {
+public class MealController {
     @Autowired
     HomeWallService homeWallService;
     @Autowired
@@ -25,7 +25,7 @@ public class MealSubscriptionController {
 
 
     @GetMapping("/iscriviti-pasto")
-    public String getMealSubscription(Model model, HttpSession session, @RequestParam("meal") int hashCode){
+    public String getMealSubscription(Model model, HttpSession session, @RequestParam("meal") String id){
         if (BaseController.isLoggedIn(session)) {
             try {
                 homeWallService.setLogUser(BaseController.getLogUser(session));
@@ -33,7 +33,7 @@ public class MealSubscriptionController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            this.meal = homeWallService.getAMeal(hashCode);
+            this.meal = homeWallService.getAMeal(id);
             if (meal != null) {
                 model.addAttribute("meal", meal);
                 model.addAttribute("signUp", mealSubscriptionService.canISignUp(BaseController.getLogUser(session), meal));
@@ -55,5 +55,23 @@ public class MealSubscriptionController {
         }
         meal=null;
         return new ModelAndView("redirect:bacheca");
+    }
+
+
+
+
+    @GetMapping("/ricerca-pasti-pubblici")
+    public String getPublicMeals(Model model, HttpSession session) {
+        if (BaseController.isLoggedIn(session)) {
+            try {
+                homeWallService.setLogUser((BaseController.getLogUser(session)));
+                model.addAttribute("pendingMealCatalog", homeWallService.getPendingMealCatalog());
+                return "ricerca-pasti-pubblici";
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "redirect:bacheca";
+        }
+        return "login";
     }
 }

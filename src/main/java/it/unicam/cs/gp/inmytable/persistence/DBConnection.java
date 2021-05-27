@@ -30,7 +30,7 @@ public abstract class DBConnection {
     }
 
     private void defaultConnection() throws SQLException {
-        this.connection(CONNECTION_STRING, USERNAME, PASSWORD);
+        this.connection(LOCAL_CONNECTION_STRING, LOCAL_USERNAME, LOCAL_PASSWORD);
     }
 
     public Connection getConnection(){

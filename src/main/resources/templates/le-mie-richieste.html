@@ -91,94 +91,8 @@
     </div>
 </nav>
 <div style="height: 109px;"></div>
-<h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 20px;color: rgb(255,255,255);margin-top: -20px;background: #fe9e02;"><br>Il mio storico<br><br></h2>
-<h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 40px;color: #73bc43;font-size: 28px;margin-top: 40px;">I pasti cucinati</h2>
+<h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 20px;color: rgb(255,255,255);margin-top: -20px;background: #73bc43;"><br>Le mie richieste pasto in corso di svolgimento<br><br></h2>
 <div></div>
-
-<div class="container">
-    <div class="row">
-        <div class="col" style="margin-bottom: 20px;">
-            <div class="card shadow">
-                <div class="card-header py-2"></div>
-                <div class="card-body">
-                    <div class="table-responsive table mb-0 pt-3 pe-2">
-                        <table class="table table-striped table-sm my-0 mydatatable">
-                            <thead>
-                            <tr>
-                                <th style="font-family: Alata, sans-serif;width: 200px;text-align: center;">Nome pasto</th>
-                                <th style="font-family: Alata, sans-serif;width: 118px;text-align: center;">Data pasto</th>
-                                <th style="font-family: Alata, sans-serif;width: 140px;text-align: center;">Posti Totali</th>
-                                <th style="font-family: Alata, sans-serif;width: 100px;text-align: center;">Partecipanti</th>
-                                <th style="font-family: Alata, sans-serif;width: 170px;text-align: center;max-width: 150px;">Media recensioni</th>
-                                <th style="font-family: Alata, sans-serif;text-align: right;"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="meal:${publishedMeals}">
-                                <td style="font-family: Alata, sans-serif;text-align: center;" th:text="${meal.description}"></td>
-                                <td style="font-family: Alata, sans-serif;text-align: center;" th:text="${meal.date}"></td>
-                                <td style="font-family: Alata, sans-serif;text-align: center;" th:text="${meal.maxNumberUsers}" ></td>
-                                <td style="font-family: Alata, sans-serif;text-align: center;width: 130px;" th:text="${meal.maxNumberUsers-meal.placesAvailable}"></td>
-                                <td style="font-family: Alata, sans-serif;text-align: center;">5,0/5&nbsp; &nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star fa-star-o"></i></td>
-                                <td style="font-family: Alata, sans-serif;text-align: right;width: 130px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" th:href="@{dettagli-pasto-cucinato(meal=${meal.id})}" style="background: #fe9e02;padding-top: 0px;width: 168px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 19px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;">Vedi dettagli</a></td>
-                            </tr>
-
-
-                           <!-- <tr></tr>-->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-    <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 20px;color: #73bc43;font-size: 28px;margin-top: 20px;">I pasti ai quali ho partecipato</h2>
-    <div class="container">
-        <div class="row">
-            <div class="col" style="margin-bottom: 20px;">
-                <div class="card shadow">
-                    <div class="card-header py-2"></div>
-                    <div class="card-body">
-                        <div class="table-responsive table mb-0 pt-3 pe-2">
-                            <table class="table table-striped table-sm my-0 mydatatable">
-                                <thead>
-                                <tr>
-                                    <th style="font-family: Alata, sans-serif;width: 200px;text-align: center;">Nome pasto</th>
-                                    <th style="font-family: Alata, sans-serif;width: 100px;text-align: center;">Padrone di casa</th>
-                                    <th style="font-family: Alata, sans-serif;width: 118px;text-align: center;">Data pasto</th>
-                                    <th style="font-family: Alata, sans-serif;width: 140px;text-align: center;">Partecipanti</th>
-                                    <th style="font-family: Alata, sans-serif;width: 170px;text-align: center;max-width: 150px;">La tua recensione</th>
-                                    <th style="font-family: Alata, sans-serif;text-align: right;"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="closedMeals:${closedMeals}">
-                                    <td style="font-family: Alata, sans-serif;text-align: center;" th:text="${closedMeals.description}"></td>
-                                    <td style="font-family: Alata, sans-serif;text-align: center;width: 130px;" th:text="${closedMeals.homeOwner.username}"></td>
-                                    <td style="font-family: Alata, sans-serif;text-align: center;" th:text="${closedMeals.date}"></td>
-                                    <td style="font-family: Alata, sans-serif;text-align: center;" th:text="${closedMeals.maxNumberUsers-closedMeals.placesAvailable+'/'+closedMeals.maxNumberUsers}"></td>
-                                    <td style="font-family: Alata, sans-serif;text-align: center;">5,0/5&nbsp; &nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star fa-star-o"></i></td>
-                                    <td style="font-family: Alata, sans-serif;text-align: right;width: 130px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" th:href="@{dettagli-pasto-partecipato(meal=${closedMeals.id})}" style="background: #fe9e02;padding-top: 0px;width: 168px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 19px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;">Vedi dettagli</a></td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
 
 <div class="container">
     <div class="row">
@@ -234,7 +148,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>   
 
 
 <div class="container">
@@ -265,7 +179,7 @@
                             <tbody>
                             <tr th:each="mealRequest:${answeredMealRequests}">
                                 <th:block th:if="${mealRequest.type.toString == 'PRIVATE'}">
-                                    <td style="font-family: Alata, sans-serif;text-align: center;">Privata</td>
+                                <td style="font-family: Alata, sans-serif;text-align: center;">Privata</td>
                                 </th:block>
                                 <th:block th:if="${mealRequest.type.toString == 'PUBLIC'}">
                                     <td style="font-family: Alata, sans-serif;text-align: center;">Pubblica</td>
@@ -275,7 +189,7 @@
                                 <td style="font-family: Alata, sans-serif;text-align: center;" th:text="${mealRequest.time}"></td>
                                 <td style="font-family: Alata, sans-serif;text-align: center;width: 130px;" th:text="${mealRequest.mealsNumber}"></td>
                                 <td style="font-family: Alata, sans-serif;text-align: center;" th:text="${mealRequest.description}"></td>
-                                <td style="font-family: Alata, sans-serif;text-align: right;width: 140px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" th:href="@{richiesta-ricevuta(mealRequest=${mealRequest.id})}"  style="background: #73bc43;padding-top: 0px;width: 168px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 19px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;">Vedi dettagli</a></td>
+                                <td style="font-family: Alata, sans-serif;text-align: right;width: 140px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" th:href="@{richiesta-ricevuta(mealRequest=${mealRequest.id})}" style="background: #73bc43;padding-top: 0px;width: 168px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 19px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;">Vedi dettagli</a></td>
                             </tr>
 
                             <!-- <tr></tr>-->
@@ -289,8 +203,9 @@
 </div>
 
 
-
-
+</div>
+</div>
+</div>
 <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;">
     <footer style="border-color: rgb(240, 249, 255);border-top-color: rgb(240,;border-right-color: 249,;border-bottom-color: 255);border-left-color: 249,;color: var(--bs-white);height: 214.328px;">
         <div class="container">

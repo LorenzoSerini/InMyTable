@@ -71,7 +71,6 @@
 </head>
 
 <body>
-<h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 0px;color: #fe9e02;margin-top: 77px;background: rgba(0,0,0,0);">Pasto cucinato<br></h2>
 <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 0px;color: #73bc43;margin-top: 20px;background: rgba(0,0,0,0);font-size: 24px;" th:text="${meal.description}"><br></h2>
 <div class="container" style="border-radius: 0px;">
     <div class="row product-list dev" style="margin-top: 63px;margin-bottom: 50px;">
@@ -113,10 +112,59 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+                <div class="container">
+                    <div class="row" style="margin-top:5px;">
+                        <div class="col-md-6" style="padding-top: 20px; border-radius: 10px; border-radius: 0.2;">
+                            <div class="well well-sm">
+                                <div class="text-right">
+                                    <th:block th:if="${meal.homeOwner!=null}">
+                                        <th:block th:if="${meal.state.toString == 'EXPIRED'}">
+                                            <th:block th:if="${iSendFeedback == false}">
+                                            <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box" style="background-color: #73bc43; border-color: transparent; border-radius: 20px;">Lascia una recensione</a>
+                                            </th:block>
+                                            <th:block th:if="${iSendFeedback == true}">
+                                                <label style="font-family: Alata, sans-serif;width: 160px;text-align: center;">Recensione Inviata!</label>
+                                            </th:block>
+                                        </th:block>
+                                    </th:block>
+
+                                </div>
+
+                                <div class="row" id="post-review-box" style="display:none;">
+                                    <div class="col-md-12">
+                                        <th:block th:if="${meal.homeOwner!=null}">
+                                            <form accept-charset="UTF-8" action="/invia-feedback" method="post">
+                                                <input id="ratings-hidden" type="hidden">
+                                                <textarea class="form-control animated" cols="50" name="user" th:text="${meal.homeOwner.username}" readonly  style=" text-align:center; width: 500px; height: 10px;"></textarea>
+                                                <textarea class="form-control animated" cols="50" name="food" th:text="${meal.id}"  style="display:none;"></textarea>
+                                                <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Scrivi la tua recensione qui..." rows="5" style="width: 500px; height: 100px;"></textarea>
+                                                <div style="color:gray; padding-top:8px; padding-bottom:8px; width:200px">Dai un voto al padrone di casa</div>
+                                                <input type="number" class="form-control" name="rating" min="1" max="5" required style="width: 65px;font-size: 15px; padding:10px" />
+                                                <div class="text-right">
+                                                    <a class="btn btn-success btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;border-radius: 20px;
+                            background-color: #ee6226; border-color: transparent; margin-left:100px; margin-top: -48px;">
+                                                        <span class="glyphicon glyphicon-remove"></span>Cancella</a>
+                                                    <button class="btn btn-success btn-md" type="submit" style="border-color: transparent;background-color: #73bc43;border-radius: 20px; margin-top: -48px;">Invia</button>
+                                                </div>
+                                            </form>
+                                        </th:block>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 40px;color: #73bc43;margin-top: 0px;background: rgba(0,0,0,0);font-size: 28px;">Lista partecipanti<br></h2>
 <div class="container">
     <div class="row">
@@ -142,33 +190,6 @@
                                 <td style="font-family: Alata, sans-serif;text-align: center;padding-top: 8px;padding-bottom: 0px;">4,0/5&nbsp; &nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star fa-star-o"></i></td>
                                 <td style="font-family: Alata, sans-serif;text-align: left;width: 130px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" th:href="@{profilo-utente(user=${user.username})}" style="background: #fe9e02;padding-top: 4px;width: 120px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 14px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;margin-top: 1px;">Vedi profilo</a></td>
                                 <td style="font-family: Alata, sans-serif;text-align: right;width: 130px;padding-top: 0px;padding-bottom: 0px;margin-top: 0px;"><div class="container" style="width: 270px;">
-                                    <div class="row" style="margin-top:5px;">
-                                        <div class="col-md-6" style=" border-radius: 10px; border-radius: 0.2;">
-                                            <div class="well well-sm">
-                                                <div class="text-right">
-                                                    <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box" style="width:200px; height: 30px;font-size:13px; background-color: #73bc43; border-color: transparent; border-radius: 20px;">Lascia una recensione</a>
-                                                </div>
-
-                                                <div class="row" id="post-review-box" style="display:none;">
-                                                    <div class="col-md-12">
-                                                        <form accept-charset="UTF-8" action="/invia-feedback" method="post">
-                                                            <input id="ratings-hidden" type="hidden">
-                                                            <textarea class="form-control animated" cols="50" name="user" th:text="${user.username}" readonly  style=" text-align:center; width: 280px; height: 10px;"></textarea>
-                                                            <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Scrivi la tua recensione qui..." rows="5" style="width: 280px; height: 100px;"></textarea>
-                                                            <div style="color:gray; padding-top:8px; padding-bottom:8px; width:200px">Dai un voto all'ospite</div>
-                                                            <input type="number" class="form-control" name="rating" min="1" max="5" required style="width: 65px;font-size: 15px; padding:10px" />
-                                                            <div class="text-right">
-                                                                <a class="btn btn-success btn-sm" href="#" id="close-review-box" style="display:none; ;border-radius: 20px;
-                            background-color: #ee6226; border-color: transparent; margin-left:80px; margin-top: -60px;">
-                                                                    <span class="glyphicon glyphicon-remove"></span>Cancella</a>
-                                                                <button class="btn btn-success btn-md" type="submit" style="border-color: transparent; background-color: #73bc43;border-radius: 20px; margin-top: -108px; margin-left:160px;">Invia</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div></td>
                             </tr>
                             <tr></tr>

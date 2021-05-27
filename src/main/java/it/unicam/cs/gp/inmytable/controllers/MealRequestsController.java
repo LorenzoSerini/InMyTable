@@ -114,19 +114,21 @@ public class MealRequestsController {
 
 
     public List<MealRequest> showPublishedMealRequests() throws Exception {
-        return mealRequestPersistence.getMealsRequestList().stream().filter(p -> p.getHost().equals(this.logUser)).collect(Collectors.toList());
+        return mealRequestPersistence.getMealsRequestList().stream().filter(p->p.getHost()!=null).filter(p -> p.getHost().equals(this.logUser)).collect(Collectors.toList());
     }
 
     public List<MealRequest> showPublishedMealRequests(Predicate<MealRequest> predicate) throws Exception {
-        return mealRequestPersistence.getMealsRequestList().stream().filter(p -> p.getHost().equals(this.logUser)).filter(predicate).collect(Collectors.toList());
+        //return mealRequestPersistence.getMealsRequestList().stream().filter(p->p.getHost()!=null).filter(p -> p.getHost().equals(this.logUser)).filter(predicate).collect(Collectors.toList());
+        return this.showPublishedMealRequests().stream().filter(predicate).collect(Collectors.toList());
     }
 
     public List<MealRequest> showAnsweredMealRequests() throws Exception {
-        return mealRequestPersistence.getMealsRequestList().stream().filter(p -> p.getHomeOwner().equals(this.logUser)).collect(Collectors.toList());
+        return mealRequestPersistence.getMealsRequestList().stream().filter(p->p.getHomeOwner()!=null).filter(p -> p.getHomeOwner().equals(this.logUser)).collect(Collectors.toList());
     }
 
     public List<MealRequest> showAnsweredMealRequests(Predicate<MealRequest> predicate) throws Exception {
-        return mealRequestPersistence.getMealsRequestList().stream().filter(p -> p.getHomeOwner().equals(this.logUser)).filter(predicate).collect(Collectors.toList());
+      //  return mealRequestPersistence.getMealsRequestList().stream().filter(p->p.getHomeOwner()!=null).filter(p -> p.getHomeOwner().equals(this.logUser)).filter(predicate).collect(Collectors.toList());
+        return this.showAnsweredMealRequests().stream().filter(predicate).collect(Collectors.toList());
     }
 
 

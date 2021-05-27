@@ -91,10 +91,10 @@
         </div>
     </nav>
     <th:block th:if="${mealRequest.type.toString == 'PRIVATE'}">
-        <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 0px;color: #fe9e02;margin-top: 77px;background: rgba(0,0,0,0);">Richiesta pasto Privato<br></h2>
+        <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 0px;color: #fe9e02;margin-top: 77px;background: rgba(0,0,0,0);">Richiesta Pasto Privato<br></h2>
     </th:block>
     <th:block th:if="${mealRequest.type.toString == 'PUBLIC'}">
-        <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 0px;color: #fe9e02;margin-top: 77px;background: rgba(0,0,0,0);">Richiesta pasto Pubblico<br></h2>
+        <h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 0px;color: #fe9e02;margin-top: 77px;background: rgba(0,0,0,0);">Richiesta Pasto Pubblico<br></h2>
     </th:block>
     <div class="container" style="border-radius: 0px;">
         <div class="row product-list dev" style="margin-top: 63px;margin-bottom: 50px;">
@@ -103,14 +103,8 @@
                     <div class="row">
                         <div class="col-6 offset-0">
                             <h2 class="display-5" style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Titolo pasto richiesto</h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;" th:text="${mealRequest.description}"><br></a>
-                            <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Padrone di casa</h2>
-                            <th:block th:if="${mealRequest.homeOwner!=null}">
-                                <a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;" th:text="${mealRequest.homeOwner.username}"><br></a>
-                            </th:block>
-                            <th:block th:if="${mealRequest.homeOwner==null}">
-                                <a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;">Senza risposta<br></a>
-                            </th:block>
-
+                            <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Ospite</h2>
+                                <a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;" th:text="${mealRequest.host.username}"><br></a>
                             <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Numero porzioni</h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;" th:text="${mealRequest.mealsNumber}"></a>
                         </div>
                         <div class="col-6">
@@ -147,23 +141,30 @@
                                 </div>
                             </div>
                         </div>
-                    </div><div class="container">
+                    </div>
+
+                    <div class="container">
 	<div class="row" style="margin-top:5px;">
 		<div class="col-md-6" style="padding-top: 20px; border-radius: 10px; border-radius: 0.2;">
     	<div class="well well-sm">
             <div class="text-right">
-                <th:block th:if="${mealRequest.homeOwner!=null}">
-                    <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box" style="background-color: #73bc43; border-color: transparent; border-radius: 20px;">Lascia una recensione</a>
-                </th:block>
+                    <th:block th:if="${mealRequest.state.toString == 'EXPIRED'}">
+                      <th:block th:if="${iSendFeedback == false}">
+                        <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box" style="background-color: #73bc43; border-color: transparent; border-radius: 20px;">Lascia una recensione</a>
+                      </th:block>
+                      <th:block th:if="${iSendFeedback == true}">
+                        <label style="font-family: Alata, sans-serif;width: 160px;text-align: center;">Recensione Inviata!</label>
+                      </th:block>
+                    </th:block>
 
             </div>
         
             <div class="row" id="post-review-box" style="display:none;">
                 <div class="col-md-12">
-
                     <form accept-charset="UTF-8" action="/invia-feedback" method="post">
                         <input id="ratings-hidden" type="hidden">
-                        <textarea class="form-control animated" cols="50" name="user" th:text="${mealRequest.homeOwner.username}" readonly  style=" text-align:center; width: 500px; height: 10px;"></textarea>
+                        <textarea class="form-control animated" cols="50" name="user" th:text="${mealRequest.host.username}" readonly  style=" text-align:center; width: 500px; height: 10px;"></textarea>
+                        <textarea class="form-control animated" cols="50" name="food" th:text="${mealRequest.id}"  style="display:none;"></textarea>
                         <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Scrivi la tua recensione qui..." rows="5" style="width: 500px; height: 100px;"></textarea>
                         <div style="color:gray; padding-top:8px; padding-bottom:8px; width:200px">Dai un voto all'ospite</div>
                         <input type="number" class="form-control" name="rating" min="1" max="5" required style="width: 65px;font-size: 15px; padding:10px" />
@@ -174,7 +175,6 @@
                             <button class="btn btn-success btn-md" type="submit" style="border-color: transparent;background-color: #73bc43;border-radius: 20px; margin-top: -48px;">Invia</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div> 
@@ -185,7 +185,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12 text-center" style="margin-top: -30px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="storico" style="background: #fe9e02;padding-top: 8px;width: 210px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 0px;text-align: center;margin-right: 0px;margin-top: 20px;padding-right: 10px;padding-left: 10px;font-size: 20px;">Torna indietro</a></div>
+
     <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 20px;padding-bottom: 40px;margin-top: 0px;">
         <footer style="border-color: rgb(240, 249, 255);border-top-color: rgb(240,;border-right-color: 249,;border-bottom-color: 255);border-left-color: 249,;color: var(--bs-white);height: 214.328px;">
             <div class="container">

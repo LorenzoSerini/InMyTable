@@ -43,6 +43,18 @@ public class LedgerService {
         return mealRequestsController.showPublishedMealRequests();
     }
 
+    public List<MealRequest> showPublishedMealRequests(Predicate<MealRequest> predicate) throws Exception {
+        return mealRequestsController.showPublishedMealRequests(predicate);
+    }
+
+    public List<MealRequest> showAnsweredMealRequests() throws Exception {
+        return mealRequestsController.showAnsweredMealRequests();
+    }
+
+    public List<MealRequest> showAnsweredMealRequests(Predicate<MealRequest> predicate) throws Exception {
+        return mealRequestsController.showAnsweredMealRequests(predicate);
+    }
+
     public List<Meal> showClosedAttendedMeals() throws Exception {
         return mealsController.showAttendedMeals(p->!p.getState().equals(MealStates.PENDING));
     }

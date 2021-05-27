@@ -1,23 +1,28 @@
 package it.unicam.cs.gp.inmytable.user;
 
+import it.unicam.cs.gp.inmytable.allmeals.Food;
+
 import java.util.UUID;
 
 public class Feedback {
-    private int rating;
+    private double rating;
     private String comment;
     private User to;
     private User from;
     private String id;
+    private Food food;
 
-    public Feedback(User from, User to, int rating , String comment ){
+
+    public Feedback(User from, User to, double rating , String comment, Food food ){
         this.from = from;
         this.to = to;
         this.rating = rating;
         this.comment=comment;
+        this.food = food;
         this.id = UUID.randomUUID().toString();
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
@@ -31,6 +36,10 @@ public class Feedback {
 
     public User getFrom() {
         return from;
+    }
+
+    public Food getFood() {
+        return this.food;
     }
 
     public void setId(String id) {
