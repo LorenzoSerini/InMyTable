@@ -33,7 +33,7 @@ public abstract class DBConnection {
     }
 
     private void defaultConnection() throws SQLException {
-        this.connection(IMT_CONNECTION_STRING, IMT_USERNAME, IMT_PASSWORD);
+        this.connection(CONNECTION_STRING, USERNAME, PASSWORD);
     }
 
     public Connection getConnection(){
