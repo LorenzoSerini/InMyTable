@@ -10,7 +10,7 @@ public abstract class DBConnection {
     private static final String USERNAME = "sql11414097";
     private static final String PASSWORD =  "9JRJiUcdeg";
     private static final String IMT_CONNECTION_STRING = "jdbc:mysql://lhcp3182.webapps.net:3306/fy4dfjj1_uniu21";
-    private static final String IMT_USERNAME = "fy4dfjj1_fy4dfjj1";
+    private static final String IMT_USERNAME = "fy4dfjj1";
     private static final String IMT_PASSWORD =  "KpyQg92E_Gng";
     private static final String LOCAL_CONNECTION_STRING = "jdbc:mysql://127.0.0.1:3306/inmytable";
     private static final String LOCAL_USERNAME = "root";
