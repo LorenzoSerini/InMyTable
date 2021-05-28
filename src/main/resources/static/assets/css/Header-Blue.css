@@ -85,8 +85,7 @@
   margin-top: -5px;
   box-shadow: 0 4px 8px rgba(0,0,0,.1);
   background-color: #fff;
-  border-radius: 2px;
-}
+  border-radius: 2px;}
 
 .header-blue .navbar .dropdown-menu .dropdown-item:focus, .header-blue .navbar .dropdown-menu .dropdown-item {
   line-height: 2;

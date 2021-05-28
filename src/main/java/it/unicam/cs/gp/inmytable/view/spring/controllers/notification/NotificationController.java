@@ -28,9 +28,6 @@ public class NotificationController {
     private SubscriptionNotification<IUser, IMealRequest> mealRequestSubscriptionNotification;
     private SubscriptionNotification<IUser, IMeal> mealSubscriptionNotification;
 
-    private static final String SIMPLE_NOTIFICATION="SIMPLE";
-    private static final String MEAL_NOTIFICATION="MEAL";
-    private static final String MEAL_REQUEST_NOTIFICATION="MEAL_REQUEST";
 
     @GetMapping("/notifiche")
     public String getAllNotifications(Model model, HttpSession session){
@@ -58,26 +55,31 @@ public class NotificationController {
                 if(notificationService.isSimpleNotification(id)){
                     SimpleNotification<IUser> simpleNotification = notificationService.getSimpleNotification(id);
                     model.addAttribute("buttons", false);
+                    model.addAttribute("number", false);
                     model.addAttribute("notification", simpleNotification);
                     model.addAttribute("message","L'utente "+simpleNotification.from().getUsername()+" "+simpleNotification.getMsg());
                 }else if(notificationService.isMealNotificationsWithPendingSubscription(id)){
                     this.mealSubscriptionNotification = notificationService.getMealSubscriptionNotifications(id);
                     model.addAttribute("buttons", true);
+                    model.addAttribute("number", false);
                     model.addAttribute("notification", mealSubscriptionNotification);
                     model.addAttribute("message","L'utente "+mealSubscriptionNotification.from().getUsername()+" "+mealSubscriptionNotification.getMsg());
                 }else if(notificationService.isMealNotificationsWithNoPendingSubscription(id)){
                     SubscriptionNotification<IUser, IMeal> subscriptionNotification = notificationService.getMealSubscriptionNotifications(id);
                     model.addAttribute("buttons", false);
+                    model.addAttribute("number", true);
                     model.addAttribute("notification", subscriptionNotification);
                     model.addAttribute("message","L'utente "+subscriptionNotification.from().getUsername()+" "+subscriptionNotification.getMsg());
                 }else if(notificationService.isMealRequestNotificationsWithPendingSubscription(id)){
                     this.mealRequestSubscriptionNotification = notificationService.getMealRequestSubscriptionNotifications(id);
                     model.addAttribute("buttons", true);
+                    model.addAttribute("number", false);
                     model.addAttribute("notification", mealRequestSubscriptionNotification);
                     model.addAttribute("message","L'utente "+mealRequestSubscriptionNotification.from().getUsername()+" "+mealRequestSubscriptionNotification.getMsg());
                 }else if(notificationService.isMealRequestNotificationsWithNoPendingSubscription(id)){
                     SubscriptionNotification<IUser, IMealRequest> subscriptionNotification = notificationService.getMealRequestSubscriptionNotifications(id);
                     model.addAttribute("buttons", false);
+                    model.addAttribute("number", true);
                     model.addAttribute("notification", subscriptionNotification);
                     model.addAttribute("message","L'utente "+subscriptionNotification.from().getUsername()+" "+subscriptionNotification.getMsg());
                 }

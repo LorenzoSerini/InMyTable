@@ -41,7 +41,7 @@ public class User implements IUser{
      * @param birth           user birth day
      */
     public User(String username, String email, String telephoneNumber, String firstName, String lastName, int password,
-                LocalDate birth, String fiscalCode, String id, String city, String address, boolean availableToRequests) {
+                LocalDate birth, String id, String fiscalCode, String city, String address, boolean availableToRequests) {
         if (username == null || email == null || telephoneNumber == null || firstName == null || lastName == null ||
                 password == 0 || birth == null) throw new NullPointerException("One of the parameter is null!");
         if (LocalDate.now().isBefore(birth)) throw new IllegalArgumentException("You cannot travel in time!!");

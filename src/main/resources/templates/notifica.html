@@ -79,6 +79,10 @@
                 <div class="col-md-6 col-lg-4 item" style="width: 1330px;">
                     <div class="box" style="border-radius: 30px;">
                         <p class="description" th:text="${message}"></p>
+                        <th:block th:if="${number == true}">
+                            <p class="description" th:text="${'Puoi contattarlo al numero: '+notification.from.telephoneNumber}"></p>
+                        </th:block>
+
                     </div>
                     <div class="author">
                         <h5 class="name" style="border-color: rgb(255,255,255);border-top-color: rgb(49,;border-right-color: 52,;border-bottom-color: 55);border-left-color: 52,;color: rgb(255,255,255);font-size: 34px;" th:text="${'Utente: '+notification.from.username}"></h5>

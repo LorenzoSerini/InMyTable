@@ -9,6 +9,9 @@ public abstract class DBConnection {
     private static final String CONNECTION_STRING = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11414097";
     private static final String USERNAME = "sql11414097";
     private static final String PASSWORD =  "9JRJiUcdeg";
+    private static final String IMT_CONNECTION_STRING = "jdbc:mysql://lhcp3182.webapps.net:3306/fy4dfjj1_uniu21";
+    private static final String IMT_USERNAME = "fy4dfjj1";
+    private static final String IMT_PASSWORD =  "KpyQg92E_Gng";
     private static final String LOCAL_CONNECTION_STRING = "jdbc:mysql://127.0.0.1:3306/inmytable";
     private static final String LOCAL_USERNAME = "root";
     private static final String LOCAL_PASSWORD =  "root";
@@ -30,7 +33,7 @@ public abstract class DBConnection {
     }
 
     private void defaultConnection() throws SQLException {
-        this.connection(CONNECTION_STRING, USERNAME, PASSWORD);
+        this.connection(IMT_CONNECTION_STRING, IMT_USERNAME, IMT_PASSWORD);
     }
 
     public Connection getConnection(){

@@ -57,12 +57,8 @@
             </div><a class="btn btn-primary text-center" role="button" data-bss-hover-animate="pulse" style="background: url(&quot;assets/img/cucina.png&quot;) center / cover, #ee6226;border-radius: 24px;width: 116PX;margin-right: 10px;border-color: rgba(0,0,0,0);font-family: Lora, serif;font-size: 11px;height: 26px;margin-top: 3px;" href="cucina"></a>
         </div>
     </nav>
-    <div class="col-md-4 align-self-center mx-auto pulse animated relative" style="background: var(--bs-light);height: 380px;margin-top: 10px;font-family: Lora, serif;">
-        <div class="avatar" style="margin-top: 0px;margin-bottom: 58px;">
-            <h1 style="border-color: var(--bs-dark);border-top-color: rgb(255,;border-right-color: 255,;border-bottom-color: 255);border-left-color: 255,;color: var(--bs-dark);margin-top: 0px;text-align: center;">Foto Profilo</h1>
-            <div class="d-xl-flex flex-shrink-1 justify-content-xl-center align-items-xl-center avatar-bg center" style="margin-top: 37px;margin-bottom: 20px;"></div>
-        </div><input type="file" class="form-control" name="avatar-file" style="margin-bottom: 0px;margin-right: 0px;margin-left: 0px;">
-    </div>
+
+
     <div class="container pulse animated" style="background: var(--bs-light);height: 747px;margin-top: 50px;border-color: rgb(255,255,255);color: rgba(0,0,0,0);" id="profile">
         <form>
             <div class="row text-center profile-row" style="margin-right: 10px;margin-left: 10px;font-family: Lora, serif;">
@@ -98,6 +94,62 @@
                         <label class="form-label" style="color: var(--bs-dark);">Email </label>
                         <p class="form-control" th:text="${user.email}">
                     </div>
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Città</label>
+                                <p class="form-control" th:text="${user.city}">
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Via</label>
+                                <p class="form-control" th:text="${user.address}">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Codice Fiscale</label>
+                                <p class="form-control" th:text="${user.fiscalCode}">
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Identificativo carta</label>
+                                <p class="form-control" th:text="${user.id}">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Data di nascita</label>
+                                <p class="form-control" th:text="${user.birth}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);">Numero telefonico</label>
+                                <p class="form-control" th:text="${user.telephoneNumber}">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
 
                 </div>
             </div>
