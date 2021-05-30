@@ -6,9 +6,9 @@ import org.apache.tomcat.jni.Local;
 import java.sql.*;
 
 public abstract class DBConnection {
-    private static final String CONNECTION_STRING = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11414097";
-    private static final String USERNAME = "sql11414097";
-    private static final String PASSWORD =  "9JRJiUcdeg";
+    private static final String AMAZON_CONNECTION_STRING = "jdbc:mysql://inmytable.c7ew54dy4rle.us-east-2.rds.amazonaws.com:3306/inmytable";
+    private static final String AMAZON_USERNAME = "lollock";
+    private static final String AMAZON_PASSWORD =  "GroupProject_InMyTable";
     private static final String IMT_CONNECTION_STRING = "jdbc:mysql://lhcp3182.webapps.net:3306/fy4dfjj1_uniu21";
     private static final String IMT_USERNAME = "fy4dfjj1";
     private static final String IMT_PASSWORD =  "KpyQg92E_Gng";
@@ -33,7 +33,7 @@ public abstract class DBConnection {
     }
 
     private void defaultConnection() throws SQLException {
-        this.connection(IMT_CONNECTION_STRING, IMT_USERNAME, IMT_PASSWORD);
+        this.connection(AMAZON_CONNECTION_STRING, AMAZON_USERNAME, AMAZON_PASSWORD);
     }
 
     public Connection getConnection(){
