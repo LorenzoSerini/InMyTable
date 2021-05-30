@@ -8,6 +8,7 @@ import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
+import it.unicam.cs.gp.inmytable.exception.TimeTravelException;
 import it.unicam.cs.gp.inmytable.homewalls.HomeWall;
 import it.unicam.cs.gp.inmytable.notification.ISubscription;
 import it.unicam.cs.gp.inmytable.notification.MealRequestSubscription;
@@ -46,7 +47,7 @@ public class MealRequestsController {
 
     public void postPublicMealRequest(String description, String mealType, ConsumationType consumationType, PaymentType payment, String date, String time, String expiryDate, String expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {
         if (LocalDate.now().isAfter(LocalDate.parse(date)) || (LocalDate.now().isEqual(LocalDate.parse(date)) && LocalTime.now().isAfter(LocalTime.parse(time))))
-            throw new IllegalArgumentException("You cannot travel in time");
+            throw new TimeTravelException("date must be after " + LocalDate.now().toString() + " at " + LocalTime.now().toString());
         MealRequest publicMealRequest = mealManager.createPublicMealRequest(logUser, mealType, consumationType, payment, description, LocalDate.parse(date), LocalTime.parse(time),
                 LocalDate.parse(expiryDate), LocalTime.parse(expiryTime), price, place, allergy, mealsNumber );
         mealRequestPersistence.registerPublicMealRequest(publicMealRequest);
@@ -55,7 +56,7 @@ public class MealRequestsController {
 
     public void postPrivateMealRequest(User homeOwner, String description, String mealType, ConsumationType consumationType, PaymentType payment, String date, String time, String expiryDate, String expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {
         if (LocalDate.now().isAfter(LocalDate.parse(date)) || (LocalDate.now().isEqual(LocalDate.parse(date)) && LocalTime.now().isAfter(LocalTime.parse(time))))
-            throw new IllegalArgumentException("You cannot travel in time");
+            throw new TimeTravelException("date must be after " + LocalDate.now().toString() + " at " + LocalTime.now().toString());
         MealRequest privateMealRequest = mealManager.createPrivateMealRequest(logUser, mealType, consumationType, payment, description, LocalDate.parse(date), LocalTime.parse(time),
                 LocalDate.parse(expiryDate), LocalTime.parse(expiryTime), price, place, allergy, mealsNumber, homeOwner );
         subscriptionManager.sendPrivateRequestNotification(this.logUser, homeOwner, privateMealRequest, "ti ha richiesto un pasto per il " + privateMealRequest.getDate().toString() + " alle " + privateMealRequest.getTime().toString());

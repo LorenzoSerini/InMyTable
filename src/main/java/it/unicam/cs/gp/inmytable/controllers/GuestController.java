@@ -1,6 +1,7 @@
 package it.unicam.cs.gp.inmytable.controllers;
 
 
+import it.unicam.cs.gp.inmytable.exception.UnknownUsernameException;
 import it.unicam.cs.gp.inmytable.persistence.AuthenticationDB;
 import it.unicam.cs.gp.inmytable.persistence.AuthenticationPersistence;
 import it.unicam.cs.gp.inmytable.user.User;
@@ -27,7 +28,7 @@ public class GuestController {
      */
     public User logIn(String username, String password) throws Exception{
         User user = userPersistence.getUsers().get(username);
-        if (user==null) throw new NullPointerException("The username not exist!");
+        if (user==null) throw new UnknownUsernameException(username);
         if (UsersUtilities.checkPassword(user,password)) {
             return user;
         } else throw new IllegalArgumentException("Wrong Password!");

@@ -6,6 +6,7 @@ import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 
+import it.unicam.cs.gp.inmytable.exception.ExpirationTimeException;
 import it.unicam.cs.gp.inmytable.user.*;
 
 import java.time.LocalDate;
@@ -38,16 +39,32 @@ public class MealRequest implements IMealRequest {
     private String id;
 
     /**
-     * MealRequest constructor
-     *
-     * @param host       host who create the MealRequest
-     * @param date       meal's date
-     * @param expiryDate meal's expiring date
-     * @param place      where host wants to eat
+     * Build a public Meal Request
+     * @param host host who request a meal
+     * @param mealType  type of the meal
+     * @param consumationType   type of consummation
+     * @param payment   type of payment
+     * @param description description of the meal request
+     * @param date  date of the meal request
+     * @param time  time of the meal request
+     * @param expiryDate    expiration date
+     * @param expiryTime    expiration time
+     * @param price price
+     * @param place place
+     * @param allergy   allergy
+     * @param mealsNumber   number of the meal
+     * @throws Exception    if one of the parameters is null or if the expiration date is after the date
      */
-    public MealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) {
-        if (date.isBefore(expiryDate) || (LocalDate.now().isEqual(expiryDate) && time.isBefore(expiryTime)))
-            throw new IllegalArgumentException("ExpirationTime should be after meal date");
+    public MealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description,
+                       LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price,
+                       String place, String allergy, int mealsNumber) throws Exception {
+        if ((host == null) || (mealType == null) || (consumationType == null) || (payment == null) || (description == null) ||
+                (date == null) || time == null || expiryDate == null || expiryTime == null || price == null || place == null
+                || allergy ==null) throw new NullPointerException("Parameters must be different to null|");
+        if (date.isBefore(expiryDate) )
+            throw new ExpirationTimeException( date + " is before " + expiryDate);
+        if (date.isEqual(expiryDate) && time.isBefore(expiryTime)) throw new
+                ExpirationTimeException(time + " is before " + expiryTime);
        /* if (date.isAfter(expiryDate) ||LocalDate.now().isAfter(date) ||
                 (date.equals(expiryDate) && expiryTime.isAfter(time)) ||
                 (date.equals(LocalDate.now()) && (LocalTime.now().isAfter(time) || LocalTime.now().isAfter(expiryTime))))
@@ -76,8 +93,29 @@ public class MealRequest implements IMealRequest {
         this.id = UUID.randomUUID().toString();
     }
 
-    public MealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, IUser homeOwner) {
+    /**
+     * Build a private Meal Request
+     * @param host host who request a meal
+     * @param mealType  type of the meal
+     * @param consumationType   type of consummation
+     * @param payment   type of payment
+     * @param description description of the meal request
+     * @param date  date of the meal request
+     * @param time  time of the meal request
+     * @param expiryDate    expiration date
+     * @param expiryTime    expiration time
+     * @param price price
+     * @param place place
+     * @param allergy   allergy
+     * @param mealsNumber   number of the meal
+     * @param homeOwner      user to whom the request is sent
+     * @throws Exception    if one of the parameters is null or if the expiration date is after the date or the host is equals to the homeOwner
+     */
+    public MealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description,
+                       LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime,
+                       String price, String place, String allergy, int mealsNumber, IUser homeOwner)throws Exception {
         this(host,mealType,consumationType,payment,description,date,time,expiryDate,expiryTime,price,place,allergy,mealsNumber);
+        if (host.equals(homeOwner)) throw new IllegalArgumentException("You cannot send a request to yourself");
         this.homeOwner=homeOwner;
         this.type = MealRequestType.PRIVATE;
     }

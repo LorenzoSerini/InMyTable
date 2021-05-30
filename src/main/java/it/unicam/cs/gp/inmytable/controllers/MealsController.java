@@ -5,6 +5,7 @@ import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
+import it.unicam.cs.gp.inmytable.exception.TimeTravelException;
 import it.unicam.cs.gp.inmytable.homewalls.HomeWall;
 import it.unicam.cs.gp.inmytable.notification.ISubscription;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionManager;
@@ -42,7 +43,7 @@ public class MealsController {
     }
 
     public void cook(String date, String time, String expiryDate, String expiryTime, int maxNumUsers, String mealType, boolean freeSubscription, String place, ConsumationType consumationType, String description, String ingredients, PaymentType paymentType, String price) throws Exception {
-        if (LocalDate.now().isAfter(LocalDate.parse(date)) || (LocalDate.now().isEqual(LocalDate.parse(date)) && LocalTime.now().isAfter(LocalTime.parse(time)) )) throw new IllegalArgumentException("You cannot travel in time");
+        if (LocalDate.now().isAfter(LocalDate.parse(date)) || (LocalDate.now().isEqual(LocalDate.parse(date)) && LocalTime.now().isAfter(LocalTime.parse(time)) )) throw new TimeTravelException("date must be after " + LocalDate.now().toString() + " at " + LocalTime.now().toString());
         mealPersistence.registerMeal(
                 mealManager.createMeal(logUser, maxNumUsers, LocalDate.parse(date), LocalTime.parse(time), LocalDate.parse(expiryDate), LocalTime.parse(expiryTime), mealType, freeSubscription, place, consumationType, description, ingredients, paymentType, price )
                 );
