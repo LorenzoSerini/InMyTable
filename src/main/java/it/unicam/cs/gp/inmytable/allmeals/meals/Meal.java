@@ -3,6 +3,7 @@ package it.unicam.cs.gp.inmytable.allmeals.meals;
 import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
+import it.unicam.cs.gp.inmytable.exception.ExpirationTimeException;
 import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 
@@ -52,7 +53,10 @@ public class Meal implements IMeal{
 				ConsumationType consumationType, String description, String ingredients, PaymentType payment, String price) throws Exception{
 		if (homeOwner==null|| date ==null ||expiryDate ==null ||mealType==null ||place == null ||
 				consumationType ==null|| description ==null || payment ==null) throw new NullPointerException("You must insert all!");
-		if (date.isBefore(expiryDate) ||(LocalDate.now().isEqual(expiryDate) && time.isBefore(expiryTime))) throw new IllegalArgumentException("ExpirationTime should be after meal date");
+		if (date.isBefore(expiryDate) )
+			throw new ExpirationTimeException( date + " is before " + expiryDate);
+		if (date.isEqual(expiryDate) && time.isBefore(expiryTime)) throw new
+				ExpirationTimeException(time + " is before " + expiryTime);
 		if(payment.compareTo(PaymentType.FREE)==0){
 			this.price="0";
 		}else this.price=price;
