@@ -69,10 +69,9 @@
             rel="stylesheet"
             href="assets/css/Transparent-Incremental-Number-Counter.css">
 
-        <link
-            href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css"
-            rel="stylesheet">
-        <script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <link rel="stylesheet" type="text/css" href="./style.css"/>
+        <script src="./index.js"></script>
 
         <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
 
@@ -81,7 +80,7 @@
     <body style="height: 1714.72px;">
         <nav
             class="navbar navbar-light navbar-expand fixed-top d-block navigation-clean-search"
-            style="background: var(--bs-white);height: 130;">
+            style="background: var(--bs-white);height: 70px;">
             <div class="container-fluid ">
                 <div
                     class="collapse navbar-collapse text-start col-3"
@@ -97,7 +96,7 @@
                 </div>
 
                 <!--------Menu notifiche------->
-                <div class="nav-item dropdown">
+                <div class="nav-item dropdown" style="margin-right: -10px;">
                     <a
                         class="nav-link text-light"
                         id="navbarDropdown"
@@ -105,7 +104,7 @@
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false">
-                        <i class="fa fa-bell" style="color: #fe9e02;"></i>
+                        <i class="fa fa-bell" style="color: #fe9e02; font-size: 20px;"></i>
                     </a>
 
                     <ul
@@ -120,13 +119,22 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="container" style="width: 200px;" th:each="notification:${allNotifications}">
+                        <li
+                            class="container"
+                            style="width: 200px;"
+                            th:each="notification:${allNotifications}">
                             <div class="row">
                                 <div class="col-12 text-center">
                                     <div class="row">
                                         <p class="col-12" style="color:#000000;font-size: 14px; margin-top: 10px;">Notifica ricevuta alle:</p>
-                                        <p class="col-12" style="color:#000000;font-size: 14px; margin-top: -20px;" th:text="${notification.date+' '+notification.time}"></p>
-                                        <p class="col-12" style="color:#000000;font-size: 13px; margin-top: -10px;" th:text="${notification.from.username+' '+notification.msg}"></p>
+                                        <p
+                                            class="col-12"
+                                            style="color:#000000;font-size: 14px; margin-top: -20px;"
+                                            th:text="${notification.date+' '+notification.time}"></p>
+                                        <p
+                                            class="col-12"
+                                            style="color:#000000;font-size: 13px; margin-top: -10px;"
+                                            th:text="${notification.from.username+' '+notification.msg}"></p>
                                     </div>
                                     <div
                                         class="col-12 text-center"
@@ -153,7 +161,7 @@
                         aria-expanded="false"
                         data-bs-toggle="dropdown"
                         href="#"
-                        style="margin-right: 6px;margin-left: 0px;font-size: 15px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal;">IL MIO ACCOUNT</a>
+                        style="margin-right: 6px;margin-left: 0px;font-size: 15px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal; text-decoration: none;">IL MIO ACCOUNT</a>
                     <div class="dropdown-menu" style="margin-left:-10px;  margin-top:24px">
                         <a
                             class="dropdown-item"
@@ -243,442 +251,402 @@
                 <h2
                     class="text-center col-12"
                     style="height: 140px; font-family: Alata, sans-serif; margin-bottom: 50px; color: rgb(255,255,255); background: #ee6226;
-                    ; padding-bottom: 20px; padding-top: 50px;">
+                    ; padding-bottom: 20px; padding-top: 55px;">
                     <strong>Pasti disponibili nella tua zona</strong>
                 </h2>
 
                 <!-------------------------- Mappa --------------------------->
 
-                <div class="row photos" data-bss-baguettebox="">
-                    <div class="col-12">
-                        <div
-                            id='map'
-                            style='height: 600px; width: 100%;'
-                            class="border rounded-0 border-dark shadow pulse animated"
-                            allowfullscreen=""
-                            frameborder="0"></div>
-                    </div>
-                </div>
+                <div id="map"></div>
 
-                <!--------------------------- Mappa ------------------------------>
-                <section class="article-list">
-            </section>
+                <section class="article-list"></section>
 
-            <h2
-                class="text-center col-10 offset-1"
-                style="font-family: Alata, sans-serif;margin-bottom: 20px;color: rgb(255,255,255);margin-top: 40px;background: #fe9e02;padding-bottom: 30px;"><br>
-                <strong>Lista pasti disponibili</strong><br>
-                <a
-                    href="ricerca-pasti-pubblici"
-                    style="font-size: 20px;font-family: Alata, sans-serif; text-decoration: none; color: white; ">Ricerca Approfondita</a><br></h2>
-            <div class="content">
+                <h2
+                    class="text-center col-12"
+                    style="height: 140px;padding-top: 42px; font-family: Alata, sans-serif;margin-bottom: 40px;color: rgb(255,255,255);margin-top:30px; background: #fe9e02;">
+                    <strong>Lista pasti disponibili</strong><br>
+                    <a
+                        href="ricerca-pasti-pubblici"
+                        style="font-size: 20px;font-family: Alata, sans-serif; text-decoration: none; color: white; ">Ricerca Approfondita</a><br></h2>
+                <div class="content">
 
-                <!--------------------------- Nuovo Carusel Sezione Pasti Disponibili
-                ------------------------------>
-                <section class="ftco-section" style="margin-bottom: 50px;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="featured-carousel owl-carousel">
-                                    <!--------------------------- Usa solo questo e vedi se funziona sotto
-                                    ------------------------------>
-                                    <div class="item" th:each="meal:${pendingMealCatalog}">
-                                        <div class="col-12 product-item">
-                                            <div class="product-container col-12">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <p
-                                                            class="text-center medium-text"
-                                                            style="font-family:Alata, sans-serif;font-size: 20px; color: #000000;"
-                                                            th:text="${meal.description}"></p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12 numeri-disp">
-                                                        <a
-                                                            style="font-family:Alata, sans-serif;font-size: 16px;"
-                                                            th:text="'Posti disponibili: '+${meal.placesAvailable}"></a>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <a
-                                                            class="text-center small-text"
-                                                            style="font-size: 15px;font-family:Alata, sans-serif;">Quando:<br th:text="${meal.date}+' '+${meal.time}"></a>
-                                                        <a
-                                                            class="text-center small-text"
-                                                            style="font-size: 15px;font-family:Alata, sans-serif;">Chiusura iscrizioni:&nbsp;<br th:text="${meal.expiryDate}+' '+${meal.expiryTime}"></a>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half"></i>
-                                                            <a class="small-text text-center" style="font-size: 15px;">Pubblicato dall'utente<br th:text="${meal.homeOwner.username}"></a>
+                    <!--------------------------- Nuovo Carusel Sezione Pasti Disponibili
+                    ------------------------------>
+                    <section class="ftco-section" style="margin-bottom: 50px;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="featured-carousel owl-carousel">
+                                        <!--------------------------- Usa solo questo e vedi se funziona sotto
+                                        ------------------------------>
+                                        <div class="item" th:each="meal:${pendingMealCatalog}">
+                                            <div class="col-12 product-item">
+                                                <div class="product-container col-12">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <p
+                                                                class="text-center medium-text"
+                                                                style="font-family:Alata, sans-serif;font-size: 20px; color: #000000;"
+                                                                th:text="${meal.description}"></p>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <p
-                                                            class="product-description"
-                                                            style="font-family:Alata, sans-serif;font-size: 16px;">Ingredienti principali:<br th:text="${meal.ingredients}"></p>
+                                                    <div class="row">
+                                                        <div class="col-12 numeri-disp">
+                                                            <a
+                                                                style="font-family:Alata, sans-serif;font-size: 16px;"
+                                                                th:text="'Posti disponibili: '+${meal.placesAvailable}"></a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <p class="product-price text-center" style="font-size: 18px;">Prezzo:<br th:text="${meal.price}"></p>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <a
+                                                                class="text-center small-text"
+                                                                style="font-size: 15px;font-family:Alata, sans-serif;">Quando:<br th:text="${meal.date}+' '+${meal.time}"></a>
+                                                            <a
+                                                                class="text-center small-text"
+                                                                style="font-size: 15px;font-family:Alata, sans-serif;">Chiusura iscrizioni:&nbsp;<br th:text="${meal.expiryDate}+' '+${meal.expiryTime}"></a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <a
-                                                            class="btn btn-primary"
-                                                            th:href="@{iscriviti-pasto(meal=${meal.id})}"
-                                                            role="button"
-                                                            data-bss-hover-animate="pulse"
-                                                            style="background: #fe9e02;border-radius: 24px; width: 164px; margin-right: 0px;border-color: rgba(0,0,0,0);font-family:Alata, sans-serif;">Più informazioni</a>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="product-rating">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-half"></i>
+                                                                <a class="small-text text-center" style="font-size: 15px;">Pubblicato dall'utente<br th:text="${meal.homeOwner.username}"></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <p
+                                                                class="product-description"
+                                                                style="font-family:Alata, sans-serif;font-size: 16px;">Ingredienti principali:<br th:text="${meal.ingredients}"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <p class="product-price text-center" style="font-size: 18px;">Prezzo:<br th:text="${meal.price}"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <a
+                                                                class="btn btn-primary"
+                                                                th:href="@{iscriviti-pasto(meal=${meal.id})}"
+                                                                role="button"
+                                                                data-bss-hover-animate="pulse"
+                                                                style="background: #fe9e02;border-radius: 24px; width: 164px; margin-right: 0px;border-color: rgba(0,0,0,0);font-family:Alata, sans-serif;">Più informazioni</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
-
-
-
                                 </div>
                             </div>
                         </div>
-                    </div>
-            </section>
-            <h2
-                class="text-center col-10 offset-1"
-                style="font-family: Alata, sans-serif;margin-bottom: 20px;color: rgb(255,255,255);margin-top: -25px; background: #73bc43; padding-bottom: 30px;"><br>
-                <strong>Richieste pasti disponibili</strong><br>
-                <a
-                    href="ricerca-richieste-pasti-pubbliche"
-                    style="font-size: 20px;font-family: Alata, sans-serif; text-decoration: none; color: white; ">Richiedi un pasto</a>
-                <br></h2>
+                    </section>
+                    <h2
+                        class="text-center col-12"
+                        style="height: 140px;padding-top: 42px; font-family: Alata, sans-serif;margin-bottom: 30px;color: rgb(255,255,255);margin-top: -30px; background: #73bc43;">
+                        <strong>Richieste pasti disponibili</strong><br>
+                        <a
+                            href="ricerca-richieste-pasti-pubbliche"
+                            style="font-size: 20px;font-family: Alata, sans-serif; text-decoration: none; color: white; ">Richiedi un pasto</a>
+                        <br></h2>
 
-            <!---------------------- Nuovo Carusel Sezioni richeste
-            ------------------------>
+                    <!---------------------- Nuovo Carusel Sezioni richeste
+                    ------------------------>
 
+                    <section class="ftco-section" style="margin-bottom: 50px;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="featured-carousel owl-carousel">
 
-                <section class="ftco-section" style="margin-bottom: 50px;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="featured-carousel owl-carousel">
-
-                                    <!--------------------------- Usa solo questo e vedi se funziona
-                                    ------------------------------>
-                                    <div class="item" th:each="mealRequest:${publicMealsRequestCatalog}">
-                                        <div class="col-12 product-item">
-                                            <div class="product-container col-12">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <p
+                                        <!--------------------------- Usa solo questo e vedi se funziona
+                                        ------------------------------>
+                                        <div class="item" th:each="mealRequest:${publicMealsRequestCatalog}">
+                                            <div class="col-12 product-item">
+                                                <div class="product-container col-12">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <p
                                                                 class="text-center medium-text"
                                                                 style="font-family:Alata, sans-serif;font-size: 21px; color: #000000;"
-                                                                th:text="${mealRequest.description}">Prova 4</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12 numeri-disp">
-                                                        <a style="font-size: 17px;font-family:Alata, sans-serif;">Porzioni richiesti:<br th:text="${mealRequest.mealsNumber}"></a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <a
-                                                                class="text-center small-text"
-                                                                style="font-size: 17px;font-family: Alata, sans-serif;">Dove:<br th:text="${mealRequest.place}"></a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <a
-                                                                class="text-center small-text"
-                                                                style="font-size: 15px;font-family:Alata, sans-serif;">Quando:<br th:text="${mealRequest.date}+' '+${mealRequest.time}"></a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <a
-                                                                class="text-center small-text"
-                                                                style="font-size: 15px;font-family:Alata, sans-serif;">Chiusura iscrizioni:&nbsp;<br th:text="${mealRequest.expiryDate}+' '+${mealRequest.expiryTime}"></a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half"></i>
-                                                            <a class="small-text" href="#" style="font-size: 15px;">Pubblicato da<br th:text="${mealRequest.host.username}"></a>
+                                                                th:text="${mealRequest.description}"></p>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <p
+                                                    <div class="row">
+                                                        <div class="col-12 numeri-disp">
+                                                            <a style="font-size: 17px;font-family:Alata, sans-serif;">Porzioni richiesti:<br th:text="${mealRequest.mealsNumber}"></a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <a
+                                                                class="text-center small-text"
+                                                                style="font-size: 17px;font-family: Alata, sans-serif;">Dove:<br th:text="${mealRequest.place}"></a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <a
+                                                                class="text-center small-text"
+                                                                style="font-size: 15px;font-family:Alata, sans-serif;">Quando:<br th:text="${mealRequest.date}+' '+${mealRequest.time}"></a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <a
+                                                                class="text-center small-text"
+                                                                style="font-size: 15px;font-family:Alata, sans-serif;">Chiusura iscrizioni:&nbsp;<br th:text="${mealRequest.expiryDate}+' '+${mealRequest.expiryTime}"></a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="product-rating">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-half"></i>
+                                                                <a class="small-text" href="#" style="font-size: 15px;">Pubblicato da<br th:text="${mealRequest.host.username}"></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <p
                                                                 class="product-description"
                                                                 style="font-family:Alata, sans-serif;font-size: 16px;">Allergie (o richieste particolari):<br th:text="${mealRequest.allergy}"></p>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <p class="product-price">Prezzo:<br th:text="${mealRequest.price}"></p>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <p class="product-price">Prezzo:<br th:text="${mealRequest.price}"></p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <a
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <a
                                                                 class="btn btn-primary"
                                                                 th:href="@{accetta-richiesta-pasto-pubblico(mealRequest=${mealRequest.id})}"
                                                                 role="button"
                                                                 data-bss-hover-animate="pulse"
                                                                 style="background: #fe9e02;border-radius: 24px;width: 164px;margin-right: 0px;border-color: rgba(0,0,0,0);font-family:Alata, sans-serif; background: #73bc43;">Più informazioni</a>
+                                                        </div>
                                                     </div>
-                                                </div>
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                        </div>
-                                    </div>
-                            </div>
-                </section>
-
-
-            <h2
-                class="text-center"
-                style="font-family: Alata, sans-serif;margin-bottom: 20px;color: var(--bs-gray-dark);font-weight: bold;">Prepara qualcosa di buono per gli altri !</h2>
-            <h2
-                class="text-center"
-                style="font-family: Alata, sans-serif;margin-bottom: 20px;color: #000000;font-weight: normal;font-size: 20px;">Hai del tempo libero o qualche porzione in più ?<br>Vai nella sezione Richieste pasti e vedi cosa
-                <br>vorrebbero mangiare gli altri utenti !<br></h2>
-        </div>
-        <div
-            class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul"
-            data-aos="zoom-in"
-            style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;">
-            <footer style="border-color: rgb(240, 249, 255);height: 214.328px;">
-                <div class="container">
-                    <div class="row row-cols-2 justify-content-center align-items-center">
-                        <div
-                            class="col-sm-4 col-md-3 text-center d-inline order-1 item"
-                            style="font-family: Lato, sans-serif;height: 234px;">
-                            <h3></h3>
-                            <ul></ul><img
-                                class="img-fluid"
-                                src="assets/img/inmytable-logo.png"
-                                style="width: 258px;text-align: center;">
-                            <p
-                                style="color: var(--bs-dark);text-align: center;font-family: Alata, sans-serif;"><br>
-                                <em>Mangiare insieme. Sprecare meno. Conoscersi di più.</em><br><br><br></p>
-                        </div>
-                        <div
-                            class="col-sm-4 col-md-3 text-center d-inline order-2 item"
-                            style="font-family: Alata, sans-serif;height: 234px;text-align: center;">
-                            <h3></h3>
-                            <h3
-                                class="text-center"
-                                style="height: 30px;font-size: 19px;color: var(--bs-dark);font-weight: bold;font-family: Alata, sans-serif;">Links utili<br>
-                                <a
-                                    class="btn btn-primary text-start"
-                                    role="button"
-                                    style="background: #ffffff;font-size: 18px;font-weight: normal;width: 130px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;margin-left: 0px;margin-right: 0px;padding-right: 0px;padding-left: 0px;"
-                                    href="come-funziona.html">Come funziona</a><br>
-                                <a
-                                    class="btn btn-primary text-start"
-                                    role="button"
-                                    style="background: #ffffff;font-size: 18px;font-weight: normal;width: 60px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;"
-                                    href="aiuto.html">FAQ</a><br>
-                                <button
-                                    class="btn btn-primary text-start"
-                                    type="button"
-                                    style="background: #ffffff;font-size: 18px;font-weight: normal;width: 118px;height: 29px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px; margin-left:28px">Contatti</button><br></h3>
-                        </div>
-                        <div
-                            class="col-6 col-sm-4 col-md-3 d-inline order-3 item"
-                            style="font-family: Lato, sans-serif;height: 234px;">
-                            <h3></h3>
-                            <h3
-                                class="text-center"
-                                style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;font-weight: bold;margin-bottom: -4px;">Contattaci</h3>
-                            <div
-                                class="social-icons"
-                                style="height: 87px;padding: 0px 0px;text-align: center;">
-                                <a href="#">
-                                    <i
-                                        class="icon ion-social-instagram"
-                                        style="margin-left: 10px;margin-right: 2px;"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="icon ion-social-facebook"></i>
-                                </a>
-                                <h3
-                                    class="text-center"
-                                    style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;text-align: center;font-weight: bold; margin-bottom:10px;"><br>E-mail: info@inmytable.com<br></h3>
-                            </div>
-
-                        </div>
-                        <div
-                            class="col-sm-4 col-md-3 order-4 item"
-                            style="font-family: Lato, sans-serif;margin-top: 0px;padding-top: 1px;width: 242;">
-                            <h3></h3>
-                            <h3
-                                class="text-center text-sm-center text-md-center text-lg-center"
-                                style="font-size: 19px;height: 46px;color: var(--bs-dark);margin-bottom: 18px;margin-top: 0px;font-family: Alata, sans-serif;font-weight: bold;">Iscriviti alla newsletter</h3>
-                            <h3
-                                class="text-center text-sm-center text-md-center text-lg-center"
-                                style="font-size: 13px;height: 20px;color: var(--bs-dark);font-style: normal;margin-bottom: 6px;font-family: Alata, sans-serif;">Unisciti alla community<br>Inserisci la tua email</h3>
-                            <form style="margin-top: 30px;height: 107px;" method="post">
-                                <div class="form-group mb-3" style="margin-top: 0px;margin-bottom: 0px;"><input
-                                    class="form-control"
-                                    type="email"
-                                    name="email"
-                                    placeholder="Email"
-                                    style="text-align: center;margin-bottom: 0px;margin-top: 0px;margin-right: 0px;padding-bottom: 4px;padding-top: 7px;margin-left: 0px;font-family: Alata, sans-serif;"></div>
-                                <div
-                                    class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center form-group mb-3">
-                                    <button
-                                        class="btn btn-primary border rounded-pill"
-                                        data-bss-hover-animate="pulse"
-                                        type="submit"
-                                        style="background: #73bc43;padding-top: 8px;width: 118px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;">Inscriviti</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                    </section>
+
+                    <h2
+                        class="text-center"
+                        style="font-family: Alata, sans-serif;margin-top: -50px; margin-bottom: 10px;color: var(--bs-gray-dark);font-weight: bold;">Prepara qualcosa di buono per gli altri !</h2>
+                    <h2
+                        class="text-center"
+                        style="font-family: Alata, sans-serif;margin-bottom: 40px;color: #000000;font-weight: normal;font-size: 20px;">Hai del tempo libero o qualche porzione in più ?<br>Vai nella sezione Richieste pasti e vedi cosa
+                        <br>vorrebbero mangiare gli altri utenti !<br></h2>
                 </div>
-                <h1
-                    style="border-color: rgb(0,0,0);color: rgb(0,0,0);text-align: center;font-size: 17px;font-family: Alata, sans-serif;margin-top: 5px;margin-bottom: 20px;padding-top: 0px;padding-bottom: 0px;"><br>© 2018 - 2020 Copyright INMYTABLE - Tutti i diritti riservati<br><br></h1>
-            </footer>
-        </div>
+                <div
+                    class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul"
+                    data-aos="zoom-in"
+                    style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;">
+
+                    <footer style="border-color: rgb(240, 249, 255);height: 214.328px;">
+                        <div class="container">
+                            <div class="row row-cols-2 justify-content-center align-items-center">
+                                <div
+                                    class="col-sm-4 col-md-3 text-center d-inline order-1 item"
+                                    style="font-family: Lato, sans-serif;height: 234px;">
+                                    <h3></h3>
+                                    <ul></ul><img
+                                        class="img-fluid"
+                                        src="assets/img/inmytable-logo.png"
+                                        style="width: 258px;text-align: center;">
+                                    <p
+                                        style="color: var(--bs-dark);text-align: center;font-family: Alata, sans-serif;"><br>
+                                        <em>Mangiare insieme. Sprecare meno. Conoscersi di più.</em><br><br><br></p>
+                                </div>
+                                <div
+                                    class="col-sm-4 col-md-3 text-center d-inline order-2 item"
+                                    style="font-family: Alata, sans-serif;height: 234px;text-align: center;">
+                                    <h3></h3>
+                                    <h3
+                                        class="text-center"
+                                        style="height: 30px;font-size: 19px;color: var(--bs-dark);font-weight: bold;font-family: Alata, sans-serif;">Links utili<br>
+                                        <a
+                                            class="btn btn-primary text-start"
+                                            role="button"
+                                            style="background: #ffffff;font-size: 18px;font-weight: normal;width: 130px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;margin-left: 0px;margin-right: 0px;padding-right: 0px;padding-left: 0px;"
+                                            href="come-funziona.html">Come funziona</a><br>
+                                        <a
+                                            class="btn btn-primary text-start"
+                                            role="button"
+                                            style="background: #ffffff;font-size: 18px;font-weight: normal;width: 60px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;"
+                                            href="aiuto.html">FAQ</a><br>
+                                        <button
+                                            class="btn btn-primary text-start"
+                                            type="button"
+                                            style="background: #ffffff;font-size: 18px;font-weight: normal;width: 118px;height: 29px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px; margin-left:28px">Contatti</button><br></h3>
+                                </div>
+                                <div
+                                    class="col-6 col-sm-4 col-md-3 d-inline order-3 item"
+                                    style="font-family: Lato, sans-serif;height: 234px;">
+                                    <h3></h3>
+                                    <h3
+                                        class="text-center"
+                                        style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;font-weight: bold;margin-bottom: -4px;">Contattaci</h3>
+                                    <div
+                                        class="social-icons"
+                                        style="height: 87px;padding: 0px 0px;text-align: center;">
+                                        <a href="#">
+                                            <i
+                                                class="icon ion-social-instagram"
+                                                style="margin-left: 5px;margin-right: 2px;"></i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="icon ion-social-facebook"></i>
+                                        </a>
+                                        <h3
+                                            class="text-center"
+                                            style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;text-align: center;font-weight: bold; margin-bottom:10px;"><br>E-mail: info@inmytable.com<br></h3>
+                                    </div>
+
+                                </div>
+                                <div
+                                    class="col-sm-4 col-md-3 order-4 item"
+                                    style="font-family: Lato, sans-serif;margin-top: 0px;padding-top: 1px;width: 242;">
+                                    <h3></h3>
+                                    <h3
+                                        class="text-center text-sm-center text-md-center text-lg-center"
+                                        style="font-size: 19px;height: 46px;color: var(--bs-dark);margin-bottom: 18px;margin-top: 0px;font-family: Alata, sans-serif;font-weight: bold;">Iscriviti alla newsletter</h3>
+                                    <h3
+                                        class="text-center text-sm-center text-md-center text-lg-center"
+                                        style="font-size: 13px;height: 20px;color: var(--bs-dark);font-style: normal;margin-bottom: 6px;font-family: Alata, sans-serif;">Unisciti alla community<br>Inserisci la tua email</h3>
+                                    <form style="margin-top: 30px;height: 107px;" method="post">
+                                        <div class="form-group mb-3" style="margin-top: 0px;margin-bottom: 0px;"><input
+                                            class="form-control"
+                                            type="email"
+                                            name="email"
+                                            placeholder="Email"
+                                            style="text-align: center;margin-bottom: 0px;margin-top: 0px;margin-right: 0px;padding-bottom: 4px;padding-top: 7px;margin-left: 0px;font-family: Alata, sans-serif;"></div>
+                                        <div
+                                            class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center form-group mb-3">
+                                            <button
+                                                class="btn btn-primary border rounded-pill"
+                                                data-bss-hover-animate="pulse"
+                                                type="submit"
+                                                style="background: #73bc43;padding-top: 8px;width: 118px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;">Inscriviti</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <h1
+                            style="border-color: rgb(0,0,0);color: rgb(0,0,0);text-align: center;font-size: 17px;font-family: Alata, sans-serif;margin-top: 5px;margin-bottom: 20px;padding-top: 0px;padding-bottom: 0px;"><br>© 2018 - 2020 Copyright INMYTABLE - Tutti i diritti riservati<br><br></h1>
+                    </footer>
+                </div>
             </div>
-        <!--Mappa--->
-        <script>
+            
+            <script>
 
-            // mappa italia
-            mapboxgl.accessToken = 'pk.eyJ1IjoiaW5teXRhYmxlIiwiYSI6ImNrcDE4eXB2ZDFpMjgydm1wZDN6c241cG0ifQ.CahxqQxI' +
-                    'NeuLcnJS7D9nkw';
+                // Initialize and add the map
+                function initMap() {
+                    // The location of Uluru
+                    const uluru = {
+                        lat: 43.4363086,
+                        lng: 13.5836302
+                    };
+                    // The map, centered at Uluru
+                    const map = new google
+                        .maps
+                        .Map(document.getElementById("map"), {
+                            zoom: 8,
+                            center: uluru
+                        });
+                    // The marker, positioned at Uluru
+                    const image = "/assets/img/mapbox-icon-dis.png";
+                    const beachMarker = new google
+                        .maps
+                        .Marker({
+                            position: {
+                                lat: 43.4363086,
+                                lng: 13.5836302
+                            },
+                            map,
+                            icon: image
+                        });
 
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v11',
-                center: [
-                    13.6, 42.3
-                ],
-                zoom: 4.8
-            });
+                        const image2 = "/assets/img/mapbox-icon-ric.png";
+                    const beachMarker2 = new google
+                        .maps
+                        .Marker({
+                            position: {
+                                lat: 43.42,
+                                lng: 12.56
+                            },
+                            map,
+                            icon: image2
+                        });
+                }
+            </script>
 
-            // codrinate marker
+            <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8U9bz5osq23xxO2kI99qZS15LuLEUTX4&callback=initMap&libraries=&v=weekly"
+                async="async"></script>
+            <!--Mappa--->
 
-            var geojson = {
-                type: 'FeatureCollection',
-                features: [
-                    {
-                        type: 'Feature',
-                        geometry: {
-                            type: 'Point',
-                            coordinates: [13.6, 42.3]
-                        },
-                        properties: {
-                            title: 'Pizza',
-                            description: 'Pizza fatta in casa'
-                        }
-                    }, {
-                        type: 'Feature',
-                        geometry: {
-                            type: 'Point',
-                            coordinates: [13.6, 43.3]
-                        },
-                        properties: {
-                            title: 'Pasta al pesto',
-                            description: 'Pasta al pesto fatta in casa'
-                        }
-                    }
-                ]
-            };
-            // https://docs.mapbox.com/api/search/geocoding/ per trasformare le vie in
-            // cordinate (ci servira nella sezione di publica pasto o richiedi pasto) add
-            // markers to map
-            geojson
-                .features
-                .forEach(function (marker) {
-
-                    // create a HTML element for each feature
-                    var el = document.createElement('div');
-                    el.className = 'marker-dis';
-
-                    // make a marker for each feature and add to the map
-                    new mapboxgl
-                        .Marker(el)
-                        .setLngLat(marker.geometry.coordinates)
-
-                    new mapboxgl
-                        .Marker(el)
-                        .setLngLat(marker.geometry.coordinates)
-                        .setPopup(new mapboxgl.Popup({offset: 25}) // add popups
-                            .setHTML(
-                            '<h6>' + marker.properties.title + '</h6><p>' + marker.properties.description +
-                            '</p><button class="btn-go"; role="button"; href="bacheca";>Vai al pasto</butto' +
-                            'n>'
-                        ))
-                        .addTo(map)
-                        .addTo(map);
-                });
-        </script>
-
-        <!--Mappa--->
-        <script src="assets/js/jquery-3.3.1.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/main.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/bs-init.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/lightpick@1.3.4/lightpick.min.js"></script>
-        <script src="assets/js/Date-Picker-From-and-To.js"></script>
-        <script src="assets/js/Animated-Pretty-Product-List-v12.js"></script>
-        <script
-            src="assets/js/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.js"></script>
-        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/Lightbox-Gallery.js"></script>
-        <script src="assets/js/Profile-Edit-Form.js"></script>
-        <script src="assets/js/real-estate-search-2-updated.js"></script>
-        <script src="assets/js/Sidebar-Menu.js"></script>
+            <script src="assets/js/jquery-3.3.1.min.js"></script>
+            <script src="assets/js/popper.min.js"></script>
+            <script src="assets/js/bootstrap.min.js"></script>
+            <script src="assets/js/owl.carousel.min.js"></script>
+            <script src="assets/js/main.js"></script>
+            <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+            <script src="assets/js/bs-init.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/lightpick@1.3.4/lightpick.min.js"></script>
+            <script src="assets/js/Date-Picker-From-and-To.js"></script>
+            <script src="assets/js/Animated-Pretty-Product-List-v12.js"></script>
+            <script
+                src="assets/js/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.js"></script>
+            <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+            <script src="assets/js/Lightbox-Gallery.js"></script>
+            <script src="assets/js/Profile-Edit-Form.js"></script>
+            <script src="assets/js/real-estate-search-2-updated.js"></script>
+            <script src="assets/js/Sidebar-Menu.js"></script>
         </section>
     </body>
 

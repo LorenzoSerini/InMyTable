@@ -68,7 +68,10 @@ public class FeedbackService {
 
     public double getFromFeedbacksAverage(IUser from){
         double average=0;
-        List<Feedback> fromFeedbacks = from.getFeedbackBox().getFeedbacks().stream().filter(p->p.getFrom().equals(from)).collect(Collectors.toList());
+        List<Feedback> fromFeedbacks;
+        if(from.getFeedbackBox().getFeedbacks().stream().anyMatch(p -> p.getTo().equals(from))){
+            fromFeedbacks = from.getFeedbackBox().getFeedbacks().stream().filter(p->p.getFrom().equals(from)).collect(Collectors.toList());
+        } else return 5;
         for(Feedback f:fromFeedbacks){
             average+=f.getRating();
         }
@@ -81,7 +84,10 @@ public class FeedbackService {
 
     public double getToFeedbacksAverage(IUser to){
         double average=0;
-        List<Feedback> toFeedbacks = to.getFeedbackBox().getFeedbacks().stream().filter(p->p.getTo().equals(to)).collect(Collectors.toList());
+        List<Feedback> toFeedbacks;
+        if(to.getFeedbackBox().getFeedbacks().stream().anyMatch(p -> p.getTo().equals(to))){
+            toFeedbacks  = to.getFeedbackBox().getFeedbacks().stream().filter(p->p.getTo().equals(to)).collect(Collectors.toList());
+        } else return 5;
         for(Feedback f:toFeedbacks){
             average+=f.getRating();
         }

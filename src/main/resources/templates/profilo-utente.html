@@ -86,24 +86,35 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;">Nome:</label></div>
                             <div class="form-group mb-3" style="margin-bottom: 8px;"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${requestTo.firstName}"></label></div>
+
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;">Cognome:</label></div><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${requestTo.lastName}"></label>
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;">Cognome:</label></div>
+                            <label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${requestTo.lastName}"></label>
+
                         </div>
                         <div class="col-sm-12 col-md-6"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;margin-bottom: 20px;">Città:</label>
                             <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${requestTo.city}"></label></div>
+
                         </div>
                         <div class="col-sm-12 col-md-6"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;margin-bottom: 20px;">Indirizzo:</label>
                             <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${requestTo.address}"></label></div>
+
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;margin-bottom: 0px;">Pasti preparati:</label></div><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${publishedMeals}"></label>
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;margin-bottom: 0px;">Pasti preparati:</label></div>
+                            <label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${publishedMeals}"></label>
+
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;">Email :</label></div><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${requestTo.email}"></label>
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;">Email :</label></div>
+                            <label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${requestTo.email}"></label>
+
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;">Media recensioni:</label></div><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${toUserAverage}+' su 5'"></label>
+                            <div class="form-group mb-3"><label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;font-size: 20px;">Media recensioni:</label></div>
+                            <label class="form-label" style="color: var(--bs-dark);font-family: Alata, sans-serif;" th:text="${toUserAverage}+' su 5'"></label>
+
                         </div>
                     </div>
                     <hr>

@@ -19,12 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//TODO: QUANDO UNA REQUEST SUPERA LA DATA DI SCADENZA NON VIENE IMMEDIANTAMENTE AGGIORNATA!
-/*
-ANDREBBE MESSA UNA CLASSE UPDATE SCADENZA CHE VIENE RICHIAMATA DAI METODI GET MAP
- CHE ITERA SU TUTTA LA MAPPA E SE TROVA UNA REQUEST SCADUTA
-LA AGGIORNA NEL DB
- */
 
 public class MealRequestDB extends DBPersistence implements MealRequestPersistence{
     private String sql;
