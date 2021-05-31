@@ -81,6 +81,8 @@ public class FeedbackController {
             try {
                 feedbackService.setLogUser(BaseController.getLogUser(session));
                 User to = feedbackService.getUser(username);
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
                 model.addAttribute("toUser", feedbackService.getToFeedbacks(to));
                 model.addAttribute("toUserSize", feedbackService.getToFeedbacks(to).size());
                 model.addAttribute("toUserAverage", feedbackService.getToFeedbacksAverage(to));

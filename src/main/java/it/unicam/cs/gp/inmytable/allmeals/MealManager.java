@@ -39,9 +39,9 @@ public class MealManager {
 	 * @param payment	how payment is accepted
 	 * @throws Exception if one of the parameters is null
 	 */
-	public Meal createMeal(IUser homeOwner, int maxNumberUsers, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String mealType, boolean freeSubscription, String place,
+	public Meal createMeal(IUser homeOwner, int maxNumberUsers, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String mealType, boolean freeSubscription, String city, String place,
 						   ConsumationType consumationType, String description, String ingredients, PaymentType payment, String price) throws Exception{
-		Meal meal = new Meal(homeOwner, maxNumberUsers, date, time, expiryDate,expiryTime, mealType, freeSubscription, place,
+		Meal meal = new Meal(homeOwner, maxNumberUsers, date, time, expiryDate,expiryTime, mealType, freeSubscription, city, place,
 				consumationType, description, ingredients, payment, price);
 		HomeWall.getInstance().getMealCatalog().add(meal);
 		return meal;

@@ -90,7 +90,7 @@ public abstract class DBPersistence extends DBConnection implements Persistence{
             if(! getMealsMap().containsKey(getData().getString("Id"))) {
                 User homeOwner = getUsers().get(getData().getString("HomeOwner"));
                  meal = new Meal(homeOwner, getData().getInt("MaxNumberUsers"), LocalDate.parse(getData().getString("Date")), LocalTime.parse(getData().getString("Time")),
-                        LocalDate.parse(getData().getString("ExpiringDate")), LocalTime.parse(getData().getString("ExpiringTime")), getData().getString("MealType"), getData().getBoolean("FreeSubscription"),
+                        LocalDate.parse(getData().getString("ExpiringDate")), LocalTime.parse(getData().getString("ExpiringTime")), getData().getString("MealType"), getData().getBoolean("FreeSubscription"), getData().getString("City"),
                         getData().getString("Place"), ConsumationType.valueOf(getData().getString("ConsumationType")), getData().getString("Description"), getData().getString("Ingredients"), PaymentType.valueOf(getData().getString("Payment")),
                         getData().getString("Price"));
                 meal.setId(getData().getString("Id"));

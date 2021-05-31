@@ -42,10 +42,10 @@ public class MealsController {
         this(logUser, new MealDB(), new NotificationDB());
     }
 
-    public void cook(String date, String time, String expiryDate, String expiryTime, int maxNumUsers, String mealType, boolean freeSubscription, String place, ConsumationType consumationType, String description, String ingredients, PaymentType paymentType, String price) throws Exception {
+    public void cook(String date, String time, String expiryDate, String expiryTime, int maxNumUsers, String mealType, boolean freeSubscription, String city, String place, ConsumationType consumationType, String description, String ingredients, PaymentType paymentType, String price) throws Exception {
         if (LocalDate.now().isAfter(LocalDate.parse(date)) || (LocalDate.now().isEqual(LocalDate.parse(date)) && LocalTime.now().isAfter(LocalTime.parse(time)) )) throw new TimeTravelException("date must be after " + LocalDate.now().toString() + " at " + LocalTime.now().toString());
         mealPersistence.registerMeal(
-                mealManager.createMeal(logUser, maxNumUsers, LocalDate.parse(date), LocalTime.parse(time), LocalDate.parse(expiryDate), LocalTime.parse(expiryTime), mealType, freeSubscription, place, consumationType, description, ingredients, paymentType, price )
+                mealManager.createMeal(logUser, maxNumUsers, LocalDate.parse(date), LocalTime.parse(time), LocalDate.parse(expiryDate), LocalTime.parse(expiryTime), mealType, freeSubscription, city, place, consumationType, description, ingredients, paymentType, price )
                 );
     }
 

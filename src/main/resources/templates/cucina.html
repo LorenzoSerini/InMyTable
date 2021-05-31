@@ -248,10 +248,8 @@
         <form class="border rounded pulse animated" action="/cucina" method="post" style="margin-bottom: 0px;margin-top: 0px;font-family: Alata, sans-serif;">
 
 
-            <div class="form-group mb-3 " style="font-family: Alata, sans-serif;"><label class="form-label" style="line-height: 25px;font-size: 22px;font-weight: bold;">Cosa cucini ?</label><input class="form-control" type="text" autocomplete="off" required="" name="description" style="font-family: Alata, sans-serif;"></div>
-            <div class="form-group mb-3" style="font-family: Lora, serif;">
-                <label class="form-label" style="margin-top: 15px;font-size: 17px;font-family: Alata, sans-serif;">Tipo di cucina</label>
-                <select class="form-select" style="font-family: Alata, sans-serif;" name="mealType ">
+            <div class="form-group mb-3" style="font-family: Alata, sans-serif;"><label class="form-label" style="line-height: 25px;font-size: 22px;font-weight: bold;">Cosa cucini ?</label><input class="form-control" type="text" autocomplete="off" required="" name="description" style="font-family: Alata, sans-serif;"></div>
+            <div class="form-group mb-3" style="font-family: Lora, serif;"><label class="form-label" style="margin-top: 15px;font-size: 17px;font-family: Alata, sans-serif;">Tipo di cucina</label><select class="form-select" value="pull-type-c" style="font-family: Alata, sans-serif;" name="mealType">
                 <optgroup label="Tipi di cucina">
                     <option value="cucina-altro" selected="">Altro</option>
                     <option value="cucina-locale">Cucina locale</option>
@@ -266,20 +264,24 @@
                 </optgroup>
             </select></div>
             <div class="form-group mb-3" style="font-family: Alata, sans-serif;"><label class="form-label" style="margin-top: 15px;font-size: 17px;">Ingredienti principali</label><input class="form-control" type="text" autocomplete="off" name = "ingredients" required="" style="font-family: Alata, sans-serif;"></div>
-            <div class="form-group mb-3" style="font-family: Alata, sans-serif;"><label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;font-family: Alata, sans-serif;">Indirizzo del pasto</label><input class="form-control" type="text" autocomplete="off" required="" name="address" style="font-family: Alata, sans-serif;"></div>
+            <div class="form-group mb-3" style="font-family: Alata, sans-serif;"><label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;font-family: Alata, sans-serif;">Indirizzo del pasto</label>
+
+            <div class="form-group mb-3" style="font-family: Alata, sans-serif;"><label class="form-label" style="margin-top: 15px;font-size: 17px;">Città</label><input class="form-control" type="text" autocomplete="off" name = "city" required="" style="font-family: Alata, sans-serif;"></div>
+                <div class="form-group mb-3" style="font-family: Alata, sans-serif;"><label class="form-label" style="margin-top: 15px;font-size: 17px;">Via e numero civico</label> <input class="form-control" type="text" autocomplete="off" required="" name="address" style="font-family: Alata, sans-serif;"></div>
+
 
             <label class="form-label" style="margin-top: 15px;font-family: Alata, sans-serif;font-size: 18px;font-weight: bold;"><strong>Dove avverrà il pasto?</strong></label>
             <div class="form-group mb-3">
                 <div class="form-check"><input class="form-check-input"  value="at_home" type="radio" name="consummationType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-14"><label class="form-check-label" for="formCheck-14" style="font-family: Alata, sans-serif;">Nella tua abitazione</label></div>
-                <div class="form-check"><input class="form-check-input"  value="takeaway" type="radio" name="consummationType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-15"><label class="form-check-label" for="formCheck-15" style="font-family: Alata, sans-serif;">Take Away</label></div>
-                <div class="form-check"><input class="form-check-input"  value="both" type="radio" name="consummationType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-16"><label class="form-check-label" for="formCheck-16" style="font-family: Alata, sans-serif;">Entrambe</label></div>
+                <div class="form-check"><input class="form-check-input" value="takeaway" type="radio" name="consummationType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-15"><label class="form-check-label" for="formCheck-15" style="font-family: Alata, sans-serif;">Take Away</label></div>
+                <div class="form-check"><input class="form-check-input" value="both" type="radio" name="consummationType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-16"><label class="form-check-label" for="formCheck-16" style="font-family: Alata, sans-serif;">Entrambe</label></div>
 
 
             </div><label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, sans-serif;">Tipo di pagamento</label>
-            <div class="form-check"><input class="form-check-input" value="free" type="radio" name="paymentType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-2"><label class="form-check-label" for="formCheck-2" required style="font-family: Alata, sans-serif;">Pasto in regalo (Fai un bel gesto)</label></div>
+            <div class="form-check"><input class="form-check-input" value="free" type="radio" name="paymentType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-2"><label class="form-check-label" for="formCheck-13" style="font-family: Alata, sans-serif;">Pasto in regalo (Fai un bel gesto)</label></div>
             <div class="form-group mb-3">
-                <div class="form-check" style="font-family: Lora, serif;"><input value="exchange" required  class="form-check-input" type="radio"name="paymentType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-4"><label class="form-check-label" for="formCheck-4" style="font-family: Alata, sans-serif;">Baratto (Inserisci con cosa vuoi barattare)</label></div>
-                <div class="form-check" style="font-family: Lora, serif;"><input  value="cash" required class="form-check-input" type="radio"name="paymentType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-5"><label class="form-check-label" for="formCheck-5" style="font-family: Alata, sans-serif;">Pasto in vendita (Inserisci prezzo del pasto)</label></div><input class="form-control" type="text" autocomplete="off" style="font-family: Alata, sans-serif;" name ="pym">
+                <div class="form-check" style="font-family: Lora, serif;"><input value="exchange" class="form-check-input" type="radio"name="paymentType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-4"><label class="form-check-label" for="formCheck-4" style="font-family: Alata, sans-serif;">Baratto (Inserisci con cosa vuoi barattare)</label></div>
+                <div class="form-check" style="font-family: Lora, serif;"><input  value="cash" class="form-check-input" type="radio"name="paymentType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-5"><label class="form-check-label" for="formCheck-5" style="font-family: Alata, sans-serif;">Pasto in vendita (Inserisci prezzo del pasto)</label></div><input class="form-control" type="text" autocomplete="off" style="font-family: Alata, sans-serif;" name ="pym">
             </div>
 
             <label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, sans-serif;">Numero massimo pasti disponibili</label><select class="form-select" style="font-family: Alata, sans-serif;" name="maxNumUsers">
@@ -383,21 +385,19 @@
             <option value=98>98</option>
             <option value=99>99</option>
             <option value=100>100</option>
-        </select>
-        <label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, sans-serif;margin-top: 15px;">Tipo di iscrizione</label>
-
-            <div class="form-check"><input class="form-check-input" required type="radio" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" value= "true" id="formCheck-17" name="freeSubscription"><label class="form-check-label" for="formCheck-17" style="font-family: Alata, sans-serif;">Iscrizione libera (senza accettazione)</label></div>
-            <div class="form-check"><input class="form-check-input" required type="radio" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" value= "false" id="formCheck-18" name="freeSubscription"><label class="form-check-label" for="formCheck-18" style="font-family: Alata, sans-serif;">Iscrizione chiusa (con accettazione da parte tua)</label></div>
+        </select><label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, sans-serif;margin-top: 15px;">Tipo di iscrizione</label>
+            <div class="form-check"><input class="form-check-input" type="radio" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" value= "true" id="formCheck-13" name="freeSubscription"><label class="form-check-label" for="formCheck-13" style="font-family: Alata, sans-serif;">Iscrizione libera (senza accettazione)</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" value= "false" id="formCheck-3" name="freeSubscription"><label class="form-check-label" for="formCheck-13" style="font-family: Alata, sans-serif;">Iscrizione chiusa (con accettazione da parte tua)</label></div>
 
 
             <hr style="margin-top: 30px;margin-bottom: 10px;"><label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, sans-serif;">Data e orario di consegna<br></label>
             <div class="input-group mb-4"><span class="input-group-text" style="width: 63px;font-family: Alata, sans-serif;text-align: center;">Inizio</span><input class="form-control"  name="startTime" type="datetime-local"  required="" style="font-family: Alata, sans-serif;"></div>
 
             <label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, sans-serif;">Data e orario entro cui prenotare<br></label>
-            <div class="input-group mb-4"><span class="input-group-text" style="width: 63px;font-family: Alata, sans-serif;text-align: center;">Fine</span><input name="closedTime" class="form-control" type="datetime-local" min="2021-05-29T08:30" required="" style="font-family: Alata, sans-serif;"></div>
+            <div class="input-group mb-4"><span class="input-group-text" style="width: 63px;font-family: Alata, sans-serif;text-align: center;">Fine</span><input name="closedTime" class="form-control" type="datetime-local" required="" style="font-family: Alata, sans-serif;"></div>
             <hr style="margin-top: 20px;margin-bottom: 20px;">
             <div class="form-group mb-3">
-                <button class="btn btn-primary w-100" type="submit" role="button" data-bss-hover-animate="pulse" href="bacheca" style="background: #73bc43;border-color: rgba(0,0,0,0);border-left-color: 255,;font-family: Alata, sans-serif;"><i class="fas fa-file"></i>&nbsp; Pubblica Pasto</button>
+                <button class="btn btn-primary w-100" type="submit" role="button" data-bss-hover-animate="pulse" href="bacheca" style="background: #73bc43;border-color: rgba(0,0,0,0);border-top-color: rgb(255,;border-right-color: 255,;border-bottom-color: 255);border-left-color: 255,;font-family: Alata, sans-serif;"><i class="fas fa-file"></i>&nbsp; Pubblica Pasto</button>
                 <button class="btn btn-danger w-100" type="reset" role="button" data-bss-hover-animate="pulse" style="margin-top: 15px;background: #ee6226;border-color: rgba(0,0,0,0);font-family: Alata, sans-serif;"><i class="fas fa-arrow-left"></i>&nbsp; Cancella</button></div>
         </form>
     </div>

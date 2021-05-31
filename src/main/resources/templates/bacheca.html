@@ -297,6 +297,15 @@
                                                                 style="font-family:Alata, sans-serif;font-size: 16px;"
                                                                 th:text="'Posti disponibili: '+${meal.placesAvailable}"></a>
                                                         </div>
+
+                                                        <div class="col-12">
+                                                            <a
+                                                                    class="text-center small-text"
+                                                                    style="font-size: 18px;font-family:Alata, sans-serif;">Dove:<br th:text="${meal.city+', '+meal.place}"></a>
+
+                                                        </div>
+
+
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-12">
@@ -311,11 +320,33 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="product-rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star-half"></i>
+                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=1 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<1.5}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=1.5 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<2}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=2 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<2.5}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=2.5 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<3}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=3 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<3.5}">
+                                                                     <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=3.5 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<4}">
+                                                                     <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=4 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<4.5}">
+                                                                     <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=4.5 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<5}">
+                                                                     <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=5}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i>
+                                                                </th:block>
                                                                 <a class="small-text text-center" style="font-size: 15px;">Pubblicato dall'utente<br th:text="${meal.homeOwner.username}"></a>
                                                             </div>
                                                         </div>
@@ -416,11 +447,33 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="product-rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star-half"></i>
+                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=1 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<1.5}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=1.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<2}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=2 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<2.5}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=2.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<3}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=3 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<3.5}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=3.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<4}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=4 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<4.5}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=4.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<5}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i>
+                                                                </th:block>
+                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=5}">
+                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i>
+                                                                </th:block>
                                                                 <a class="small-text" href="#" style="font-size: 15px;">Pubblicato da<br th:text="${mealRequest.host.username}"></a>
                                                             </div>
                                                         </div>

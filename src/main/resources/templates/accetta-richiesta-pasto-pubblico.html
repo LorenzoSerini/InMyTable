@@ -247,11 +247,33 @@
                                                     <br th:text="${mealRequest.host.username}"></a>
                                             </h4>
                                             <div>
-                                            <i class="fa fa-star" style="color: #fe9e02;"></i>
-                                            <i class="fa fa-star-o" style="color: #fe9e02;"></i>
-                                            <i class="fa fa-star-o" style="color: #fe9e02;"></i>
-                                            <i class="fa fa-star-o" style="color: #fe9e02;"></i>
-                                            <i class="fa fa-star-o" style="color: #fe9e02;"></i>
+                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=1 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<1.5}">
+                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
+                                                </th:block>
+                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=1.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<2}">
+                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
+                                                </th:block>
+                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=2 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<2.5}">
+                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                </th:block>
+                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=2.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<3}">
+                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                </th:block>
+                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=3 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<3.5}">
+                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                </th:block>
+                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=3.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<4}">
+                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                </th:block>
+                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=4 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<4.5}">
+                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                </th:block>
+                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=4.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<5}">
+                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i>
+                                                </th:block>
+                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=5}">
+                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i>
+                                                </th:block>
                                         </div>
                                         
                                             <h4>

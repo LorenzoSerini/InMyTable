@@ -43,7 +43,7 @@ public class MealDB extends DBPersistence implements MealPersistence {
 
     @Override
     public void registerMeal(Meal meal) throws SQLException {
-        this.sql = "insert into Meal(Id, HomeOwner, Date, Time, ExpiringDate, ExpiringTime, MealType, Place, ConsumationType, Description, Ingredients, MaxNumberUsers, Payment, Price, MealState, FreeSubscription) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        this.sql = "insert into Meal(Id, HomeOwner, Date, Time, ExpiringDate, ExpiringTime, MealType, City, Place, ConsumationType, Description, Ingredients, MaxNumberUsers, Payment, Price, MealState, FreeSubscription) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
         prepStat.setString(1, meal.getId());
         prepStat.setString(2, meal.getHomeOwner().getUsername());
@@ -52,15 +52,16 @@ public class MealDB extends DBPersistence implements MealPersistence {
         prepStat.setString(5, meal.getExpiryDate().toString());
         prepStat.setString(6, meal.getExpiryTime().toString());
         prepStat.setString(7, meal.getMealType());
-        prepStat.setString(8, meal.getPlace());
-        prepStat.setString(9, meal.getConsummationType().toString());
-        prepStat.setString(10, meal.getDescription());
-        prepStat.setString(11, meal.getIngredients());
-        prepStat.setInt(12, meal.getMaxNumberUsers());
-        prepStat.setString(13, meal.getPaymentType().toString());
-        prepStat.setString(14, meal.getPrice());
-        prepStat.setString(15, meal.getState().toString());
-        prepStat.setBoolean(16, meal.isFreeSubscription());
+        prepStat.setString(8, meal.getCity());
+        prepStat.setString(9, meal.getPlace());
+        prepStat.setString(10, meal.getConsummationType().toString());
+        prepStat.setString(11, meal.getDescription());
+        prepStat.setString(12, meal.getIngredients());
+        prepStat.setInt(13, meal.getMaxNumberUsers());
+        prepStat.setString(14, meal.getPaymentType().toString());
+        prepStat.setString(15, meal.getPrice());
+        prepStat.setString(16, meal.getState().toString());
+        prepStat.setBoolean(17, meal.isFreeSubscription());
         prepStat.executeUpdate();
         //mealsMap.put(meal.getId(), meal);
         getMealsMap().put(meal.getId(), meal);

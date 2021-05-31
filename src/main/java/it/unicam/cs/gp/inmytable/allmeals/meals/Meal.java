@@ -20,6 +20,7 @@ public class Meal implements IMeal{
 	private LocalTime expiryTime;
 	private String mealType;
 	private boolean freeSubscription;
+	private String city;
 	private String place;
 	private MealStates state;
 	private ConsumationType consumationType;
@@ -49,7 +50,7 @@ public class Meal implements IMeal{
 	 * @param payment	how payment is accepted
 	 * @throws Exception if one of the parameters is null
 	 */
-	public Meal(IUser homeOwner, int maxNumberUsers, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String mealType, boolean freeSubscription, String place,
+	public Meal(IUser homeOwner, int maxNumberUsers, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String mealType, boolean freeSubscription, String city, String place,
 				ConsumationType consumationType, String description, String ingredients, PaymentType payment, String price) throws Exception{
 		if (homeOwner==null|| date ==null ||expiryDate ==null ||mealType==null ||place == null ||
 				consumationType ==null|| description ==null || payment ==null) throw new NullPointerException("You must insert all!");
@@ -68,6 +69,7 @@ public class Meal implements IMeal{
 		this.expiryTime = expiryTime;
 		this.mealType = mealType;
 		this.freeSubscription = freeSubscription;
+		this.city=city;
 		this.place = place;
 		this.consumationType = consumationType;
 		this.description = description;
@@ -211,6 +213,15 @@ public class Meal implements IMeal{
 	@Override
 	public boolean isFreeSubscription() {
 		return freeSubscription;
+	}
+
+
+	/**
+	 * Return the city of the meal
+	 * @return	the city of the meal
+	 */
+	public String getCity() {
+		return city;
 	}
 
 	/**

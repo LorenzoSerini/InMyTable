@@ -1,7 +1,9 @@
 package it.unicam.cs.gp.inmytable.view.spring.controllers.homewall;
 
 import it.unicam.cs.gp.inmytable.homewalls.HomeWall;
+import it.unicam.cs.gp.inmytable.user.User;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
+import it.unicam.cs.gp.inmytable.view.spring.services.FeedbackService;
 import it.unicam.cs.gp.inmytable.view.spring.services.HomeWallService;
 import it.unicam.cs.gp.inmytable.view.spring.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;

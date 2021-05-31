@@ -57,7 +57,7 @@ public class User implements IUser{
         this.city = city;
         this.address=address;
         this.availableToRequests=availableToRequests;
-        this.feedbackBox = new FeedbackBox();
+        this.feedbackBox = new FeedbackBox(this);
         this.simpleNotifications = new ArrayList<>();
         mealNotifications = new ArrayList<>();
         mealRequestNotifications = new ArrayList<>();
