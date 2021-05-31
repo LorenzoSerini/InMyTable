@@ -3,7 +3,9 @@ package it.unicam.cs.gp.inmytable.view.spring.controllers.meal;
 import it.unicam.cs.gp.inmytable.controllers.MealsController;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.CookService;
+import it.unicam.cs.gp.inmytable.view.spring.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +22,20 @@ public class CookController {
      @Autowired()
     CookService cookService;
 
+    @Autowired
+    NotificationService notificationService;
+
     @GetMapping("/cucina")
-    public String getCook(HttpSession session) {
+    public String getCook(Model model, HttpSession session) {
         if (BaseController.isLoggedIn(session)) {
-            return "cucina";
+            try {
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
+                return "cucina";
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "redirect:bacheca";
         }
         return "login";
     }

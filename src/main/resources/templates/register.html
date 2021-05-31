@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>InMyTable</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alata">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
@@ -49,85 +49,83 @@
             <li class="nav-item"></li>
             <li class="nav-item"></li>
         </ul>
-        <div class="collapse navbar-collapse" id="navcol-1"></div><a class="btn btn-light action-button" role="button" data-bss-hover-animate="pulse" href="index" style="margin-left: -7px;margin-bottom: 0px;background: #fe9e02;font-family: Lora, serif;width: 100px;border-color: rgba(0,0,0,0);">Indietro</a>
+        <div class="collapse navbar-collapse" id="navcol-1"></div><a class="btn btn-light action-button" role="button" data-bss-hover-animate="pulse" href="index" style="margin-left: -7px;margin-bottom: 0px;background: #fe9e02;font-family: Alata, serif;width: 100px;border-color: rgba(0,0,0,0);">Indietro</a>
     </div>
 </nav>
 <section class="register-photo" style="margin-top: 60px;background: url(&quot;assets/img/social-cooking-eating-2.jpg&quot;) top / cover;">
     <div class="form-container">
 
         <form class="text-center border rounded" action="/register" method="post" style="padding-right: 60px;padding-top: 40px;width: 900px;max-width: none;"><img class="swing animated" src="assets/img/inmytable-icon-1.png" style="width: 268px;margin-right: 0px;margin-left: 0px;margin-bottom: 20px;">
-            <h2 class="text-center" style="font-family: Lora, serif;"><strong>Creazione</strong>&nbsp;nuovo account</h2>
-            <div class="mb-3" style="font-family: Lora, serif;">
-                <input class="form-control" name="username" placeholder="Nome utente" style="margin-bottom: 16px;font-family: Lora, serif;">
-                <input class="form-control" placeholder="Nome" style="margin-bottom: 16px;" name="firstName">
-                <input class="form-control" name="lastName" placeholder="Cognome" style="margin-bottom: 16px;">
-                <input class="form-control" name="telephone" placeholder="Numero di telefono" style="margin-bottom: 16px;">
-                <input class="form-control" name="fiscalCode" placeholder="Codice fiscale" style="margin-bottom: 16px;">
-                <input class="form-control" name="id" placeholder="Numero di serie della Carta d'Identità" style="margin-bottom: 16px;">
+            <h2 class="text-center" style="font-family: Alata, serif;"><strong>Creazione</strong>&nbsp;nuovo account</h2>
+            <div class="mb-3" style="font-family: Alata, serif;">
+                <input class="form-control" name="username" required="" placeholder="Nome utente" style="margin-bottom: 16px;font-family: Alata, serif;">
+                <input class="form-control" placeholder="Nome" required="" style="margin-bottom: 16px;" name="firstName">
+                <input class="form-control" name="lastName" required="" placeholder="Cognome" style="margin-bottom: 16px;">
+                <input class="form-control" name="telephone" required="" placeholder="Numero di telefono" style="margin-bottom: 16px;">
+                <input class="form-control" name="fiscalCode" required="" placeholder="Codice fiscale" style="margin-bottom: 16px;">
+                <input class="form-control" name="id" required="" placeholder="Numero di serie della Carta d'Identità" style="margin-bottom: 16px;">
                 <div class="input-group mb-4">
                     <span class="input-group-text">Data di nascita</span>
                     <input class="form-control" type="date" name="birth" required="" >
                 </div>
-                <input class="form-control" name="city" placeholder="Città" style="margin-bottom: 16px;">
-                <input class="form-control" name="address" placeholder="Via e numero civico" style="margin-bottom: 16px;">
-
-
-
-                <input class="form-control" type="email" name="email" placeholder="Email">
+                <input class="form-control" name="city" required="" placeholder="Città" style="margin-bottom: 16px;">
+                <input class="form-control" name="address" required="" placeholder="Via e numero civico" style="margin-bottom: 16px;">
+                <input class="form-control" type="email" name="email" placeholder="Email" required="">
             </div>
             <div class="mb-3">
-                <input class="form-control" type="password" name="password" placeholder="Password" style="font-family: Lora, serif;">
+                <input class="form-control" type="password" name="password" placeholder="Password" required="" style="font-family: Alata, serif;">
             </div>
-            <div class="mb-3">
-                <input class="form-control" type="password" name="pull-passw-rep" placeholder="Password (ripeti)" style="font-family: Lora, serif;">
+            <div class="mb-3" >
+                <input class="form-control" type="password" name="pull-passw-rep" placeholder="Password (ripeti)" required="" style="font-family: Alata, serif;">
             </div>
 
 
-            <label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Lora, serif;margin-top: 15px;">Disponibilità ad essere contattato da altri utenti per un pasto</label>
-            <div class="form-check" style="margin-bottom: 0px;margin-top: 10px;"><label class="form-check-label" style="font-size: 14px;font-family: Lora, serif;"><input class="form-check-input" value= true type="radio" id="formCheck-14" name="available">Si</label></div>
-            <div class="form-check" style="margin-bottom: 0px;margin-top: 10px;"><label class="form-check-label" style="font-size: 14px;font-family: Lora, serif;"><input class="form-check-input" value= false type="radio" id="formCheck-3" name="available">No</label></div>
+            <label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, serif;margin-top: 15px;">Disponibilità ad essere contattato da altri utenti per un pasto</label>
+            <div class="form-check" style="margin-bottom: 0px;margin-top: 10px;"><label class="form-check-label" style="font-size: 14px;font-family: Alata, serif;"><input class="form-check-input" value= true type="radio" id="formCheck-14" name="available" required value="pull-terms">Si</label></div>
+            <div class="form-check" style="margin-bottom: 0px;margin-top: 10px;"><label class="form-check-label" style="font-size: 14px;font-family: Alata, serif;"><input class="form-check-input" value= false type="radio" id="formCheck-3" name="available" required value="pull-terms">No</label></div>
 
 
-            <div class="form-check" style="margin-bottom: 0px;margin-top: 24px;"><label class="form-check-label" style="font-size: 14px;font-family: Lora, serif;"><input class="form-check-input" type="checkbox" required value="pull-terms">Accetto i termini e le condizioni del servizio.</label></div>
+            <div class="form-check" style="margin-bottom: 0px;margin-top: 24px;"><label class="form-check-label" style="font-size: 14px;font-family: Alata, serif;"><input class="form-check-input" type="checkbox" required value="pull-terms">Accetto i termini e le condizioni del servizio.</label></div>
 
-            <div class="mb-3"><button type="submit" class="btn btn-primary d-block w-100" data-bss-hover-animate="pulse"  style="color: var(--bs-light);background: #ee6226;margin-top: 30px;font-family: Lora, serif;font-size: 18px;">Registrati</button></div><a data-bss-hover-animate="pulse" class="already" href="login" style="font-size: 17px;margin-bottom: 20px;margin-top: 0px;font-family: Lora, serif;">Hai già un'account ?</a>
+            <div class="mb-3"><button type="submit" class="btn btn-primary d-block w-100" data-bss-hover-animate="pulse"  style="color: var(--bs-light);background: #ee6226;margin-top: 30px;font-family: Alata, serif;font-size: 18px;">Registrati</button></div><a data-bss-hover-animate="pulse" class="already" href="login" style="font-size: 17px;margin-bottom: 20px;margin-top: 0px;font-family: Alata, serif;">Hai già un'account ?</a>
         </form>
 
     </div>
 </section>
 <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" data-aos="zoom-in" style="height: 343px;background: var(--bs-white);color: #ffffff;">
-    <footer data-aos="fade" style="border-color: rgb(240, 249, 255);border-top-color: rgb(240,;border-right-color: 249,;border-bottom-color: 255);border-left-color: 249,;color: var(--bs-white);height: 214.328px;">
+    
+    <footer style="border-color: rgb(240, 249, 255);height: 214.328px;">
         <div class="container">
-            <div class="row g-0 row-cols-2 justify-content-center align-items-center">
-                <div class="col-sm-4 col-md-3 text-center d-inline order-1 item" style="font-family: Lato, sans-serif;height: 178.328px;">
+            <div class="row row-cols-2 justify-content-center align-items-center">
+                <div class="col-sm-4 col-md-3 text-center d-inline order-1 item" style="font-family: Lato, sans-serif;height: 234px;">
                     <h3> </h3>
                     <ul></ul><img class="img-fluid" src="assets/img/inmytable-logo.png" style="width: 258px;text-align: center;">
-                    <p style="color: var(--bs-dark);text-align: center;font-family: Lora, serif;"><br><em>Mangiare insieme. Sprecare meno. Conoscersi di più.</em><br><br><br></p>
+                    <p style="color: var(--bs-dark);text-align: center;font-family: Alata, sans-serif;"><br><em>Mangiare insieme. Sprecare meno. Conoscersi di più.</em><br><br><br></p>
                 </div>
-                <div class="col-sm-4 col-md-3 text-center d-inline order-2 item" style="font-family: Lato, sans-serif;height: 208px;">
+                <div class="col-sm-4 col-md-3 text-center d-inline order-2 item" style="font-family: Alata, sans-serif;height: 234px;text-align: center;">
                     <h3> </h3>
-                    <h3 class="text-center" style="height: 30px;font-size: 19px;color: var(--bs-dark);font-weight: bold;font-family: Lora, serif;">Links utili<br><br><a class="btn btn-primary text-center" role="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 160px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Lora, serif;margin-bottom: 10px;" href="come-funziona">Come funziona</a><br><a class="btn btn-primary text-center" role="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 160px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Lora, serif;margin-bottom: 10px;" href="aiuto">FAQ</a><br><button class="btn btn-primary text-center" type="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 160px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Lora, serif;margin-bottom: 10px;">Contatti</button><br><br><br><br><br><br><br></h3>
+                    <h3 class="text-center" style="height: 30px;font-size: 19px;color: var(--bs-dark);font-weight: bold;font-family: Alata, sans-serif;">Links utili<br><a class="btn btn-primary text-start" role="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 130px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;margin-left: 0px;margin-right: 0px;padding-right: 0px;padding-left: 0px;" href="come-funziona.html">Come funziona</a><br><a class="btn btn-primary text-start" role="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 60px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;" href="aiuto.html">FAQ</a><br><button class="btn btn-primary text-start" type="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 118px;height: 29px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px; margin-left:28px">Contatti</button><br></h3>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 d-inline order-3 item" style="font-family: Lato, sans-serif;">
+                <div class="col-6 col-sm-4 col-md-3 d-inline order-3 item" style="font-family: Lato, sans-serif;height: 234px;">
                     <h3> </h3>
-                    <h3 class="text-center" style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Lora, serif;font-weight: bold;">Contattaci</h3>
+                    <h3 class="text-center" style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;font-weight: bold;margin-bottom: -4px;">Contattaci</h3>
                     <div class="social-icons" style="height: 87px;padding: 0px 0px;text-align: center;"><a href="#"><i class="icon ion-social-instagram" style="margin-left: 10px;margin-right: 2px;"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a>
-                        <h3 class="text-center" style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Lora, serif;text-align: center;font-weight: bold;"><br>E-mail: info@inmytable.com<br></h3><a href="#"></a><a href="#"></a>
+                        <h3 class="text-center" style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;text-align: center;font-weight: bold; margin-bottom:10px;"><br>E-mail: info@inmytable.com<br></h3>
                     </div>
-                    <ul></ul><a href="#"></a><a href="#"></a>
+                  
                 </div>
-                <div class="col-sm-4 col-md-3 order-4 item" style="font-family: Lato, sans-serif;margin-top: 0px;padding-top: 1px;">
+                <div class="col-sm-4 col-md-3 order-4 item" style="font-family: Lato, sans-serif;margin-top: 0px;padding-top: 1px;width: 242;">
                     <h3> </h3>
-                    <h3 class="text-center text-sm-center text-md-center text-lg-center" style="font-size: 19px;height: 46px;color: var(--bs-dark);margin-bottom: 2px;margin-top: -2px;font-family: Lora, serif;font-weight: bold;">Iscriviti alla newsletter</h3>
-                    <h3 class="text-center text-sm-center text-md-center text-lg-center" style="font-size: 13px;height: 20px;color: var(--bs-dark);font-style: normal;margin-bottom: 0px;margin-top: 3px;font-family: Lora, serif;">Unisciti alla community<br>Inserisci la tua email</h3>
+                    <h3 class="text-center text-sm-center text-md-center text-lg-center" style="font-size: 19px;height: 46px;color: var(--bs-dark);margin-bottom: 18px;margin-top: 0px;font-family: Alata, sans-serif;font-weight: bold;">Iscriviti alla newsletter</h3>
+                    <h3 class="text-center text-sm-center text-md-center text-lg-center" style="font-size: 13px;height: 20px;color: var(--bs-dark);font-style: normal;margin-bottom: 6px;font-family: Alata, sans-serif;">Unisciti alla community<br>Inserisci la tua email</h3>
                     <form style="margin-top: 30px;height: 107px;" method="post">
-                        <div class="form-group mb-3" style="margin-top: 0px;margin-bottom: 0px;"><input class="form-control" type="email" name="email" placeholder="Email" style="text-align: center;margin-bottom: 10px;margin-top: 0px;margin-right: 0px;padding-bottom: 4px;padding-top: 7px;margin-left: 0px;font-family: Lora, serif;"></div>
-                        <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center form-group mb-3"><button class="btn btn-primary border rounded-pill" data-bss-hover-animate="pulse" type="submit" style="background: #fe9e02;padding-top: 8px;width: 101px;font-family: Lora, serif;padding-bottom: 8px;">Inscriviti</button></div>
+                        <div class="form-group mb-3" style="margin-top: 0px;margin-bottom: 0px;"><input class="form-control" type="email" name="email" placeholder="Email" style="text-align: center;margin-bottom: 0px;margin-top: 0px;margin-right: 0px;padding-bottom: 4px;padding-top: 7px;margin-left: 0px;font-family: Alata, sans-serif;"></div>
+                        <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center form-group mb-3"><button class="btn btn-primary border rounded-pill" data-bss-hover-animate="pulse" type="submit" style="background: #73bc43;padding-top: 8px;width: 118px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;">Inscriviti</button></div>
                     </form>
                 </div>
             </div>
         </div>
-        <h1 style="border-color: rgb(0,0,0);color: rgb(0,0,0);text-align: center;font-size: 17px;font-family: Lora, serif;"><br>© 2018 - 2020 Copyright INMYTABLE - Tutti i diritti riservati<br><br></h1>
+        <h1 style="border-color: rgb(0,0,0);color: rgb(0,0,0);text-align: center;font-size: 17px;font-family: Alata, sans-serif;margin-top: 5px;margin-bottom: 20px;padding-top: 0px;padding-bottom: 0px;"><br>© 2018 - 2020 Copyright INMYTABLE - Tutti i diritti riservati<br><br></h1>
     </footer>
 </div>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>

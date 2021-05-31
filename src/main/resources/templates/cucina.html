@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -71,10 +71,175 @@
 </head>
 
 <body>
-<section class="clean-block clean-form dark" style="background: url(&quot;assets/img/social-cooking-home-cooking.jpg&quot;) center / cover, var(--bs-white);height: 1833px;">
-    <div class="container" style="height: 1600px;margin-top: 3px;">
+    <nav
+            class="navbar navbar-light navbar-expand fixed-top d-block navigation-clean-search"
+            style="background: var(--bs-white);height: 70px;">
+            <div class="container-fluid ">
+                <div
+                    class="collapse navbar-collapse text-start col-3"
+                    id="navcol-1"
+                    style="width: 35.828px;height: 45px;">
+                    <ul class="navbar-nav"></ul>
+                    <a
+                        class="btn btn-primary"
+                        role="button"
+                        data-bss-hover-animate="pulse"
+                        style="background: url(&quot;assets/img/inmytable-logo.png&quot;) center / cover space, #ffffff; width:100%; height: 100%; max-width: 150px; max-height:41px; border-radius: -1px; border:none;"
+                        href="bacheca"></a>
+                </div>
+
+                <!--------Menu notifiche------->
+                <div class="nav-item dropdown" style="margin-top: -13px; margin-right: -5px;">
+                    <a
+                        class="nav-link text-light"
+                        id="navbarDropdown"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="fa fa-bell" style="color: #fe9e02; font-size: 20px; " ></i>
+                    </a>
+
+                    <ul
+                        class="dropdown-menu"
+                        style="padding: 14px; margin-left:-210px; margin-top:14px; overflow-y: auto; overflow-x: hidden; height: 200px; ">
+                        <li class="head text-light" style="background-color: #fe9e02;">
+                            <div class="row">
+                                <div class="col-12 text-center" style="font-weight: 500">
+                                    <span th:text="'Le tue Notifiche ('+${allNotifications.size}+')'"></span>
+                                    <!--Da mettere se troviamo il modo il contatore di noticiche dentro le
+                                    parentesi-->
+                                </div>
+                            </div>
+                        </li>
+                        <li
+                            class="container"
+                            style="width: 200px;"
+                            th:each="notification:${allNotifications}">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <div class="row">
+                                        <p class="col-12" style="color:#000000;font-size: 14px; margin-top: 10px;">Notifica ricevuta alle:</p>
+                                        <p
+                                            class="col-12"
+                                            style="color:#000000;font-size: 14px; margin-top: -20px;"
+                                            th:text="${notification.date+' '+notification.time}"></p>
+                                        <p
+                                            class="col-12"
+                                            style="color:#000000;font-size: 13px; margin-top: -10px;"
+                                            th:text="${notification.from.username+' '+notification.msg}"></p>
+                                    </div>
+                                    <div
+                                        class="col-12 text-center"
+                                        style="background-color: #fe9e02; color:white; height: 30px; border-radius: 20px; ">
+                                        <a
+                                            class="btn btn-primary"
+                                            role="button"
+                                            href="notifiche"
+                                            data-bss-hover-animate="pulse"
+                                            style="background: transparent; border-color:transparent;margin-top:-4px; font-size: 13; font:Alata, sans-serif; font-weight: 700;">Vedi notifica</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <!--------Menu notifiche------->
+
+                <div class="dropdown" style="margin-left: 8px;  margin-top: -15px;">
+                    <a
+                        class="dropdown-toggle"
+                        aria-expanded="false"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        style="margin-right: 6px;margin-left: 0px;font-size: 15px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal; text-decoration: none;">IL MIO ACCOUNT</a>
+                    <div class="dropdown-menu" style="margin-left:-10px;  margin-top:24px">
+                        <a
+                            class="dropdown-item"
+                            href="bacheca"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">Bacheca</a>
+                        <div class="dropdown-divider"></div>
+                        <a
+                            class="dropdown-item"
+                            href="i-miei-pasti"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">I miei pasti</a>
+                        <a
+                            class="dropdown-item"
+                            href="le-mie-richieste"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">Le mie richieste</a>
+
+                        <a
+                            class="dropdown-item"
+                            href="storico"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">Storico</a>
+                        <div class="dropdown-divider"></div>
+                        <a
+                            class="dropdown-item"
+                            href="notifiche"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">Notifiche</a>
+                        <a
+                            class="dropdown-item"
+                            href="le-mie-recensioni"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">Recensioni</a>
+                        <div class="dropdown-divider"></div>
+                        <a
+                            class="dropdown-item"
+                            href="profilo"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">Il mio profilo</a>
+
+                        <form action="/logout" method="post">
+                            <button
+                                type="submit"
+                                class="dropdown-item"
+                                style="font-size: 14px;font-family: Alata, sans-serif;">Esci</button>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="dropdown" style="margin-top:3px;">
+                    <a
+                        class="btn btn-primary"
+                        aria-expanded="false"
+                        data-bs-toggle="dropdown"
+                        style="background: url(&quot;assets/img/menu-piu.png&quot;) center / cover space, #ffffff; width: 20px; height: 40px; border:none; margin-left: 10px;"></a>
+
+                    <div
+                        class="dropdown-menu"
+                        style="margin-left: -120px; margin-top:14px; margin-right: 30px;">
+                        <a
+                            class="dropdown-item"
+                            href="cucina"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">Cucina</a>
+                        <a
+                            class="dropdown-item"
+                            href="richiesta-pasto-pubblico"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">Richiedi pasto</a>
+                        <div class="dropdown-divider"></div>
+                        <a
+                            class="dropdown-item"
+                            href="ricerca-pasti-pubblici"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">Pasti disponibili</a>
+
+                        <a
+                            class="dropdown-item"
+                            href="ricerca-richieste-pasti-pubbliche"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">Richeste pasti</a>
+                        <div class="dropdown-divider"></div>
+                        <a
+                            class="dropdown-item"
+                            href="ricerca-utenti"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">Cerca Utenti</a>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+<section class="clean-block clean-form dark" style="background: url(&quot;assets/img/social-cooking-home-cooking.jpg&quot;) center / cover, var(--bs-white);height: 1600px;">
+    <div class="container" style="height: 1600px;margin-top: 55px;">
         <div class="row" style="margin-right: 0px;margin-left: 0px;">
-            <div class="col-md-12" style="margin-bottom: 25px;padding-left: 75px;font-size: 21px;margin-top: 73px;"><a class="anone" href="listaBitacoras"></a></div>
+            <div class="col-md-12" style="margin-bottom: 25px;padding-left: 75px;font-size: 21px;margin-top: 25px;"><a class="anone" href="listaBitacoras"></a></div>
         </div>
         <div class="block-heading" style="padding-top: 0px;">
             <p></p>
@@ -83,8 +248,10 @@
         <form class="border rounded pulse animated" action="/cucina" method="post" style="margin-bottom: 0px;margin-top: 0px;font-family: Alata, sans-serif;">
 
 
-            <div class="form-group mb-3" style="font-family: Alata, sans-serif;"><label class="form-label" style="line-height: 25px;font-size: 22px;font-weight: bold;">Cosa cucini ?</label><input class="form-control" type="text" autocomplete="off" required="" name="description" style="font-family: Alata, sans-serif;"></div>
-            <div class="form-group mb-3" style="font-family: Lora, serif;"><label class="form-label" style="margin-top: 15px;font-size: 17px;font-family: Alata, sans-serif;">Tipo di cucina</label><select class="form-select" value="pull-type-c" style="font-family: Alata, sans-serif;" name="mealType">
+            <div class="form-group mb-3 " style="font-family: Alata, sans-serif;"><label class="form-label" style="line-height: 25px;font-size: 22px;font-weight: bold;">Cosa cucini ?</label><input class="form-control" type="text" autocomplete="off" required="" name="description" style="font-family: Alata, sans-serif;"></div>
+            <div class="form-group mb-3" style="font-family: Lora, serif;">
+                <label class="form-label" style="margin-top: 15px;font-size: 17px;font-family: Alata, sans-serif;">Tipo di cucina</label>
+                <select class="form-select" style="font-family: Alata, sans-serif;" name="mealType ">
                 <optgroup label="Tipi di cucina">
                     <option value="cucina-altro" selected="">Altro</option>
                     <option value="cucina-locale">Cucina locale</option>
@@ -104,15 +271,15 @@
             <label class="form-label" style="margin-top: 15px;font-family: Alata, sans-serif;font-size: 18px;font-weight: bold;"><strong>Dove avverrà il pasto?</strong></label>
             <div class="form-group mb-3">
                 <div class="form-check"><input class="form-check-input"  value="at_home" type="radio" name="consummationType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-14"><label class="form-check-label" for="formCheck-14" style="font-family: Alata, sans-serif;">Nella tua abitazione</label></div>
-                <div class="form-check"><input class="form-check-input" value="takeaway" type="radio" name="consummationType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-15"><label class="form-check-label" for="formCheck-15" style="font-family: Alata, sans-serif;">Take Away</label></div>
-                <div class="form-check"><input class="form-check-input" value="both" type="radio" name="consummationType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-16"><label class="form-check-label" for="formCheck-16" style="font-family: Alata, sans-serif;">Entrambe</label></div>
+                <div class="form-check"><input class="form-check-input"  value="takeaway" type="radio" name="consummationType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-15"><label class="form-check-label" for="formCheck-15" style="font-family: Alata, sans-serif;">Take Away</label></div>
+                <div class="form-check"><input class="form-check-input"  value="both" type="radio" name="consummationType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-16"><label class="form-check-label" for="formCheck-16" style="font-family: Alata, sans-serif;">Entrambe</label></div>
 
 
             </div><label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, sans-serif;">Tipo di pagamento</label>
-            <div class="form-check"><input class="form-check-input" value="free" type="radio" name="paymentType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-2"><label class="form-check-label" for="formCheck-13" style="font-family: Alata, sans-serif;">Pasto in regalo (Fai un bel gesto)</label></div>
+            <div class="form-check"><input class="form-check-input" value="free" type="radio" name="paymentType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-2"><label class="form-check-label" for="formCheck-2" required style="font-family: Alata, sans-serif;">Pasto in regalo (Fai un bel gesto)</label></div>
             <div class="form-group mb-3">
-                <div class="form-check" style="font-family: Lora, serif;"><input value="exchange" class="form-check-input" type="radio"name="paymentType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-4"><label class="form-check-label" for="formCheck-4" style="font-family: Alata, sans-serif;">Baratto (Inserisci con cosa vuoi barattare)</label></div>
-                <div class="form-check" style="font-family: Lora, serif;"><input  value="cash" class="form-check-input" type="radio"name="paymentType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-5"><label class="form-check-label" for="formCheck-5" style="font-family: Alata, sans-serif;">Pasto in vendita (Inserisci prezzo del pasto)</label></div><input class="form-control" type="text" autocomplete="off" style="font-family: Alata, sans-serif;" name ="pym">
+                <div class="form-check" style="font-family: Lora, serif;"><input value="exchange" required  class="form-check-input" type="radio"name="paymentType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-4"><label class="form-check-label" for="formCheck-4" style="font-family: Alata, sans-serif;">Baratto (Inserisci con cosa vuoi barattare)</label></div>
+                <div class="form-check" style="font-family: Lora, serif;"><input  value="cash" required class="form-check-input" type="radio"name="paymentType" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" id="formCheck-5"><label class="form-check-label" for="formCheck-5" style="font-family: Alata, sans-serif;">Pasto in vendita (Inserisci prezzo del pasto)</label></div><input class="form-control" type="text" autocomplete="off" style="font-family: Alata, sans-serif;" name ="pym">
             </div>
 
             <label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, sans-serif;">Numero massimo pasti disponibili</label><select class="form-select" style="font-family: Alata, sans-serif;" name="maxNumUsers">
@@ -216,25 +383,27 @@
             <option value=98>98</option>
             <option value=99>99</option>
             <option value=100>100</option>
-        </select><label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, sans-serif;margin-top: 15px;">Tipo di iscrizione</label>
-            <div class="form-check"><input class="form-check-input" type="radio" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" value= "true" id="formCheck-13" name="freeSubscription"><label class="form-check-label" for="formCheck-13" style="font-family: Alata, sans-serif;">Iscrizione libera (senza accettazione)</label></div>
-            <div class="form-check"><input class="form-check-input" type="radio" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" value= "false" id="formCheck-3" name="freeSubscription"><label class="form-check-label" for="formCheck-13" style="font-family: Alata, sans-serif;">Iscrizione chiusa (con accettazione da parte tua)</label></div>
+        </select>
+        <label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, sans-serif;margin-top: 15px;">Tipo di iscrizione</label>
+
+            <div class="form-check"><input class="form-check-input" required type="radio" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" value= "true" id="formCheck-17" name="freeSubscription"><label class="form-check-label" for="formCheck-17" style="font-family: Alata, sans-serif;">Iscrizione libera (senza accettazione)</label></div>
+            <div class="form-check"><input class="form-check-input" required type="radio" style="width: 20px;height: 20px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;margin-right: 4px;" value= "false" id="formCheck-18" name="freeSubscription"><label class="form-check-label" for="formCheck-18" style="font-family: Alata, sans-serif;">Iscrizione chiusa (con accettazione da parte tua)</label></div>
 
 
             <hr style="margin-top: 30px;margin-bottom: 10px;"><label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, sans-serif;">Data e orario di consegna<br></label>
             <div class="input-group mb-4"><span class="input-group-text" style="width: 63px;font-family: Alata, sans-serif;text-align: center;">Inizio</span><input class="form-control"  name="startTime" type="datetime-local"  required="" style="font-family: Alata, sans-serif;"></div>
 
             <label class="form-label" style="line-height: 25px;font-size: 18px;font-weight: bold;margin-bottom: 10px;font-family: Alata, sans-serif;">Data e orario entro cui prenotare<br></label>
-            <div class="input-group mb-4"><span class="input-group-text" style="width: 63px;font-family: Alata, sans-serif;text-align: center;">Fine</span><input name="closedTime" class="form-control" type="datetime-local" required="" style="font-family: Alata, sans-serif;"></div>
+            <div class="input-group mb-4"><span class="input-group-text" style="width: 63px;font-family: Alata, sans-serif;text-align: center;">Fine</span><input name="closedTime" class="form-control" type="datetime-local" min="2021-05-29T08:30" required="" style="font-family: Alata, sans-serif;"></div>
             <hr style="margin-top: 20px;margin-bottom: 20px;">
             <div class="form-group mb-3">
-                <button class="btn btn-primary w-100" type="submit" role="button" data-bss-hover-animate="pulse" href="bacheca" style="background: #73bc43;border-color: rgba(0,0,0,0);border-top-color: rgb(255,;border-right-color: 255,;border-bottom-color: 255);border-left-color: 255,;font-family: Alata, sans-serif;"><i class="fas fa-file"></i>&nbsp; Pubblica Pasto</button>
+                <button class="btn btn-primary w-100" type="submit" role="button" data-bss-hover-animate="pulse" href="bacheca" style="background: #73bc43;border-color: rgba(0,0,0,0);border-left-color: 255,;font-family: Alata, sans-serif;"><i class="fas fa-file"></i>&nbsp; Pubblica Pasto</button>
                 <button class="btn btn-danger w-100" type="reset" role="button" data-bss-hover-animate="pulse" style="margin-top: 15px;background: #ee6226;border-color: rgba(0,0,0,0);font-family: Alata, sans-serif;"><i class="fas fa-arrow-left"></i>&nbsp; Cancella</button></div>
         </form>
     </div>
 </section>
 <div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;">
-    <footer style="border-color: rgb(240, 249, 255);border-top-color: rgb(240,;border-right-color: 249,;border-bottom-color: 255);border-left-color: 249,;color: var(--bs-white);height: 214.328px;">
+    <footer style="border-color: rgb(240, 249, 255);height: 214.328px;">
         <div class="container">
             <div class="row row-cols-2 justify-content-center align-items-center">
                 <div class="col-sm-4 col-md-3 text-center d-inline order-1 item" style="font-family: Lato, sans-serif;height: 234px;">
@@ -243,21 +412,20 @@
                     <p style="color: var(--bs-dark);text-align: center;font-family: Alata, sans-serif;"><br><em>Mangiare insieme. Sprecare meno. Conoscersi di più.</em><br><br><br></p>
                 </div>
                 <div class="col-sm-4 col-md-3 text-center d-inline order-2 item" style="font-family: Alata, sans-serif;height: 234px;text-align: center;">
-                    <h3> </h3>
-                    <h3 class="text-center" style="height: 30px;font-size: 19px;color: var(--bs-dark);font-weight: bold;font-family: Alata, sans-serif;">Links utili<br><br><a class="btn btn-primary text-start" role="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 130px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;margin-left: 0px;margin-right: 0px;padding-right: 0px;padding-left: 0px;" href="come-funziona">Come funziona</a><br><a class="btn btn-primary text-start" role="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 60px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;" href="aiuto">FAQ</a><br><button class="btn btn-primary text-start" type="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 118px;height: 29px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;">Contatti</button><br><br><br><br><br><br><br></h3>
+                    <h3 class="text-center" style="height: 30px;font-size: 19px;color: var(--bs-dark);font-weight: bold;font-family: Alata, sans-serif;">Links utili<br><br><a class="btn btn-primary text-start" role="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 130px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;margin-left: 0px;margin-right: 0px;padding-right: 0px;padding-left: 0px;" href="come-funziona">Come funziona</a><br><a class="btn btn-primary text-start" role="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 60px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;" href="aiuto">FAQ</a><br><button class="btn btn-primary text-start" type="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 118px;height: 29px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px; margin-left:30px">Contatti</button><br></h3>
                 </div>
                 <div class="col-6 col-sm-4 col-md-3 d-inline order-3 item" style="font-family: Lato, sans-serif;height: 234px;">
-                    <h3> </h3>
-                    <h3 class="text-center" style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;font-weight: bold;margin-bottom: -14px;">Contattaci</h3>
-                    <div class="social-icons" style="height: 87px;padding: 0px 0px;text-align: center;"><a href="#"><i class="icon ion-social-instagram" style="margin-left: 10px;margin-right: 2px;"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a>
-                        <h3 class="text-center" style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;text-align: center;font-weight: bold;"><br>E-mail: info@inmytable.com<br></h3><a href="#"></a><a href="#"></a>
+                    <h3 class="text-center" style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;font-weight: bold;margin-bottom: -4px;">Contattaci</h3>
+                    
+                    <div class="social-icons" style="height: 87px;padding: 0px 0px;text-align: center;"><a href="#"><i class="icon ion-social-instagram" style="margin-left: 6px;margin-right: 2px;"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a>
+                        <h3 class="text-center" style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;text-align: center;font-weight: bold; margin-bottom:10px;"><br>E-mail: info@inmytable.com<br></h3>
                     </div>
-                    <ul></ul><a href="#"></a><a href="#"></a>
+                  
                 </div>
                 <div class="col-sm-4 col-md-3 order-4 item" style="font-family: Lato, sans-serif;margin-top: 0px;padding-top: 1px;width: 242;">
                     <h3> </h3>
                     <h3 class="text-center text-sm-center text-md-center text-lg-center" style="font-size: 19px;height: 46px;color: var(--bs-dark);margin-bottom: 18px;margin-top: 0px;font-family: Alata, sans-serif;font-weight: bold;">Iscriviti alla newsletter</h3>
-                    <h3 class="text-center text-sm-center text-md-center text-lg-center" style="font-size: 13px;height: 20px;color: var(--bs-dark);font-style: normal;margin-bottom: 6px;margin-top: 3px;font-family: Alata, sans-serif;">Unisciti alla community<br>Inserisci la tua email</h3>
+                    <h3 class="text-center text-sm-center text-md-center text-lg-center" style="font-size: 13px;height: 20px;color: var(--bs-dark);font-style: normal;margin-bottom: 6px;font-family: Alata, sans-serif;">Unisciti alla community<br>Inserisci la tua email</h3>
                     <form style="margin-top: 30px;height: 107px;" method="post">
                         <div class="form-group mb-3" style="margin-top: 0px;margin-bottom: 0px;"><input class="form-control" type="email" name="email" placeholder="Email" style="text-align: center;margin-bottom: 0px;margin-top: 0px;margin-right: 0px;padding-bottom: 4px;padding-top: 7px;margin-left: 0px;font-family: Alata, sans-serif;"></div>
                         <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center form-group mb-3"><button class="btn btn-primary border rounded-pill" data-bss-hover-animate="pulse" type="submit" style="background: #73bc43;padding-top: 8px;width: 118px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;">Inscriviti</button></div>
@@ -265,30 +433,11 @@
                 </div>
             </div>
         </div>
-        <h1 style="border-color: rgb(0,0,0);color: rgb(0,0,0);text-align: center;font-size: 17px;font-family: Alata, sans-serif;margin-top: 5px;margin-bottom: 20px;padding-top: 0px;padding-bottom: 0px;"><br>© 2018 - 2020 Copyright INMYTABLE - Tutti i diritti riservati<br><br></h1>
+        <h1 style="border-color: rgb(0,0,0);color: rgb(0,0,0);text-align: center;font-size: 17px;font-family: Alata, sans-serif;margin-top: -20px;margin-bottom: 20px"><br>© 2018 - 2020 Copyright INMYTABLE - Tutti i diritti riservati<br><br></h1>
     </footer>
 </div>
 
-<nav class="navbar navbar-light navbar-expand-md fixed-top d-block navigation-clean-search" style="background: var(--bs-white);height: 130;font-family: Alata, sans-serif;">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse text-start" id="navcol-1" style="width: 35.828px;height: 45px;">
-            <ul class="navbar-nav">
-                <li class="nav-item"></li>
-                <li class="nav-item"></li>
-                <li class="nav-item"></li>
-            </ul><a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: url(&quot;assets/img/inmytable-logo.png&quot;) center / cover space, #ffffff;font-size: 24px;width: 150px;height: 41px;border-radius: -1px;border: 0px none rgba(0,0,0,0);margin-top: 20px;" href="bacheca"></a>
-        </div>
-        <div class="dropdown" style="margin-top: -1px;"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="margin-right: 6px;margin-left: 0px;font-size: 16px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal;">IL MIO ACCOUNT</a>
-            <div class="dropdown-menu"><a class="dropdown-item" href="bacheca" style="font-size: 14px;font-family: Alata, sans-serif;">Bacheca</a>
-                <div class="dropdown-divider"></div><a class="dropdown-item" href="cucina" style="font-size: 14px;font-family: Alata, sans-serif;">Voglio Cucinare</a><a class="dropdown-item" href="richiesta-pasto-pubblico" style="font-size: 14px;font-family: Alata, sans-serif;">Voglio mangiare</a><a class="dropdown-item" href="ricerca-utenti" style="font-size: 14px;font-family: Alata, sans-serif;">Cerca Utenti</a>
-                <div class="dropdown-divider"></div><a class="dropdown-item" href="richedi-un-pasto" style="font-size: 14px;font-family: Alata, sans-serif;">Pasti disponibili</a>
-                <div class="dropdown-divider"></div><a class="dropdown-item" href="i-miei-pasti" style="font-size: 14px;font-family: Alata, sans-serif;">I miei pasti</a><a class="dropdown-item" href="le-mie-richieste" style="font-size: 14px;font-family: Alata, sans-serif;">Le mie richieste</a><a class="dropdown-item" href="storico" style="font-size: 14px;font-family: Alata, sans-serif;">Storico</a>
-                <div class="dropdown-divider"></div><a class="dropdown-item" href="recensioni" style="font-size: 14px;font-family: Alata, sans-serif;">Recensioni</a><a class="dropdown-item" href="notifiche" style="font-size: 14px;font-family: Alata, sans-serif;">Notifiche</a>
-                <div class="dropdown-divider"></div><a class="dropdown-item" href="profilo" style="font-size: 14px;font-family: Alata, sans-serif;">Il mio profilo</a><a class="dropdown-item" href="index" style="font-size: 14px;font-family: Alata, sans-serif;">Esci</a>
-            </div>
-        </div><a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: url(&quot;assets/img/cucina.png&quot;) center / cover, #ffffff;border-radius: 0px;width: 116px;margin-right: 10px;border-color: rgba(0,0,0,0);font-family: Lora, serif;font-size: 10px;height: 26px;margin-top: 22px;" href="cucina"></a>
-    </div>
-</nav>
+
 
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>

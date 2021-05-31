@@ -28,9 +28,16 @@ public class PublicMealRequestController {
     NotificationService notificationService;
 
     @GetMapping("/richiesta-pasto-pubblico")
-    public String getPublicMealRequest(HttpSession session) {
+    public String getPublicMealRequest(Model model,HttpSession session) {
         if (BaseController.isLoggedIn(session)) {
-            return "richiesta-pasto-pubblico";
+            try {
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
+                return "richiesta-pasto-pubblico";
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "redirect:bacheca";
         }
         return "login";
     }
@@ -58,7 +65,10 @@ public class PublicMealRequestController {
         if(BaseController.isLoggedIn(session)) {
             try {
                 homeWallService.setLogUser(BaseController.getLogUser(session));
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
                 model.addAttribute("publicMealsRequestCatalog", homeWallService.getPendingMealRequestCatalog());
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -74,6 +84,8 @@ public class PublicMealRequestController {
             try {
                 homeWallService.setLogUser(BaseController.getLogUser(session));
                 mealRequestService.setLogUser(BaseController.getLogUser(session));
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
             } catch (Exception e) {
                 e.printStackTrace();
             }

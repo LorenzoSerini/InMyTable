@@ -4,6 +4,7 @@ import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.HomeWallService;
 import it.unicam.cs.gp.inmytable.view.spring.services.MealSubscriptionService;
+import it.unicam.cs.gp.inmytable.view.spring.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,10 @@ public class MealController {
     @Autowired
     MealSubscriptionService mealSubscriptionService;
 
+    @Autowired
+    NotificationService notificationService;
+
+
     private Meal meal;
 
 
@@ -30,6 +35,8 @@ public class MealController {
             try {
                 homeWallService.setLogUser(BaseController.getLogUser(session));
                 mealSubscriptionService.setLogUser(BaseController.getLogUser(session));
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -65,6 +72,8 @@ public class MealController {
         if (BaseController.isLoggedIn(session)) {
             try {
                 homeWallService.setLogUser((BaseController.getLogUser(session)));
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
                 model.addAttribute("pendingMealCatalog", homeWallService.getPendingMealCatalog());
                 return "ricerca-pasti-pubblici";
             } catch (Exception e) {

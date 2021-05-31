@@ -8,6 +8,7 @@ import it.unicam.cs.gp.inmytable.user.User;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.FeedbackService;
 import it.unicam.cs.gp.inmytable.view.spring.services.LedgerService;
+import it.unicam.cs.gp.inmytable.view.spring.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,10 @@ public class FeedbackController {
 
     @Autowired
     FeedbackService feedbackService;
+
+    @Autowired
+    NotificationService notificationService;
+
 
 
     @PostMapping("/invia-feedback")
@@ -52,6 +57,8 @@ public class FeedbackController {
         if(BaseController.isLoggedIn(session)){
             try {
                 feedbackService.setLogUser(BaseController.getLogUser(session));
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
                 model.addAttribute("toMe", feedbackService.getToFeedbacks(BaseController.getLogUser(session)));
                 model.addAttribute("toMeSize", feedbackService.getToFeedbacks(BaseController.getLogUser(session)).size());
                 model.addAttribute("toMeAverage", feedbackService.getToFeedbacksAverage(BaseController.getLogUser(session)));

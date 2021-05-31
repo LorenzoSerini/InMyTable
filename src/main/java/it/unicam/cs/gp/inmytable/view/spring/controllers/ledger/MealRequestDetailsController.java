@@ -6,6 +6,7 @@ import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.FeedbackService;
 import it.unicam.cs.gp.inmytable.view.spring.services.LedgerService;
 import it.unicam.cs.gp.inmytable.view.spring.services.MealSubscriptionService;
+import it.unicam.cs.gp.inmytable.view.spring.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,9 @@ public class MealRequestDetailsController {
     @Autowired
     FeedbackService feedbackService;
 
+    @Autowired
+    NotificationService notificationService;
+
 
     @GetMapping("/richiesta-pubblicata")
     public String getPublishedMealRequest(Model model, HttpSession session, @RequestParam("mealRequest") String mealRequestId){
@@ -34,7 +38,8 @@ public class MealRequestDetailsController {
                 mealSubscriptionService.setLogUser(BaseController.getLogUser(session));
                 ledgerService.setLogUser(BaseController.getLogUser(session));
                 feedbackService.setLogUser(BaseController.getLogUser(session));
-
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
                 IMealRequest mealRequest = ledgerService.getMealRequest(mealRequestId);
                 model.addAttribute("mealRequest", mealRequest);
                 model.addAttribute("consummation", mealSubscriptionService.getConsummationType(mealRequest));
@@ -58,7 +63,8 @@ public class MealRequestDetailsController {
                 mealSubscriptionService.setLogUser(BaseController.getLogUser(session));
                 ledgerService.setLogUser(BaseController.getLogUser(session));
                 feedbackService.setLogUser(BaseController.getLogUser(session));
-
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
                 IMealRequest mealRequest = ledgerService.getMealRequest(mealRequestId);
                 model.addAttribute("mealRequest", mealRequest);
                 model.addAttribute("consummation", mealSubscriptionService.getConsummationType(mealRequest));

@@ -5,6 +5,7 @@ import it.unicam.cs.gp.inmytable.user.User;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.FeedbackService;
 import it.unicam.cs.gp.inmytable.view.spring.services.LedgerService;
+import it.unicam.cs.gp.inmytable.view.spring.services.NotificationService;
 import it.unicam.cs.gp.inmytable.view.spring.services.PrivateMealRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,9 @@ public class PrivateMealRequestController {
     @Autowired
     FeedbackService feedbackService;
 
+    @Autowired
+    NotificationService notificationService;
+
     @GetMapping("/profilo-utente")
     public String getUserProfile(Model model, HttpSession session, @RequestParam("user") String username){
         if (BaseController.isLoggedIn(session)) {
@@ -36,6 +40,8 @@ public class PrivateMealRequestController {
                 feedbackService.setLogUser(BaseController.getLogUser(session));
                 this.requestTo = privateMealRequestService.getUser(username);
                 ledgerService.setLogUser(requestTo);
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
                 model.addAttribute("publishedMeals", ledgerService.showPublishedMeals(p->p.getState().equals(MealStates.EXPIRED)).size());
                 model.addAttribute("requestTo", requestTo);
                 model.addAttribute("itIsMe", privateMealRequestService.itIsMe(requestTo));
@@ -55,6 +61,8 @@ public class PrivateMealRequestController {
         if (BaseController.isLoggedIn(session)) {
             try {
                 privateMealRequestService.setLogUser(BaseController.getLogUser(session));
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
                 model.addAttribute("requestTo", requestTo);
                 return "richiesta-pasto-privato";
             } catch (Exception e) {

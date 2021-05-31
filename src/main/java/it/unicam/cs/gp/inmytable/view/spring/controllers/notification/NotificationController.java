@@ -52,6 +52,8 @@ public class NotificationController {
                 this.mealSubscriptionNotification=null;
                 this.mealRequestSubscriptionNotification=null;
                 notificationService.setLogUser(BaseController.getLogUser(session));
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
                 if(notificationService.isSimpleNotification(id)){
                     SimpleNotification<IUser> simpleNotification = notificationService.getSimpleNotification(id);
                     model.addAttribute("buttons", false);

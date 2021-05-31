@@ -25,8 +25,8 @@ public class HomeWallController {
     public String getHomewall(Model model, HttpSession session) {
         if (BaseController.isLoggedIn(session)) {
             try {
-                notificationService.setLogUser(BaseController.getLogUser(session));
                 homeWallService.setLogUser((BaseController.getLogUser(session)));
+                notificationService.setLogUser(BaseController.getLogUser(session));
                 model.addAttribute("allNotifications", notificationService.getAllNotifications());
                 model.addAttribute("pendingMealCatalog", homeWallService.getPendingMealCatalog());
                 model.addAttribute("publicMealsRequestCatalog", homeWallService.getPendingMealRequestCatalog());
