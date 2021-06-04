@@ -86,7 +86,7 @@ public class MealRequest implements IMealRequest {
         this.mealsNumber = mealsNumber;
         if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )) {
             this.state= MealStates.EXPIRED;
-        } else if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )){
+        } else if (LocalDate.now().isAfter(expiryDate) || (LocalDate.now().isEqual(expiryDate) && LocalTime.now().isAfter(expiryTime) )){
             this.state=MealStates.FULL;
         } else this.state = MealStates.PENDING;
         this.type=MealRequestType.PUBLIC;

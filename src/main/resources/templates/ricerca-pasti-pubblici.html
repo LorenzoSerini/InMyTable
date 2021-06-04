@@ -242,7 +242,7 @@
 
 
                     <div class="col-7">
-                        <a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;" th:text="'Dove: '+${meal.place}"></a>
+                        <a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;" th:text="'Dove: '+${meal.city+', '+meal.place}"></a>
 
                         <div class="product-rating">
                             <a class="small-text" href="#" style="font-size: 15px;">Pubblicato dall'utente<br th:text="${meal.homeOwner.username}"></a>

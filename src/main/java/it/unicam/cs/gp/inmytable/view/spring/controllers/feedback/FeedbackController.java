@@ -65,6 +65,7 @@ public class FeedbackController {
                 model.addAttribute("fromMe", feedbackService.getFromFeedbacks(BaseController.getLogUser(session)));
                 model.addAttribute("fromMeSize", feedbackService.getToFeedbacks(BaseController.getLogUser(session)).size());
                 model.addAttribute("fromMeAverage", feedbackService.getFromFeedbacksAverage(BaseController.getLogUser(session)));
+
                 return "le-mie-recensioni";
             } catch (Exception e) {
                 e.printStackTrace();
@@ -100,6 +101,8 @@ public class FeedbackController {
         if(BaseController.isLoggedIn(session)){
             try {
                 feedbackService.setLogUser(BaseController.getLogUser(session));
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
                 model.addAttribute("feedback", feedbackService.getFeedback(BaseController.getLogUser(session), feedbackId));
                 return "recensione-inviata";
             } catch (Exception e) {
@@ -116,6 +119,8 @@ public class FeedbackController {
         if(BaseController.isLoggedIn(session)){
             try {
                 feedbackService.setLogUser(BaseController.getLogUser(session));
+                notificationService.setLogUser(BaseController.getLogUser(session));
+                model.addAttribute("allNotifications", notificationService.getAllNotifications());
                 model.addAttribute("feedback", feedbackService.getFeedback(BaseController.getLogUser(session), feedbackId));
                 return "recensione-ricevuta";
             } catch (Exception e) {

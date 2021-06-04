@@ -244,33 +244,33 @@
                                             <h4><a class="text-start small-text" th:href="@{profilo-utente(user=${meal.homeOwner.username})}" style="font-family: Alata, serif;font-size: 17px;" >Pubblicato dall'utente <br th:text="${meal.homeOwner.username}" ></a></h4>
                                         <!--<i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
                                         -->
-                                        <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=1 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<1.5}">
+                                        <!--<th:block th:if="${toUserAverage>=1 && toUserAverage<1.5}">
                                             <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
                                         </th:block>
-                                        <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=1.5 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<2}">
+                                        <th:block th:if="${toUserAverage>=1.5 && toUserAverage<2}">
                                             <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
                                         </th:block>
-                                        <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=2 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<2.5}">
+                                        <th:block th:if="${toUserAverage>=2 && toUserAverage<2.5}">
                                             <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
                                         </th:block>
-                                        <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=2.5 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<3}">
+                                        <th:block th:if="${toUserAverage>=2.5 && toUserAverage<3}">
                                             <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
                                         </th:block>
-                                        <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=3 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<3.5}">
+                                        <th:block th:if="${toUserAverage>=3 && toUserAverage<3.5}">
                                             <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
                                         </th:block>
-                                        <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=3.5 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<4}">
+                                        <th:block th:if="${toUserAverage>=3.5 && toUserAverage<4}">
                                             <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
                                         </th:block>
-                                        <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=4 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<4.5}">
+                                        <th:block th:if="${toUserAverage>=4 && toUserAverage<4.5}">
                                             <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
                                         </th:block>
-                                        <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=4.5 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<5}">
+                                        <th:block th:if="${toUserAverage>=4.5 && toUserAverage<5}">
                                             <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i>
                                         </th:block>
-                                        <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=5}">
+                                        <th:block th:if="${toUserAverage>=5}">
                                             <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i>
-                                        </th:block>
+                                        </th:block>-->
 
 
 

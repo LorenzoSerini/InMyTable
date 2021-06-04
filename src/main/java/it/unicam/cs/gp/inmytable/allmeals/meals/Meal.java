@@ -77,10 +77,10 @@ public class Meal implements IMeal{
 		this.payment = payment;
 		if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )) {
 			this.state= MealStates.EXPIRED;
-		} else if (LocalDate.now().isAfter(date) || (LocalDate.now().isEqual(date) && LocalTime.now().isAfter(time) )){
+		} else if (LocalDate.now().isAfter(expiryDate) || (LocalDate.now().isEqual(expiryDate) && LocalTime.now().isAfter(expiryTime) )){
 			this.state=MealStates.FULL;
 		} else this.state = MealStates.PENDING;
-		this.userList = new HashSet<IUser>();
+		this.userList = new HashSet<>();
 		this.id = UUID.randomUUID().toString();
 	}
 

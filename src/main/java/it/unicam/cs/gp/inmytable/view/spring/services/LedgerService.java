@@ -56,10 +56,12 @@ public class LedgerService {
     }
 
     public List<Meal> showClosedAttendedMeals() throws Exception {
-        return mealsController.showAttendedMeals(p->!p.getState().equals(MealStates.PENDING));
+        return mealsController.showAttendedMeals(p->p.getState().equals(MealStates.EXPIRED));
     }
 
     public List<Meal> showNotClosedAttendedMeals() throws Exception {
-        return mealsController.showAttendedMeals(p->p.getState().equals(MealStates.PENDING));
+        return mealsController.showAttendedMeals(p->!p.getState().equals(MealStates.EXPIRED));
     }
+
+
 }

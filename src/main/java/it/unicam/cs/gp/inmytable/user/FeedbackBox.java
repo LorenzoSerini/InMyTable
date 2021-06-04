@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 public class FeedbackBox {
     private List<Feedback> feedbacks;
     private IUser user;
+    private double sentFeedbacksAverage;
+    private double receivedFeedbacksAverage;
 
     public FeedbackBox(IUser user){
         feedbacks = new ArrayList<>();
@@ -24,23 +26,31 @@ public class FeedbackBox {
 
     public double getSentFeedbacksAverage(){
         double average = 0;
-        if(feedbacks.stream().anyMatch(p -> p.getFrom().equals(this.user))){
-            for (Feedback feedback: feedbacks.stream().filter(p->p.getFrom().equals(this.user)).collect(Collectors.toList())) {
-                average += feedback.getRating();
-            }
-            return average/feedbacks.size();
-        }else return 5;
+        List<Feedback> fromFeedbacks;
+        if(this.getFeedbacks().stream().anyMatch(p -> p.getFrom().equals(this.user))){
+            fromFeedbacks = this.getFeedbacks().stream().filter(p->p.getFrom().equals(this.user)).collect(Collectors.toList());
+        } else return 5;
+        for(Feedback f:fromFeedbacks){
+            average+=f.getRating();
+        }
+        this.sentFeedbacksAverage=average/fromFeedbacks.size();
+        //return average/fromFeedbacks.size();
+        return this.sentFeedbacksAverage;
     }
 
 
     public double getReceivedFeedbacksAverage(){
-        double average = 0;
-        if(feedbacks.stream().anyMatch(p -> p.getTo().equals(this.user))){
-            for (Feedback feedback: feedbacks.stream().filter(p->p.getTo().equals(this.user)).collect(Collectors.toList())) {
-                average += feedback.getRating();
-            }
-            return average/feedbacks.size();
-        }else return 5;
+        double average=0;
+        List<Feedback> toFeedbacks;
+        if(this.feedbacks.stream().anyMatch(p -> p.getTo().equals(this.user))){
+            toFeedbacks  = this.feedbacks.stream().filter(p->p.getTo().equals(this.user)).collect(Collectors.toList());
+        } else return 5;
+        for(Feedback f:toFeedbacks){
+            average+=f.getRating();
+        }
+        this.receivedFeedbacksAverage=average/toFeedbacks.size();
+        return receivedFeedbacksAverage;
+        //return average/toFeedbacks.size();
     }
 
 

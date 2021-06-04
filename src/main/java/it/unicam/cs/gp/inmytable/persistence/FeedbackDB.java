@@ -66,7 +66,8 @@ public class FeedbackDB extends DBPersistence implements FeedbackPersistence{
 
     @Override
     public List<Feedback> getFeedbacks() throws SQLException {
-        return new ArrayList<>(feedbackList);
+        //return new ArrayList<>(feedbackList);
+        return feedbackList;
     }
 
     @Override

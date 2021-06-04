@@ -1,707 +1,844 @@
 <!DOCTYPE html>
 <html lang="it" xmlns:th="http://www.thymeleaf.org">
 
-    <head>
-        <meta charset="utf-8">
-        <meta
+<head>
+    <meta charset="utf-8">
+    <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <meta name="google-site-verification" content="QfCyE0zhqYiorgSkgo6JSwhOA0RIXaqGVzwAkC7vGNs" />
-        <title>InMyTable</title>
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alata">
-        <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-        <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-        <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-        <link rel="stylesheet" href="assets/css/Add-or-Edit-table.css">
-        <link rel="stylesheet" href="assets/css/Animated-Pretty-Product-List-v12.css">
-        <link rel="stylesheet" href="assets/css/Articale-List-With-Image-Zoom.css">
-        <link rel="stylesheet" href="assets/css/Article-Clean.css">
-        <link rel="stylesheet" href="assets/css/Article-List.css">
-        <link rel="stylesheet" href="assets/css/Bootstrap-Calendar.css">
-        <link
+    <meta name="google-site-verification" content="QfCyE0zhqYiorgSkgo6JSwhOA0RIXaqGVzwAkC7vGNs" />
+    <title>InMyTable</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alata">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Add-or-Edit-table.css">
+    <link rel="stylesheet" href="assets/css/Animated-Pretty-Product-List-v12.css">
+    <link rel="stylesheet" href="assets/css/Articale-List-With-Image-Zoom.css">
+    <link rel="stylesheet" href="assets/css/Article-Clean.css">
+    <link rel="stylesheet" href="assets/css/Article-List.css">
+    <link rel="stylesheet" href="assets/css/Bootstrap-Calendar.css">
+    <link
             rel="stylesheet"
             href="assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css">
-        <link rel="stylesheet" href="assets/css/Date-Picker-From-and-To.css">
-        <link rel="stylesheet" href="assets/css/footer-servitech.css">
-        <link rel="stylesheet" href="assets/css/Forum---Thread-listing-1.css">
-        <link rel="stylesheet" href="assets/css/Forum---Thread-listing.css">
-        <link rel="stylesheet" href="assets/css/Header-Blue.css">
-        <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
-        <link
+    <link rel="stylesheet" href="assets/css/Date-Picker-From-and-To.css">
+    <link rel="stylesheet" href="assets/css/footer-servitech.css">
+    <link rel="stylesheet" href="assets/css/Forum---Thread-listing-1.css">
+    <link rel="stylesheet" href="assets/css/Forum---Thread-listing.css">
+    <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/lightpick@1.3.4/css/lightpick.min.css">
-        <link
+    <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-        <link
+    <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-        <link
+    <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-        <link
+    <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
-        <link
+    <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-        <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
-        <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
-        <link rel="stylesheet" href="assets/css/Map-Clean.css">
-        <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
-        <link rel="stylesheet" href="assets/css/Profile-Edit-Form-1.css">
-        <link rel="stylesheet" href="assets/css/Profile-Edit-Form.css">
-        <link rel="stylesheet" href="assets/css/real-estate-search-2-updated.css">
-        <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
-        <link rel="stylesheet" href="assets/css/Sidebar-Menu-1.css">
-        <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
-        <link
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Map-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="assets/css/Profile-Edit-Form-1.css">
+    <link rel="stylesheet" href="assets/css/Profile-Edit-Form.css">
+    <link rel="stylesheet" href="assets/css/real-estate-search-2-updated.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="assets/css/Sidebar-Menu-1.css">
+    <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
+    <link
             rel="stylesheet"
             href="assets/css/Simple-Vertical-Navigation-Menu-v-10.css">
-        <link rel="stylesheet" href="assets/css/Social-Icons.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <link rel="stylesheet" href="assets/css/Testimonials.css">
-        <link
+    <link rel="stylesheet" href="assets/css/Social-Icons.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Testimonials.css">
+    <link
             rel="stylesheet"
             href="assets/css/Top--Right--Left-Navigation-by-Jigar-Mistry.css">
-        <link
+    <link
             rel="stylesheet"
             href="assets/css/Transparent-Incremental-Number-Counter.css">
 
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-        <link rel="stylesheet" type="text/css" href="./style.css"/>
-        <script src="./index.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css"/>
+    <script src="./index.js"></script>
 
-        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
 
-    </head>
+</head>
 
-    <body style="height: 1714.72px;">
-        <nav
-            class="navbar navbar-light navbar-expand fixed-top d-block navigation-clean-search"
-            style="background: var(--bs-white);height: 70px;">
-            <div class="container-fluid ">
-                <div
-                    class="collapse navbar-collapse text-start col-3"
-                    id="navcol-1"
-                    style="width: 35.828px;height: 45px;">
-                    <ul class="navbar-nav"></ul>
-                    <a
-                        class="btn btn-primary"
-                        role="button"
-                        data-bss-hover-animate="pulse"
-                        style="background: url(&quot;assets/img/inmytable-logo.png&quot;) center / cover space, #ffffff; width:100%; height: 100%; max-width: 150px; max-height:41px; border-radius: -1px; border:none;"
-                        href="bacheca"></a>
-                </div>
+<body style="height: 1714.72px;">
+<nav
+        class="navbar navbar-light navbar-expand fixed-top d-block navigation-clean-search"
+        style="background: var(--bs-white);height: 70px;">
+    <div class="container-fluid ">
+        <div
+                class="collapse navbar-collapse text-start col-3"
+                id="navcol-1"
+                style="width: 35.828px;height: 45px;">
+            <ul class="navbar-nav"></ul>
+            <a
+                    class="btn btn-primary"
+                    role="button"
+                    data-bss-hover-animate="pulse"
+                    style="background: url(&quot;assets/img/inmytable-logo.png&quot;) center / cover space, #ffffff; width:100%; height: 100%; max-width: 150px; max-height:41px; border-radius: -1px; border:none;"
+                    href="bacheca"></a>
+        </div>
 
-                <!--------Menu notifiche------->
-                <div class="nav-item dropdown" style="margin-right: -10px;">
-                    <a
-                        class="nav-link text-light"
-                        id="navbarDropdown"
-                        role="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                        <i class="fa fa-bell" style="color: #fe9e02; font-size: 20px;"></i>
-                    </a>
+        <!--------Menu notifiche------->
+        <div class="nav-item dropdown" style="margin-right: -10px;">
+            <a
+                    class="nav-link text-light"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                <i class="fa fa-bell" style="color: #fe9e02; font-size: 20px;"></i>
+            </a>
 
-                    <ul
-                        class="dropdown-menu"
-                        style="padding: 14px; margin-left:-210px; margin-top:14px; overflow-y: auto; overflow-x: hidden; height: 200px;">
-                        <li class="head text-light" style="background-color: #fe9e02;">
-                            <div class="row">
-                                <div class="col-12 text-center" style="font-weight: 500">
-                                    <span th:text="'Le tue Notifiche ('+${allNotifications.size}+')'"></span>
-                                    <!--Da mettere se troviamo il modo il contatore di noticiche dentro le
-                                    parentesi-->
-                                </div>
-                            </div>
-                        </li>
-                        <li
-                            class="container"
-                            style="width: 200px;"
-                            th:each="notification:${allNotifications}">
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <div class="row">
-                                        <p class="col-12" style="color:#000000;font-size: 14px; margin-top: 10px;">Notifica ricevuta alle:</p>
-                                        <p
-                                            class="col-12"
-                                            style="color:#000000;font-size: 14px; margin-top: -20px;"
-                                            th:text="${notification.date+' '+notification.time}"></p>
-                                        <p
-                                            class="col-12"
-                                            style="color:#000000;font-size: 13px; margin-top: -10px;"
-                                            th:text="${notification.from.username+' '+notification.msg}"></p>
-                                    </div>
-                                    <div
-                                        class="col-12 text-center"
-                                        style="background-color: #fe9e02; color:white; height: 30px; border-radius: 20px; ">
-                                        <a
-                                            class="btn btn-primary"
-                                            role="button"
-                                            href="notifiche"
-                                            data-bss-hover-animate="pulse"
-                                            style="background: transparent; border-color:transparent;margin-top:-4px; font-size: 13; font:Alata, sans-serif; font-weight: 700;">Vedi notifica</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-                <!--------Menu notifiche------->
-
-                <div class="dropdown" style="margin-top: -1px; margin-left: 10px;">
-                    <a
-                        class="dropdown-toggle"
-                        aria-expanded="false"
-                        data-bs-toggle="dropdown"
-                        href="#"
-                        style="margin-right: 6px;margin-left: 0px;font-size: 15px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal; text-decoration: none;">IL MIO ACCOUNT</a>
-                    <div class="dropdown-menu" style="margin-left:-10px;  margin-top:24px">
-                        <a
-                            class="dropdown-item"
-                            href="bacheca"
-                            style="font-size: 14px;font-family: Alata, sans-serif;">Bacheca</a>
-                        <div class="dropdown-divider"></div>
-                        <a
-                            class="dropdown-item"
-                            href="i-miei-pasti"
-                            style="font-size: 14px;font-family: Alata, sans-serif;">I miei pasti</a>
-                        <a
-                            class="dropdown-item"
-                            href="le-mie-richieste"
-                            style="font-size: 14px;font-family: Alata, sans-serif;">Le mie richieste</a>
-
-                        <a
-                            class="dropdown-item"
-                            href="storico"
-                            style="font-size: 14px;font-family: Alata, sans-serif;">Storico</a>
-                        <div class="dropdown-divider"></div>
-                        <a
-                            class="dropdown-item"
-                            href="notifiche"
-                            style="font-size: 14px;font-family: Alata, sans-serif;">Notifiche</a>
-                        <a
-                            class="dropdown-item"
-                            href="le-mie-recensioni"
-                            style="font-size: 14px;font-family: Alata, sans-serif;">Recensioni</a>
-                        <div class="dropdown-divider"></div>
-                        <a
-                            class="dropdown-item"
-                            href="profilo"
-                            style="font-size: 14px;font-family: Alata, sans-serif;">Il mio profilo</a>
-
-                        <form action="/logout" method="post">
-                            <button
-                                type="submit"
-                                class="dropdown-item"
-                                style="font-size: 14px;font-family: Alata, sans-serif;">Esci</button>
-                        </form>
-
+            <ul
+                    class="dropdown-menu"
+                    style="padding: 14px; margin-left:-210px; margin-top:14px; overflow-y: auto; overflow-x: hidden; height: 200px;">
+                <li class="head text-light" style="background-color: #fe9e02;">
+                    <div class="row">
+                        <div class="col-12 text-center" style="font-weight: 500">
+                            <span th:text="'Le tue Notifiche ('+${allNotifications.size}+')'"></span>
+                            <!--Da mettere se troviamo il modo il contatore di noticiche dentro le
+                            parentesi-->
+                        </div>
                     </div>
-                </div>
-                <div class="dropdown" style="margin-top: -1px;">
-                    <a
-                        class="btn btn-primary"
-                        aria-expanded="false"
-                        data-bs-toggle="dropdown"
-                        style="background: url(&quot;assets/img/menu-piu.png&quot;) center / cover space, #ffffff; width: 20px; height: 40px; border:none; margin-left: 10px;"></a>
+                </li>
+                <li
+                        class="container"
+                        style="width: 200px;"
+                        th:each="notification:${allNotifications}">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <div class="row">
+                                <p class="col-12" style="color:#000000;font-size: 14px; margin-top: 10px;">Notifica ricevuta alle:</p>
+                                <p
+                                        class="col-12"
+                                        style="color:#000000;font-size: 14px; margin-top: -20px;"
+                                        th:text="${notification.date+' '+notification.time}"></p>
+                                <p
+                                        class="col-12"
+                                        style="color:#000000;font-size: 13px; margin-top: -10px;"
+                                        th:text="${notification.from.username+' '+notification.msg}"></p>
+                            </div>
+                            <div
+                                    class="col-12 text-center"
+                                    style="background-color: #fe9e02; color:white; height: 30px; border-radius: 20px; ">
+                                <a
+                                        class="btn btn-primary"
+                                        role="button"
+                                        href="notifiche"
+                                        data-bss-hover-animate="pulse"
+                                        style="background: transparent; border-color:transparent;margin-top:-4px; font-size: 13; font:Alata, sans-serif; font-weight: 700;">Vedi notifica</a>
 
-                    <div
-                        class="dropdown-menu"
-                        style="margin-left: -120px; margin-top:14px; margin-right: 30px;">
-                        <a
-                            class="dropdown-item"
-                            href="cucina"
-                            style="font-size: 14px;font-family: Alata, sans-serif;">Cucina</a>
-                        <a
-                            class="dropdown-item"
-                            href="richiesta-pasto-pubblico"
-                            style="font-size: 14px;font-family: Alata, sans-serif;">Richiedi pasto</a>
-                        <div class="dropdown-divider"></div>
-                        <a
-                            class="dropdown-item"
-                            href="ricerca-pasti-pubblici"
-                            style="font-size: 14px;font-family: Alata, sans-serif;">Pasti disponibili</a>
-
-                        <a
-                            class="dropdown-item"
-                            href="ricerca-richieste-pasti-pubbliche"
-                            style="font-size: 14px;font-family: Alata, sans-serif;">Richeste pasti</a>
-                        <div class="dropdown-divider"></div>
-                        <a
-                            class="dropdown-item"
-                            href="ricerca-utenti"
-                            style="font-size: 14px;font-family: Alata, sans-serif;">Cerca Utenti</a>
-
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </li>
+
+            </ul>
+        </div>
+        <!--------Menu notifiche------->
+
+        <div class="dropdown" style="margin-top: -1px; margin-left: 10px;">
+            <a
+                    class="dropdown-toggle"
+                    aria-expanded="false"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    style="margin-right: 6px;margin-left: 0px;font-size: 15px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal; text-decoration: none;">IL MIO ACCOUNT</a>
+            <div class="dropdown-menu" style="margin-left:-10px;  margin-top:24px">
+                <a
+                        class="dropdown-item"
+                        href="bacheca"
+                        style="font-size: 14px;font-family: Alata, sans-serif;">Bacheca</a>
+                <div class="dropdown-divider"></div>
+                <a
+                        class="dropdown-item"
+                        href="i-miei-pasti"
+                        style="font-size: 14px;font-family: Alata, sans-serif;">I miei pasti</a>
+                <a
+                        class="dropdown-item"
+                        href="le-mie-richieste"
+                        style="font-size: 14px;font-family: Alata, sans-serif;">Le mie richieste</a>
+
+                <a
+                        class="dropdown-item"
+                        href="storico"
+                        style="font-size: 14px;font-family: Alata, sans-serif;">Storico</a>
+                <div class="dropdown-divider"></div>
+                <a
+                        class="dropdown-item"
+                        href="notifiche"
+                        style="font-size: 14px;font-family: Alata, sans-serif;">Notifiche</a>
+                <a
+                        class="dropdown-item"
+                        href="le-mie-recensioni"
+                        style="font-size: 14px;font-family: Alata, sans-serif;">Recensioni</a>
+                <div class="dropdown-divider"></div>
+                <a
+                        class="dropdown-item"
+                        href="profilo"
+                        style="font-size: 14px;font-family: Alata, sans-serif;">Il mio profilo</a>
+
+                <form action="/logout" method="post">
+                    <button
+                            type="submit"
+                            class="dropdown-item"
+                            style="font-size: 14px;font-family: Alata, sans-serif;">Esci</button>
+                </form>
+
             </div>
-        </nav>
-        <section
-            class="photo-gallery"
-            style="margin-top: 0px;padding-top: 62px;height: 900px; width: 100%;">
-            <div class="container" style="height: 600px;padding-top: 29px;margin-top: 0px;">
+        </div>
+        <div class="dropdown" style="margin-top: -1px;">
+            <a
+                    class="btn btn-primary"
+                    aria-expanded="false"
+                    data-bs-toggle="dropdown"
+                    style="background: url(&quot;assets/img/menu-piu.png&quot;) center / cover space, #ffffff; width: 20px; height: 40px; border:none; margin-left: 10px;"></a>
 
-                <h2
-                    class="text-center col-12"
-                    style="height: 140px; font-family: Alata, sans-serif; margin-bottom: 50px; color: rgb(255,255,255); background: #ee6226;
-                    ; padding-bottom: 20px; padding-top: 55px;">
-                    <strong>Pasti disponibili nella tua zona</strong>
-                </h2>
-
-                <!-------------------------- Mappa --------------------------->
-
-                <div id="map"></div>
-
-                <section class="article-list"></section>
-
-                <h2
-                    class="text-center col-12"
-                    style="height: 140px;padding-top: 42px; font-family: Alata, sans-serif;margin-bottom: 40px;color: rgb(255,255,255);margin-top:30px; background: #fe9e02;">
-                    <strong>Lista pasti disponibili</strong><br>
-                    <a
+            <div
+                    class="dropdown-menu"
+                    style="margin-left: -120px; margin-top:14px; margin-right: 30px;">
+                <a
+                        class="dropdown-item"
+                        href="cucina"
+                        style="font-size: 14px;font-family: Alata, sans-serif;">Cucina</a>
+                <a
+                        class="dropdown-item"
+                        href="richiesta-pasto-pubblico"
+                        style="font-size: 14px;font-family: Alata, sans-serif;">Richiedi pasto</a>
+                <div class="dropdown-divider"></div>
+                <a
+                        class="dropdown-item"
                         href="ricerca-pasti-pubblici"
-                        style="font-size: 20px;font-family: Alata, sans-serif; text-decoration: none; color: white; ">Ricerca Approfondita</a><br></h2>
-                <div class="content">
+                        style="font-size: 14px;font-family: Alata, sans-serif;">Pasti disponibili</a>
 
-                    <!--------------------------- Nuovo Carusel Sezione Pasti Disponibili
-                    ------------------------------>
-                    <section class="ftco-section" style="margin-bottom: 50px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="featured-carousel owl-carousel">
-                                        <!--------------------------- Usa solo questo e vedi se funziona sotto
-                                        ------------------------------>
-                                        <div class="item" th:each="meal:${pendingMealCatalog}">
-                                            <div class="col-12 product-item">
-                                                <div class="product-container col-12">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p
-                                                                class="text-center medium-text"
-                                                                style="font-family:Alata, sans-serif;font-size: 20px; color: #000000;"
-                                                                th:text="${meal.description}"></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12 numeri-disp">
-                                                            <a
-                                                                style="font-family:Alata, sans-serif;font-size: 16px;"
-                                                                th:text="'Posti disponibili: '+${meal.placesAvailable}"></a>
-                                                        </div>
+                <a
+                        class="dropdown-item"
+                        href="ricerca-richieste-pasti-pubbliche"
+                        style="font-size: 14px;font-family: Alata, sans-serif;">Richeste pasti</a>
+                <div class="dropdown-divider"></div>
+                <a
+                        class="dropdown-item"
+                        href="ricerca-utenti"
+                        style="font-size: 14px;font-family: Alata, sans-serif;">Cerca Utenti</a>
 
-                                                        <div class="col-12">
-                                                            <a
-                                                                    class="text-center small-text"
-                                                                    style="font-size: 18px;font-family:Alata, sans-serif;">Dove:<br th:text="${meal.city+', '+meal.place}"></a>
-
-                                                        </div>
-
-
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <a
-                                                                class="text-center small-text"
-                                                                style="font-size: 15px;font-family:Alata, sans-serif;">Quando:<br th:text="${meal.date}+' '+${meal.time}"></a>
-                                                            <a
-                                                                class="text-center small-text"
-                                                                style="font-size: 15px;font-family:Alata, sans-serif;">Chiusura iscrizioni:&nbsp;<br th:text="${meal.expiryDate}+' '+${meal.expiryTime}"></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <div class="product-rating">
-                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=1 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<1.5}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=1.5 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<2}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=2 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<2.5}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=2.5 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<3}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=3 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<3.5}">
-                                                                     <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=3.5 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<4}">
-                                                                     <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=4 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<4.5}">
-                                                                     <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=4.5 && meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage<5}">
-                                                                     <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${meal.homeOwner.feedbackBox.getReceivedFeedbacksAverage>=5}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <a class="small-text text-center" style="font-size: 15px;">Pubblicato dall'utente<br th:text="${meal.homeOwner.username}"></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p
-                                                                class="product-description"
-                                                                style="font-family:Alata, sans-serif;font-size: 16px;">Ingredienti principali:<br th:text="${meal.ingredients}"></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p class="product-price text-center" style="font-size: 18px;">Prezzo:<br th:text="${meal.price}"></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <a
-                                                                class="btn btn-primary"
-                                                                th:href="@{iscriviti-pasto(meal=${meal.id})}"
-                                                                role="button"
-                                                                data-bss-hover-animate="pulse"
-                                                                style="background: #fe9e02;border-radius: 24px; width: 164px; margin-right: 0px;border-color: rgba(0,0,0,0);font-family:Alata, sans-serif;">Più informazioni</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <h2
-                        class="text-center col-12"
-                        style="height: 140px;padding-top: 42px; font-family: Alata, sans-serif;margin-bottom: 30px;color: rgb(255,255,255);margin-top: -30px; background: #73bc43;">
-                        <strong>Richieste pasti disponibili</strong><br>
-                        <a
-                            href="ricerca-richieste-pasti-pubbliche"
-                            style="font-size: 20px;font-family: Alata, sans-serif; text-decoration: none; color: white; ">Richiedi un pasto</a>
-                        <br></h2>
-
-                    <!---------------------- Nuovo Carusel Sezioni richeste
-                    ------------------------>
-
-                    <section class="ftco-section" style="margin-bottom: 50px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="featured-carousel owl-carousel">
-
-                                        <!--------------------------- Usa solo questo e vedi se funziona
-                                        ------------------------------>
-                                        <div class="item" th:each="mealRequest:${publicMealsRequestCatalog}">
-                                            <div class="col-12 product-item">
-                                                <div class="product-container col-12">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p
-                                                                class="text-center medium-text"
-                                                                style="font-family:Alata, sans-serif;font-size: 21px; color: #000000;"
-                                                                th:text="${mealRequest.description}"></p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-12 numeri-disp">
-                                                            <a style="font-size: 17px;font-family:Alata, sans-serif;">Porzioni richiesti:<br th:text="${mealRequest.mealsNumber}"></a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <a
-                                                                class="text-center small-text"
-                                                                style="font-size: 17px;font-family: Alata, sans-serif;">Dove:<br th:text="${mealRequest.place}"></a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <a
-                                                                class="text-center small-text"
-                                                                style="font-size: 15px;font-family:Alata, sans-serif;">Quando:<br th:text="${mealRequest.date}+' '+${mealRequest.time}"></a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <a
-                                                                class="text-center small-text"
-                                                                style="font-size: 15px;font-family:Alata, sans-serif;">Chiusura iscrizioni:&nbsp;<br th:text="${mealRequest.expiryDate}+' '+${mealRequest.expiryTime}"></a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <div class="product-rating">
-                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=1 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<1.5}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=1.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<2}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=2 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<2.5}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=2.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<3}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=3 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<3.5}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=3.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<4}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=4 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<4.5}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=4.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<5}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=5}">
-                                                                    <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i>
-                                                                </th:block>
-                                                                <a class="small-text" href="#" style="font-size: 15px;">Pubblicato da<br th:text="${mealRequest.host.username}"></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p
-                                                                class="product-description"
-                                                                style="font-family:Alata, sans-serif;font-size: 16px;">Allergie (o richieste particolari):<br th:text="${mealRequest.allergy}"></p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p class="product-price">Prezzo:<br th:text="${mealRequest.price}"></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <a
-                                                                class="btn btn-primary"
-                                                                th:href="@{accetta-richiesta-pasto-pubblico(mealRequest=${mealRequest.id})}"
-                                                                role="button"
-                                                                data-bss-hover-animate="pulse"
-                                                                style="background: #fe9e02;border-radius: 24px;width: 164px;margin-right: 0px;border-color: rgba(0,0,0,0);font-family:Alata, sans-serif; background: #73bc43;">Più informazioni</a>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <h2
-                        class="text-center"
-                        style="font-family: Alata, sans-serif;margin-top: -50px; margin-bottom: 10px;color: var(--bs-gray-dark);font-weight: bold;">Prepara qualcosa di buono per gli altri !</h2>
-                    <h2
-                        class="text-center"
-                        style="font-family: Alata, sans-serif;margin-bottom: 40px;color: #000000;font-weight: normal;font-size: 20px;">Hai del tempo libero o qualche porzione in più ?<br>Vai nella sezione Richieste pasti e vedi cosa
-                        <br>vorrebbero mangiare gli altri utenti !<br></h2>
-                </div>
-                <div
-                    class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul"
-                    data-aos="zoom-in"
-                    style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;">
-
-                    <footer style="border-color: rgb(240, 249, 255);height: 214.328px;">
-                        <div class="container">
-                            <div class="row row-cols-2 justify-content-center align-items-center">
-                                <div
-                                    class="col-sm-4 col-md-3 text-center d-inline order-1 item"
-                                    style="font-family: Lato, sans-serif;height: 234px;">
-                                    <h3></h3>
-                                    <ul></ul><img
-                                        class="img-fluid"
-                                        src="assets/img/inmytable-logo.png"
-                                        style="width: 258px;text-align: center;">
-                                    <p
-                                        style="color: var(--bs-dark);text-align: center;font-family: Alata, sans-serif;"><br>
-                                        <em>Mangiare insieme. Sprecare meno. Conoscersi di più.</em><br><br><br></p>
-                                </div>
-                                <div
-                                    class="col-sm-4 col-md-3 text-center d-inline order-2 item"
-                                    style="font-family: Alata, sans-serif;height: 234px;text-align: center;">
-                                    <h3></h3>
-                                    <h3
-                                        class="text-center"
-                                        style="height: 30px;font-size: 19px;color: var(--bs-dark);font-weight: bold;font-family: Alata, sans-serif;">Links utili<br>
-                                        <a
-                                            class="btn btn-primary text-start"
-                                            role="button"
-                                            style="background: #ffffff;font-size: 18px;font-weight: normal;width: 130px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;margin-left: 0px;margin-right: 0px;padding-right: 0px;padding-left: 0px;"
-                                            href="come-funziona.html">Come funziona</a><br>
-                                        <a
-                                            class="btn btn-primary text-start"
-                                            role="button"
-                                            style="background: #ffffff;font-size: 18px;font-weight: normal;width: 60px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;"
-                                            href="aiuto.html">FAQ</a><br>
-                                        <button
-                                            class="btn btn-primary text-start"
-                                            type="button"
-                                            style="background: #ffffff;font-size: 18px;font-weight: normal;width: 118px;height: 29px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px; margin-left:28px">Contatti</button><br></h3>
-                                </div>
-                                <div
-                                    class="col-6 col-sm-4 col-md-3 d-inline order-3 item"
-                                    style="font-family: Lato, sans-serif;height: 234px;">
-                                    <h3></h3>
-                                    <h3
-                                        class="text-center"
-                                        style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;font-weight: bold;margin-bottom: -4px;">Contattaci</h3>
-                                    <div
-                                        class="social-icons"
-                                        style="height: 87px;padding: 0px 0px;text-align: center;">
-                                        <a href="#">
-                                            <i
-                                                class="icon ion-social-instagram"
-                                                style="margin-left: 5px;margin-right: 2px;"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="icon ion-social-facebook"></i>
-                                        </a>
-                                        <h3
-                                            class="text-center"
-                                            style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;text-align: center;font-weight: bold; margin-bottom:10px;"><br>E-mail: info@inmytable.com<br></h3>
-                                    </div>
-
-                                </div>
-                                <div
-                                    class="col-sm-4 col-md-3 order-4 item"
-                                    style="font-family: Lato, sans-serif;margin-top: 0px;padding-top: 1px;width: 242;">
-                                    <h3></h3>
-                                    <h3
-                                        class="text-center text-sm-center text-md-center text-lg-center"
-                                        style="font-size: 19px;height: 46px;color: var(--bs-dark);margin-bottom: 18px;margin-top: 0px;font-family: Alata, sans-serif;font-weight: bold;">Iscriviti alla newsletter</h3>
-                                    <h3
-                                        class="text-center text-sm-center text-md-center text-lg-center"
-                                        style="font-size: 13px;height: 20px;color: var(--bs-dark);font-style: normal;margin-bottom: 6px;font-family: Alata, sans-serif;">Unisciti alla community<br>Inserisci la tua email</h3>
-                                    <form style="margin-top: 30px;height: 107px;" method="post">
-                                        <div class="form-group mb-3" style="margin-top: 0px;margin-bottom: 0px;"><input
-                                            class="form-control"
-                                            type="email"
-                                            name="email"
-                                            placeholder="Email"
-                                            style="text-align: center;margin-bottom: 0px;margin-top: 0px;margin-right: 0px;padding-bottom: 4px;padding-top: 7px;margin-left: 0px;font-family: Alata, sans-serif;"></div>
-                                        <div
-                                            class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center form-group mb-3">
-                                            <button
-                                                class="btn btn-primary border rounded-pill"
-                                                data-bss-hover-animate="pulse"
-                                                type="submit"
-                                                style="background: #73bc43;padding-top: 8px;width: 118px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;">Inscriviti</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <h1
-                            style="border-color: rgb(0,0,0);color: rgb(0,0,0);text-align: center;font-size: 17px;font-family: Alata, sans-serif;margin-top: 5px;margin-bottom: 20px;padding-top: 0px;padding-bottom: 0px;"><br>© 2018 - 2020 Copyright INMYTABLE - Tutti i diritti riservati<br><br></h1>
-                    </footer>
-                </div>
             </div>
-            
-            <script>
+        </div>
+    </div>
+</nav>
+<section
+        class="photo-gallery"
+        style="margin-top: 0px;padding-top: 62px;height: 900px; width: 100%;">
+    <div class="container" style="height: 600px;padding-top: 29px;margin-top: 0px;">
 
-                // Initialize and add the map
-                function initMap() {
-                    // The location of Uluru
-                    const uluru = {
-                        lat: 43.4363086,
-                        lng: 13.5836302
+        <h2
+                class="text-center col-12"
+                style="height: 140px; font-family: Alata, sans-serif; margin-bottom: 50px; color: rgb(255,255,255); background: #ee6226;
+                    ; padding-bottom: 20px; padding-top: 55px;">
+            <strong>Pasti disponibili nella tua zona</strong>
+        </h2>
+
+        <!-------------------------- Mappa --------------------------->
+
+        <div id="map"></div>
+
+        <section class="article-list"></section>
+
+
+
+
+        <h2
+                class="text-center col-12"
+                style="height: 140px;padding-top: 42px; font-family: Alata, sans-serif;margin-bottom: 40px;color: rgb(255,255,255);margin-top:30px; background: #fe9e02;">
+            <strong>Lista pasti disponibili</strong><br>
+            <a
+                    href="ricerca-pasti-pubblici"
+                    style="font-size: 20px;font-family: Alata, sans-serif; text-decoration: none; color: white; ">Ricerca Approfondita</a><br></h2>
+        <div class="content">
+
+            <!--------------------------- Nuovo Carusel Sezione Pasti Disponibili
+            ------------------------------>
+            <section class="ftco-section" style="margin-bottom: 50px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="featured-carousel owl-carousel">
+                                <!--------------------------- Usa solo questo e vedi se funziona sotto
+                                ------------------------------>
+                                <div class="item" th:each="meal:${pendingMealCatalog}" >
+                                    <div class="col-12 product-item">
+                                        <div class="product-container col-12">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p
+                                                            class="text-center medium-text"
+                                                            style="font-family:Alata, sans-serif;font-size: 20px; color: #000000;"
+                                                            th:text="${meal.description}"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 numeri-disp">
+                                                    <a
+                                                            style="font-family:Alata, sans-serif;font-size: 16px;"
+                                                            th:text="'Posti disponibili: '+${meal.placesAvailable}"></a>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <a
+                                                            class="text-center small-text"
+                                                            style="font-size: 18px;font-family:Alata, sans-serif;">Dove:<br th:text="${meal.city+', '+meal.place}"></a>
+
+                                                </div>
+
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <a
+                                                            class="text-center small-text"
+                                                            style="font-size: 15px;font-family:Alata, sans-serif;">Quando:<br th:text="${meal.date}+' '+${meal.time}"></a>
+                                                    <a
+                                                            class="text-center small-text"
+                                                            style="font-size: 15px;font-family:Alata, sans-serif;">Chiusura iscrizioni:&nbsp;<br th:text="${meal.expiryDate}+' '+${meal.expiryTime}"></a>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="product-rating">
+                                                        <a class="small-text text-center" style="font-size: 15px;">Pubblicato dall'utente<br th:text="${meal.homeOwner.username}"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p
+                                                            class="product-description"
+                                                            style="font-family:Alata, sans-serif;font-size: 16px;">Ingredienti principali:<br th:text="${meal.ingredients}"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p class="product-price text-center" style="font-size: 18px;">Prezzo:<br th:text="${meal.price}"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <a
+                                                            class="btn btn-primary"
+                                                            th:href="@{iscriviti-pasto(meal=${meal.id})}"
+                                                            role="button"
+                                                            data-bss-hover-animate="pulse"
+                                                            style="background: #fe9e02;border-radius: 24px; width: 164px; margin-right: 0px;border-color: rgba(0,0,0,0);font-family:Alata, sans-serif;">Più informazioni</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <h2
+                    class="text-center col-12"
+                    style="height: 140px;padding-top: 42px; font-family: Alata, sans-serif;margin-bottom: 30px;color: rgb(255,255,255);margin-top: -30px; background: #73bc43;">
+                <strong>Richieste pasti disponibili</strong><br>
+                <a
+                        href="ricerca-richieste-pasti-pubbliche"
+                        style="font-size: 20px;font-family: Alata, sans-serif; text-decoration: none; color: white; ">Richiedi un pasto</a>
+                <br></h2>
+
+            <!---------------------- Nuovo Carusel Sezioni richeste
+            ------------------------>
+
+            <section class="ftco-section" style="margin-bottom: 50px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="featured-carousel owl-carousel">
+
+                                <!--------------------------- Usa solo questo e vedi se funziona
+                                ------------------------------>
+                                <div class="item" th:each="mealRequest:${publicMealsRequestCatalog}">
+                                    <div class="col-12 product-item">
+                                        <div class="product-container col-12">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p
+                                                            class="text-center medium-text"
+                                                            style="font-family:Alata, sans-serif;font-size: 21px; color: #000000;"
+                                                            th:text="${mealRequest.description}"></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12 numeri-disp">
+                                                    <a style="font-size: 17px;font-family:Alata, sans-serif;">Porzioni richiesti:<br th:text="${mealRequest.mealsNumber}"></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <a
+                                                            class="text-center small-text"
+                                                            style="font-size: 17px;font-family: Alata, sans-serif;">Dove:<br th:text="${mealRequest.place}"></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <a
+                                                            class="text-center small-text"
+                                                            style="font-size: 15px;font-family:Alata, sans-serif;">Quando:<br th:text="${mealRequest.date}+' '+${mealRequest.time}"></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <a
+                                                            class="text-center small-text"
+                                                            style="font-size: 15px;font-family:Alata, sans-serif;">Chiusura iscrizioni:&nbsp;<br th:text="${mealRequest.expiryDate}+' '+${mealRequest.expiryTime}"></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="product-rating">
+                                                       <!-- <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=1 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<1.5}">
+                                                            <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
+                                                        </th:block>
+                                                        <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=1.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<2}">
+                                                            <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o" style="color: #fe9e02;"></i>
+                                                        </th:block>
+                                                        <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=2 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<2.5}">
+                                                            <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                        </th:block>
+                                                        <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=2.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<3}">
+                                                            <i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star" style="color: #fe9e02;"></i><i class="fa fa-star-half-full" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                        </th:block>
+                                                        <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=3 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<3.5}">
+                                                            <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i><i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                        </th:block>
+                                                        <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=3.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<4}">
+                                                            <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                        </th:block>
+                                                        <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=4 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<4.5}">
+                                                            <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-o fa-star-o" style="color: #fe9e02;"></i>
+                                                        </th:block>
+                                                        <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=4.5 && mealRequest.host.feedbackBox.getReceivedFeedbacksAverage<5}">
+                                                            <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star-half-full" style="color: #fe9e02;"></i>
+                                                        </th:block>
+                                                        <th:block th:if="${mealRequest.host.feedbackBox.getReceivedFeedbacksAverage>=5}">
+                                                            <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i> <i class="fa fa-star" style="color: #fe9e02;"></i>
+                                                        </th:block>-->
+                                                        <a class="small-text" style="font-size: 15px;">Pubblicato da<br th:text="${mealRequest.host.username}"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p
+                                                            class="product-description"
+                                                            style="font-family:Alata, sans-serif;font-size: 16px;">Allergie (o richieste particolari):<br th:text="${mealRequest.allergy}"></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p class="product-price">Prezzo:<br th:text="${mealRequest.price}"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <a
+                                                            class="btn btn-primary"
+                                                            th:href="@{accetta-richiesta-pasto-pubblico(mealRequest=${mealRequest.id})}"
+                                                            role="button"
+                                                            data-bss-hover-animate="pulse"
+                                                            style="background: #fe9e02;border-radius: 24px;width: 164px;margin-right: 0px;border-color: rgba(0,0,0,0);font-family:Alata, sans-serif; background: #73bc43;">Più informazioni</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <h2
+                    class="text-center"
+                    style="font-family: Alata, sans-serif;margin-top: -50px; margin-bottom: 10px;color: var(--bs-gray-dark);font-weight: bold;">Prepara qualcosa di buono per gli altri !</h2>
+            <h2
+                    class="text-center"
+                    style="font-family: Alata, sans-serif;margin-bottom: 40px;color: #000000;font-weight: normal;font-size: 20px;">Hai del tempo libero o qualche porzione in più ?<br>Vai nella sezione Richieste pasti e vedi cosa
+                <br>vorrebbero mangiare gli altri utenti !<br></h2>
+        </div>
+        <div
+                class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul"
+                data-aos="zoom-in"
+                style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 30px;padding-bottom: 40px;">
+
+            <footer style="border-color: rgb(240, 249, 255);height: 214.328px;">
+                <div class="container">
+                    <div class="row row-cols-2 justify-content-center align-items-center">
+                        <div
+                                class="col-sm-4 col-md-3 text-center d-inline order-1 item"
+                                style="font-family: Lato, sans-serif;height: 234px;">
+                            <h3></h3>
+                            <ul></ul><img
+                                class="img-fluid"
+                                src="assets/img/inmytable-logo.png"
+                                style="width: 258px;text-align: center;">
+                            <p
+                                    style="color: var(--bs-dark);text-align: center;font-family: Alata, sans-serif;"><br>
+                                <em>Mangiare insieme. Sprecare meno. Conoscersi di più.</em><br><br><br></p>
+                        </div>
+                        <div
+                                class="col-sm-4 col-md-3 text-center d-inline order-2 item"
+                                style="font-family: Alata, sans-serif;height: 234px;text-align: center;">
+                            <h3></h3>
+                            <h3
+                                    class="text-center"
+                                    style="height: 30px;font-size: 19px;color: var(--bs-dark);font-weight: bold;font-family: Alata, sans-serif;">Links utili<br>
+                                <a
+                                        class="btn btn-primary text-start"
+                                        role="button"
+                                        style="background: #ffffff;font-size: 18px;font-weight: normal;width: 130px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;margin-left: 0px;margin-right: 0px;padding-right: 0px;padding-left: 0px;"
+                                        href="come-funziona.html">Come funziona</a><br>
+                                <a
+                                        class="btn btn-primary text-start"
+                                        role="button"
+                                        style="background: #ffffff;font-size: 18px;font-weight: normal;width: 60px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;"
+                                        href="aiuto.html">FAQ</a><br>
+                                <button
+                                        class="btn btn-primary text-start"
+                                        type="button"
+                                        style="background: #ffffff;font-size: 18px;font-weight: normal;width: 118px;height: 29px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px; margin-left:28px">Contatti</button><br></h3>
+                        </div>
+                        <div
+                                class="col-6 col-sm-4 col-md-3 d-inline order-3 item"
+                                style="font-family: Lato, sans-serif;height: 234px;">
+                            <h3></h3>
+                            <h3
+                                    class="text-center"
+                                    style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;font-weight: bold;margin-bottom: -4px;">Contattaci</h3>
+                            <div
+                                    class="social-icons"
+                                    style="height: 87px;padding: 0px 0px;text-align: center;">
+                                <a href="#">
+                                    <i
+                                            class="icon ion-social-instagram"
+                                            style="margin-left: 5px;margin-right: 2px;"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="icon ion-social-facebook"></i>
+                                </a>
+                                <h3
+                                        class="text-center"
+                                        style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;text-align: center;font-weight: bold; margin-bottom:10px;"><br>E-mail: info@inmytable.com<br></h3>
+                            </div>
+
+                        </div>
+                        <div
+                                class="col-sm-4 col-md-3 order-4 item"
+                                style="font-family: Lato, sans-serif;margin-top: 0px;padding-top: 1px;width: 242;">
+                            <h3></h3>
+                            <h3
+                                    class="text-center text-sm-center text-md-center text-lg-center"
+                                    style="font-size: 19px;height: 46px;color: var(--bs-dark);margin-bottom: 18px;margin-top: 0px;font-family: Alata, sans-serif;font-weight: bold;">Iscriviti alla newsletter</h3>
+                            <h3
+                                    class="text-center text-sm-center text-md-center text-lg-center"
+                                    style="font-size: 13px;height: 20px;color: var(--bs-dark);font-style: normal;margin-bottom: 6px;font-family: Alata, sans-serif;">Unisciti alla community<br>Inserisci la tua email</h3>
+                            <form style="margin-top: 30px;height: 107px;" method="post">
+                                <div class="form-group mb-3" style="margin-top: 0px;margin-bottom: 0px;"><input
+                                        class="form-control"
+                                        type="email"
+                                        name="email"
+                                        placeholder="Email"
+                                        style="text-align: center;margin-bottom: 0px;margin-top: 0px;margin-right: 0px;padding-bottom: 4px;padding-top: 7px;margin-left: 0px;font-family: Alata, sans-serif;"></div>
+                                <div
+                                        class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center form-group mb-3">
+                                    <button
+                                            class="btn btn-primary border rounded-pill"
+                                            data-bss-hover-animate="pulse"
+                                            type="submit"
+                                            style="background: #73bc43;padding-top: 8px;width: 118px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;">Iscriviti</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <h1
+                        style="border-color: rgb(0,0,0);color: rgb(0,0,0);text-align: center;font-size: 17px;font-family: Alata, sans-serif;margin-top: 5px;margin-bottom: 20px;padding-top: 0px;padding-bottom: 0px;"><br>© 2018 - 2020 Copyright INMYTABLE - Tutti i diritti riservati<br><br></h1>
+            </footer>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+
+                function initMap(){
+                    //Map options
+                    var options = {
+                        zoom: 5,
+                        center:{lat: 42.763421026242426, lng:12.554941619637905}
+                    }
+
+                    //New map
+                    var map = new google.maps.Map(document.getElementById('map'), options);
+
+
+                    /*
+                    //Add marker
+                     const image = "img/mapbox-icon-dis.png";
+                    var marker = new google.maps.Marker({
+                        position:{lat: 42.3601, lng:-71.0589},
+                        map:map,
+                        icon:image
+                    });
+
+
+                    //Info Window
+                    var infoWindow = new google.maps.InfoWindow({
+                        content:'<h1>Info Window</h1>'
+                    });
+
+
+                    marker.addListener('click', function(){
+                        infoWindow.open(map, marker);
+                    });
+                    */
+
+                     //Meal icon
+                     const MealIcon = "/assets/img/mapbox-icon-dis.png";
+
+                     //MealRequest icon
+                    const MealRequestIcon = "/assets/img/mapbox-icon-ric.png";
+
+
+
+                    //Add Marker Fuction
+                    function addMarker(props){
+                        var marker = new google.maps.Marker({
+                        position: props.coords,
+                        map:map,
+                        //icon:props.iconImage
+                    });
+
+                        //check for custom icon
+                        if(props.iconImage){
+                            //Set icon image
+                            marker.setIcon(props.iconImage);
+                        }
+
+
+                        //check content
+                        if(props.content){
+                                 var infoWindow = new google.maps.InfoWindow({
+                                content:props.content
+                                });
+
+
+                             marker.addListener('click', function(){
+                                infoWindow.open(map, marker);
+                                });
+
+                        }
+
                     };
-                    // The map, centered at Uluru
-                    const map = new google
-                        .maps
-                        .Map(document.getElementById("map"), {
-                            zoom: 8,
-                            center: uluru
-                        });
-                    // The marker, positioned at Uluru
-                    const image = "/assets/img/mapbox-icon-dis.png";
-                    const beachMarker = new google
-                        .maps
-                        .Marker({
-                            position: {
-                                lat: 43.4363086,
-                                lng: 13.5836302
-                            },
-                            map,
-                            icon: image
+
+
+                  /*  var markers = [
+
+                        {
+                        coords:{lat: 43.300493, lng:13.454452},
+                        iconImage: Mealicon,
+                        content:'<h1>Meal Content</h1>'
+                        },
+
+                        {
+                        coords:{lat:  43.30038605565523, lng:13.444536625096307},
+                        iconImage: MealRequestIcon,
+                        content:'<h1>Meal Request Content</h1>'
+                        }
+
+                    ];
+
+
+
+                    //Loop through markers
+                    for(var i=0; i < markers.length;i++){
+                        addMarker(markers[i]);
+                    }*/
+
+
+                    //Add Markers
+                   /* addMarker({
+                        coords:{lat: 43.300493, lng:13.454452},
+                        iconImage: Mealicon,
+                        content:'<h1>Meal Content</h1>'
                         });
 
-                        const image2 = "/assets/img/mapbox-icon-ric.png";
-                    const beachMarker2 = new google
-                        .maps
-                        .Marker({
-                            position: {
-                                lat: 43.42,
-                                lng: 12.56
-                            },
-                            map,
-                            icon: image2
-                        });
-                }
+
+                     addMarker({
+                        coords:{lat:  43.30038605565523, lng:13.444536625096307},
+                        iconImage: MealRequestIcon,
+                        content:'<h1>Meal Request Content</h1>'
+                        });*/
+
+
+                        //DA VIA A LATITUDINE E LONGITUDINE
+
+
+
+                       var geocoder = new google.maps.Geocoder();
+                        //var address = "macerata, via roma, 110";
+
+
+                        //MEAL ICON!!!!!!!!!!
+
+                        var markers = [[${mealsPlace}]]
+                        var mealDes = [[${mealsDescription}]]
+                        var mealDat = [[${mealsDate}]]
+                        var mealI = [[${mealsId}]]
+
+
+                          for (const property in markers){
+
+                       //for(var i=0; i < markers.length;i++){
+
+                       var address = markers[property];
+
+                        geocoder.geocode( { 'address': address}, function(results, status) {
+
+                         if (status == google.maps.GeocoderStatus.OK) {
+                              var latitude = results[0].geometry.location.lat();
+                              var longitude = results[0].geometry.location.lng();
+                              var mealDescription = mealDes[property];
+                              var mealDate = mealDat[property];
+                              var mealId = mealI[property];
+                              //alert(latitude);
+
+
+                              addMarker({
+                                 coords:{lat:  latitude, lng: longitude},
+                                    iconImage: MealIcon,
+                                     content:'<h6 style="text-align: center;">'+mealDescription+'</h6>'+
+                                     '<p style="text-align: center;">Data e ora: <br>'+mealDate+'</p>'+
+                                    '<a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: #fe9e02;border-radius: 24px;width: 163.4219px;margin-right: 0px;border-color: rgba(0,0,0,0);font-family: Alata, serif;text-align: center;" href="iscriviti-pasto?meal='+mealId+'">Vai al pasto</a>'
+                                     });
+                             }
+
+                            });
+
+            }
+
+
+
+             //MEAL REQUEST ICON!!!!!!!!!!
+
+               var mark = [[${mealRequestsPlace}]]
+               var mealReqDes = [[${mealRequestsDescription}]]
+               var mealReqDat = [[${mealRequestsDate}]]
+               var mealReqI = [[${mealRequestsId}]]
+
+             for (const prop in mark){
+
+                       var add = mark[prop];
+
+                        geocoder.geocode( { 'address': add}, function(results, status) {
+
+                         if (status == google.maps.GeocoderStatus.OK) {
+                              var latitude = results[0].geometry.location.lat();
+                              var longitude = results[0].geometry.location.lng();
+                              var mealRequestDescription = mealReqDes[prop];
+                              var mealRequestDate = mealReqDat[prop];
+                              var mealRequestId = mealReqI[prop];
+                              //alert(latitude);
+
+
+                              addMarker({
+                                 coords:{lat:  latitude, lng: longitude},
+                                    iconImage: MealRequestIcon,
+                                     content:'<h6 style="text-align: center;">'+mealRequestDescription+'</h6>'+
+                                     '<p style="text-align: center;">Data e ora: <br>'+mealRequestDate+'</p>'+
+
+                                     '<a class="btn btn-primary" role="button" data-bss-hover-animate="pulse" style="background: #73bc43;border-radius: 24px;width: 163.4219px;margin-right: 0px;border-color: rgba(0,0,0,0);font-family: Alata, serif;text-align: center;"; href="accetta-richiesta-pasto-pubblico?mealRequest='+mealRequestId+'">Vai alla richiesta</a>'
+
+
+                                //'<a class="btn-go"; role="button"; style="background: #fe9e02"; href="accetta-richiesta-pasto-pubblico?mealRequest='+mealRequestId+'">Vai alla richiesta</a>'
+                                     });
+                             }
+
+                            });
+
+            }
+
+
+         }
             </script>
 
-            <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8U9bz5osq23xxO2kI99qZS15LuLEUTX4&callback=initMap&libraries=&v=weekly"
-                async="async"></script>
-            <!--Mappa--->
 
-            <script src="assets/js/jquery-3.3.1.min.js"></script>
-            <script src="assets/js/popper.min.js"></script>
-            <script src="assets/js/bootstrap.min.js"></script>
-            <script src="assets/js/owl.carousel.min.js"></script>
-            <script src="assets/js/main.js"></script>
-            <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-            <script src="assets/js/bs-init.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-            <script
-                src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-            <script
-                src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/lightpick@1.3.4/lightpick.min.js"></script>
-            <script src="assets/js/Date-Picker-From-and-To.js"></script>
-            <script src="assets/js/Animated-Pretty-Product-List-v12.js"></script>
-            <script
-                src="assets/js/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.js"></script>
-            <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-            <script
-                src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
-            <script
-                src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
-            <script
-                src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
-            <script
-                src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-            <script
-                src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-            <script src="assets/js/Lightbox-Gallery.js"></script>
-            <script src="assets/js/Profile-Edit-Form.js"></script>
-            <script src="assets/js/real-estate-search-2-updated.js"></script>
-            <script src="assets/js/Sidebar-Menu.js"></script>
-        </section>
-    </body>
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8U9bz5osq23xxO2kI99qZS15LuLEUTX4&callback=initMap&libraries=&v=weekly"
+            async="async"></script>
+    <!--Mappa--->
+
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightpick@1.3.4/lightpick.min.js"></script>
+    <script src="assets/js/Date-Picker-From-and-To.js"></script>
+    <script src="assets/js/Animated-Pretty-Product-List-v12.js"></script>
+    <script
+            src="assets/js/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/Lightbox-Gallery.js"></script>
+    <script src="assets/js/Profile-Edit-Form.js"></script>
+    <script src="assets/js/real-estate-search-2-updated.js"></script>
+    <script src="assets/js/Sidebar-Menu.js"></script>
+</section>
+</body>
 
 </html>

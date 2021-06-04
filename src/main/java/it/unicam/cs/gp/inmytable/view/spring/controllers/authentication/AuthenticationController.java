@@ -4,6 +4,7 @@ import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,15 +28,18 @@ public class AuthenticationController {
     public String getRegister() {return "register";}
 
     @PostMapping("/login")
-    public ModelAndView doLogin( HttpSession session,
-            @RequestParam("username") String username,
-                                 @RequestParam("password") String password){
+    public ModelAndView doLogin(Model model, HttpSession session,
+                                @RequestParam("username") String username,
+                                @RequestParam("password") String password){
         try {
+            model.addAttribute("error", false);
             BaseController.setLogUser(guestService.login(username, password), session);
             return new ModelAndView("redirect:bacheca");
         } catch (Exception e) {
             e.printStackTrace();
+            model.addAttribute("error", true);
         }
+
             return new ModelAndView("login");
     }
 

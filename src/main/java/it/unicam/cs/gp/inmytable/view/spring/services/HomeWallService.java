@@ -67,4 +67,100 @@ public class HomeWallService {
         return null;
     }
 
+
+
+
+
+/*
+    public Meal[] getMealsArray(List<Meal> mealList){
+        Meal [] mealArray = new Meal[mealList.size()];
+        for(int a= 0; a<mealList.size(); a++) {
+            mealArray[a] = mealList.get(a);
+        }
+        return mealArray;
+    }
+
+
+    public MealRequest[] getMealRequestsArray(List<MealRequest> mealRequestsList){
+        MealRequest [] mealRequestArray = new MealRequest[mealRequestsList.size()];
+        for(int a= 0; a<mealRequestsList.size(); a++) {
+            mealRequestArray[a] =  mealRequestsList.get(a);
+        }
+        return mealRequestArray;
+    }
+
+ */
+
+    public String[] getMealsArray(List<Meal> mealList){
+        String [] mealArray = new String[mealList.size()];
+        for(int a= 0; a<mealList.size(); a++) {
+            mealArray[a] = mealList.get(a).getCity()+", "+mealList.get(a).getPlace();
+        }
+        return mealArray;
+    }
+
+
+    public String[] getMealRequestsArray(List<MealRequest> mealRequestsList){
+        String [] mealRequestArray = new String[mealRequestsList.size()];
+        for(int a= 0; a<mealRequestsList.size(); a++) {
+            mealRequestArray[a] =  mealRequestsList.get(a).getPlace();
+        }
+        return mealRequestArray;
+    }
+
+
+
+    public String[] getMealsDescriptionArray(List<Meal> mealList){
+        String [] mealArray = new String[mealList.size()];
+        for(int a= 0; a<mealList.size(); a++) {
+            mealArray[a] = mealList.get(a).getDescription();
+        }
+        return mealArray;
+    }
+
+
+    public String[] getMealsDateTimeArray(List<Meal> mealList){
+        String [] mealArray = new String[mealList.size()];
+        for(int a= 0; a<mealList.size(); a++) {
+            mealArray[a] = mealList.get(a).getDate().toString()+" "+mealList.get(a).getTime().toString();
+        }
+        return mealArray;
+    }
+
+
+
+    public String[] getMealRequestsDescriptionArray(List<MealRequest> mealRequestList){
+        String [] mealArray = new String[mealRequestList.size()];
+        for(int a= 0; a<mealRequestList.size(); a++) {
+            mealArray[a] = mealRequestList.get(a).getDescription();
+        }
+        return mealArray;
+    }
+
+
+    public String[] getMealRequestsDateTimeArray(List<MealRequest> mealRequestList){
+        String [] mealArray = new String[mealRequestList.size()];
+        for(int a= 0; a<mealRequestList.size(); a++) {
+            mealArray[a] = mealRequestList.get(a).getDate().toString()+" "+mealRequestList.get(a).getTime().toString();
+        }
+        return mealArray;
+    }
+
+    public String[] getMealsIdArray(List<Meal> mealList){
+        String [] mealArray = new String[mealList.size()];
+        for(int a= 0; a<mealList.size(); a++) {
+            mealArray[a] = mealList.get(a).getId();
+        }
+        return mealArray;
+    }
+
+
+    public String[] getMealRequestsIdArray(List<MealRequest> mealRequestList){
+        String [] mealArray = new String[mealRequestList.size()];
+        for(int a= 0; a<mealRequestList.size(); a++) {
+            mealArray[a] = mealRequestList.get(a).getId();
+        }
+        return mealArray;
+    }
+
 }

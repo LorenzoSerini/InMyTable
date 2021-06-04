@@ -47,18 +47,8 @@ public class HomeWall {
 	 */
 	public Catalog<Meal> getMealCatalog(){
 		if (mealCatalog == null){
-			mealCatalog = new Catalog<Meal>();
+			mealCatalog = new Catalog<>();
 		} else updateCatalog(mealCatalog);
-
-		/*	mealCatalog.search(p->p.getExpiryDate().isBefore(LocalDate.now()) || (
-				p.getExpiryDate().isEqual(LocalDate.now()) &&
-						p.getExpiryTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.FULL));
-
-
-		mealCatalog.search(p->p.getDate().isBefore(LocalDate.now()) || (
-				p.getDate().isEqual(LocalDate.now()) &&
-						p.getTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.EXPIRED));*/
-
 			return mealCatalog;
 	}
 
@@ -69,12 +59,8 @@ public class HomeWall {
 	 */
 	public Catalog<MealRequest> getMealRequestCatalog(){
 		if (mealRequestCatalog == null){
-			mealRequestCatalog = new Catalog<MealRequest>();
+			mealRequestCatalog = new Catalog<>();
 		}else updateCatalog(mealRequestCatalog);
-
-			/*mealRequestCatalog.search(p->p.getExpiryDate().isBefore(LocalDate.now()) || (
-				p.getExpiryDate().isEqual(LocalDate.now()) &&
-						p.getExpiryTime().isBefore(LocalTime.now()))).forEach(u-> u.setState(MealStates.EXPIRED));*/
 
 		return mealRequestCatalog;
 	}

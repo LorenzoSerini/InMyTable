@@ -1,10 +1,7 @@
 package it.unicam.cs.gp.inmytable.controllers;
 import it.unicam.cs.gp.inmytable.allmeals.Food;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionManager;
-import it.unicam.cs.gp.inmytable.persistence.FeedbackDB;
-import it.unicam.cs.gp.inmytable.persistence.FeedbackPersistence;
-import it.unicam.cs.gp.inmytable.persistence.MealDB;
-import it.unicam.cs.gp.inmytable.persistence.MealPersistence;
+import it.unicam.cs.gp.inmytable.persistence.*;
 import it.unicam.cs.gp.inmytable.user.Feedback;
 import it.unicam.cs.gp.inmytable.user.User;
 
@@ -14,21 +11,22 @@ public class UserController {
     private User user;
     private MealPersistence mealPersistence;
     private FeedbackPersistence feedbackPersistence;
-    private SubscriptionManager subscriptionManager;
+    private UserPersistence userPersistence;
+
 
     /**
      * Build an UserController for the user
      * @param logUser logUser
      */
-    public UserController(User logUser, MealPersistence mealPersistence, FeedbackPersistence feedbackPersistence){
+    public UserController(User logUser, MealPersistence mealPersistence, FeedbackPersistence feedbackPersistence, UserPersistence userPersistence){
         this.user = logUser;
         this.mealPersistence=mealPersistence;
         this.feedbackPersistence=feedbackPersistence;
-        subscriptionManager = new SubscriptionManager();
+       this.userPersistence=userPersistence;
     }
 
     public UserController(User logUser) throws Exception {
-        this(logUser, new MealDB(), new FeedbackDB());
+        this(logUser, new MealDB(), new FeedbackDB(), new UserDB());
     }
 
     /**
@@ -44,6 +42,18 @@ public class UserController {
         this.user.getFeedbackBox().addFeedback(feedback);
         to.getFeedbackBox().addFeedback(feedback);
         feedbackPersistence.registerFeedback(feedback);
+    }
+
+
+    public void setUser(String email, String password, String city, String address, String id, String telephoneNumber, boolean available) throws Exception {
+        if(email!=null)this.user.setEmail(email);
+        if(password!=null)this.user.setPassword(password.hashCode());
+        if(city!=null)this.user.setCity(city);
+        if(address!=null)this.user.setAddress(address);
+        if(id!=null)this.user.setId(id);
+        if(telephoneNumber!=null)this.user.setTelephoneNumber(telephoneNumber);
+        this.user.setAvailableToRequests(available);
+        userPersistence.updateUser(this.user,this.user.getEmail(),this.user.getPassword(),this.user.getCity(),this.user.getAddress(),this.user.getId(),this.user.getTelephoneNumber(), this.user.getAvailableToRequests());
     }
 
 
