@@ -39,12 +39,7 @@ public class HomeWallService {
                 .collect(Collectors.toList());
     }
 
-   /* public Meal getAMeal(int hashCode){
-        for(Meal meal:getPendingMealCatalog()){
-            if(hashCode==meal.hashCode()) return meal;
-        }
-        return null;
-    }*/
+
 
     public Meal getAMeal(String id){
         for(Meal meal:getPendingMealCatalog()){
@@ -53,12 +48,6 @@ public class HomeWallService {
         return null;
     }
 
-   /* public MealRequest getAMealRequest(int hashCode){
-        for(MealRequest mealRequest:getPendingMealRequestCatalog()){
-            if(hashCode==mealRequest.hashCode()) return mealRequest;
-        }
-        return null;
-    }*/
 
     public MealRequest getAMealRequest(String id){
         for(MealRequest mealRequest:getPendingMealRequestCatalog()){
@@ -68,28 +57,6 @@ public class HomeWallService {
     }
 
 
-
-
-
-/*
-    public Meal[] getMealsArray(List<Meal> mealList){
-        Meal [] mealArray = new Meal[mealList.size()];
-        for(int a= 0; a<mealList.size(); a++) {
-            mealArray[a] = mealList.get(a);
-        }
-        return mealArray;
-    }
-
-
-    public MealRequest[] getMealRequestsArray(List<MealRequest> mealRequestsList){
-        MealRequest [] mealRequestArray = new MealRequest[mealRequestsList.size()];
-        for(int a= 0; a<mealRequestsList.size(); a++) {
-            mealRequestArray[a] =  mealRequestsList.get(a);
-        }
-        return mealRequestArray;
-    }
-
- */
 
     public String[] getMealsArray(List<Meal> mealList){
         String [] mealArray = new String[mealList.size()];

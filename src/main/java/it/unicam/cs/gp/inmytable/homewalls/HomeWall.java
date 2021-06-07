@@ -2,7 +2,6 @@ package it.unicam.cs.gp.inmytable.homewalls;
 
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.Food;
-import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 
@@ -19,8 +18,8 @@ public class HomeWall {
 	 * Singleton constructor
 	 */
 	private HomeWall(){
-		mealCatalog = new Catalog<Meal>();
-		mealRequestCatalog = new Catalog<MealRequest>();
+		mealCatalog = new Catalog<>();
+		mealRequestCatalog = new Catalog<>();
 	}
 
 	/**

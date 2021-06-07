@@ -143,7 +143,7 @@
                                 <a
                                         class="btn btn-primary"
                                         role="button"
-                                        href="notifiche"
+                                        th:href="@{notifica(notification=${notification.id})}"
                                         data-bss-hover-animate="pulse"
                                         style="background: transparent; border-color:transparent;margin-top:-4px; font-size: 13; font:Alata, sans-serif; font-weight: 700;">Vedi notifica</a>
 
@@ -548,12 +548,12 @@
                             <div
                                     class="social-icons"
                                     style="height: 87px;padding: 0px 0px;text-align: center;">
-                                <a href="#">
+                                <a >
                                     <i
                                             class="icon ion-social-instagram"
                                             style="margin-left: 5px;margin-right: 2px;"></i>
                                 </a>
-                                <a href="#">
+                                <a >
                                     <i class="icon ion-social-facebook"></i>
                                 </a>
                                 <h3

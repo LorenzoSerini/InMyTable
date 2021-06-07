@@ -18,7 +18,6 @@ import it.unicam.cs.gp.inmytable.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -28,12 +27,14 @@ public class MealsController {
     private MealManager mealManager;
     private MealPersistence mealPersistence;
    private SubscriptionManager subscriptionManager;
+   private NotificationPersistence notificationPersistence;
 
 
     public MealsController(User logUser, MealPersistence mealPersistence, NotificationPersistence notificationPersistence) throws Exception{
         mealManager = MealManager.getInstance();
         this.logUser = logUser;
         this.mealPersistence=mealPersistence;
+        this.notificationPersistence=notificationPersistence;
         subscriptionManager = new SubscriptionManager();
         if(HomeWall.getInstance().getMealCatalog().isEmpty()) HomeWall.getInstance().getMealCatalog().addAll(mealPersistence.getMealsList());
     }
@@ -53,9 +54,10 @@ public class MealsController {
         if(this.logUser.equals(meal.getHomeOwner())) throw new IllegalArgumentException("A host cannot sign up for his meal");
         if(meal.getUserList().contains(logUser)) throw new IllegalArgumentException("You can't sign up for the same meal twice");
         if (meal.isFreeSubscription()) {
-            subscriptionManager.joinToMealNotification(this.logUser, meal.getHomeOwner(), meal, "si è iscritto al pasto "+meal.getDescription()+" che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString());//("L'utente " + this.logUser.getUsername() + " si è iscritto al pasto che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString()));
+            subscriptionManager.joinToMealNotification(this.logUser, meal.getHomeOwner(), meal, "si è iscritto al pasto "+meal.getDescription()+" che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString());
+            notificationPersistence.registerSimpleNotification(subscriptionManager.createSimpleNotification(this.logUser, this.logUser, ".Ti sei iscritto al pasto"+meal.getDescription()+" che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString()));
         } else{
-            subscriptionManager.joinToMealNotification(this.logUser, meal.getHomeOwner(), meal, "si vorrebbe iscrivere al pasto "+meal.getDescription()+" che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString());//("L'utente " + this.logUser.getUsername() + " si vorrebbe iscrivere al pasto che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString()));
+            subscriptionManager.joinToMealNotification(this.logUser, meal.getHomeOwner(), meal, "si vorrebbe iscrivere al pasto "+meal.getDescription()+" che si terrà il " + meal.getDate().toString() + " alle " + meal.getTime().toString());
         }
         mealPersistence.registerUserToMeal(logUser,meal,meal.getHomeOwner().getMealNotifications().get(meal.getHomeOwner().getMealNotifications().size()-1));
     }
@@ -73,25 +75,6 @@ public class MealsController {
                 + subscription.getFood().getDate().toString() + " alle " + subscription.getFood().getTime().toString());
         mealPersistence.acceptOrRefuseMealSubscription(subscription.getFood(), subscription.getUser().getMealNotifications().get(subscription.getUser().getMealNotifications().size()-1));
     }
-
-
-   /* public List<Meal> showPublishedMeals() throws Exception {
-        List<Meal> meals = new ArrayList<>();
-        for(Meal meal:mealPersistence.getMealsList()){
-            if(meal.getHomeOwner().equals(this.logUser)) meals.add(meal);
-        }
-        return meals;
-    }
-
-    public List<Meal> showAttendedMeals() throws Exception {
-        List<Meal> meals = new ArrayList<>();
-        for(Meal meal:mealPersistence.getMealsList()){
-            for(IUser u:meal.getUserList()){
-                if(u.equals(this.logUser)) meals.add(meal);
-            }
-        }
-        return meals;
-    }*/
 
 
     public IMeal getMeal(String id){

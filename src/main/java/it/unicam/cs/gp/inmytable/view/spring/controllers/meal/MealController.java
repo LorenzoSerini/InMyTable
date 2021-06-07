@@ -1,9 +1,7 @@
 package it.unicam.cs.gp.inmytable.view.spring.controllers.meal;
 
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.user.User;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
-import it.unicam.cs.gp.inmytable.view.spring.services.FeedbackService;
 import it.unicam.cs.gp.inmytable.view.spring.services.HomeWallService;
 import it.unicam.cs.gp.inmytable.view.spring.services.MealSubscriptionService;
 import it.unicam.cs.gp.inmytable.view.spring.services.NotificationService;

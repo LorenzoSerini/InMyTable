@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class GuestController {
     private AuthenticationPersistence userPersistence;
 
-    public GuestController(AuthenticationPersistence userPersistence) throws Exception {
+    public GuestController(AuthenticationPersistence userPersistence){
         this.userPersistence=userPersistence;
     }
 

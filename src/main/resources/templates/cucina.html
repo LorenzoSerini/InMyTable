@@ -106,7 +106,7 @@
                         <li class="head text-light" style="background-color: #fe9e02;">
                             <div class="row">
                                 <div class="col-12 text-center" style="font-weight: 500">
-                                    <span th:text="'Le tue Notifiche ('+${allNotifications.size}+')'"></span>
+                                    <span th:text="'Le tue Notifiche ('+${notificationsSize}+')'"></span>
                                     <!--Da mettere se troviamo il modo il contatore di noticiche dentro le
                                     parentesi-->
                                 </div>
@@ -153,8 +153,7 @@
                         class="dropdown-toggle"
                         aria-expanded="false"
                         data-bs-toggle="dropdown"
-                        href="#"
-                        style="margin-right: 6px;margin-left: 0px;font-size: 15px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal; text-decoration: none;">IL MIO ACCOUNT</a>
+                        style="margin-right: 6px;margin-left: 0px;font-size: 15px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal; text-decoration: none;" href="#">IL MIO ACCOUNT</a>
                     <div class="dropdown-menu" style="margin-left:-10px;  margin-top:24px">
                         <a
                             class="dropdown-item"
@@ -236,14 +235,7 @@
                 </div>
             </div>
         </nav>
-<!--<section class="clean-block clean-form dark" style="background: url(&quot;assets/img/social-cooking-home-cooking.jpg&quot;) center / cover, var(--bs-white);height: 1600px;">
-    <div class="container" style="height: 1600px;margin-top: 55px;">
-        <div class="row" style="margin-right: 0px;margin-left: 0px;">
-            <div class="col-md-12" style="margin-bottom: 25px;padding-left: 75px;font-size: 21px;margin-top: 25px;"><a class="anone" href="listaBitacoras"></a></div>
-        </div>
-        <div class="block-heading" style="padding-top: 0px;">
-            <p></p>
-        </div>-->
+
     <section class="clean-block clean-form dark" style="background: url(&quot;assets/img/social-cooking-home-cooking.jpg&quot;) center / cover, var(--bs-white);height: fit-content;">
         <div class="container" style="height:fit-content;margin-top: 10px;">
             <div class="row" style="margin-right: 0px;margin-left: 0px;">
@@ -255,7 +247,9 @@
 
         <form class="border rounded pulse animated" action="/cucina" method="post" style="margin-bottom: 0px;margin-top: 0px;font-family: Alata, sans-serif;">
 
-
+            <th:block th:if="${error==true}">
+                <div class="text-danger" style="font-size: 18px; font-weight: 600;" th:text="${errorMsg}"></div>
+            </th:block>
             <div class="form-group mb-3" style="font-family: Alata, sans-serif;"><label class="form-label" style="line-height: 25px;font-size: 22px;font-weight: bold;">Cosa cucini ?</label><input class="form-control" type="text" autocomplete="off" required="" name="description" style="font-family: Alata, sans-serif;"></div>
             <div class="form-group mb-3" style="font-family: Lora, serif;"><label class="form-label" style="margin-top: 15px;font-size: 17px;font-family: Alata, sans-serif;">Tipo di cucina</label><select class="form-select" value="pull-type-c" style="font-family: Alata, sans-serif;" name="mealType">
                 <optgroup label="Tipi di cucina">
@@ -425,7 +419,7 @@
                 <div class="col-6 col-sm-4 col-md-3 d-inline order-3 item" style="font-family: Lato, sans-serif;height: 234px;">
                     <h3 class="text-center" style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;font-weight: bold;margin-bottom: -4px;">Contattaci</h3>
                     
-                    <div class="social-icons" style="height: 87px;padding: 0px 0px;text-align: center;"><a href="#"><i class="icon ion-social-instagram" style="margin-left: 6px;margin-right: 2px;"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a>
+                    <div class="social-icons" style="height: 87px;padding: 0px 0px;text-align: center;"><a><i class="icon ion-social-instagram" style="margin-left: 6px;margin-right: 2px;"></i></a><a ><i class="icon ion-social-facebook"></i></a>
                         <h3 class="text-center" style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;text-align: center;font-weight: bold; margin-bottom:10px;"><br>E-mail: info@inmytable.com<br></h3>
                     </div>
                   

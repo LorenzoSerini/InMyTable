@@ -1,7 +1,6 @@
 package it.unicam.cs.gp.inmytable.view.spring.controllers.ledger;
 
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
-import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.FeedbackService;
 import it.unicam.cs.gp.inmytable.view.spring.services.LedgerService;

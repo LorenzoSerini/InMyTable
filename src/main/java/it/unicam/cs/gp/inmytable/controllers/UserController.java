@@ -12,21 +12,25 @@ public class UserController {
     private MealPersistence mealPersistence;
     private FeedbackPersistence feedbackPersistence;
     private UserPersistence userPersistence;
+    private NotificationPersistence notificationPersistence;
+    private SubscriptionManager subscriptionManager;
 
 
     /**
      * Build an UserController for the user
      * @param logUser logUser
      */
-    public UserController(User logUser, MealPersistence mealPersistence, FeedbackPersistence feedbackPersistence, UserPersistence userPersistence){
+    public UserController(User logUser, MealPersistence mealPersistence, FeedbackPersistence feedbackPersistence, UserPersistence userPersistence, NotificationPersistence notificationPersistence){
         this.user = logUser;
         this.mealPersistence=mealPersistence;
         this.feedbackPersistence=feedbackPersistence;
-       this.userPersistence=userPersistence;
+        this.userPersistence=userPersistence;
+        this.notificationPersistence=notificationPersistence;
+        subscriptionManager = new SubscriptionManager();
     }
 
     public UserController(User logUser) throws Exception {
-        this(logUser, new MealDB(), new FeedbackDB(), new UserDB());
+        this(logUser, new MealDB(), new FeedbackDB(), new UserDB(), new NotificationDB());
     }
 
     /**
@@ -42,6 +46,8 @@ public class UserController {
         this.user.getFeedbackBox().addFeedback(feedback);
         to.getFeedbackBox().addFeedback(feedback);
         feedbackPersistence.registerFeedback(feedback);
+        notificationPersistence.registerSimpleNotification(subscriptionManager.createSimpleNotification(this.user, to, " ti ha lasciato un nuovo feedback"));
+
     }
 
 

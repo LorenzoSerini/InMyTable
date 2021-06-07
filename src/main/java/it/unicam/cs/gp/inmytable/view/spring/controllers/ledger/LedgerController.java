@@ -1,7 +1,6 @@
 package it.unicam.cs.gp.inmytable.view.spring.controllers.ledger;
 
 import it.unicam.cs.gp.inmytable.allmeals.MealStates;
-import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.LedgerService;
 import it.unicam.cs.gp.inmytable.view.spring.services.NotificationService;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 public class LedgerController {
@@ -41,32 +39,6 @@ public class LedgerController {
         return "login";
     }
 
-   /* @GetMapping("/lista-pasti")
-    public String getMealsList(Model model, HttpSession session){
-        if(BaseController.isLoggedIn(session)){
-
-            return "lista-pasti";
-        }
-        return "login";
-    }
-
-    @GetMapping("/lista-richieste")
-    public String getMealRequestsList(Model model, HttpSession session){
-        if(BaseController.isLoggedIn(session)){
-
-            return "lista-richieste";
-        }
-        return "login";
-    }
-
-    @GetMapping("/lista-pasti-partecipati")
-    public String getMealsJoinList(Model model, HttpSession session){
-        if(BaseController.isLoggedIn(session)){
-
-            return "lista-pasti-partecipati";
-        }
-        return "login";
-    }*/
 
 
     @GetMapping("/i-miei-pasti")

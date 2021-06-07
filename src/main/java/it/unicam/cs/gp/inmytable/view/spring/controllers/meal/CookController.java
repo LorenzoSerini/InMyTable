@@ -5,7 +5,6 @@ import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.CookService;
 import it.unicam.cs.gp.inmytable.view.spring.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +30,7 @@ public class CookController {
             try {
                 notificationService.setLogUser(BaseController.getLogUser(session));
                 model.addAttribute("allNotifications", notificationService.getAllNotifications());
+                model.addAttribute("notificationsSize", notificationService.getAllNotifications().size());
                 return "cucina";
             } catch (Exception e) {
                 e.printStackTrace();
@@ -49,13 +49,16 @@ public class CookController {
                                  @RequestParam("startTime") String startTime, @RequestParam("closedTime") String finishTime, @RequestParam("maxNumUsers") int maxNumUsers, @RequestParam("freeSubscription") String freeSubscription) {
 
         try {
+            model.addAttribute("error", false);
             cookService.setLogUser((BaseController.getLogUser(session)));
             cookService.postAMeal(description, mealType,ingredients,city,address, consummationType,paymentType,pym,startTime,finishTime,maxNumUsers, Boolean.parseBoolean(freeSubscription));
             return new ModelAndView("redirect:bacheca");
         } catch (Exception e) {
             e.printStackTrace();
-            return new ModelAndView("redirect:bacheca");
+            model.addAttribute("error", true);
+            model.addAttribute("errorMsg", e.getMessage());
         }
+        return new ModelAndView("cucina");
     }
 
 }

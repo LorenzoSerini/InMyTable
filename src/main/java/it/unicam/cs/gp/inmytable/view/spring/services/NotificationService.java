@@ -1,18 +1,17 @@
 package it.unicam.cs.gp.inmytable.view.spring.services;
 
-import it.unicam.cs.gp.inmytable.allmeals.Food;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.controllers.MealRequestsController;
 import it.unicam.cs.gp.inmytable.controllers.MealsController;
-import it.unicam.cs.gp.inmytable.controllers.UserController;
 import it.unicam.cs.gp.inmytable.notification.*;
 import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class NotificationService {
@@ -26,13 +25,34 @@ public class NotificationService {
         this.mealRequestsController = new MealRequestsController(logUser);
     }
 
+
+
+
+
     public List<INotification<IUser>> getAllNotifications(){
         List<INotification<IUser>> allNotifications = new ArrayList<>();
         allNotifications.addAll(me.getMealNotifications());
         allNotifications.addAll(me.getMealRequestNotifications());
         allNotifications.addAll(me.getSimpleNotifications());
-        return allNotifications;
+
+        return sortedByDateTime(allNotifications);
     }
+
+
+
+    public List<INotification<IUser>> sortedByDateTime(List<INotification<IUser>> notifications){
+        for(int x=0; x<notifications.size()-1;x++) {
+            for (int y = x+1; y < notifications.size(); y++) {
+                if ((notifications.get(x).getDate().isBefore(notifications.get(y).getDate()))||(notifications.get(x).getDate().isEqual(notifications.get(y).getDate()) &&
+                        notifications.get(x).getTime().isBefore(notifications.get(y).getTime()))) {
+                    Collections.swap(notifications, x, y);
+                }
+            }
+        }
+        return notifications;
+    }
+
+
 
     public List<SubscriptionNotification<IUser, IMeal>> getMealNotifications(){
         return this.me.getMealNotifications();

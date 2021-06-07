@@ -1,12 +1,9 @@
 package it.unicam.cs.gp.inmytable.allmeals;
 
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
-import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.homewalls.HomeWall;
 import it.unicam.cs.gp.inmytable.user.IUser;
-import it.unicam.cs.gp.inmytable.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

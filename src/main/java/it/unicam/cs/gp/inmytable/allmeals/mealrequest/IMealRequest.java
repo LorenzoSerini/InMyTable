@@ -1,11 +1,8 @@
 package it.unicam.cs.gp.inmytable.allmeals.mealrequest;
 
-import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.Food;
 import it.unicam.cs.gp.inmytable.user.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public interface IMealRequest extends Food {
 

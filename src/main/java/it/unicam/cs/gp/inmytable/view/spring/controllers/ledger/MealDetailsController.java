@@ -1,7 +1,6 @@
 package it.unicam.cs.gp.inmytable.view.spring.controllers.ledger;
 
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
-import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.FeedbackService;
 import it.unicam.cs.gp.inmytable.view.spring.services.LedgerService;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 @Controller
 public class MealDetailsController{

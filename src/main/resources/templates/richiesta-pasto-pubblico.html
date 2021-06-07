@@ -76,7 +76,7 @@
                 <li class="head text-light" style="background-color: #fe9e02;">
                     <div class="row">
                         <div class="col-12 text-center" style="font-weight: 500">
-                            <span th:text="'Le tue Notifiche ('+${allNotifications.size}+')'"></span>
+                            <span th:text="'Le tue Notifiche ('+${notificationsSize}+')'"></span>
                             <!--Da mettere se troviamo il modo il contatore di noticiche dentro le
                             parentesi-->
                         </div>
@@ -218,6 +218,9 @@
 
 
             <form class="border rounded pulse animated" action="/richiesta-pasto-pubblico" method="post" style="margin-bottom: 0px;margin-top: 4px;">
+                <th:block th:if="${error==true}">
+                    <div class="text-danger" style="font-size: 18px; font-weight: 600;" th:text="${errorMsg}"></div>
+                </th:block>
                 <div class="form-group mb-3"><label class="form-label" style="line-height: 25px;font-size: 22px;font-weight: bold;font-family: Alata, serif;">Cosa vorresti mangiare?</label><input class="form-control" name="description" type="text" autocomplete="off" required="" style="margin-bottom: 0px;"></div>
                 <div class="form-group mb-3" style="font-family: Alata, serif;"><label class="form-label" style="margin-top: 15px;font-size: 17px;">Tipo di cucina</label><select class="form-select" name="mealType">
                         <optgroup label="Tipi di cucina">
@@ -307,7 +310,7 @@
                     <div class="col-6 col-sm-4 col-md-3 d-inline order-3 item" style="font-family: Lato, sans-serif;height: 234px;">
                         <h3> </h3>
                         <h3 class="text-center" style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;font-weight: bold;margin-bottom: -4px;">Contattaci</h3>
-                        <div class="social-icons" style="height: 87px;padding: 0px 0px;text-align: center;"><a href="#"><i class="icon ion-social-instagram" style="margin-left: 10px;margin-right: 2px;"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a>
+                        <div class="social-icons" style="height: 87px;padding: 0px 0px;text-align: center;"><a ><i class="icon ion-social-instagram" style="margin-left: 10px;margin-right: 2px;"></i></a><a ><i class="icon ion-social-facebook"></i></a>
                             <h3 class="text-center" style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;text-align: center;font-weight: bold; margin-bottom:10px;"><br>E-mail: info@inmytable.com<br></h3>
                         </div>
                       

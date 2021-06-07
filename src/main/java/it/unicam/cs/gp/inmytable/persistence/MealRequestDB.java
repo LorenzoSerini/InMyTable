@@ -22,29 +22,16 @@ import java.util.Map;
 
 public class MealRequestDB extends DBPersistence implements MealRequestPersistence{
     private String sql;
-   // private static Map<String, MealRequest> mealsRequestMap;
-
-   // private static final String MEAL_REQUEST_SUBSCRIPTION_NOTIFICATION = "MealRequestSubscriptionNotification";
-   // private static final String PRIVATE = "PRIVATE";
-   // private static final String PUBLIC = "PUBLIC";
 
 
 
     public MealRequestDB() throws Exception {
         super();
-       /* if(mealsRequestMap==null){
-            mealsRequestMap = new HashMap<>();
-            fillMealRequestMap();
-        }*/
 
     }
 
     public MealRequestDB(String connectionString, String username, String password) throws Exception {
         super(connectionString,username,password);
-      /*  if(mealsRequestMap==null){
-            mealsRequestMap = new HashMap<>();
-            fillMealRequestMap();
-        }*/
 
     }
 
@@ -56,9 +43,6 @@ public class MealRequestDB extends DBPersistence implements MealRequestPersisten
         PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
         prepStat.setString(1, mealRequest.getId());
         prepStat.setString(2, mealRequest.getHost().getUsername());
-      //  if(mealRequest.getHomeOwner()!=null){
-        //    prepStat.setString(3, mealRequest.getHomeOwner().getUsername());
-       // }else
         prepStat.setNull(3,  19);
         prepStat.setString(4, mealRequest.getType().toString());
         prepStat.setString(5, mealRequest.getDate().toString());

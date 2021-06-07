@@ -4,7 +4,6 @@ import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
 import it.unicam.cs.gp.inmytable.user.IUser;
-import it.unicam.cs.gp.inmytable.user.User;
 
 import java.sql.SQLException;
 import java.util.List;

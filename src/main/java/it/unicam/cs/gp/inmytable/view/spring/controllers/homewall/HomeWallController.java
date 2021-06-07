@@ -1,10 +1,6 @@
 package it.unicam.cs.gp.inmytable.view.spring.controllers.homewall;
 
-import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.homewalls.HomeWall;
-import it.unicam.cs.gp.inmytable.user.User;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
-import it.unicam.cs.gp.inmytable.view.spring.services.FeedbackService;
 import it.unicam.cs.gp.inmytable.view.spring.services.HomeWallService;
 import it.unicam.cs.gp.inmytable.view.spring.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +19,15 @@ public class HomeWallController {
     @Autowired
     NotificationService notificationService;
 
-    /*@Autowired
-    FeedbackService feedbackService;*/
 
 
     @GetMapping("/bacheca")
     public String getHomeWall(Model model, HttpSession session) {
         if (BaseController.isLoggedIn(session)) {
             try {
-                //feedbackService.setLogUser(BaseController.getLogUser(session));
                 homeWallService.setLogUser((BaseController.getLogUser(session)));
                 notificationService.setLogUser(BaseController.getLogUser(session));
                 model.addAttribute("allNotifications", notificationService.getAllNotifications());
-              //  model.addAttribute("toUserAverage", feedbackService.getToFeedbacksAverage(BaseController.getLogUser(session)));
 
                 model.addAttribute("pendingMealCatalog", homeWallService.getPendingMealCatalog());
                 model.addAttribute("publicMealsRequestCatalog", homeWallService.getPendingMealRequestCatalog());

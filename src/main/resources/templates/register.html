@@ -1,5 +1,5 @@
 <!--<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -58,6 +58,9 @@
         <form class="text-center border rounded" action="/register" method="post" style="padding-right: 60px;padding-top: 40px;width: 900px;max-width: none;"><img class="swing animated" src="assets/img/inmytable-icon-1.png" style="width: 268px;margin-right: 0px;margin-left: 0px;margin-bottom: 20px;">
             <h2 class="text-center" style="font-family: Alata, serif;"><strong>Creazione</strong>&nbsp;nuovo account</h2>
             <div class="mb-3" style="font-family: Alata, serif;">
+                <th:block th:if="${error==true}">
+                    <div class="text-danger" style="font-size: 20px; font-weight: 600;" th:text="${errorMsg}"></div>
+                </th:block>
                 <input class="form-control" name="username" required="" placeholder="Nome utente" style="margin-bottom: 16px;font-family: Alata, serif;">
                 <input class="form-control" placeholder="Nome" required="" style="margin-bottom: 16px;" name="firstName">
                 <input class="form-control" name="lastName" required="" placeholder="Cognome" style="margin-bottom: 16px;">
@@ -109,7 +112,7 @@
                 <div class="col-6 col-sm-4 col-md-3 d-inline order-3 item" style="font-family: Lato, sans-serif;height: 234px;">
                     <h3> </h3>
                     <h3 class="text-center" style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;font-weight: bold;margin-bottom: -4px;">Contattaci</h3>
-                    <div class="social-icons" style="height: 87px;padding: 0px 0px;text-align: center;"><a href="#"><i class="icon ion-social-instagram" style="margin-left: 10px;margin-right: 2px;"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a>
+                    <div class="social-icons" style="height: 87px;padding: 0px 0px;text-align: center;"><a><i class="icon ion-social-instagram" style="margin-left: 10px;margin-right: 2px;"></i></a><a ><i class="icon ion-social-facebook"></i></a>
                         <h3 class="text-center" style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;text-align: center;font-weight: bold; margin-bottom:10px;"><br>E-mail: info@inmytable.com<br></h3>
                     </div>
                   

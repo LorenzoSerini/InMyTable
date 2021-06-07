@@ -1,7 +1,5 @@
 package it.unicam.cs.gp.inmytable.view.spring.controllers.user;
 
-import com.google.common.hash.HashCode;
-import it.unicam.cs.gp.inmytable.user.User;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.NotificationService;
 import it.unicam.cs.gp.inmytable.view.spring.services.UserService;
@@ -11,10 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
 
 @Controller
 public class UserController {

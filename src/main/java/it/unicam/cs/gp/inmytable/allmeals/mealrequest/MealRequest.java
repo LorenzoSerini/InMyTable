@@ -4,14 +4,10 @@ import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 
-import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-
-import it.unicam.cs.gp.inmytable.exception.ExpirationTimeException;
 import it.unicam.cs.gp.inmytable.user.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Objects;
 import java.util.UUID;
 
 
@@ -61,14 +57,6 @@ public class MealRequest implements IMealRequest {
         if ((host == null) || (mealType == null) || (consumationType == null) || (payment == null) || (description == null) ||
                 (date == null) || time == null || expiryDate == null || expiryTime == null || price == null || place == null
                 || allergy ==null) throw new NullPointerException("Parameters must be different to null|");
-        if (date.isBefore(expiryDate) )
-            throw new ExpirationTimeException( date + " is before " + expiryDate);
-        if (date.isEqual(expiryDate) && time.isBefore(expiryTime)) throw new
-                ExpirationTimeException(time + " is before " + expiryTime);
-       /* if (date.isAfter(expiryDate) ||LocalDate.now().isAfter(date) ||
-                (date.equals(expiryDate) && expiryTime.isAfter(time)) ||
-                (date.equals(LocalDate.now()) && (LocalTime.now().isAfter(time) || LocalTime.now().isAfter(expiryTime))))
-            throw new IllegalArgumentException("ExpirationTime should be before meal date");*/
         if (payment.compareTo(PaymentType.FREE) == 0) {
             this.price = "0";
         } else this.price = price;
@@ -248,16 +236,4 @@ public class MealRequest implements IMealRequest {
         return paymentType;
     }
 
-   /* @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Meal)) return false;
-        MealRequest mealRequest = (MealRequest) o;
-        return allergy.equals(mealRequest.allergy) && type.equals(mealRequest.type) && mealsNumber == mealRequest.mealsNumber && mealType.equals(mealRequest.mealType) && place.equals(mealRequest.place) && description.equals(mealRequest.description) && price.equals(mealRequest.price);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(allergy, type, mealsNumber, mealType, place, description, price);
-    }*/
 }

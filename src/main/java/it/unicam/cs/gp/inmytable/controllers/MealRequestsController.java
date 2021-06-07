@@ -6,21 +6,16 @@ import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequestType;
 import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
-import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
-import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
 import it.unicam.cs.gp.inmytable.exception.TimeTravelException;
 import it.unicam.cs.gp.inmytable.homewalls.HomeWall;
 import it.unicam.cs.gp.inmytable.notification.ISubscription;
-import it.unicam.cs.gp.inmytable.notification.MealRequestSubscription;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionManager;
-import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
 import it.unicam.cs.gp.inmytable.persistence.*;
 import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -93,21 +88,6 @@ public class MealRequestsController {
     }
 
 
-    /*public List<MealRequest> showPublishedMealRequests() throws Exception {
-        List<MealRequest> mealsRequests = new ArrayList<>();
-        for(MealRequest mealRequest: mealRequestPersistence.getMealsRequestList()){
-            if(mealRequest.getHost().equals(this.logUser)) mealsRequests.add(mealRequest);
-        }
-        return mealsRequests;
-    }
-
-    public List<MealRequest> showAcceptedMealRequests() throws Exception {
-        List<MealRequest> mealsRequests = new ArrayList<>();
-        for(MealRequest mealRequest: mealRequestPersistence.getMealsRequestList()){
-            if(mealRequest.getHomeOwner().equals(this.logUser)) mealsRequests.add(mealRequest);
-        }
-        return mealsRequests;
-    }*/
 
     public IMealRequest getMealRequest(String id){
         return mealRequestPersistence.getMealsRequestMap().get(id);
@@ -119,7 +99,6 @@ public class MealRequestsController {
     }
 
     public List<MealRequest> showPublishedMealRequests(Predicate<MealRequest> predicate) throws Exception {
-        //return mealRequestPersistence.getMealsRequestList().stream().filter(p->p.getHost()!=null).filter(p -> p.getHost().equals(this.logUser)).filter(predicate).collect(Collectors.toList());
         return this.showPublishedMealRequests().stream().filter(predicate).collect(Collectors.toList());
     }
 
@@ -128,7 +107,6 @@ public class MealRequestsController {
     }
 
     public List<MealRequest> showAnsweredMealRequests(Predicate<MealRequest> predicate) throws Exception {
-      //  return mealRequestPersistence.getMealsRequestList().stream().filter(p->p.getHomeOwner()!=null).filter(p -> p.getHomeOwner().equals(this.logUser)).filter(predicate).collect(Collectors.toList());
         return this.showAnsweredMealRequests().stream().filter(predicate).collect(Collectors.toList());
     }
 

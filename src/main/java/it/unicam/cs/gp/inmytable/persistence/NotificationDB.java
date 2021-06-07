@@ -6,6 +6,7 @@ import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.notification.*;
 import it.unicam.cs.gp.inmytable.user.IUser;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,9 +21,6 @@ public class NotificationDB extends DBPersistence implements NotificationPersist
     private static Map<String, SubscriptionNotification<IUser, IMealRequest>> mealsRequestSubscriptionNotificationsMap;
     private static Map<String, SimpleNotification<IUser>> simpleNotificationsMap;
 
-   // private static final String MEAL_REQUEST_SUBSCRIPTION_NOTIFICATION = "MealRequestSubscriptionNotification";
-   // private static final String MEAL_SUBSCRIPTION_NOTIFICATION = "MealSubscriptionNotification";
-
 
 
 
@@ -34,6 +32,7 @@ public class NotificationDB extends DBPersistence implements NotificationPersist
            simpleNotificationsMap = new HashMap<>();
            fillMealSubscriptionNotificationMap();
            fillMealRequestSubscriptionNotificationMap();
+           fillSimpleNotificationMap();
            fillAllUsersNotificationsLists();
         }
     }
@@ -46,6 +45,7 @@ public class NotificationDB extends DBPersistence implements NotificationPersist
             simpleNotificationsMap = new HashMap<>();
             fillMealSubscriptionNotificationMap();
             fillMealRequestSubscriptionNotificationMap();
+            fillSimpleNotificationMap();
             fillAllUsersNotificationsLists();
         }
     }
@@ -82,9 +82,28 @@ public class NotificationDB extends DBPersistence implements NotificationPersist
 
     @Override
     public List<SimpleNotification<IUser>> getSimpleNotifications(IUser user) {
-        return null;
+        List<SimpleNotification<IUser>> simpleNotificationsList = new ArrayList<>();
+        for (String key : simpleNotificationsMap.keySet()) {
+            if (simpleNotificationsMap.get(key).to().equals(user)) {
+                simpleNotificationsList.add(simpleNotificationsMap.get(key));
+            }
+        }
+        return simpleNotificationsList;
     }
 
+    @Override
+    public void registerSimpleNotification(SimpleNotification<?> notification) throws SQLException {
+        this.sql = "insert into Notification(Id, Date, Time, FromUser, ToUser, Type, Message) values (?,?,?,?,?,?,?)";
+        PreparedStatement prepStat = getConnection().prepareStatement(this.sql);
+        prepStat.setString(1, notification.getId());
+        prepStat.setString(2, notification.getDate().toString());
+        prepStat.setString(3, notification.getTime().toString());
+        prepStat.setString(4, notification.from().getUsername());
+        prepStat.setString(5, notification.to().getUsername());
+        prepStat.setString(6, SIMPLE_NOTIFICATION);
+        prepStat.setString(7, notification.getMsg());
+        prepStat.executeUpdate();
+    }
 
     private void fillMealSubscriptionNotificationMap() throws SQLException {
         String sql = "Select * from Notification where Type='"+MEAL_SUBSCRIPTION_NOTIFICATION+"'";
@@ -104,6 +123,7 @@ public class NotificationDB extends DBPersistence implements NotificationPersist
         }
     }
 
+
     private void fillMealRequestSubscriptionNotificationMap() throws SQLException {
         String sql = "Select * from Notification where Type='"+MEAL_REQUEST_SUBSCRIPTION_NOTIFICATION+"'";
         setData(sql);
@@ -121,6 +141,22 @@ public class NotificationDB extends DBPersistence implements NotificationPersist
             setMealRequestSubscriptionState(mealsRequestSubscriptionNotificationsMap.get(key));
         }
     }
+
+
+    private void fillSimpleNotificationMap() throws SQLException {
+        String sql = "Select * from Notification where Type='"+SIMPLE_NOTIFICATION+"'";
+        setData(sql);
+        while (getData().next()) {
+            if(!simpleNotificationsMap.containsKey(getData().getString("Id"))) {
+                SimpleNotification<IUser> notification = new SimpleNotification<>(getUsers().get(getData().getString("FromUser")),getUsers().get(getData().getString("ToUser")), getData().getString("Message"));
+                notification.setId(getData().getString("Id"));
+                notification.setDate(LocalDate.parse(getData().getString("Date")));
+                notification.setTime(LocalTime.parse(getData().getString("Time")));
+                simpleNotificationsMap.put(notification.getId(), notification);
+            }
+        }
+    }
+
 
 
     private void setMealSubscriptionState( SubscriptionNotification<IUser, IMeal> notification) throws SQLException {
@@ -144,7 +180,7 @@ public class NotificationDB extends DBPersistence implements NotificationPersist
         for(String key:getUsers().keySet()){
              getUsers().get(key).getMealNotifications().addAll(getMealNotifications(getUsers().get(key)));
              getUsers().get(key).getMealRequestNotifications().addAll(getMealRequestNotifications(getUsers().get(key)));
-         //   if(getUsers().get(key).getSimpleNotifications().isEmpty()) getUsers().get(key).getSimpleNotifications().addAll(getSimpleNotifications(getUsers().get(key)));
+            getUsers().get(key).getSimpleNotifications().addAll(getSimpleNotifications(getUsers().get(key)));
         }
     }
 

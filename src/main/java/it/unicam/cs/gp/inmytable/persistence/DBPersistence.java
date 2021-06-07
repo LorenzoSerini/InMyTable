@@ -5,7 +5,6 @@ import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.*;
-import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 
 import java.sql.PreparedStatement;
@@ -23,6 +22,7 @@ public abstract class DBPersistence extends DBConnection implements Persistence{
 
     public static final String MEAL_SUBSCRIPTION_NOTIFICATION = "MealSubscriptionNotification";
     public static final String MEAL_REQUEST_SUBSCRIPTION_NOTIFICATION = "MealRequestSubscriptionNotification";
+    public static final String SIMPLE_NOTIFICATION = "SimpleNotification";
     public static final String PRIVATE = "PRIVATE";
     public static final String PUBLIC = "PUBLIC";
 
@@ -95,7 +95,6 @@ public abstract class DBPersistence extends DBConnection implements Persistence{
                         getData().getString("Price"));
                 meal.setId(getData().getString("Id"));
                 getMealsMap().put(meal.getId(), meal);
-               // updateMeal(meal);
             }
         }
         for (String k:  getMealsMap().keySet()){

@@ -1,44 +1,27 @@
 package it.unicam.cs.gp.inmytable.persistence;
 
-import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
+
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
-import it.unicam.cs.gp.inmytable.notification.INotification;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
 import it.unicam.cs.gp.inmytable.user.User;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MealDB extends DBPersistence implements MealPersistence {
     private String sql;
-   // private static Map<String, Meal> mealsMap;
-
-  //  private static final String MEAL_SUBSCRIPTION_NOTIFICATION = "MealSubscriptionNotification";
 
 
 
     public MealDB() throws Exception {
         super();
-       /* if(mealsMap==null) {
-            mealsMap = new HashMap<>();
-            fillMealMap();
-        }*/
     }
 
     public MealDB(String connectionString, String username, String password) throws Exception {
         super(connectionString,username,password);
-       /* if(mealsMap==null) {
-            mealsMap = new HashMap<>();
-            fillMealMap();
-        }*/
     }
 
     @Override
@@ -63,7 +46,6 @@ public class MealDB extends DBPersistence implements MealPersistence {
         prepStat.setString(16, meal.getState().toString());
         prepStat.setBoolean(17, meal.isFreeSubscription());
         prepStat.executeUpdate();
-        //mealsMap.put(meal.getId(), meal);
         getMealsMap().put(meal.getId(), meal);
     }
 
@@ -100,25 +82,6 @@ public class MealDB extends DBPersistence implements MealPersistence {
 
 
 
-  /*  private void fillMealMap() throws Exception {
-        String sql = "Select * from Meal";
-        setData(sql);
-        while (getData().next()) {
-            if(! getMealsMap().containsKey(getData().getString("Id"))) {
-                User homeOwner = getUsers().get(getData().getString("HomeOwner"));
-                Meal meal = new Meal(homeOwner, getData().getInt("MaxNumberUsers"), LocalDate.parse(getData().getString("Date")), LocalTime.parse(getData().getString("Time")),
-                        LocalDate.parse(getData().getString("ExpiringDate")), LocalTime.parse(getData().getString("ExpiringTime")), getData().getString("MealType"), getData().getBoolean("FreeSubscription"),
-                        getData().getString("Place"), ConsumationType.valueOf(getData().getString("ConsumationType")), getData().getString("Description"), getData().getString("Ingredients"), PaymentType.valueOf(getData().getString("Payment")),
-                        getData().getString("Price"));
-                meal.setId(getData().getString("Id"));
-                getMealsMap().put(meal.getId(), meal);
-               updateMeal(meal);
-            }
-        }
-        for (String k:  getMealsMap().keySet()){
-            addUsersInMeal( getMealsMap().get(k));
-        }
-    }*/
 
 
     private void registerNotification(SubscriptionNotification<?,?> notification) throws SQLException {
@@ -136,23 +99,6 @@ public class MealDB extends DBPersistence implements MealPersistence {
     }
 
 
-    /*private Meal getMeal(String id) throws Exception {
-        if(! getMealsMap().containsKey(id)) {
-            fillMealMap();
-        }
-        return  getMealsMap().get(id);
-    }
-
-
-    private void addUsersInMeal(Meal meal) throws SQLException {
-        String sql = "Select * from User_Meal where Mealid= '"+meal.getId()+"'";
-        setData(sql);
-        while (getData().next()) {
-           User user = getUsers().get(getData().getString("Userusername"));
-           meal.addUser(user);
-        }
-    }
-*/
     private void updateMeal(IMeal meal) throws SQLException {
             sql = "update Meal set MealState=? where Id='"+meal.getId()+"'";
             PreparedStatement prepStat = getConnection().prepareStatement(sql);

@@ -1,7 +1,5 @@
 package it.unicam.cs.gp.inmytable.view.spring.services;
 
-import it.unicam.cs.gp.inmytable.controllers.MealRequestsController;
-import it.unicam.cs.gp.inmytable.controllers.MealsController;
 import it.unicam.cs.gp.inmytable.controllers.UserController;
 import it.unicam.cs.gp.inmytable.user.User;
 import org.springframework.stereotype.Service;

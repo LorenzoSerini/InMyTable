@@ -56,6 +56,10 @@ public class SimpleNotification<T extends IUser> implements INotification<T>{
     @Override
     public String getId(){return this.id;}
 
+    public void setDate(LocalDate date){this.date=date;}
+
+    public void setTime(LocalTime time){this.time=time;}
+
     private LocalTime truncatesTime(LocalTime time){
         String tTime = time.toString().substring(0,8);
         return LocalTime.parse(tTime);

@@ -142,4 +142,12 @@ public class SubscriptionManager{
     }
 
 
+
+    public <T extends IUser> SimpleNotification<IUser> createSimpleNotification(T from, T to, String msg){
+        SimpleNotification<IUser> simpleNotification =  new SimpleNotification<>(from,to,msg);
+        to.getSimpleNotifications().add(simpleNotification);
+        return simpleNotification;
+    }
+
+
 }

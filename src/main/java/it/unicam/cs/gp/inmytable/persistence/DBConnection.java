@@ -1,8 +1,6 @@
 package it.unicam.cs.gp.inmytable.persistence;
 
 
-import org.apache.tomcat.jni.Local;
-
 import java.sql.*;
 
 public abstract class DBConnection {

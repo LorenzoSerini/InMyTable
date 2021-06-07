@@ -35,8 +35,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
     <link rel="stylesheet" href="assets/css/icon-star-full.css">
     <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
@@ -71,73 +73,51 @@
 </head>
 
 <body>
-<nav
-        class="navbar navbar-light navbar-expand fixed-top d-block navigation-clean-search"
-        style="background: var(--bs-white);height: 70px;">
+<nav class="navbar navbar-light navbar-expand fixed-top d-block navigation-clean-search"
+     style="background: var(--bs-white);height: 70px;">
     <div class="container-fluid ">
-        <div
-                class="collapse navbar-collapse text-start col-3"
-                id="navcol-1"
-                style="width: 35.828px;height: 45px;">
+        <div class="collapse navbar-collapse text-start col-3" id="navcol-1" style="width: 35.828px;height: 45px;">
             <ul class="navbar-nav"></ul>
-            <a
-                    class="btn btn-primary"
-                    role="button"
-                    data-bss-hover-animate="pulse"
-                    style="background: url(&quot;assets/img/inmytable-logo.png&quot;) center / cover space, #ffffff; width:100%; height: 100%; max-width: 150px; max-height:41px; border-radius: -1px; border:none;"
-                    href="bacheca"></a>
+            <a class="btn btn-primary" role="button" data-bss-hover-animate="pulse"
+               style="background: url(&quot;assets/img/inmytable-logo.png&quot;) center / cover space, #ffffff; width:100%; height: 100%; max-width: 150px; max-height:41px; border-radius: -1px; border:none;"
+               href="bacheca"></a>
         </div>
 
         <!--------Menu notifiche------->
         <div class="nav-item dropdown" style="margin-top: -13px; margin-right: -5px;">
-            <a
-                    class="nav-link text-light"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-                <i class="fa fa-bell" style="color: #fe9e02; font-size: 20px; " ></i>
+            <a class="nav-link text-light" id="navbarDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bell" style="color: #fe9e02; font-size: 20px; "></i>
             </a>
 
-            <ul
-                    class="dropdown-menu"
-                    style="padding: 14px; margin-left:-210px; margin-top:14px; overflow-y: auto; overflow-x: hidden; height: 200px; ">
+            <ul class="dropdown-menu"
+                style="padding: 14px; margin-left:-210px; margin-top:14px; overflow-y: auto; overflow-x: hidden; height: 200px; ">
                 <li class="head text-light" style="background-color: #fe9e02;">
                     <div class="row">
                         <div class="col-12 text-center" style="font-weight: 500">
                             <span th:text="'Le tue Notifiche ('+${allNotifications.size}+')'"></span>
                             <!--Da mettere se troviamo il modo il contatore di noticiche dentro le
-                            parentesi-->
+                                parentesi-->
                         </div>
                     </div>
                 </li>
-                <li
-                        class="container"
-                        style="width: 200px;"
-                        th:each="notification:${allNotifications}">
+                <li class="container" style="width: 200px;" th:each="notification:${allNotifications}">
                     <div class="row">
                         <div class="col-12 text-center">
                             <div class="row">
-                                <p class="col-12" style="color:#000000;font-size: 14px; margin-top: 10px;">Notifica ricevuta alle:</p>
-                                <p
-                                        class="col-12"
-                                        style="color:#000000;font-size: 14px; margin-top: -20px;"
-                                        th:text="${notification.date+' '+notification.time}"></p>
-                                <p
-                                        class="col-12"
-                                        style="color:#000000;font-size: 13px; margin-top: -10px;"
-                                        th:text="${notification.from.username+' '+notification.msg}"></p>
+                                <p class="col-12" style="color:#000000;font-size: 14px; margin-top: 10px;">Notifica
+                                    ricevuta alle:</p>
+                                <p class="col-12" style="color:#000000;font-size: 14px; margin-top: -20px;"
+                                   th:text="${notification.date+' '+notification.time}"></p>
+                                <p class="col-12" style="color:#000000;font-size: 13px; margin-top: -10px;"
+                                   th:text="${notification.from.username+' '+notification.msg}"></p>
                             </div>
-                            <div
-                                    class="col-12 text-center"
-                                    style="background-color: #fe9e02; color:white; height: 30px; border-radius: 20px; ">
-                                <a
-                                        class="btn btn-primary"
-                                        role="button"
-                                        href="notifiche"
-                                        data-bss-hover-animate="pulse"
-                                        style="background: transparent; border-color:transparent;margin-top:-4px; font-size: 13; font:Alata, sans-serif; font-weight: 700;">Vedi notifica</a>
+                            <div class="col-12 text-center"
+                                 style="background-color: #fe9e02; color:white; height: 30px; border-radius: 20px; ">
+                                <a class="btn btn-primary" role="button" href="notifiche"
+                                   data-bss-hover-animate="pulse"
+                                   style="background: transparent; border-color:transparent;margin-top:-4px; font-size: 13; font:Alata, sans-serif; font-weight: 700;">Vedi
+                                    notifica</a>
 
                             </div>
                         </div>
@@ -149,232 +129,223 @@
         <!--------Menu notifiche------->
 
         <div class="dropdown" style="margin-left: 8px;  margin-top: -15px;">
-            <a
-                    class="dropdown-toggle"
-                    aria-expanded="false"
-                    data-bs-toggle="dropdown"
-                    href="#"
-                    style="margin-right: 6px;margin-left: 0px;font-size: 15px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal; text-decoration: none;">IL MIO ACCOUNT</a>
+            <a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown"
+               style="margin-right: 6px;margin-left: 0px;font-size: 15px;color: var(--bs-dark);letter-spacing: 1px;font-family: Alata, sans-serif;border-radius: 0px;font-weight: bold;border-color: var(--bs-light);font-style: normal; text-decoration: none;" href="#">IL
+                MIO ACCOUNT</a>
             <div class="dropdown-menu" style="margin-left:-10px;  margin-top:24px">
-                <a
-                        class="dropdown-item"
-                        href="bacheca"
-                        style="font-size: 14px;font-family: Alata, sans-serif;">Bacheca</a>
+                <a class="dropdown-item" href="bacheca"
+                   style="font-size: 14px;font-family: Alata, sans-serif;">Bacheca</a>
                 <div class="dropdown-divider"></div>
-                <a
-                        class="dropdown-item"
-                        href="i-miei-pasti"
-                        style="font-size: 14px;font-family: Alata, sans-serif;">I miei pasti</a>
-                <a
-                        class="dropdown-item"
-                        href="le-mie-richieste"
-                        style="font-size: 14px;font-family: Alata, sans-serif;">Le mie richieste</a>
+                <a class="dropdown-item" href="i-miei-pasti"
+                   style="font-size: 14px;font-family: Alata, sans-serif;">I miei pasti</a>
+                <a class="dropdown-item" href="le-mie-richieste"
+                   style="font-size: 14px;font-family: Alata, sans-serif;">Le mie richieste</a>
 
-                <a
-                        class="dropdown-item"
-                        href="storico"
-                        style="font-size: 14px;font-family: Alata, sans-serif;">Storico</a>
+                <a class="dropdown-item" href="storico"
+                   style="font-size: 14px;font-family: Alata, sans-serif;">Storico</a>
                 <div class="dropdown-divider"></div>
-                <a
-                        class="dropdown-item"
-                        href="notifiche"
-                        style="font-size: 14px;font-family: Alata, sans-serif;">Notifiche</a>
-                <a
-                        class="dropdown-item"
-                        href="le-mie-recensioni"
-                        style="font-size: 14px;font-family: Alata, sans-serif;">Recensioni</a>
+                <a class="dropdown-item" href="notifiche"
+                   style="font-size: 14px;font-family: Alata, sans-serif;">Notifiche</a>
+                <a class="dropdown-item" href="le-mie-recensioni"
+                   style="font-size: 14px;font-family: Alata, sans-serif;">Recensioni</a>
                 <div class="dropdown-divider"></div>
-                <a
-                        class="dropdown-item"
-                        href="profilo"
-                        style="font-size: 14px;font-family: Alata, sans-serif;">Il mio profilo</a>
+                <a class="dropdown-item" href="profilo" style="font-size: 14px;font-family: Alata, sans-serif;">Il
+                    mio profilo</a>
 
                 <form action="/logout" method="post">
-                    <button
-                            type="submit"
-                            class="dropdown-item"
+                    <button type="submit" class="dropdown-item"
                             style="font-size: 14px;font-family: Alata, sans-serif;">Esci</button>
                 </form>
 
             </div>
         </div>
         <div class="dropdown" style="margin-top:3px;">
-            <a
-                    class="btn btn-primary"
-                    aria-expanded="false"
-                    data-bs-toggle="dropdown"
-                    style="background: url(&quot;assets/img/menu-piu.png&quot;) center / cover space, #ffffff; width: 20px; height: 40px; border:none; margin-left: 10px;"></a>
+            <a class="btn btn-primary" aria-expanded="false" data-bs-toggle="dropdown"
+               style="background: url(&quot;assets/img/menu-piu.png&quot;) center / cover space, #ffffff; width: 20px; height: 40px; border:none; margin-left: 10px;"></a>
 
-            <div
-                    class="dropdown-menu"
-                    style="margin-left: -120px; margin-top:14px; margin-right: 30px;">
-                <a
-                        class="dropdown-item"
-                        href="cucina"
-                        style="font-size: 14px;font-family: Alata, sans-serif;">Cucina</a>
-                <a
-                        class="dropdown-item"
-                        href="richiesta-pasto-pubblico"
-                        style="font-size: 14px;font-family: Alata, sans-serif;">Richiedi pasto</a>
+            <div class="dropdown-menu" style="margin-left: -120px; margin-top:14px; margin-right: 30px;">
+                <a class="dropdown-item" href="cucina"
+                   style="font-size: 14px;font-family: Alata, sans-serif;">Cucina</a>
+                <a class="dropdown-item" href="richiesta-pasto-pubblico"
+                   style="font-size: 14px;font-family: Alata, sans-serif;">Richiedi pasto</a>
                 <div class="dropdown-divider"></div>
-                <a
-                        class="dropdown-item"
-                        href="ricerca-pasti-pubblici"
-                        style="font-size: 14px;font-family: Alata, sans-serif;">Pasti disponibili</a>
+                <a class="dropdown-item" href="ricerca-pasti-pubblici"
+                   style="font-size: 14px;font-family: Alata, sans-serif;">Pasti disponibili</a>
 
-                <a
-                        class="dropdown-item"
-                        href="ricerca-richieste-pasti-pubbliche"
-                        style="font-size: 14px;font-family: Alata, sans-serif;">Richeste pasti</a>
+                <a class="dropdown-item" href="ricerca-richieste-pasti-pubbliche"
+                   style="font-size: 14px;font-family: Alata, sans-serif;">Richeste pasti</a>
                 <div class="dropdown-divider"></div>
-                <a
-                        class="dropdown-item"
-                        href="ricerca-utenti"
-                        style="font-size: 14px;font-family: Alata, sans-serif;">Cerca Utenti</a>
+                <a class="dropdown-item" href="ricerca-utenti"
+                   style="font-size: 14px;font-family: Alata, sans-serif;">Cerca Utenti</a>
 
             </div>
         </div>
     </div>
 </nav>
 
+<h2 class="text-center"
+    style="font-family: Alata, sans-serif;margin-bottom: 0px;color: #73bc43;margin-top: 60px;background: rgba(0,0,0,0);font-size: 24px;"
+    th:text="${meal.description}"></h2>
+<section class="article-clean" style=" display:inline">
+    <div class="container-fluid">
+        <div class="product-list dev col-12" style=" margin-top: 15px;margin-bottom: 15px;">
+            <div class="row">
+                <div class="col-10 offset-1 product-item" style="text-align: center; ">
+                    <div class="product-container" style="border-radius: 15px; margin:10px; height: fit-content;">
+                        <div class="col-12">
+                            <a class="display-5 text-center"
+                               style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px; text-decoration: none; color: #000000;">
+                                Titolo pasto</a>
+                            <a class="text-center small-text"
+                               style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;"
+                               th:text="${meal.description}"></a>
+                            <a
+                                    style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">
+                                Padrone di casa</a>
+                            <a class="text-center small-text"
+                               style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;"
+                               th:text="${meal.homeOwner.username}"></a>
+                            <a
+                                    style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">
+                                Numero partecipanti</a>
+                            <a class="text-center small-text"
+                               style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;"
+                               th:text="${meal.maxNumberUsers-meal.placesAvailable+'/'+meal.maxNumberUsers}"></a>
 
-<h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 0px;color: #73bc43;margin-top: 20px;background: rgba(0,0,0,0);font-size: 24px;" th:text="${meal.description}"><br></h2>
-<div class="container" style="border-radius: 0px;">
-    <div class="row product-list dev" style="margin-top: 63px;margin-bottom: 50px;">
-        <div class="col-sm-6 col-md-4 product-item animation-element slide-top-left" style="width: 1140px;padding-bottom: 0px;">
-            <div class="product-container" style="border-radius: 15px;">
-                <div class="row">
-                    <div class="col-6 offset-0">
-                        <h2 class="display-5" style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Titolo pasto</h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;" th:text="${meal.description}"><br></a>
-                        <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Padrone di casa</h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;" th:text="${meal.homeOwner.username}"><br></a>
-                        <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Numero partecipanti</h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;" th:text="${meal.maxNumberUsers-meal.placesAvailable+'/'+meal.maxNumberUsers}"></a>
-                    </div>
-                    <div class="col-6">
-                        <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 190px;height: 26px;text-align: left;">Data e orario</h2><a class="text-start small-text" href="#" style="font-size: 14px;font-family: Alata, sans-serif;margin-top: 15px;">Data e orario inizio:<br th:text="${meal.date+'  '+meal.time}"></a><a class="text-start small-text" href="#" style="font-size: 14px;font-family: Alata, sans-serif;margin-top: 15px;">Data e orario fine:&nbsp;<br th:text="${meal.expiryDate+'  '+meal.expiryTime}"><br></a>
-                        <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 190px;height: 26px;text-align: left;">Tipo consumazione</h2><a class="text-start small-text" href="#" style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;" br th:text="${consummation}"></a>
-                    </div>
-                </div>
-                <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Ingredienti Principali</h2><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 5px;font-family: Alata, sans-serif;" th:text="${meal.ingredients}"><br></a>
-                <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Tipo iscrizione</h2><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 5px;font-family: Alata, sans-serif;" th:text="${subscription}"><br></a>
-                <div class="product-rating"></div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-6">
-                                <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Tipo cucina</h2><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 9px;font-family: Alata, sans-serif;" th:text="${meal.mealType}"></a>
-                            </div>
-                            <div class="col">
-                                <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Pagamento scelto</h2><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 9px;font-family: Alata, sans-serif;" th:text="${payment}"></a>
+                            <a
+                                    style="font-family: Alata, sans-serif;font-size: 18px;width: 190px;height: 26px;text-align: left;">
+                                Data e orario</a>
+
+                            <a class="text-center small-text"
+                               style="font-size: 14px;font-family: Alata, sans-serif;margin-top: 15px;">Data e
+                                orario inizio:<br th:text="${meal.date+'  '+meal.time}"></a>
+                            <a class="text-center small-text"
+                               style="font-size: 14px;font-family: Alata, sans-serif;margin-top: 15px;">Data e
+                                orario fine:&nbsp;<br th:text="${meal.expiryDate+'  '+meal.expiryTime}"></a>
+                            <a
+                                    style="font-family: Alata, sans-serif;font-size: 18px;width: 190px;height: 26px;text-align: left;">
+                                Tipo consumazione</a>
+                            <a class="text-center small-text"
+                               style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;"
+                               th:text="${consummation}"></a>
+
+                            <a
+                                    style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">
+                                Ingredienti Principali</a>
+                            <a class="text-center small-text"
+                               style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;"
+                               th:text="${meal.ingredients}"></a>
+                            <a
+                                    style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">
+                                Tipo iscrizione</a>
+                            <a class="text-center small-text"
+                               style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;"
+                               th:text="${subscription}"></a>
+
+                            <a
+                                    style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">
+                                Tipo cucina</a>
+                            <a class="text-center small-text"
+                               style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;"
+                               th:text="${meal.mealType}"></a>
+
+                            <a
+                                    style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">
+                                Pagamento scelto</a>
+                            <a class="text-center small-text"
+                               style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;"
+                               th:text="${payment}"></a>
+                            <a
+                                    style="font-family: Alata, sans-serif;font-size: 18px;width: 161px;height: 26px;text-align: left;margin-bottom: 0px;">
+                                Luogo</a>
+                            <a class="text-center small-text"
+                               style="font-size: 17px;font-family: Alata, sans-serif;margin-top: 10px;"
+                               th:text="${meal.city}+', '+${meal.place}"></a>
+
+                            <a
+                                    style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">
+                                Prezzo</a>
+                            <a class="text-center small-text"
+                               style="font-size: 18px;font-family: Alata, sans-serif;margin-top: 10px;"
+                               th:text="${meal.price}"></a>
+
+                            <div class="nav-item dropdown" style=" margin-top: -13px; margin-right: -5px;">
+                                <a class="nav-link" id="navbarDrop" style="color:#fe9e02" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <th:block th:if="${meal.homeOwner!=null}">
+                                        <th:block th:if="${meal.state.toString == 'EXPIRED'}">
+                                            <th:block th:if="${iSendFeedback == false}">
+                                                <button class="btn btn-success btn-green"
+                                                        style="width:230px;margin-top: 7px; font-weight: 600; height: 40px; width:200px;font-size:11px;text-transform: capitalize; background-color: #73bc43; border-color: transparent; border-radius: 20px; margin-top: 20px;">Lascia
+                                                    una recensione</button><br>
+                                            </th:block>
+                                            <th:block th:if="${iSendFeedback == true}">
+                                                <label>Recensione Inviata!</label>
+                                            </th:block>
+                                        </th:block>
+                                    </th:block>
+                                </a>
+
+                                <ul class="dropdown-menu"
+                                    style="padding: 14px; margin-top:-310px;height: 200px; width: 280px;margin-left: 0px; ">
+
+                                    <div class="row" id="post-review-box">
+                                        <div class="col-12 text-center">
+                                            <form accept-charset="UTF-8" action="/invia-feedback" method="post"
+                                                  class="col-12">
+
+                                                <input id="ratings-hidden" type="hidden">
+                                                <div class="row" style="margin-top: -5px;">
+                                                    <p class="col-6" th:text="${meal.homeOwner.username}"
+                                                       style=" text-align:center;font-size: 12px; color:gray;">
+                                                    </p>
+                                                    <textarea class="col-6" name="user"
+                                                              th:text="${meal.homeOwner.username}"
+                                                              style=" text-align:center;font-size: 12px; color:gray;display:none">UserName</textarea>
+                                                    <textarea class="col-6" name="food" th:text="${meal.id}"
+                                                              style="font-size: 12px; color:gray; text-align:center;display:none"></textarea>
+                                                </div>
+                                                <div class="col-12 text-center">
+                                                        <textarea class="form-control animated" cols="50"
+                                                                  id="new-review" name="comment"
+                                                                  placeholder="Scrivi la tua recensione qui..." rows="5"
+                                                                  style=" height: 80px; font-size: 12px; margin-top: -5px;"></textarea>
+                                                </div>
+                                                <p style="color:gray; font-size: 12px; margin-top: 15px;">Dai un
+                                                    voto
+                                                    a chi ti ha ospitato</p>
+                                                <div class="col-12">
+
+                                                    <input type="number" class="form-control" name="rating" min="1"
+                                                           max="5" required="required"
+                                                           style="width: 65px;font-size: 12px; margin-left:50px">
+                                                    <button class="btn btn-success btn-md" type="submit"
+                                                            style="border-color: transparent;margin-left: 100px;margin-top: -53px; font-size: 12px;width: 80px; background-color: #73bc43;border-radius: 20px; margin-top: -40px;">Invia</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </ul>
+
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-6">
-                                <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 161px;height: 26px;text-align: left;margin-bottom: 0px;">Luogo</h2><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 9px;font-family: Alata, sans-serif;" th:text="${meal.place}"></a>
-                            </div>
-                            <div class="col">
-                                <h2 style="font-family: Alata, sans-serif;font-size: 18px;width: 180px;height: 26px;text-align: left;margin-bottom: 0px;">Prezzo</h2><a class="small-text" href="#" style="font-size: 15px;text-align: left;margin-top: 9px;font-family: Alata, sans-serif;" th:text="${meal.price}"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-                <div class="nav-item dropdown" style="margin-top: -13px; margin-right: -5px;">
-                    <a
-                            class="nav-link"
-                            id="navbarDrop"
-                            style="color:#fe9e02"
-                            role="button"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
-                        <th:block th:if="${meal.homeOwner!=null}">
-                            <th:block th:if="${meal.state.toString == 'EXPIRED'}">
-                                <th:block th:if="${iSendFeedback == false}">
-                                <button
-                                        class="btn btn-success btn-green"
-                                        style="width:230px;margin-top: 7px; font-weight: 600; height: 30px; width:180px;font-size:11px;text-transform: capitalize; background-color: #73bc43; border-color: transparent; border-radius: 20px;">Lascia una recensione</button>
-                                </th:block>
-                                <th:block th:if="${iSendFeedback == true}">
-                                <label >Recensione Inviata!</label>
-                                </th:block>
-                            </th:block>
-                        </th:block>
-                    </a>
-
-                    <ul
-                            class="dropdown-menu"
-                            style="padding: 14px; margin-left:-20px; margin-top:-10px;height: 230px; width: 280px; ">
-                        <li class="head text-light" style="background-color: #fe9e02;">
-                            <div class="row">
-                                <div class="col-12 text-center" style="font-weight: 500"></div>
-                            </div>
-                        </li>
-                        <div class="row" id="post-review-box">
-                            <div class="col-md-12 text-center">
-                                <form accept-charset="UTF-8" action="/invia-feedback" method="post" class="col-12">
-
-                                    <input id="ratings-hidden" type="hidden">
-                                    <div class="row" style="margin-top: -5px;">
-                                        <p
-                                                class="col-6"
-                                                th:text="${meal.homeOwner.username}"
-                                                style=" text-align:center;font-size: 12px; color:gray;"></p>
-                                        <textarea
-                                                class="col-6"
-                                                name="user"
-                                                th:text="${meal.homeOwner.username}"
-                                                style=" text-align:center;font-size: 12px; color:gray;display:none">UserName</textarea>
-                                        <textarea
-                                                class="col-6"
-                                                name="food"
-                                                th:text="${meal.id}"
-                                                style="font-size: 12px; color:gray; text-align:center;display:none"></textarea>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                                                        <textarea
-                                                                                class="form-control animated"
-                                                                                cols="50"
-                                                                                id="new-review"
-                                                                                name="comment"
-                                                                                placeholder="Scrivi la tua recensione qui..."
-                                                                                rows="5"
-                                                                                style=" height: 80px; font-size: 12px; margin-top: -5px;"></textarea>
-                                    </div>
-                                    <p style="color:gray; font-size: 12px; margin-top: 5px;">Dai un voto all'ospite</p>
-                                    <div class="col-12">
-
-                                        <input
-                                                type="number"
-                                                class="form-control"
-                                                name="rating"
-                                                min="1"
-                                                max="5"
-                                                required="required"
-                                                style="width: 65px;font-size: 12px; margin-top: -5px; margin-left:50px">
-                                        <button
-                                                class="btn btn-success btn-md"
-                                                type="submit"
-                                                style="border-color: transparent;margin-left: 100px;margin-top: -53px; font-size: 12px;width: 80px; background-color: #73bc43;border-radius: 20px;">Invia</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</section>
+
+
+
+</div>
+</div>
+</div>
 </div>
 
-
-
-<h2 class="text-center" style="font-family: Alata, sans-serif;margin-bottom: 40px;color: #73bc43;margin-top: 0px;background: rgba(0,0,0,0);font-size: 28px;">Lista partecipanti<br></h2>
+<h2 class="text-center"
+    style="font-family: Alata, sans-serif;margin-bottom: 40px;color: #73bc43;margin-top: 0px;background: rgba(0,0,0,0);font-size: 28px;">
+    Lista partecipanti<br></h2>
 <div class="container">
     <div class="row">
         <div class="col" style="margin-bottom: 20px;">
@@ -385,26 +356,44 @@
                         <table class="table table-striped table-sm my-0 mydatatable">
                             <thead>
                             <tr>
-                                <th style="font-family: Alata, sans-serif;width: 160px;text-align: center;">Nome utente</th>
+                                <th style="font-family: Alata, sans-serif;width: 160px;text-align: center;">
+                                    Nome utente</th>
                                 <td></td>
                                 <td></td>
-                              <!--  <th style="font-family: Alata, sans-serif;width: 70px;text-align: center;">Media Recensioni</th>-->
-                               <!-- <th style="font-family: Alata, sans-serif;width: 170px;text-align: center;max-width: 150px;">Recensione</th>-->
-                                <th style="font-family: Alata, sans-serif;text-align: right;width: 130px;"></th>
-                                <th style="font-family: Alata, sans-serif;text-align: right;width: 348px;"></th>
+                                <!-- <th style="font-family: Alata, sans-serif;width: 70px;text-align:
+                    center;">Media Recensioni</th>-->
+                                <!-- <th style="font-family: Alata, sans-serif;width: 170px;text-align:
+                    center;max-width: 150px;">Recensione</th>-->
+                                <th style="font-family: Alata, sans-serif;text-align: right;width: 130px;">
+                                </th>
+                                <th style="font-family: Alata, sans-serif;text-align: right;width: 348px;">
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="user:${meal.userList}">
-                                <td style="font-family: Alata, sans-serif;text-align: center;padding-top: 8px;padding-bottom: 0px;" th:text="${user.username}"></td>
+                                <td style="font-family: Alata, sans-serif;text-align: center;padding-top: 8px;padding-bottom: 0px;"
+                                    th:text="${user.username}"></td>
                                 <td></td>
                                 <td></td>
 
-                                <!-- <td style="font-family: Alata, sans-serif;text-align: center;padding-top: 8px;padding-bottom: 0px;">2,0/5</td>-->
-                                <!--<td style="font-family: Alata, sans-serif;text-align: center;padding-top: 8px;padding-bottom: 0px;">4,0/5&nbsp; &nbsp;<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star fa-star-o"></i></td>-->
-                                <td style="font-family: Alata, sans-serif;text-align: left;width: 130px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" th:href="@{profilo-utente(user=${user.username})}" style="background: #fe9e02;padding-top: 4px;width: 120px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 14px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;margin-top: 1px;">Vedi profilo</a></td>
-                                <td style="font-family: Alata, sans-serif;text-align: right;width: 130px;padding-top: 0px;padding-bottom: 0px;margin-top: 0px;"><div class="container" style="width: 270px;">
-                                </div></td>
+                                <!-- <td style="font-family: Alata, sans-serif;text-align: center;padding-top:
+                    8px;padding-bottom: 0px;">2,0/5</td>-->
+                                <!--<td style="font-family: Alata, sans-serif;text-align: center;padding-top:
+                    8px;padding-bottom: 0px;">4,0/5&nbsp; &nbsp;<i class="fa fa-star"></i><i
+                    class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                    class="fa fa-star fa-star-o"></i></td>-->
+                                <td style="font-family: Alata, sans-serif;text-align: left;width: 130px;">
+                                    <a class="btn btn-primary border rounded-pill" role="button"
+                                       data-bss-hover-animate="pulse"
+                                       th:href="@{profilo-utente(user=${user.username})}"
+                                       style="background: #fe9e02;padding-top: 4px;width: 120px;font-family: Alata, sans-serif;padding-bottom: 0px;font-size: 14px;height: 31px;margin-bottom: 0px;margin-right: 0px;text-align: center;margin-top: 1px;">Vedi
+                                        profilo</a>
+                                </td>
+                                <td
+                                        style="font-family: Alata, sans-serif;text-align: right;width: 130px;padding-top: 0px;padding-bottom: 0px;margin-top: 0px;">
+                                    <div class="container" style="width: 270px;"></div>
+                                </td>
                             </tr>
                             <tr></tr>
                             <tr></tr>
@@ -421,40 +410,81 @@
         </div>
     </div>
 </div>
-<div class="col-md-12 text-center" style="margin-top: -30px;"><a class="btn btn-primary border rounded-pill" role="button" data-bss-hover-animate="pulse" href="storico" style="background: #fe9e02;padding-top: 8px;width: 210px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 0px;text-align: center;margin-right: 0px;margin-top: 20px;padding-right: 10px;padding-left: 10px;font-size: 20px;">Torna indietro</a></div>
-<div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul" style="height: 343px;background: var(--bs-white);color: #ffffff;padding-top: 20px;padding-bottom: 40px;margin-top: 0px;">
-    <footer style="border-color: rgb(240, 249, 255);height: 214.328px;">
+
+<div class="d-xl-flex justify-content-xl-center align-items-xl-end footer-dark degra-azul"
+     style="height: 340px;background: var(--bs-white);color: #ffffff;padding-top: 20px;padding-bottom: 10px;margin-top: 0px;">
+    <footer style="border-color: rgb(240, 249, 255)">
         <div class="container">
             <div class="row row-cols-2 justify-content-center align-items-center">
-                <div class="col-sm-4 col-md-3 text-center d-inline order-1 item" style="font-family: Lato, sans-serif;height: 234px;">
+                <div class="col-sm-4 col-md-3 text-center d-inline order-1 item"
+                     style="font-family: Lato, sans-serif;height: 234px;">
                     <h3> </h3>
-                    <ul></ul><img class="img-fluid" src="assets/img/inmytable-logo.png" style="width: 258px;text-align: center;">
-                    <p style="color: var(--bs-dark);text-align: center;font-family: Alata, sans-serif;"><br><em>Mangiare insieme. Sprecare meno. Conoscersi di più.</em><br><br><br></p>
+                    <ul></ul><img class="img-fluid" src="assets/img/inmytable-logo.png"
+                                  style="width: 258px;text-align: center;">
+                    <p style="color: var(--bs-dark);text-align: center;font-family: Alata, sans-serif;">
+                        <br><em>Mangiare insieme. Sprecare meno. Conoscersi di
+                        più.</em><br><br><br>
+                    </p>
                 </div>
-                <div class="col-sm-4 col-md-3 text-center d-inline order-2 item" style="font-family: Alata, sans-serif;height: 234px;text-align: center;">
+                <div class="col-sm-4 col-md-3 text-center d-inline order-2 item"
+                     style="font-family: Alata, sans-serif;height: 234px;text-align: center;">
                     <h3> </h3>
-                    <h3 class="text-center" style="height: 30px;font-size: 19px;color: var(--bs-dark);font-weight: bold;font-family: Alata, sans-serif;">Links utili<br><a class="btn btn-primary text-start" role="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 130px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;margin-left: 0px;margin-right: 0px;padding-right: 0px;padding-left: 0px;" href="come-funziona.html">Come funziona</a><br><a class="btn btn-primary text-start" role="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 60px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;" href="aiuto.html">FAQ</a><br><button class="btn btn-primary text-start" type="button" style="background: #ffffff;font-size: 18px;font-weight: normal;width: 118px;height: 29px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px; margin-left:28px">Contatti</button><br></h3>
+                    <h3 class="text-center"
+                        style="height: 30px;font-size: 19px;color: var(--bs-dark);font-weight: bold;font-family: Alata, sans-serif;">
+                        Links utili<br><br><a class="btn btn-primary text-start" role="button"
+                                              style="background: #ffffff;font-size: 18px;font-weight: normal;width: 130px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;margin-left: 0px;margin-right: 0px;padding-right: 0px;padding-left: 0px;"
+                                              href="come-funziona">Come funziona</a><br><a class="btn btn-primary text-start"
+                                                                                           role="button"
+                                                                                           style="background: #ffffff;font-size: 18px;font-weight: normal;width: 60px;height: 34px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;"
+                                                                                           href="aiuto">FAQ</a><br><button class="btn btn-primary text-start" type="button"
+                                                                                                                           style="background: #ffffff;font-size: 18px;font-weight: normal;width: 118px;height: 29px;border-color: rgba(0,0,0,0);color: rgb(0,0,0);text-align: center;font-family: Alata, sans-serif;margin-bottom: 10px;">Contatti</button><br><br><br><br><br><br><br>
+                    </h3>
                 </div>
-                <div class="col-6 col-sm-4 col-md-3 d-inline order-3 item" style="font-family: Lato, sans-serif;height: 234px;">
+                <div class="col-6 col-sm-4 col-md-3 d-inline order-3 item"
+                     style="font-family: Lato, sans-serif;height: 234px;">
                     <h3> </h3>
-                    <h3 class="text-center" style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;font-weight: bold;margin-bottom: -4px;">Contattaci</h3>
-                    <div class="social-icons" style="height: 87px;padding: 0px 0px;text-align: center;"><a href="#"><i class="icon ion-social-instagram" style="margin-left: 10px;margin-right: 2px;"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a>
-                        <h3 class="text-center" style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;text-align: center;font-weight: bold; margin-bottom:10px;"><br>E-mail: info@inmytable.com<br></h3>
+                    <h3 class="text-center"
+                        style="font-size: 19px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;font-weight: bold;margin-bottom: -14px;">
+                        Contattaci</h3>
+                    <div class="social-icons" style="height: 87px;padding: 0px 0px;text-align: center;"><a
+                            ><i class="icon ion-social-instagram"
+                                        style="margin-left: 10px;margin-right: 2px;"></i></a><a ><i
+                            class="icon ion-social-facebook"></i></a>
+                        <h3 class="text-center"
+                            style="font-size: 15px;height: 46px;color: var(--bs-dark);font-family: Alata, sans-serif;text-align: center;font-weight: bold;">
+                            <br>E-mail: info@inmytable.com<br>
+                        </h3><a ></a><a ></a>
                     </div>
-
+                    <ul></ul><a ></a><a ></a>
                 </div>
-                <div class="col-sm-4 col-md-3 order-4 item" style="font-family: Lato, sans-serif;margin-top: 0px;padding-top: 1px;width: 242;">
+                <div class="col-sm-4 col-md-3 order-4 item"
+                     style="font-family: Lato, sans-serif;margin-top: 0px;padding-top: 1px;width: 242;">
                     <h3> </h3>
-                    <h3 class="text-center text-sm-center text-md-center text-lg-center" style="font-size: 19px;height: 46px;color: var(--bs-dark);margin-bottom: 18px;margin-top: 0px;font-family: Alata, sans-serif;font-weight: bold;">Iscriviti alla newsletter</h3>
-                    <h3 class="text-center text-sm-center text-md-center text-lg-center" style="font-size: 13px;height: 20px;color: var(--bs-dark);font-style: normal;margin-bottom: 6px;font-family: Alata, sans-serif;">Unisciti alla community<br>Inserisci la tua email</h3>
+                    <h3 class="text-center text-sm-center text-md-center text-lg-center"
+                        style="font-size: 19px;height: 46px;color: var(--bs-dark);margin-bottom: 18px;margin-top: 0px;font-family: Alata, sans-serif;font-weight: bold;">
+                        Iscriviti alla newsletter</h3>
+                    <h3 class="text-center text-sm-center text-md-center text-lg-center"
+                        style="font-size: 13px;height: 20px;color: var(--bs-dark);font-style: normal;margin-bottom: 6px;margin-top: 3px;font-family: Alata, sans-serif;">
+                        Unisciti alla community<br>Inserisci la tua email</h3>
                     <form style="margin-top: 30px;height: 107px;" method="post">
-                        <div class="form-group mb-3" style="margin-top: 0px;margin-bottom: 0px;"><input class="form-control" type="email" name="email" placeholder="Email" style="text-align: center;margin-bottom: 0px;margin-top: 0px;margin-right: 0px;padding-bottom: 4px;padding-top: 7px;margin-left: 0px;font-family: Alata, sans-serif;"></div>
-                        <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center form-group mb-3"><button class="btn btn-primary border rounded-pill" data-bss-hover-animate="pulse" type="submit" style="background: #73bc43;padding-top: 8px;width: 118px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;">Inscriviti</button></div>
+                        <div class="form-group mb-3" style="margin-top: 0px;margin-bottom: 0px;"><input
+                                class="form-control" type="email" name="email" placeholder="Email"
+                                style="text-align: center;margin-bottom: 0px;margin-top: 0px;margin-right: 0px;padding-bottom: 4px;padding-top: 7px;margin-left: 0px;font-family: Alata, sans-serif;">
+                        </div>
+                        <div
+                                class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center form-group mb-3">
+                            <button class="btn btn-primary border rounded-pill" data-bss-hover-animate="pulse"
+                                    type="submit"
+                                    style="background: #73bc43;padding-top: 8px;width: 118px;font-family: Alata, sans-serif;padding-bottom: 8px;margin-left: 5px;">Inscriviti</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-        <h1 style="border-color: rgb(0,0,0);color: rgb(0,0,0);text-align: center;font-size: 17px;font-family: Alata, sans-serif;margin-top: 5px;margin-bottom: 20px;padding-top: 0px;padding-bottom: 0px;"><br>© 2018 - 2020 Copyright INMYTABLE - Tutti i diritti riservati<br><br></h1>
+        <h1
+                style="border-color: rgb(0,0,0);color: rgb(0,0,0);text-align: center;font-size: 17px;font-family: Alata, sans-serif;margin-top: 5px;margin-bottom: 10px;padding-top: 0px;padding-bottom: 0px;">
+            <br>© 2018 - 2020 Copyright INMYTABLE - Tutti i diritti riservati<br><br>
+        </h1>
     </footer>
 </div>
 
@@ -481,8 +511,10 @@
 <script src="assets/js/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.js"></script>
 <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/Lightbox-Gallery.js"></script>

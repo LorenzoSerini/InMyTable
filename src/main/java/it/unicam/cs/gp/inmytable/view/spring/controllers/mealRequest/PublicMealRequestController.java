@@ -33,6 +33,7 @@ public class PublicMealRequestController {
             try {
                 notificationService.setLogUser(BaseController.getLogUser(session));
                 model.addAttribute("allNotifications", notificationService.getAllNotifications());
+                model.addAttribute("notificationsSize", notificationService.getAllNotifications().size());
                 return "richiesta-pasto-pubblico";
             } catch (Exception e) {
                 e.printStackTrace();
@@ -50,13 +51,16 @@ public class PublicMealRequestController {
                                                @RequestParam("startTime") String startTime, @RequestParam("closedTime") String finishTime, @RequestParam("allergy") String allergy,
                                                @RequestParam("mealsNumber") int mealsNumber) {
         try {
+            model.addAttribute("error", false);
             mealRequestService.setLogUser((BaseController.getLogUser(session)));
             mealRequestService.postAPublicMealRequest(description, mealType, consummationType, paymentType, startTime, finishTime, pym, address, allergy, mealsNumber);
             return "redirect:bacheca";
         } catch (Exception e) {
             e.printStackTrace();
-            return "richiesta-pasto-pubblico";
+            model.addAttribute("error", true);
+            model.addAttribute("errorMsg", e.getMessage());
         }
+        return "richiesta-pasto-pubblico";
     }
 
 

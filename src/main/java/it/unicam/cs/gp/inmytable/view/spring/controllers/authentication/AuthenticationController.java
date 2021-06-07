@@ -45,15 +45,18 @@ public class AuthenticationController {
 
 
     @PostMapping("/register")
-    public ModelAndView registration( HttpSession session,
+    public ModelAndView registration(Model model, HttpSession session,
                                       @RequestParam("username") String username, @RequestParam("email") String email,@RequestParam("telephone") String telephoneNumber,@RequestParam("firstName") String firstName,
                                       @RequestParam("lastName") String lastName,@RequestParam("password") String password,@RequestParam("birth") String birth,@RequestParam("id") String id,
                                       @RequestParam("fiscalCode") String fiscalCode,@RequestParam("city") String city,@RequestParam("address") String address,@RequestParam("available") boolean availableToRequests){
         try {
+            model.addAttribute("error", false);
             BaseController.setLogUser(guestService.registration(username, email, telephoneNumber, firstName, lastName, password, birth, id, fiscalCode, city, address, availableToRequests), session);
             return new ModelAndView("redirect:bacheca");
         } catch (Exception e) {
             e.printStackTrace();
+            model.addAttribute("error", true);
+            model.addAttribute("errorMsg", e.getMessage());
         }
         return new ModelAndView("register");
     }

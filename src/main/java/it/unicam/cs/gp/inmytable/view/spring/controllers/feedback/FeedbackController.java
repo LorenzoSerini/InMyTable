@@ -1,13 +1,9 @@
 package it.unicam.cs.gp.inmytable.view.spring.controllers.feedback;
 
 import it.unicam.cs.gp.inmytable.allmeals.Food;
-import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
-import it.unicam.cs.gp.inmytable.allmeals.meals.Meal;
-import it.unicam.cs.gp.inmytable.user.IUser;
 import it.unicam.cs.gp.inmytable.user.User;
 import it.unicam.cs.gp.inmytable.view.spring.controllers.BaseController;
 import it.unicam.cs.gp.inmytable.view.spring.services.FeedbackService;
-import it.unicam.cs.gp.inmytable.view.spring.services.LedgerService;
 import it.unicam.cs.gp.inmytable.view.spring.services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.Collection;
-import java.util.Map;
 
 @Controller
 public class FeedbackController {

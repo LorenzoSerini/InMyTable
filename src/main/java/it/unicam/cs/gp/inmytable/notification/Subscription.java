@@ -4,8 +4,7 @@ import it.unicam.cs.gp.inmytable.allmeals.Food;
 import it.unicam.cs.gp.inmytable.user.IUser;
 
 
-public abstract class Subscription<T extends IUser, F extends Food> implements ISubscription<T,F>{//, Notification {
-
+public abstract class Subscription<T extends IUser, F extends Food> implements ISubscription<T,F>{
     private SubscriptionStates state;
     private T user;
     private F food;

@@ -34,7 +34,6 @@ public class FeedbackBox {
             average+=f.getRating();
         }
         this.sentFeedbacksAverage=average/fromFeedbacks.size();
-        //return average/fromFeedbacks.size();
         return this.sentFeedbacksAverage;
     }
 
@@ -50,7 +49,6 @@ public class FeedbackBox {
         }
         this.receivedFeedbacksAverage=average/toFeedbacks.size();
         return receivedFeedbacksAverage;
-        //return average/toFeedbacks.size();
     }
 
 

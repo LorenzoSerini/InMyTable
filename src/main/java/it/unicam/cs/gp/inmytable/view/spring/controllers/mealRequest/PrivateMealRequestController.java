@@ -63,6 +63,7 @@ public class PrivateMealRequestController {
                 privateMealRequestService.setLogUser(BaseController.getLogUser(session));
                 notificationService.setLogUser(BaseController.getLogUser(session));
                 model.addAttribute("allNotifications", notificationService.getAllNotifications());
+                model.addAttribute("notificationsSize", notificationService.getAllNotifications().size());
                 model.addAttribute("requestTo", requestTo);
                 return "richiesta-pasto-privato";
             } catch (Exception e) {
@@ -84,16 +85,19 @@ public class PrivateMealRequestController {
                                          @RequestParam("mealsNumber") int mealsNumber) {
         if (BaseController.isLoggedIn(session)) {
             try {
+                model.addAttribute("error", false);
                 privateMealRequestService.setLogUser((BaseController.getLogUser(session)));
                 privateMealRequestService.postAPrivateMealRequest(requestTo,description, mealType, consummationType, paymentType, startTime, finishTime, pym, address, allergy, mealsNumber);
                 requestTo=null;
                 return "redirect:bacheca";
             } catch (Exception e) {
                 e.printStackTrace();
-                return "richiesta-pasto-pubblico";
+                model.addAttribute("error", true);
+                model.addAttribute("errorMsg", e.getMessage());
             }
-        }
-        return "richiesta-pasto-pubblico";
+            return "richiesta-pasto-pubblico";
+        } else  return "redirect:login";
+
     }
 
 }
