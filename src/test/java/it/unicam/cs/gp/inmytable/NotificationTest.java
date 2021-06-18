@@ -1,6 +1,6 @@
 package it.unicam.cs.gp.inmytable;
 
-
+import it.unicam.cs.gp.inmytable.allmeals.ConsummationType;
 import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
@@ -26,13 +26,13 @@ public class NotificationTest {
     public NotificationTest() throws Exception {
     }
 
-   /* @Test
+    @Test
     void testJoinToMealNotification() throws Exception {
         //build two users
         IUser user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", null, true);
         IUser user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", null, true);
         //create a meal
-        Meal meal = new Meal(user1,3,LocalDate.parse("2021-05-29"), LocalTime.now(),LocalDate.parse("2021-05-29"),LocalTime.now(),"",false,"", "", ConsummationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
+        Meal meal = new Meal(user1,3,LocalDate.parse("2023-07-29"), LocalTime.now(),LocalDate.parse("2023-06-29"),LocalTime.now(),"",false,"", "",ConsummationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
         //build a subscription manager
         SubscriptionManager subscriptionManager = new SubscriptionManager();
         //user joins to the meal
@@ -41,7 +41,7 @@ public class NotificationTest {
         assertThrows(IllegalArgumentException.class , ()-> subscriptionManager.joinToMealNotification(user1, meal.getHomeOwner(), meal,""));
         //check user1 receive the notification
         assertTrue(!user1.getMealNotifications().isEmpty());
-        var subscriptionNotification = user1.getMealNotifications().get(0);
+        SubscriptionNotification subscriptionNotification = user1.getMealNotifications().get(0);
         //user1 accept the subscription
         subscriptionManager.acceptMealNotification(user1, subscriptionNotification.getSubscription().getUser(), subscriptionNotification.getSubscription(), subscriptionNotification.getMsg());
         //check the subscription is accepted
@@ -52,15 +52,15 @@ public class NotificationTest {
         //check user cannot accept his subscription
         assertThrows(IllegalArgumentException.class, ()-> subscriptionManager.acceptMealNotification(user, subscriptionNotification.getSubscription().getUser(),  subscriptionNotification.getSubscription(),"") );
 
-    }*/
+    }
 
-    /*@Test
+    @Test
     void testAcceptMealNotification() throws Exception {
         //create two users
         IUser user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", null, true);
         IUser user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", null, true);
         //create the meal
-        Meal meal = new Meal(user1,3,LocalDate.parse("2021-05-29"), LocalTime.now(),LocalDate.parse("2021-05-29"),LocalTime.now(),"",false,"", "", ConsummationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
+        Meal meal = new Meal(user1,3,LocalDate.parse("2023-07-29"), LocalTime.now(),LocalDate.parse("2023-06-29"),LocalTime.now(),"",false,"", "", ConsummationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
         //create the subscription manager
         SubscriptionManager subscriptionManager = new SubscriptionManager();
         //user joins to the meal
@@ -75,28 +75,28 @@ public class NotificationTest {
         assertTrue(subscriptionNotification.getSubscription().getState() == SubscriptionStates.ACCEPTED);
         //check user cannot accept his subscription
         assertThrows(IllegalArgumentException.class, ()-> subscriptionManager.acceptMealNotification(user, subscriptionNotification.getSubscription().getUser(),  subscriptionNotification.getSubscription(),"") );
-    }*/
+    }
 
-    /*@Test
+    @Test
     void testAcceptPublicRequestNotification() throws Exception {
         //build two users
         IUser user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", null, true);
         IUser user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", null, true);
         //create a public meal request
         MealRequest request = MealManager.getInstance().createPublicMealRequest(user, "mealType", ConsummationType.AT_HOME,
-                PaymentType.CASH, "", LocalDate.parse("2021-05-29"),
-                LocalTime.now(), LocalDate.parse("2021-05-29"),
+                PaymentType.CASH, "", LocalDate.parse("2023-07-29"),
+                LocalTime.now(), LocalDate.parse("2023-06-29"),
                 LocalTime.now(), "0", "", "", 4);
         //build a subscription manager
         SubscriptionManager subscriptionManager = new SubscriptionManager();
         subscriptionManager.acceptPublicRequestNotification(user1 , user , request, "");
         //check the new state of the request
-        assertFalse(request.getState() == MealStates.FULL);
+        assertTrue(request.getState() == MealStates.FULL);
         //check user cannot accept his request
         assertThrows(IllegalArgumentException.class, ()->subscriptionManager.acceptPublicRequestNotification(user, request.getHost(), request,"" ));
         //check user1 is the homeOwner in the request
         assertEquals(user1, request.getHomeOwner());
-    }*/
+    }
 
     @Test
     void testSendPrivateRequestNotification() throws Exception {
@@ -106,8 +106,8 @@ public class NotificationTest {
         //build a subscription Manager
         SubscriptionManager subscriptionManager = new SubscriptionManager();
         //create a private meal request
-        MealRequest request1 = MealManager.getInstance().createPrivateMealRequest(user, "", ConsummationType.AT_HOME, PaymentType.CASH, "",LocalDate.parse("2021-05-29"),
-                LocalTime.now(), LocalDate.parse("2021-05-29"),
+        MealRequest request1 = MealManager.getInstance().createPrivateMealRequest(user, "", ConsummationType.AT_HOME, PaymentType.CASH, "",LocalDate.parse("2023-07-29"),
+                LocalTime.now(), LocalDate.parse("2023-06-29"),
                 LocalTime.now(), "0", "", "", 2, user1);
         //send a notification for a private meal request
         subscriptionManager.sendPrivateRequestNotification(user, user1, request1, "");
@@ -126,8 +126,8 @@ public class NotificationTest {
         //build subscription manager
         SubscriptionManager subscriptionManager = new SubscriptionManager();
         //create a private meal request
-        MealRequest request1 = MealManager.getInstance().createPrivateMealRequest(user, "", ConsummationType.AT_HOME, PaymentType.CASH, "",LocalDate.parse("2021-05-29"),
-                LocalTime.now(), LocalDate.parse("2021-05-29"),
+        MealRequest request1 = MealManager.getInstance().createPrivateMealRequest(user, "", ConsummationType.AT_HOME, PaymentType.CASH, "",LocalDate.parse("2023-07-29"),
+                LocalTime.now(), LocalDate.parse("2023-06-29"),
                 LocalTime.now(), "0", "", "", 2, user1);
         //send the notification from user to user1
         subscriptionManager.sendPrivateRequestNotification(user, user1, request1, "");
@@ -154,8 +154,8 @@ public class NotificationTest {
         //build subscription manager
         SubscriptionManager subscriptionManager = new SubscriptionManager();
         //create a private meal request
-        MealRequest request1 = MealManager.getInstance().createPrivateMealRequest(user, "", ConsummationType.AT_HOME, PaymentType.CASH, "",LocalDate.parse("2021-05-29"),
-                LocalTime.now(), LocalDate.parse("2021-05-29"),
+        MealRequest request1 = MealManager.getInstance().createPrivateMealRequest(user, "", ConsummationType.AT_HOME, PaymentType.CASH, "",LocalDate.parse("2023-07-29"),
+                LocalTime.now(), LocalDate.parse("2023-06-29"),
                 LocalTime.now(), "0", "", "", 2, user1);
         //send the notification from user to user1
         subscriptionManager.sendPrivateRequestNotification(user, user1, request1, "");

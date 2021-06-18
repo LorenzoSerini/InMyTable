@@ -1,6 +1,7 @@
 package it.unicam.cs.gp.inmytable.controllers;
 
 
+import it.unicam.cs.gp.inmytable.exception.AlreadyExistingException;
 import it.unicam.cs.gp.inmytable.exception.UnknownUsernameException;
 import it.unicam.cs.gp.inmytable.persistence.AuthenticationDB;
 import it.unicam.cs.gp.inmytable.persistence.AuthenticationPersistence;
@@ -55,10 +56,10 @@ public class GuestController {
                        LocalDate birth, String id, String fiscalCode, String city, String address, boolean availableToRequests) throws Exception {
         if (username == null || email == null || telephoneNumber == null || firstName == null || lastName == null ||
                 password == null || birth == null) throw new NullPointerException("One of the parameter is null!");
-        if (userPersistence.getUsers().containsKey(username)) throw new IllegalArgumentException("Username already exists!");
-        if (!UsersUtilities.checkEmail(userPersistence.getUsers(), email)) throw new IllegalArgumentException("Email already exists or is wrong!");
-        if (!UsersUtilities.checkId(userPersistence.getUsers(), id)) throw new IllegalArgumentException("Id already exists or is wrong!");
-        if (!UsersUtilities.checkFiscalCode(userPersistence.getUsers(), fiscalCode)) throw new IllegalArgumentException("FiscalCode already exists or is wrong!");
+        if (userPersistence.getUsers().containsKey(username)) throw new AlreadyExistingException(username);
+        if (!UsersUtilities.checkEmail(userPersistence.getUsers(), email)) throw new AlreadyExistingException(email);
+        if (!UsersUtilities.checkId(userPersistence.getUsers(), id)) throw new AlreadyExistingException(id);
+        if (!UsersUtilities.checkFiscalCode(userPersistence.getUsers(), fiscalCode)) throw new AlreadyExistingException(fiscalCode);
         if (!UsersUtilities.checkBirth(birth)) throw new IllegalArgumentException("You are too young!");
 
         User user = new User(username, email, telephoneNumber, firstName, lastName, password.hashCode(), birth, id, fiscalCode, city, address, availableToRequests);

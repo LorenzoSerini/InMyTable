@@ -16,6 +16,13 @@ public class SubscriptionNotification<T extends IUser, F extends Food> implement
     private ISubscription<T,F> subscription;
     private String id;
 
+    /**
+     * Build a Notification with a Subscription
+     * @param from  user who send the notification
+     * @param to    user who receive the notification
+     * @param subscription  subscription you want to notify
+     * @param message   message of the notification
+     */
     public SubscriptionNotification(T from, T to, ISubscription<T,F> subscription, String message){
         this.date=LocalDate.now();
         this.from=from;
