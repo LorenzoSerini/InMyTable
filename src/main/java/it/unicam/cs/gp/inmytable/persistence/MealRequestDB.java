@@ -3,21 +3,13 @@ package it.unicam.cs.gp.inmytable.persistence;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequestType;
-import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
-import it.unicam.cs.gp.inmytable.allmeals.MealStates;
-import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.notification.SubscriptionNotification;
 import it.unicam.cs.gp.inmytable.user.IUser;
-import it.unicam.cs.gp.inmytable.user.User;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class MealRequestDB extends DBPersistence implements MealRequestPersistence{

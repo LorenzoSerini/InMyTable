@@ -31,15 +31,15 @@ public class MealManager {
 	 * @param mealType type of meal
 	 * @param freeSubscription	if the subscription of the meal is free or if is chosen by the homeOwner
 	 * @param place	where the meal is
-	 * @param consumationType	if is in place or takeaway
+	 * @param consummationType	if is in place or takeaway
 	 * @param description	short description of the meal
 	 * @param payment	how payment is accepted
 	 * @throws Exception if one of the parameters is null
 	 */
 	public Meal createMeal(IUser homeOwner, int maxNumberUsers, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String mealType, boolean freeSubscription, String city, String place,
-						   ConsumationType consumationType, String description, String ingredients, PaymentType payment, String price) throws Exception{
+						   ConsummationType consummationType, String description, String ingredients, PaymentType payment, String price) throws Exception{
 		Meal meal = new Meal(homeOwner, maxNumberUsers, date, time, expiryDate,expiryTime, mealType, freeSubscription, city, place,
-				consumationType, description, ingredients, payment, price);
+				consummationType, description, ingredients, payment, price);
 		HomeWall.getInstance().getMealCatalog().add(meal);
 		return meal;
 	}
@@ -53,8 +53,8 @@ public class MealManager {
 	 * @return MealRequest
 	 * @throws Exception if one of the parameters is null
 	 */
-	public MealRequest createPublicMealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {
-			MealRequest mealRequest = new MealRequest(host,mealType, consumationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber);
+	public MealRequest createPublicMealRequest(IUser host, String mealType, ConsummationType consummationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber) throws Exception {
+			MealRequest mealRequest = new MealRequest(host,mealType, consummationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber);
 			HomeWall.getInstance().getMealRequestCatalog().add(mealRequest);
 			return mealRequest;
 	}
@@ -69,8 +69,8 @@ public class MealManager {
 	 * @return MealRequest
 	 * @throws Exception if one of the parameters is null
 	 */
-	public MealRequest createPrivateMealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, IUser homeOwner) throws Exception {
-		return new MealRequest(host, mealType, consumationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber, homeOwner);
+	public MealRequest createPrivateMealRequest(IUser host, String mealType, ConsummationType consummationType, PaymentType payment, String description, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price, String place, String allergy, int mealsNumber, IUser homeOwner) throws Exception {
+		return new MealRequest(host, mealType, consummationType, payment, description, date, time, expiryDate, expiryTime, price, place, allergy, mealsNumber, homeOwner);
 	}
 
 }

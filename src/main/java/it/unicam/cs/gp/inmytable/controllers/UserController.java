@@ -7,6 +7,9 @@ import it.unicam.cs.gp.inmytable.user.User;
 
 import java.util.*;
 
+/**
+ * User controller
+ */
 public class UserController {
     private User user;
     private MealPersistence mealPersistence;
@@ -50,7 +53,17 @@ public class UserController {
 
     }
 
-
+    /**
+     * This method is used to set users parameters
+     * @param email user email
+     * @param password user password
+     * @param city user city
+     * @param address user address
+     * @param id user id
+     * @param telephoneNumber user telephone number
+     * @param available willingness to be contacted
+     * @throws Exception
+     */
     public void setUser(String email, String password, String city, String address, String id, String telephoneNumber, boolean available) throws Exception {
         if(email!=null)this.user.setEmail(email);
         if(password!=null)this.user.setPassword(password.hashCode());
@@ -62,15 +75,30 @@ public class UserController {
         userPersistence.updateUser(this.user,this.user.getEmail(),this.user.getPassword(),this.user.getCity(),this.user.getAddress(),this.user.getId(),this.user.getTelephoneNumber(), this.user.getAvailableToRequests());
     }
 
-
+    /**
+     * returns users map
+     * @return users map
+     * @throws Exception
+     */
     public Map<String, User> getUsers() throws Exception {
         return mealPersistence.getUsers();
     }
 
+    /**
+     * returns an user by username
+     * @param username user username
+     * @return user
+     * @throws Exception
+     */
     public User getUser(String username) throws Exception {
         return mealPersistence.getUsers().get(username);
     }
 
+    /**
+     * returns all users available to be contacted
+     * @return  all users available to be contacted
+     * @throws Exception
+     */
     public Map<String, User> getAvailableToRequestUsers() throws Exception {
         Map<String, User> availableUsers = new HashMap<>();
         for(String key:mealPersistence.getUsers().keySet()){

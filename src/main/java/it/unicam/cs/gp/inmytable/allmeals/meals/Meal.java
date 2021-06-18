@@ -1,6 +1,7 @@
 package it.unicam.cs.gp.inmytable.allmeals.meals;
 
-import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
+
+import it.unicam.cs.gp.inmytable.allmeals.ConsummationType;
 import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.exception.ExpirationTimeException;
@@ -22,7 +23,7 @@ public class Meal implements IMeal{
 	private String city;
 	private String place;
 	private MealStates state;
-	private ConsumationType consumationType;
+	private ConsummationType consummationType;
 	private String description;
 	private String ingredients;
 	private PaymentType payment;
@@ -44,15 +45,15 @@ public class Meal implements IMeal{
 	 * @param mealType type of meal
 	 * @param freeSubscription	if the subscription of the meal is free or if is chosen by the homeOwner
 	 * @param place	where the meal is
-	 * @param consumationType	if is in place or takeaway
+	 * @param consummationType	if is in place or takeaway
 	 * @param description	short description of the meal
 	 * @param payment	how payment is accepted
 	 * @throws Exception if one of the parameters is null
 	 */
 	public Meal(IUser homeOwner, int maxNumberUsers, LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String mealType, boolean freeSubscription, String city, String place,
-				ConsumationType consumationType, String description, String ingredients, PaymentType payment, String price) throws Exception{
+				ConsummationType consummationType, String description, String ingredients, PaymentType payment, String price) throws Exception{
 		if (homeOwner==null|| date ==null ||expiryDate ==null ||mealType==null ||place == null ||
-				consumationType ==null|| description ==null || payment ==null) throw new NullPointerException("You must insert all!");
+				consummationType ==null|| description ==null || payment ==null) throw new NullPointerException("You must insert all!");
 		if (date.isBefore(expiryDate) )
 			throw new ExpirationTimeException( date + " is before " + expiryDate);
 		if (date.isEqual(expiryDate) && time.isBefore(expiryTime)) throw new
@@ -70,7 +71,7 @@ public class Meal implements IMeal{
 		this.freeSubscription = freeSubscription;
 		this.city=city;
 		this.place = place;
-		this.consumationType = consumationType;
+		this.consummationType = consummationType;
 		this.description = description;
 		this.ingredients = ingredients;
 		this.payment = payment;
@@ -150,7 +151,7 @@ public class Meal implements IMeal{
 
 	/**
 	 * return the places available for this meal
-	 * @return
+	 * @return the places available for this meal
 	 */
 	@Override
 	public int getPlacesAvailable() {
@@ -232,28 +233,19 @@ public class Meal implements IMeal{
 		return place;
 	}
 
-	/**
-	 *
-	 * @return
-	 */
+
 	@Override
-	public ConsumationType getConsummationType() {
-		return consumationType;
+	public ConsummationType getConsummationType() {
+		return consummationType;
 	}
 
-	/**
-	 *
-	 * @return
-	 */
+
 	@Override
 	public String getDescription() {
 		return description;
 	}
 
-	/**
-	 *
-	 * @return
-	 */
+
 	@Override
 	public String getIngredients(){return this.ingredients;}
 
@@ -276,10 +268,7 @@ public class Meal implements IMeal{
 		return price;
 	}
 
-	/**
-	 *
-	 * @return
-	 */
+
 	@Override
 	public IUser getHomeOwner() {
 		return homeOwner;
@@ -290,10 +279,7 @@ public class Meal implements IMeal{
 		this.date=date;
 	}
 
-	/**
-	 *
-	 * @return
-	 */
+
 	@Override
 	public Set<IUser> getUserList() {
 		return userList;

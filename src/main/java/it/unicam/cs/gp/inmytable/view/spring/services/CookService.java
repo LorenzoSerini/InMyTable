@@ -1,6 +1,6 @@
 package it.unicam.cs.gp.inmytable.view.spring.services;
 
-import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.ConsummationType;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.controllers.MealsController;
 import it.unicam.cs.gp.inmytable.user.User;
@@ -24,7 +24,7 @@ public class CookService {
         String startT = date.substring(11,16);
         String expireD = expireDate.substring(0, 10);
         String expireT = expireDate.substring(11,16);
-        mealsController.cook(startD, startT,expireD, expireT, maxNumUsers, mealType, freeSubscription, city, address, ConsumationType.valueOf(consummationType.toUpperCase()), description, ingredients, PaymentType.valueOf(paymentType.toUpperCase()), price);
+        mealsController.cook(startD, startT,expireD, expireT, maxNumUsers, mealType, freeSubscription, city, address, ConsummationType.valueOf(consummationType.toUpperCase()), description, ingredients, PaymentType.valueOf(paymentType.toUpperCase()), price);
     }
 
 }

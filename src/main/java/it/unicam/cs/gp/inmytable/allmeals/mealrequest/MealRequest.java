@@ -1,6 +1,7 @@
 package it.unicam.cs.gp.inmytable.allmeals.mealrequest;
 
-import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
+
+import it.unicam.cs.gp.inmytable.allmeals.ConsummationType;
 import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 
@@ -29,7 +30,7 @@ public class MealRequest implements IMealRequest {
     private IUser host;
     private IUser homeOwner;
     private MealStates state;
-    private ConsumationType consummationType;
+    private ConsummationType consummationType;
     private PaymentType paymentType;
     private MealRequestType type;
     private String id;
@@ -38,7 +39,7 @@ public class MealRequest implements IMealRequest {
      * Build a public Meal Request
      * @param host host who request a meal
      * @param mealType  type of the meal
-     * @param consumationType   type of consummation
+     * @param consummationType   type of consummation
      * @param payment   type of payment
      * @param description description of the meal request
      * @param date  date of the meal request
@@ -51,10 +52,10 @@ public class MealRequest implements IMealRequest {
      * @param mealsNumber   number of the meal
      * @throws Exception    if one of the parameters is null or if the expiration date is after the date
      */
-    public MealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description,
+    public MealRequest(IUser host, String mealType, ConsummationType consummationType, PaymentType payment, String description,
                        LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime, String price,
                        String place, String allergy, int mealsNumber) throws Exception {
-        if ((host == null) || (mealType == null) || (consumationType == null) || (payment == null) || (description == null) ||
+        if ((host == null) || (mealType == null) || (consummationType == null) || (payment == null) || (description == null) ||
                 (date == null) || time == null || expiryDate == null || expiryTime == null || price == null || place == null
                 || allergy ==null) throw new NullPointerException("Parameters must be different to null|");
         if (payment.compareTo(PaymentType.FREE) == 0) {
@@ -62,7 +63,7 @@ public class MealRequest implements IMealRequest {
         } else this.price = price;
         this.host = host;
         this.mealType = mealType;
-        this.consummationType = consumationType;
+        this.consummationType = consummationType;
         this.paymentType = payment;
         this.description = description;
         this.date = date;
@@ -85,7 +86,7 @@ public class MealRequest implements IMealRequest {
      * Build a private Meal Request
      * @param host host who request a meal
      * @param mealType  type of the meal
-     * @param consumationType   type of consummation
+     * @param consummationType   type of consummation
      * @param payment   type of payment
      * @param description description of the meal request
      * @param date  date of the meal request
@@ -99,10 +100,10 @@ public class MealRequest implements IMealRequest {
      * @param homeOwner      user to whom the request is sent
      * @throws Exception    if one of the parameters is null or if the expiration date is after the date or the host is equals to the homeOwner
      */
-    public MealRequest(IUser host, String mealType, ConsumationType consumationType, PaymentType payment, String description,
+    public MealRequest(IUser host, String mealType, ConsummationType consummationType, PaymentType payment, String description,
                        LocalDate date, LocalTime time, LocalDate expiryDate, LocalTime expiryTime,
                        String price, String place, String allergy, int mealsNumber, IUser homeOwner)throws Exception {
-        this(host,mealType,consumationType,payment,description,date,time,expiryDate,expiryTime,price,place,allergy,mealsNumber);
+        this(host,mealType,consummationType,payment,description,date,time,expiryDate,expiryTime,price,place,allergy,mealsNumber);
         if (host.equals(homeOwner)) throw new IllegalArgumentException("You cannot send a request to yourself");
         this.homeOwner=homeOwner;
         this.type = MealRequestType.PRIVATE;
@@ -209,7 +210,7 @@ public class MealRequest implements IMealRequest {
     }
 
     @Override
-    public ConsumationType getConsummationType() {
+    public ConsummationType getConsummationType() {
         return consummationType;
     }
 

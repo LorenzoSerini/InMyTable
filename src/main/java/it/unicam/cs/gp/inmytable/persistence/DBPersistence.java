@@ -1,6 +1,6 @@
 package it.unicam.cs.gp.inmytable.persistence;
 
-import it.unicam.cs.gp.inmytable.allmeals.ConsumationType;
+import it.unicam.cs.gp.inmytable.allmeals.ConsummationType;
 import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.MealRequest;
@@ -91,7 +91,7 @@ public abstract class DBPersistence extends DBConnection implements Persistence{
                 User homeOwner = getUsers().get(getData().getString("HomeOwner"));
                  meal = new Meal(homeOwner, getData().getInt("MaxNumberUsers"), LocalDate.parse(getData().getString("Date")), LocalTime.parse(getData().getString("Time")),
                         LocalDate.parse(getData().getString("ExpiringDate")), LocalTime.parse(getData().getString("ExpiringTime")), getData().getString("MealType"), getData().getBoolean("FreeSubscription"), getData().getString("City"),
-                        getData().getString("Place"), ConsumationType.valueOf(getData().getString("ConsumationType")), getData().getString("Description"), getData().getString("Ingredients"), PaymentType.valueOf(getData().getString("Payment")),
+                        getData().getString("Place"), ConsummationType.valueOf(getData().getString("ConsumationType")), getData().getString("Description"), getData().getString("Ingredients"), PaymentType.valueOf(getData().getString("Payment")),
                         getData().getString("Price"));
                 meal.setId(getData().getString("Id"));
                 getMealsMap().put(meal.getId(), meal);
@@ -115,7 +115,7 @@ public abstract class DBPersistence extends DBConnection implements Persistence{
                 User host = getUsers().get(getData().getString("Host"));
                 User homeOwner = getUsers().get(getData().getString("HomeOwner"));
                 if(getData().getString("Type").equals(PUBLIC)) {
-                    MealRequest pubMealRequest = new MealRequest(host, getData().getString("MealType"), ConsumationType.valueOf(getData().getString("ConsummationType")),
+                    MealRequest pubMealRequest = new MealRequest(host, getData().getString("MealType"), ConsummationType.valueOf(getData().getString("ConsummationType")),
                             PaymentType.valueOf(getData().getString("PaymentType")), getData().getString("Description"), LocalDate.parse(getData().getString("Date")),
                             LocalTime.parse(getData().getString("Time")), LocalDate.parse(getData().getString("ExpiryDate")), LocalTime.parse(getData().getString("ExpiryTime")),
                             getData().getString("Price"), getData().getString("Place"), getData().getString("Allergy"), getData().getInt("MealsNumber"));
@@ -125,7 +125,7 @@ public abstract class DBPersistence extends DBConnection implements Persistence{
                     mealsRequestMap.put(pubMealRequest.getId(), pubMealRequest);
                     updateMealRequest(pubMealRequest);
                 }else if(getData().getString("Type").equals(PRIVATE)){
-                    MealRequest priMealRequest = new MealRequest(host, getData().getString("MealType"), ConsumationType.valueOf(getData().getString("ConsummationType")),
+                    MealRequest priMealRequest = new MealRequest(host, getData().getString("MealType"), ConsummationType.valueOf(getData().getString("ConsummationType")),
                             PaymentType.valueOf(getData().getString("PaymentType")), getData().getString("Description"), LocalDate.parse(getData().getString("Date")),
                             LocalTime.parse(getData().getString("Time")), LocalDate.parse(getData().getString("ExpiryDate")), LocalTime.parse(getData().getString("ExpiryTime")),
                             getData().getString("Price"), getData().getString("Place"), getData().getString("Allergy"), getData().getInt("MealsNumber"), homeOwner);

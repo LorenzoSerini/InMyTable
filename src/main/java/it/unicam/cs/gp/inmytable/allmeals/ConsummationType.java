@@ -1,5 +1,8 @@
 package it.unicam.cs.gp.inmytable.allmeals;
 
-public enum ConsumationType {
+/**
+ * Consummation types
+ */
+public enum ConsummationType {
 	TAKEAWAY, AT_HOME, BOTH
 }

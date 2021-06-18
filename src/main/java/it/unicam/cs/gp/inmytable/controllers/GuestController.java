@@ -8,6 +8,9 @@ import it.unicam.cs.gp.inmytable.user.User;
 import it.unicam.cs.gp.inmytable.utility.UsersUtilities;
 import java.time.LocalDate;
 
+/**
+ * The guest controller
+ */
 public class GuestController {
     private AuthenticationPersistence userPersistence;
 
