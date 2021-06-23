@@ -11,10 +11,20 @@ import java.util.List;
 public class UserSearchService {
     private UserController userController;
 
+    /**
+     * used to set log user
+     * @param logUser the log user
+     * @throws Exception
+     */
     public void setLogUser(User logUser) throws Exception {
         this.userController = new UserController(logUser);
     }
 
+    /**
+     * returns all available to request user
+     * @return all available to request user
+     * @throws Exception
+     */
     public List<User> getAvailableToRequestUsers() throws Exception {
         List<User> availableUsers = new ArrayList<>();
         for(String key:this.userController.getAvailableToRequestUsers().keySet()){

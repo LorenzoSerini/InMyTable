@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 public class InMyTable {
 	private final View view;
 
-
+	/**
+	 * application type
+	 */
 	public enum IN_MY_TABLE_TYPE {
 		WEB
 	}
@@ -32,12 +34,18 @@ public class InMyTable {
 		}
 	}
 
-
-		public void start() {
+	/**
+	 * launch the view
+	 */
+	public void start() {
 			view.start();
 		}
 
-
+	/**
+	 * create in my table application
+	 * @param code in my table application type
+	 * @return
+	 */
 		public static InMyTable createInMyTable(String code) {
 			switch (IN_MY_TABLE_TYPE.valueOf(code.toUpperCase())) {
 				case WEB:

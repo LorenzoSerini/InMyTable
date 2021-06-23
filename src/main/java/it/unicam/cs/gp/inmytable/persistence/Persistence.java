@@ -15,7 +15,15 @@ public interface Persistence {
      */
     Map<String, User> getUsers() throws Exception;
 
+    /**
+     *
+     * @return meals map
+     */
     Map<String, Meal> getMealsMap();
 
+    /**
+     *
+     * @return meals request map
+     */
     Map<String, MealRequest> getMealsRequestMap();
 }

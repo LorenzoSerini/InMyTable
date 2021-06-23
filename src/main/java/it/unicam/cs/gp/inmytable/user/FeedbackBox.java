@@ -16,6 +16,10 @@ public class FeedbackBox {
     }
 
 
+    /**
+     * returns average
+     * @return average
+     */
     public double getAverage(){
         double average = 0;
         for (Feedback feedback: feedbacks) {
@@ -24,6 +28,10 @@ public class FeedbackBox {
         return average/feedbacks.size();
     }
 
+    /**
+     * returns sent feedback average
+     * @return sent feedback average
+     */
     public double getSentFeedbacksAverage(){
         double average = 0;
         List<Feedback> fromFeedbacks;
@@ -38,6 +46,10 @@ public class FeedbackBox {
     }
 
 
+    /**
+     * returns received feedback average
+     * @return received feedback average
+     */
     public double getReceivedFeedbacksAverage(){
         double average=0;
         List<Feedback> toFeedbacks;
@@ -52,10 +64,18 @@ public class FeedbackBox {
     }
 
 
+    /**
+     * added a feedback
+     * @param feedback the feedback
+     */
     public void addFeedback(Feedback feedback){
         feedbacks.add(feedback);
     }
 
+    /**
+     * returns feedbacks list
+     * @return feedbacks list
+     */
     public List<Feedback> getFeedbacks(){
         return new ArrayList<>(this.feedbacks);
     }

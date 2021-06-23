@@ -53,6 +53,7 @@ public class SubscriptionNotification<T extends IUser, F extends Food> implement
         return this.date;
     }
 
+    @Override
     public void setDate(LocalDate date){this.date=date;}
 
     @Override
@@ -60,6 +61,7 @@ public class SubscriptionNotification<T extends IUser, F extends Food> implement
         return this.time;
     }
 
+    @Override
     public void setTime(LocalTime time){this.time=time;}
 
     @Override
@@ -79,8 +81,16 @@ public class SubscriptionNotification<T extends IUser, F extends Food> implement
         return LocalTime.parse(tTime);
     }
 
+    /**
+     * Used to set the subscription in notification
+     * @param subscription the subscription
+     */
     public void setSubscription(ISubscription<T,F> subscription){this.subscription=subscription;}
 
+    /**
+     * returns subscription notification
+     * @return subscription notification
+     */
     public ISubscription<T, F> getSubscription() {
         return subscription;
     }

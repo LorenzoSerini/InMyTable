@@ -5,6 +5,7 @@ import it.unicam.cs.gp.inmytable.allmeals.ConsummationType;
 import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 
+import it.unicam.cs.gp.inmytable.exception.ExpirationTimeException;
 import it.unicam.cs.gp.inmytable.user.*;
 
 import java.time.LocalDate;
@@ -58,6 +59,13 @@ public class MealRequest implements IMealRequest {
         if ((host == null) || (mealType == null) || (consummationType == null) || (payment == null) || (description == null) ||
                 (date == null) || time == null || expiryDate == null || expiryTime == null || price == null || place == null
                 || allergy ==null) throw new NullPointerException("Parameters must be different to null|");
+
+        if (date.isBefore(expiryDate) )
+            throw new ExpirationTimeException( date + " is before " + expiryDate);
+        if (date.isEqual(expiryDate) && time.isBefore(expiryTime)) throw new
+                ExpirationTimeException(time + " is before " + expiryTime);
+
+
         if (payment.compareTo(PaymentType.FREE) == 0) {
             this.price = "0";
         } else this.price = price;

@@ -64,7 +64,10 @@ public class HomeWall {
 		return mealRequestCatalog;
 	}
 
-
+	/**
+	 * update food variables in catalog
+	 * @param catalog catalog
+	 */
 	private void updateCatalog(Catalog<? extends Food> catalog){
 		catalog.search(p->p.getExpiryDate().isBefore(LocalDate.now()) || (
 				p.getExpiryDate().isEqual(LocalDate.now()) &&

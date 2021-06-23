@@ -19,7 +19,12 @@ public interface MealRequestPersistence extends Persistence {
     void registerPublicMealRequest(MealRequest mealRequest) throws Exception;
 
 
-
+    /**
+     *  Register a Private Meal Request
+     * @param mealRequest private meal request
+     * @param notification the notification
+     * @throws Exception
+     */
     void registerPrivateMealRequest(MealRequest mealRequest, SubscriptionNotification<?,?> notification) throws Exception;
 
     /**
@@ -30,7 +35,11 @@ public interface MealRequestPersistence extends Persistence {
     void registerHomeOwnerToMealRequest(IUser homeOwner, IMealRequest mealRequest, SubscriptionNotification<?,?> notification) throws Exception;
 
 
-
+    /**
+     *
+     * @return meals request list
+     * @throws Exception
+     */
     List<MealRequest> getMealsRequestList() throws Exception;
 
     /**

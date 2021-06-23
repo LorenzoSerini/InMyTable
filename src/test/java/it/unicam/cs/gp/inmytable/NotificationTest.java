@@ -1,12 +1,11 @@
 package it.unicam.cs.gp.inmytable;
 
+
 import it.unicam.cs.gp.inmytable.allmeals.ConsummationType;
 import it.unicam.cs.gp.inmytable.allmeals.MealStates;
 import it.unicam.cs.gp.inmytable.allmeals.PaymentType;
 import it.unicam.cs.gp.inmytable.allmeals.mealrequest.IMealRequest;
 import it.unicam.cs.gp.inmytable.allmeals.meals.*;
-import it.unicam.cs.gp.inmytable.allmeals.*;
-import it.unicam.cs.gp.inmytable.allmeals.Food;
 import it.unicam.cs.gp.inmytable.allmeals.meals.IMeal;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,7 +31,7 @@ public class NotificationTest {
         IUser user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", null, true);
         IUser user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", null, true);
         //create a meal
-        Meal meal = new Meal(user1,3,LocalDate.parse("2023-07-29"), LocalTime.now(),LocalDate.parse("2023-06-29"),LocalTime.now(),"",false,"", "",ConsummationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
+        Meal meal = new Meal(user1,3,LocalDate.parse("2023-07-29"), LocalTime.now(),LocalDate.parse("2023-06-29"),LocalTime.now(),"",false,"", "", ConsummationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
         //build a subscription manager
         SubscriptionManager subscriptionManager = new SubscriptionManager();
         //user joins to the meal
@@ -60,7 +59,7 @@ public class NotificationTest {
         IUser user = new User("pippo","pippo@gmail.com","00000","Pippo", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", null, true);
         IUser user1 = new User("pluto","pippo@gmail.com","00000","Pluto", "Pluto","pippo".hashCode(), LocalDate.now(), "FISCALCODICE", "IDCODICE", "Macerata, Via prova 15", null, true);
         //create the meal
-        Meal meal = new Meal(user1,3,LocalDate.parse("2023-07-29"), LocalTime.now(),LocalDate.parse("2023-06-29"),LocalTime.now(),"",false,"", "", ConsummationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
+        Meal meal = new Meal(user1,3,LocalDate.parse("2023-07-29"), LocalTime.now(),LocalDate.parse("2023-06-29"),LocalTime.now(),"",false,"","", ConsummationType.AT_HOME,"","", PaymentType.EXCHANGE,"0");
         //create the subscription manager
         SubscriptionManager subscriptionManager = new SubscriptionManager();
         //user joins to the meal
