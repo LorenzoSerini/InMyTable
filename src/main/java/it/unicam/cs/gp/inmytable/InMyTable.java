@@ -54,7 +54,6 @@ public class InMyTable {
 			return null;
 		}
 
-
 	public static InMyTable createInMyTableWeb() {
 		return new InMyTable(new SpringView());
 	}
