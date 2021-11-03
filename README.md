@@ -10,3 +10,5 @@ dove poter trovare del cibo o qualcosa da bere, aprendo all'incontro, alla
 condivisione, a risvolti economici e sociali, che spaziano tra la riduzione degli sprechi, il
 cambiamento dello stile di vita e la creazione di ponti interculturali, con molteplici possibilità di
 sviluppo.
+
+https://inmytable.herokuapp.com/
